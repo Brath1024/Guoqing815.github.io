@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://example.com</id>
-    <title>Hexo</title>
+    <title>BrathBlog</title>
     <link href="http://example.com" />
     <updated>2022-12-27T08:18:48.660Z</updated>
     <entry>
