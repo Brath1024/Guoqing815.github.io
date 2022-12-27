@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-CAS机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/27/CAS%E6%9C%BA%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2022-12-27T07:24:12.681Z" itemprop="datePublished">2022-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/12/27/CAS%E6%9C%BA%E5%88%B6/">CAS机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="CAS机制"><a href="#CAS机制" class="headerlink" title="CAS机制"></a>CAS机制</h1><h3 id="我们先看一段代码："><a href="#我们先看一段代码：" class="headerlink" title="我们先看一段代码："></a>我们先看一段代码：</h3><p>启动两个线程，每个线程中让静态变量count循环累加100次。</p>
+<p><img src="https://img-blog.csdn.net/20180312170840546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>最终输出的count结果一定是200吗？因为这段代码是非<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8&spm=1001.2101.3001.7020">线程安全</a>的，所以最终的自增结果很可能会小于200。我们再加上synchronized同步锁，再来看一下。</p>
+<p><img src="https://img-blog.csdn.net/20180312170827236?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>加了同步锁之后，count自增的操作变成了原子性操作，所以最终输出一定是count&#x3D;200，代码实现了线程安全。虽然synchronized确保了线程安全，但是在某些情况下，这并不是一个最有的选择。</p>
+<p>关键在于性能问题。</p>
+<p>synchronized关键字会让没有得到锁资源的线程进入BLOCKED状态，而后在争夺到锁资源后恢复为RUNNABLE状态，这个过程中涉及到操作系统用户模式和内核模式的转换，代价比较高。</p>
+<p>尽管JAVA 1.6为synchronized做了优化，增加了从偏向锁到轻量级锁再到重量级锁的过过度，但是在最终转变为重量级锁之后，性能仍然比较低。所以面对这种情况，我们就可以使用java中的“原子操作类”。</p>
+<p>所谓原子操作类，指的是java.util.concurrent.atomic包下，一系列以Atomic开头的包装类。如AtomicBoolean，AtomicUInteger，AtomicLong。它们分别用于Boolean，Integer，Long类型的原子性操作。</p>
+<p>现在我们尝试使用AtomicInteger类：</p>
+<p><img src="https://img-blog.csdn.net/20180312172106130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>使用AtomicInteger之后，最终的输出结果同样可以保证是200。并且在某些情况下，代码的性能会比synchronized更好。</p>
+<p>而Atomic操作类的底层正是用到了“CAS机制”。</p>
+<p>CAS是英文单词Compare and Swap的缩写，翻译过来就是比较并替换。</p>
+<p>CAS机制中使用了3个基本操作数：内存地址V，旧的预期值A，要修改的新值B。</p>
+<p>更新一个变量的时候，只有当变量的预期值A和内存地址V当中的实际值相同时，才会将内存地址V对应的值修改为B。</p>
+<p>我们看一个例子：</p>
+<p>\1. 在内存地址V当中，存储着值为10的变量。</p>
+<p><img src="https://img-blog.csdn.net/20180312172707148?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\2. 此时线程1想把变量的值增加1.对线程1来说，旧的预期值A&#x3D;10，要修改的新值B&#x3D;11.</p>
+<p><img src="https://img-blog.csdn.net/20180312172814864?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\3. 在线程1要提交更新之前，另一个线程2抢先一步，把内存地址V中的变量值率先更新成了11。</p>
+<p><img src="https://img-blog.csdn.net/20180312172943800?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\4. 线程1开始提交更新，首先进行A和地址V的实际值比较，发现A不等于V的实际值，提交失败。</p>
+<p><img src="https://img-blog.csdn.net/20180312173045349?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\5. 线程1 重新获取内存地址V的当前值，并重新计算想要修改的值。此时对线程1来说，A&#x3D;11，B&#x3D;12。这个重新尝试的过程被称为自旋。</p>
+<p><img src="https://img-blog.csdn.net/20180312173220371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\6. 这一次比较幸运，没有其他线程改变地址V的值。线程1进行比较，发现A和地址V的实际值是相等的。</p>
+<p><img src="https://img-blog.csdn.net/20180312173331761?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\7. 线程1进行交换，把地址V的值替换为B，也就是12.</p>
+<p><img src="https://img-blog.csdn.net/20180312173421205?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>从思想上来说，synchronized属于悲观锁，悲观的认为程序中的并发情况严重，所以严防死守，CAS属于乐观锁，乐观地认为程序中的并发情况不那么严重，所以让线程不断去重试更新。</p>
+<p>在java中除了上面提到的Atomic系列类，以及Lock系列类夺得底层实现，甚至在JAVA1.6以上版本，synchronized转变为重量级锁之前，也会采用CAS机制。</p>
+<p><strong>CAS的缺点：</strong></p>
+<p>1） CPU开销过大</p>
+<p>在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给CPU带来很到的压力。</p>
+<p>2） 不能保证代码块的原子性</p>
+<p>CAS机制所保证的知识一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证3个变量共同进行原子性的更新，就不得不使用synchronized了。</p>
+<p>3） ABA问题</p>
+<p>这是CAS机制最大的问题所在。（后面有介绍）</p>
+<p>我们下面来介绍一下两个问题：</p>
+<p><em><strong>*1. JAVA中CAS的底层实现*</strong></em></p>
+<p><em><strong>*2. CAS的ABA问题和解决办法。*</strong></em></p>
+<p>我们看一下AtomicInteger当中常用的自增方法incrementAndGet：</p>
+<p>public final int incrementAndGet() {</p>
+<p>  for (;;) {</p>
+<p>​    int current &#x3D; get();</p>
+<p>​    int next &#x3D; current + 1;</p>
+<p>​    if (compareAndSet(current, next))</p>
+<p>​      return next;</p>
+<p>  }</p>
+<p>}</p>
+<p>private volatile int value; </p>
+<p>public final int get() {</p>
+<p>  return value;</p>
+<p>}</p>
+<p>这段代码是一个无限循环，也就是CAS的自旋，循环体中做了三件事：</p>
+<p>\1. 获取当前值</p>
+<p>\2. 当前值+1，计算出目标值</p>
+<p>\3. 进行CAS操作，如果成功则跳出循环，如果失败则重复上述步骤</p>
+<p>这里需要注意的重点是get方法，这个方法的作用是获取变量的当前值。</p>
+<p>如何保证获取的当前值是内存中的最新值？很简单，用volatile关键字来保证（保证线程间的可见性）。我们接下来看一下compareAndSet方法的实现：</p>
+<p><img src="https://img-blog.csdn.net/2018031217514825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>compareAndSet方法的实现很简单，只有一行代码。这里涉及到两个重要的对象，一个是unsafe，一个是valueOffset。</p>
+<p>什么是unsafe呢？Java语言不像C，C++那样可以直接访问底层操作系统，但是JVM为我们提供了一个后门，这个后门就是unsafe。unsafe为我们提供了硬件级别的原子操作。</p>
+<p>至于valueOffset对象，是通过unsafe.objectFiledOffset方法得到，所代表的是AtomicInteger对象value成员变量在内存中的偏移量。我们可以简单的把valueOffset理解为value变量的内存地址。</p>
+<p>我们上面说过，CAS机制中使用了3个基本操作数：内存地址V，旧的预期值A，要修改的新值B。</p>
+<p>而unsafe的compareAndSwapInt方法的参数包括了这三个基本元素：valueOffset参数代表了V，expect参数代表了A，update参数代表了B。</p>
+<p>正是unsafe的compareAndSwapInt方法保证了Compare和Swap操作之间的原子性操作。</p>
+<p>我们现在来说什么是ABA问题。假设内存中有一个值为A的变量，存储在地址V中。</p>
+<p><img src="https://img-blog.csdn.net/2018031218013467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>此时有三个线程想使用CAS的方式更新这个变量的值，每个线程的执行时间有略微偏差。线程1和线程2已经获取当前值，线程3还未获取当前值。</p>
+<p><img src="https://img-blog.csdn.net/20180312180247202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>接下来，线程1先一步执行成功，把当前值成功从A更新为B；同时线程2因为某种原因被阻塞住，没有做更新操作；线程3在线程1更新之后，获取了当前值B。</p>
+<p><img src="https://img-blog.csdn.net/20180312180432152?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在之后，线程2仍然处于阻塞状态，线程3继续执行，成功把当前值从B更新成了A。</p>
+<p><img src="https://img-blog.csdn.net/20180312180546889?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>最后，线程2终于恢复了运行状态，由于阻塞之前已经获得了“当前值A”，并且经过compare检测，内存地址V中的实际值也是A，所以成功把变量值A更新成了B。</p>
+<p><img src="https://img-blog.csdn.net/20180312180729792?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>看起来这个例子没啥问题，但如果结合实际，就可以发现它的问题所在。</p>
+<p>我们假设一个提款机的例子。假设有一个遵循CAS原理的提款机，小灰有100元存款，要用这个提款机来提款50元。</p>
+<p><img src="https://img-blog.csdn.net/20180312181342879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>由于提款机硬件出了点问题，小灰的提款操作被同时提交了两次，开启了两个线程，两个线程都是获取当前值100元，要更新成50元。</p>
+<p>理想情况下，应该一个线程更新成功，一个线程更新失败，小灰的存款值被扣一次。</p>
+<p><img src="https://img-blog.csdn.net/20180312181404403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程1首先执行成功，把余额从100改成50.线程2因为某种原因阻塞。这时，小灰的妈妈刚好给小灰汇款50元。</p>
+<p><img src="https://img-blog.csdn.net/20180312181531202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程2仍然是阻塞状态，线程3执行成功，把余额从50改成了100。</p>
+<p><img src="https://img-blog.csdn.net/20180312181635868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程2恢复运行，由于阻塞之前获得了“当前值”100，并且经过compare检测，此时存款实际值也是100，所以会成功把变量值100更新成50。</p>
+<p><img src="https://img-blog.csdn.net/20180312181813320?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>原本线程2应当提交失败，小灰的正确余额应该保持100元，结果由于ABA问题提交成功了。</p>
+<p>怎么解决呢？加个版本号就可以了。</p>
+<p>真正要做到严谨的CAS机制，我们在compare阶段不仅要比较期望值A和地址V中的实际值，还要比较变量的版本号是否一致。</p>
+<p>我们仍然以刚才的例子来说明，假设地址V中存储着变量值A，当前版本号是01。线程1获取了当前值A和版本号01，想要更新为B，但是被阻塞了。</p>
+<p><img src="https://img-blog.csdn.net/20180312182255181?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>这时候，内存地址V中变量发生了多次改变，版本号提升为03，但是变量值仍然是A。</p>
+<p><img src="https://img-blog.csdn.net/20180312182346458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>随后线程1恢复运行，进行compare操作。经过比较，线程1所获得的值和地址的实际值都是A，但是版本号不相等，所以这一次更新失败。</p>
+<p><img src="https://img-blog.csdn.net/20180312182506360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在Java中，AtomicStampedReference类就实现了用版本号作比较额CAS机制。</p>
+<p><em><strong>*1. java语言CAS底层如何实现？*</strong></em></p>
+<p><em><strong>*利用unsafe提供的原子性操作方法。*</strong></em></p>
+<p><em><strong>*2.什么事ABA问题？怎么解决？*</strong></em></p>
+<p><em><strong>*当一个值从A变成B，又更新回A，普通CAS机制会误判通过检测。*</strong></em></p>
+<p><em><strong>*利用版本号比较可以有效解决ABA问题。*</strong></em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/27/CAS%E6%9C%BA%E5%88%B6/" data-id="clc5wl9ji0000eol6cxcn9m9h" data-title="CAS机制" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CAS-ABA问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/27/CAS-ABA%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-12-27T07:24:12.680Z" itemprop="datePublished">2022-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/12/27/CAS-ABA%E9%97%AE%E9%A2%98/">CAS-ABA问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="CAS-ABA问题"><a href="#CAS-ABA问题" class="headerlink" title="CAS-ABA问题"></a>CAS-ABA问题</h1><h2 id="一-概述："><a href="#一-概述：" class="headerlink" title="一.概述："></a>一.概述：</h2><p>​		ABA问题是在多线程并发的情况下，发生的一种现象。上一次记录了有关CAS操作的一些知识，CAS通过比较内存中的一个数据是否是预期值，如果是就将它修改成新值，如果不是则进行自旋，重复比较的操作，直到某一刻内存值等于预期值再进行修改。而ABA问题则是在CAS操作中存在的一个经典问题，这个问题某些时候不会带来任何影响，某些时候却是影响很大的。</p>
+<h2 id="二-什么是ABA问题？"><a href="#二-什么是ABA问题？" class="headerlink" title="二.什么是ABA问题？"></a>二.什么是ABA问题？</h2><h4 id="理解一："><a href="#理解一：" class="headerlink" title="理解一："></a>理解一：</h4><p>​		当执行campare and swap会出现失败的情况。例如，一个线程先读取共享内存数据值A，随后因某种原因，线程暂时挂起，同时另一个线程临时将共享内存数据值先改为B，随后又改回为A。随后挂起线程恢复，并通过CAS比较，最终比较结果将会无变化。这样会通过检查，这就是ABA问题。 在CAS比较前会读取原始数据，随后进行原子CAS操作。这个间隙之间由于并发操作，最终可能会带来问题。</p>
+<h4 id="理解二"><a href="#理解二" class="headerlink" title="理解二:"></a><strong>理解二:</strong></h4><p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20181231131658183.png"></p>
+<p>“ABA”问题：假设t1线程工作时间为10秒，t2线程工作时间为2秒，那么可能在A的工作期间，主内存中的共享变量 A已经被t2线程修改了多次，只是恰好最后一次修改的值是该变量的初始值，虽然用CAS判定出来的结果是期望值，但是却不是原来那个了&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;》“狸猫换太子”<br>相当于是只关心共享变量的起始值和结束值，而不关心过程中共享变量是否被其他线程动过。<br>有些业务可能不需要关心中间过程，只要前后值一样就行，但是有些业务需求要求变量在中间过程不能被修改。</p>
+<p>只靠CAS无法保证ABA问题，需要使用“原子引用”才能解决！！！！</p>
+<h1 id="三-ABA问题的解决："><a href="#三-ABA问题的解决：" class="headerlink" title="三.ABA问题的解决："></a>三.ABA问题的解决：</h1><h2 id="原子引用：（存在ABA问题）"><a href="#原子引用：（存在ABA问题）" class="headerlink" title="原子引用：（存在ABA问题）"></a>原子引用：（存在ABA问题）</h2><p>案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> InterviewTest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicReference;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>&#123;</span><br><span class="line">	 String name;</span><br><span class="line">	 <span class="type">int</span> age;</span><br><span class="line">	 </span><br><span class="line">	 <span class="keyword">public</span> <span class="title function_">User</span><span class="params">(String name,<span class="type">int</span> age)</span> &#123;</span><br><span class="line">		 <span class="built_in">this</span>.name=name;</span><br><span class="line">		 <span class="built_in">this</span>.age=age;</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;User [name=&quot;</span> + name + <span class="string">&quot;, age=&quot;</span> + age + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AtomicReferenceDemo</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">User</span> <span class="variable">z3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;z3&quot;</span>,<span class="number">25</span>);</span><br><span class="line">		<span class="type">User</span> <span class="variable">li4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;li4&quot;</span>,<span class="number">25</span>);</span><br><span class="line">		AtomicReference&lt;User&gt; atomicReference  = <span class="keyword">new</span> <span class="title class_">AtomicReference</span>&lt;&gt;();</span><br><span class="line">		atomicReference.set(z3);</span><br><span class="line">		System.out.println(atomicReference);</span><br><span class="line">		System.out.println(atomicReference.compareAndSet(z3, li4)+</span><br><span class="line">							<span class="string">&quot;       &quot;</span>+atomicReference.get().toString());</span><br><span class="line">		System.out.println(atomicReference.compareAndSet(li4, z3)+</span><br><span class="line">				<span class="string">&quot;       &quot;</span>+atomicReference.get().toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="带版本号的原子引用（解决ABA问题）"><a href="#带版本号的原子引用（解决ABA问题）" class="headerlink" title="带版本号的原子引用（解决ABA问题）"></a>带版本号的原子引用（解决ABA问题）</h2><p><strong>AtomicStampedReference版本号原子引用：</strong><br><strong>案例：两种原子引用的对比</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> InterviewTest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicReference;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicStampedReference;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ABADemo</span> &#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> AtomicReference&lt;Integer&gt; atomicReference </span><br><span class="line">									= <span class="keyword">new</span> <span class="title class_">AtomicReference</span>&lt;&gt;(<span class="number">100</span>);</span><br><span class="line">	<span class="keyword">static</span> AtomicStampedReference&lt;Integer&gt;  atomicStampedReference </span><br><span class="line">									= <span class="keyword">new</span> <span class="title class_">AtomicStampedReference</span>&lt;&gt;(<span class="number">100</span>,<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">&quot;************以下是ABA问题的产生**************&quot;</span>);</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">			atomicReference.compareAndSet(<span class="number">100</span>, <span class="number">101</span>);</span><br><span class="line">			atomicReference.compareAndSet(<span class="number">101</span>, <span class="number">100</span>);</span><br><span class="line">		&#125;,<span class="string">&quot;t1&quot;</span>).start();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			System.out.println(atomicReference.compareAndSet(<span class="number">100</span>, <span class="number">2019</span>)</span><br><span class="line">					+<span class="string">&quot;   &quot;</span>+atomicReference.get());</span><br><span class="line">		&#125;,<span class="string">&quot;t2&quot;</span>).start();</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">&quot;************以下是ABA问题的解决**************&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">stamp</span> <span class="operator">=</span> atomicStampedReference.getStamp();</span><br><span class="line">			System.out.println(Thread.currentThread().getName()</span><br><span class="line">					+<span class="string">&quot;  &quot;</span>+<span class="string">&quot;   第一次版本号：&quot;</span>+stamp);</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			atomicStampedReference.compareAndSet(<span class="number">100</span>, </span><br><span class="line">										<span class="number">101</span>, </span><br><span class="line">										atomicStampedReference.getStamp(),</span><br><span class="line">										atomicStampedReference.getStamp()+<span class="number">1</span>);</span><br><span class="line">			System.out.println(Thread.currentThread().getName()</span><br><span class="line">					+<span class="string">&quot;  &quot;</span>+<span class="string">&quot;   第2次版本号：&quot;</span>+atomicStampedReference.getStamp());</span><br><span class="line">			atomicStampedReference.compareAndSet(<span class="number">101</span>, </span><br><span class="line">					<span class="number">100</span>, </span><br><span class="line">					atomicStampedReference.getStamp(),</span><br><span class="line">					atomicStampedReference.getStamp()+<span class="number">1</span>);</span><br><span class="line">			System.out.println(Thread.currentThread().getName()</span><br><span class="line">					+<span class="string">&quot;  &quot;</span>+<span class="string">&quot;   第3次版本号：&quot;</span>+atomicStampedReference.getStamp());</span><br><span class="line">			</span><br><span class="line">		&#125;,<span class="string">&quot;t3&quot;</span>).start();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">Thread</span>(()-&gt;&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">stamp</span> <span class="operator">=</span> atomicStampedReference.getStamp();</span><br><span class="line">			System.out.println(Thread.currentThread().getName()</span><br><span class="line">					+<span class="string">&quot;  &quot;</span>+<span class="string">&quot;   第一次版本号：&quot;</span>+stamp);</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="type">boolean</span> <span class="variable">result</span> <span class="operator">=</span>  atomicStampedReference.compareAndSet(</span><br><span class="line">					<span class="number">100</span>, </span><br><span class="line">					<span class="number">2019</span>, </span><br><span class="line">					stamp, </span><br><span class="line">					stamp+<span class="number">1</span>);</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+</span><br><span class="line">					<span class="string">&quot;  修改成功否：&quot;</span>+result+<span class="string">&quot;  当前最新实际版本号：&quot;</span></span><br><span class="line">					+atomicStampedReference.getStamp());</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+</span><br><span class="line">					<span class="string">&quot;  当前实际最新值：&quot;</span></span><br><span class="line">					+atomicStampedReference.getReference());</span><br><span class="line">			</span><br><span class="line">		&#125;,<span class="string">&quot;t4&quot;</span>).start();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出:</span><br><span class="line">************以下是ABA问题的产生**************</span><br><span class="line"><span class="literal">true</span>   <span class="number">2019</span></span><br><span class="line">************以下是ABA问题的解决**************</span><br><span class="line">t3     第一次版本号：<span class="number">1</span></span><br><span class="line">t4     第一次版本号：<span class="number">1</span></span><br><span class="line">t3     第<span class="number">2</span>次版本号：<span class="number">2</span></span><br><span class="line">t3     第<span class="number">3</span>次版本号：<span class="number">3</span></span><br><span class="line">t4  修改成功否：<span class="literal">false</span>  当前最新实际版本号：<span class="number">3</span></span><br><span class="line">t4  当前实际最新值：<span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/27/CAS-ABA%E9%97%AE%E9%A2%98/" data-id="clc5wl9jn0001eol6d05ceuwf" data-title="CAS-ABA问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Alibaba分层领域模型规约" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" class="article-date">
+  <time class="dt-published" datetime="2022-12-27T07:24:12.677Z" itemprop="datePublished">2022-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/">阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>分层领域模型规约：</p>
+<p>DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。<br>DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。<br>BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。<br>AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。<br>VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。<br>POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter&#x2F;getter&#x2F;toString的简单类，包括DO&#x2F;DTO&#x2F;BO&#x2F;VO等。<br>Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。<br>领域模型命名规约：</p>
+<p>数据对象：xxxDO，xxx即为数据表名。<br>数据传输对象：xxxDTO，xxx为业务领域相关的名称。<br>展示对象：xxxVO，xxx一般为网页名称。<br>POJO是DO&#x2F;DTO&#x2F;BO&#x2F;VO的统称，禁止命名成xxxPOJO。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" data-id="clc5wl9jp0002eol69shz6k7x" data-title="阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/">微服务拆分细则</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/">使用docker搭建开发环境记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

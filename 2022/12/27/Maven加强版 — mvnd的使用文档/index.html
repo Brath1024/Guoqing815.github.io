@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Maven加强版 — mvnd的使用测试 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Maven加强版 — mvnd的使用测试Maven、gradle 作为主流的构建工具，几乎所有的Java项目都使用，但是Maven相对gradle来说，构建还是太慢了。特别是构建十几个子项目的程序。 如果要把项目从Maven转换成gradle，成本也是巨大的。 但是现在有了 maven-mvnd ，可以使构建变得更快。 1、maven-mvnd介绍maven-mvnd是Apache Maven团队">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven加强版 — mvnd的使用测试">
+<meta property="og:url" content="http://example.com/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Maven加强版 — mvnd的使用测试Maven、gradle 作为主流的构建工具，几乎所有的Java项目都使用，但是Maven相对gradle来说，构建还是太慢了。特别是构建十几个子项目的程序。 如果要把项目从Maven转换成gradle，成本也是巨大的。 但是现在有了 maven-mvnd ，可以使构建变得更快。 1、maven-mvnd介绍maven-mvnd是Apache Maven团队">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://brath.cloud/blogImg/v2-a58a6f79a75eeeb834275d74212cacb1_720w.jpg">
+<meta property="og:image" content="https://brath.cloud/blogImg/v2-dd0b655c2c27661612a479ef242058c8_720w.jpg">
+<meta property="og:image" content="https://brath.cloud/blogImg/v2-0a301e678b6ebab5577d899b6230ffe5_720w.jpg">
+<meta property="article:published_time" content="2022-12-27T07:24:12.725Z">
+<meta property="article:modified_time" content="2022-07-28T04:07:46.432Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://brath.cloud/blogImg/v2-a58a6f79a75eeeb834275d74212cacb1_720w.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Maven加强版 — mvnd的使用文档" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="article-date">
+  <time class="dt-published" datetime="2022-12-27T07:24:12.725Z" itemprop="datePublished">2022-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Maven加强版 — mvnd的使用测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Maven加强版-—-mvnd的使用测试"><a href="#Maven加强版-—-mvnd的使用测试" class="headerlink" title="Maven加强版 — mvnd的使用测试"></a>Maven加强版 — mvnd的使用测试</h1><p>Maven、gradle 作为主流的构建工具，几乎所有的Java项目都使用，但是Maven相对gradle来说，构建还是太慢了。特别是构建十几个子项目的程序。</p>
+<p>如果要把项目从Maven转换成gradle，成本也是巨大的。</p>
+<p>但是现在有了 maven-mvnd ，可以使构建变得更快。</p>
+<h2 id="1、maven-mvnd介绍"><a href="#1、maven-mvnd介绍" class="headerlink" title="1、maven-mvnd介绍"></a><strong>1、maven-mvnd介绍</strong></h2><p><code>maven-mvnd</code>是<code>Apache Maven团队</code>借鉴了<code>Gradle</code>和<code>Takari</code>的优点，衍生出来的更快的构建工具，是maven的<code>强化版</code>。</p>
+<p>github地址：<a href="https://link.zhihu.com/?target=https://github.com/apache/maven-mvnd">https://github.com/apache/maven-mvnd</a></p>
+<p>maven-mvnd 特性：</p>
+<ul>
+<li>嵌入 Maven (所以不需要单独安装 Maven)；<code>maven 过渡到 maven-mvnd</code>的过程中实现 <code>无缝切换</code>！所以不需要再安装maven或进行复杂的配置更改。</li>
+<li>实际的构建发生在一个长期存在的后台进程中，也就是守护进程。如果没有为构建请求服务的空闲守护进程，则可以并行产生多个守护进程。</li>
+<li>一个守护进程实例可以处理来自 mvnd 客户机的多个连续请求。</li>
+<li>使用 GraalVM 构建的本地可执行文件。与传统的 JVM 相比，它启动更快，使用的内存更少。</li>
+</ul>
+<p>这种架构带来的优势有：</p>
+<ul>
+<li>运行实际构建的 JVM 不需要为每个构建重新启动，节省时间。</li>
+<li>JVM 中的实时(JIT)编译器生成的本机代码也保留了下来。与 Maven 相比，JIT 编译花费的时间更少。在重复构建过程中，JIT 优化的代码可以立即使用。这不仅适用于来自 Maven 插件和 Maven Core 的代码，也适用于来自 JDK 本身的所有代码。</li>
+</ul>
+<h2 id="2、使用步骤"><a href="#2、使用步骤" class="headerlink" title="2、使用步骤"></a><strong>2、使用步骤</strong></h2><h3 id="2-1、下载"><a href="#2-1、下载" class="headerlink" title="2.1、下载"></a><strong>2.1、下载</strong></h3><p>下载：<a href="https://link.zhihu.com/?target=https://github.com/mvndaemon/mvnd/releases">https://github.com/mvndaemon/mvnd/releases</a></p>
+<p><img src="https://brath.cloud/blogImg/v2-a58a6f79a75eeeb834275d74212cacb1_720w.jpg" alt="img"></p>
+<p>我这里是windows，下载 <code>mvnd-0.7.1-windows-amd64.zip</code> 版本即可。</p>
+<h3 id="2-2、安装"><a href="#2-2、安装" class="headerlink" title="2.2、安装"></a><strong>2.2、安装</strong></h3><p>直接解压。</p>
+<p>然后配置环境变量：将 bin 目录添加到 PATH</p>
+<h3 id="2-3、测试"><a href="#2-3、测试" class="headerlink" title="2.3、测试"></a><strong>2.3、测试</strong></h3><p>打开CMD终端，输入 <code>mvnd -v</code></p>
+<p>可以看到如下信息表示安装成功：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\HaC&gt; mvnd -v</span><br><span class="line">mvnd native client 0.7.1-windows-amd64 (97c587c11383a67b5bd0ff8388bd94c694b91c1e)</span><br><span class="line">Terminal: org.jline.terminal.impl.jansi.win.JansiWinSysTerminal</span><br><span class="line">Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)</span><br><span class="line">Maven home: E:\apache-mvnd-0.7.1-windows-amd64\mvn</span><br><span class="line">Java version: 1.8.0_131, vendor: Oracle Corporation, runtime: E:\JDK1.8\jre</span><br><span class="line">Default locale: zh_CN, platform encoding: GBK</span><br><span class="line">OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 mvnd 集成了 Maven 3.8.3 版本。</p>
+<h3 id="2-4、使用"><a href="#2-4、使用" class="headerlink" title="2.4、使用"></a><strong>2.4、使用</strong></h3><p>在使用上和Maven一样，参数也一致。</p>
+<p>Maven 使用 <code>mvn clean package</code> ；使用Maven-mvnd 只需要变成 <code>mvnd clean package</code> 即可，其他同理。</p>
+<h3 id="2-5、配置修改"><a href="#2-5、配置修改" class="headerlink" title="2.5、配置修改"></a><strong>2.5、配置修改</strong></h3><p>为了最小程度的兼容原来的Maven，可以使用原来的 <code>setting.xml</code></p>
+<p>打开 Maven-mvnd 安装目录下 的 <code>/conf/mvnd.properties</code> 文件，修改：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">maven.settings</span>=<span class="string">E://apache-maven-3.5.4-bin//apache-maven-3.5.4//conf//settings.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>（注意是 <code>//</code>）</p>
+<h2 id="3、打包对比"><a href="#3、打包对比" class="headerlink" title="3、打包对比"></a><strong>3、打包对比</strong></h2><p>由于 mvnd-0.7.1 版本使用了Maven 3.8.3版本，我这里同样使用Maven 3.8.3进行对比。</p>
+<p>命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># maven 打包命令</span><br><span class="line">mvn clean package -Dmaven.test.skip=true</span><br><span class="line"># mvnd 打包命令</span><br><span class="line">mvnd clean package -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+
+<p>电脑配置：</p>
+<p>CPU：Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz 3.60 GHz</p>
+<p>内存：16GB</p>
+<p>结果如下：</p>
+<ul>
+<li>13个子项目</li>
+</ul>
+<p><img src="https://brath.cloud/blogImg/v2-dd0b655c2c27661612a479ef242058c8_720w.jpg" alt="img">41秒 vs 21秒</p>
+<p>可以看到 <strong>mvnd 打包的总时间比 mvn 快了不少</strong>，因为 mvnd 使用了CPU的多核心，可以看到每个子模块打包的时间都差不多，所以在单核的机器，就不要尝试使用 mvnd 了。</p>
+<ul>
+<li>19个子项目</li>
+</ul>
+<p><img src="https://brath.cloud/blogImg/v2-0a301e678b6ebab5577d899b6230ffe5_720w.jpg" alt="img">32秒 vs 10秒</p>
+<p>呈现子项目越多，相对速度更快的趋势。</p>
+<p>总的来说：</p>
+<p><strong>如果项目模块很多，可以尝试使用 mvnd 进行辅助打包，比如 测试、生产，可以节省很多时间；</strong></p>
+<p><strong>开发则可以继续使用 mvn ，毕竟 IDEA 无法集成 mvnd，可以在 terminal 通过命令打包。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" data-id="clc5wl9k2000jeol6hgu2ehov" data-title="Maven加强版 — mvnd的使用测试" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/12/27/MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Maven通过命令提示符引入jar包的流程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/27/Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux下docer部署mysql</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/">微服务拆分细则</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/">使用docker搭建开发环境记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

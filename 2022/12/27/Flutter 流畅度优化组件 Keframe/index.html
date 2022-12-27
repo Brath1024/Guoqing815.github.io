@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Flutter 流畅度优化组件 Keframe | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近在开发一款APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6979781997568884766 Nayuta 的 Keframe 组件正好可以满足帧率优化的问题 项目依赖：在 pubspec.yaml 中添加 keframe 依赖 12dependencies:  keframe: versi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter 流畅度优化组件 Keframe">
+<meta property="og:url" content="http://example.com/2022/12/27/Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近在开发一款APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6979781997568884766 Nayuta 的 Keframe 组件正好可以满足帧率优化的问题 项目依赖：在 pubspec.yaml 中添加 keframe 依赖 12dependencies:  keframe: versi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83d16f3b2a3e45b79fc73d7a52774696~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ffecd49bf9ba4379984a22ef79663104~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb09c9aadc5d45c9b966661c8d73e4c1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cb9d177b4b0847339eaf952a7ef67cca~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f33ddd7d9de4e369b0e457f84171cc8~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb7d1361ae7842df954bb1c559e2ec54~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ee6827f7eed4463a1a8a5b00a58fd6e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f20f593cc144b72a1df4bdae57a165c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05aea6de421545b9bbf868c344a9afe9~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="article:published_time" content="2022-12-27T07:24:12.697Z">
+<meta property="article:modified_time" content="2022-07-29T03:03:21.670Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83d16f3b2a3e45b79fc73d7a52774696~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Flutter 流畅度优化组件 Keframe" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/27/Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" class="article-date">
+  <time class="dt-published" datetime="2022-12-27T07:24:12.697Z" itemprop="datePublished">2022-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Flutter 流畅度优化组件 Keframe
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近在开发一款APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6979781997568884766">https://juejin.cn/post/6979781997568884766</a></p>
+<p>Nayuta 的 Keframe 组件正好可以满足帧率优化的问题</p>
+<h3 id="项目依赖："><a href="#项目依赖：" class="headerlink" title="项目依赖："></a>项目依赖：</h3><p>在 <code>pubspec.yaml</code> 中添加 <code>keframe</code> 依赖</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">keframe:</span> <span class="string">version</span></span><br></pre></td></tr></table></figure>
+
+<p>组件仅区分非空安全与空安全版本</p>
+<p>非空安全使用： <code>1.0.2</code></p>
+<p>空安全版本使用： <code>2.0.2</code></p>
+<p>github 地址：<a href="https://link.juejin.cn/?target=https://github.com/LianjiaTech/keframe">github.com&#x2F;LianjiaTech…</a></p>
+<p>pub 查看：<a href="https://link.juejin.cn/?target=https://pub.dev/packages/keframe">pub.dev&#x2F;packages&#x2F;ke…</a></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#SizeCacheWidget用来包裹最外层的list</span><br><span class="line">#FrameSeparateWidget用来包裹list的子集即可    </span><br><span class="line">example:</span><br><span class="line">SizeCacheWidget(</span><br><span class="line">	child：ListView || CustomScrollView(</span><br><span class="line">    	slivers[</span><br><span class="line">            SliverList(</span><br><span class="line">            	delegate: SliverChildBuilderDelegate</span><br><span class="line">                (BuildContext context, <span class="built_in">int</span> index)&#123;</span><br><span class="line">                    <span class="keyword">return</span> FrameSeparateWidget(</span><br><span class="line">                    	child: ···</span><br><span class="line">                    )</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="快速上手："><a href="#快速上手：" class="headerlink" title="快速上手："></a>快速上手：</h3><p>如下图所示</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83d16f3b2a3e45b79fc73d7a52774696~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
+<p>假如现在页面由 A、B、C、D 四部分组成，每部分耗时 10ms，在页面时构建为 40ms。使用分帧组件  <code>FrameSeparateWidget</code> 嵌套每一个部分。页面构建时会在第一帧渲染简单的占位，在后续四帧内分别渲染 A、B、C、D。</p>
+<p>对于列表，在每一个 item 中嵌套 <code>FrameSeparateWidget</code>，并将 <code>ListView</code> 嵌套在 <code>SizeCacheWidget</code> 内即可。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ffecd49bf9ba4379984a22ef79663104~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
+<hr>
+<h2 id="构造函数说明"><a href="#构造函数说明" class="headerlink" title="构造函数说明"></a>构造函数说明</h2><p>FrameSeparateWidget ：分帧组件，将嵌套的 widget 单独一帧渲染</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数名</th>
+<th>是否必填</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Key</td>
+<td>key</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>int</td>
+<td>index</td>
+<td>否</td>
+<td>分帧组件 id，<strong>使用 SizeCacheWidget 的场景必传</strong>，SizeCacheWidget 中维护了 index 对应的 Size 信息</td>
+</tr>
+<tr>
+<td>Widget</td>
+<td>child</td>
+<td>是</td>
+<td>实际需要渲染的 widget</td>
+</tr>
+<tr>
+<td>Widget</td>
+<td>placeHolder</td>
+<td>否</td>
+<td>占位 widget，尽量设置简单的占位，不传默认是 Container()</td>
+</tr>
+</tbody></table>
+<p>SizeCacheWidget：缓存子节点中，分帧组件嵌套的<strong>实际 widget 的尺寸信息</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数名</th>
+<th>是否必填</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Key</td>
+<td>key</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>Widget</td>
+<td>child</td>
+<td>是</td>
+<td>子节点中如果包含分帧组件，则缓存<strong>实际的 widget 尺寸</strong></td>
+</tr>
+<tr>
+<td>int</td>
+<td>estimateCount</td>
+<td>否</td>
+<td>预估屏幕上子节点的数量，提高快速滚动时的响应速度</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="方案设计与分析："><a href="#方案设计与分析：" class="headerlink" title="方案设计与分析："></a>方案设计与分析：</h2><p>卡顿的本质，就是 <strong>单帧的绘制时间过长</strong>。基于此自然衍生出两种思路解决：</p>
+<p>1、减少一帧的绘制耗时，因为导致耗时过长的原因有很多，比如不合理的刷新，或者绘制时间过长，都有可能，需要具体问题具体分析，后面我会分享一些我的优化经验。</p>
+<p><strong>2、在不对耗时优化下，将一帧的任务拆分到多帧内，保证每一帧都不超时。这也是本组件的设计思路，分帧渲染。</strong></p>
+<p>如下图所示:</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb09c9aadc5d45c9b966661c8d73e4c1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
+<p>原理并不复杂，问题在于如何在 Flutter 中实践这一机制。</p>
+<p>因为涉及到帧与系统的调度，自然联想到看 <code>SchedulerBinding</code> 中有无现成的 API。</p>
+<p>发现了 <code>scheduleTask</code> 方法，这是系统提供的一个执行任务的方法，但这个方法存在两个问题：</p>
+<ul>
+<li>1、其中的渲染任务是优先级进行堆排序，而堆排序是<strong>不稳定</strong>排序，这会导致任务的执行顺序并非 FIFO。从效果上来看，就是列表不会按照顺序渲染，而是会出现跳动渲染的情况</li>
+<li>2、这个方法本身存在调度问题，我已经提交 issue 与 pr，不过一直卡在单元测试上，如果感兴趣可以以在这里交流谈论。</li>
+</ul>
+<p><a href="https://link.juejin.cn/?target=https://github.com/flutter/flutter/pull/82781">fix: Tasks scheduled through ‘SchedulerBinding.instance.scheduleTask’… #82781 </a></p>
+<p>最终，参考这个设计结合 <code>endOfFrame</code> 方法的使用，完成了分帧队列。整个渲染流程变为下图所示：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cb9d177b4b0847339eaf952a7ef67cca~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
+<p>对于列表构建场景来说，假设屏幕上能显示五个 item。首先在第一帧的时候，列表会渲染 5 个占位的 Widget，同时添加 5 个高优先级任务到队列中，这里的任务可以是简单的将占位 Widget 和实际 item进行替换，也可通过渐变等动画提升体验。在后续的五帧中占位 Widget 依次被替换成实际的列表 item。</p>
+<p>在  <a target="_blank" rel="noopener" href="https://juejin.cn/post/6940134891606507534">ListView流畅度翻倍！！Flutter卡顿分析和通用优化方案</a>  这篇文章中有更加详细的分析。</p>
+<h2 id="一些展示效果（Example-说明请查看-Github）"><a href="#一些展示效果（Example-说明请查看-Github）" class="headerlink" title="一些展示效果（Example 说明请查看 Github）"></a>一些展示效果（Example 说明请查看 <a href="https://link.juejin.cn/?target=https://github.com/LianjiaTech/keframe/blob/master/README-ZH.md">Github</a>）</h2><p>卡顿的页面往往都是由多个复杂 widget 同时渲染导致。通过为复杂的 widget 嵌套分帧组件 <code>FrameSeparateWidget</code>。渲染时，分帧组件会在第一帧同时渲染多个 <code>palceHolder</code>，之后连续的多帧内依次渲染复杂子项，以此提升页面流畅度。</p>
+<p>例如 example 中的优化前示例：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ListView.builder(</span><br><span class="line">              itemCount: childCount,</span><br><span class="line">              itemBuilder: (c, i) =&gt; CellWidget(</span><br><span class="line">                color: i % <span class="number">2</span> == <span class="number">0</span> ? Colors.red : Colors.blue,</span><br><span class="line">                index: i,</span><br><span class="line">              ),</span><br><span class="line">            )</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>CellWidget</code> 高度为 60，内部嵌套了三个 <code>TextField</code> 的组件（整体构建耗时在 9ms 左右）。</p>
+<p>优化仅需为每一个 item 嵌套分帧组件，并为其设置 <code>placeHolder</code>（placeHolder 尽量简单，样式与实际 item 接近即可）。</p>
+<p>在列表情况下，给 ListView 嵌套 <code>SizeCacheWidget</code>，同时建议将预加载范围 <code>cacheExtent</code> 设置大一点，例如 500（该属性默认为 250），提升慢速滑动时候的体验。</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f33ddd7d9de4e369b0e457f84171cc8~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210611_194905.gif"> (占位与实际列表项不一致时，首次渲染抖动，二次渲染正常)</p>
+<p>此外，也可以给 item 嵌套透明度&#x2F;位移等动画，优化视觉上的效果。</p>
+<p>效果如下图：</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb7d1361ae7842df954bb1c559e2ec54~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210315_133310.gif"></th>
+<th><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ee6827f7eed4463a1a8a5b00a58fd6e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210315_133848.gif"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="分帧的成本"><a href="#分帧的成本" class="headerlink" title="分帧的成本"></a>分帧的成本</h2><p>当然分帧方案也非十全十美，在我看来主要有两点成本：</p>
+<p>1、额外的构建开销：整个构建过程的构建消耗由「n * widget消耗 」变成了「n *（ widget + 占位）消耗 + 系统调度 n 帧消耗」。可以看出，额外的开销主要由占位的复杂度决定。如果占位只是简单的 Container，测试后发现整体构建耗时大概提升在 15 % 左右。这种额外开销对于当下的移动设备而言，成本几乎可以不计。</p>
+<p>2、视觉上的变化：如同上面的演示，组件会将 item 分帧渲染，页面在视觉上出现占位变成实际 widget 的过程。但其实由于列表存在缓存区域（建议将缓存区调大），在高端机或正常滑动情况下用户并无感知。而在中低端设备上快速滑动能感觉到切换的过程，但比严重顿挫要好。</p>
+<hr>
+<h2 id="优化前后对比演示"><a href="#优化前后对比演示" class="headerlink" title="优化前后对比演示"></a>优化前后对比演示</h2><p>注：gif 帧率只有20</p>
+<table>
+<thead>
+<tr>
+<th>优化前</th>
+<th>优化后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f20f593cc144b72a1df4bdae57a165c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="优化前"></td>
+<td><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05aea6de421545b9bbf868c344a9afe9~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="优化后"></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="最后：一点点思考"><a href="#最后：一点点思考" class="headerlink" title="最后：一点点思考"></a>最后：一点点思考</h2><p>列表优化篇到此告一段落，在整个开源实践过程中，有两点感触较深：</p>
+<p>作者：Nayuta<br>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6979781997568884766">https://juejin.cn/post/6979781997568884766</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/27/Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" data-id="clc5wl9jr0006eol679ht8bn7" data-title="Flutter 流畅度优化组件 Keframe" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/12/27/Flutter_GetX%E6%96%87%E6%A1%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Flutter GETX框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/27/Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ELASTICSEARCH7.X安全性之访问密码设置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/">微服务拆分细则</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/">使用docker搭建开发环境记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

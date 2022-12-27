@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>RocketMQ | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="RocketMQ应用场景 异步解藕 削峰填谷 消息分发  环境搭建 上传rocketmq-all-4.4.0-bin-release.zip 到家目录  使用解压命令进行解压 1unzip &#x2F;usr&#x2F;local&#x2F;rocketmq-all-4.4.0-bin-release.zip  软件重命名 1mv &#x2F;usr&#x2F;local&#x2F;rocketmq-all-4.4.0-bin-release&#x2F; &#x2F;usr&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMQ">
+<meta property="og:url" content="http://example.com/2022/12/27/RocketMQ/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RocketMQ应用场景 异步解藕 削峰填谷 消息分发  环境搭建 上传rocketmq-all-4.4.0-bin-release.zip 到家目录  使用解压命令进行解压 1unzip &#x2F;usr&#x2F;local&#x2F;rocketmq-all-4.4.0-bin-release.zip  软件重命名 1mv &#x2F;usr&#x2F;local&#x2F;rocketmq-all-4.4.0-bin-release&#x2F; &#x2F;usr&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-27T07:24:12.751Z">
+<meta property="article:modified_time" content="2021-10-09T13:13:54.213Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-RocketMQ" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/27/RocketMQ/" class="article-date">
+  <time class="dt-published" datetime="2022-12-27T07:24:12.751Z" itemprop="datePublished">2022-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      RocketMQ
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>异步解藕</li>
+<li>削峰填谷</li>
+<li>消息分发</li>
+</ul>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ol>
+<li><p>上传rocketmq-all-4.4.0-bin-release.zip 到家目录</p>
+</li>
+<li><p>使用解压命令进行解压</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip /usr/local/rocketmq-all-4.4.0-bin-release.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>软件重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/rocketmq-all-4.4.0-bin-release/ /usr/local/rocketmq-4.4/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改启动参数配置</p>
+<blockquote>
+<p>JAVA_OPT&#x3D;”${JAVA_OPT} -server <strong>-Xms1g -Xmx1g -Xmn1g</strong>“</p>
+</blockquote>
+<p>两个文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/rocketmq-4.4/bin/runbroker.sh</span><br><span class="line"></span><br><span class="line">vi /usr/local/rocketmq-4.4/bin/runserver.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动名字服务和代理服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nohup sh /usr/local/rocketmq-4.4/bin/mqnamesrv &amp;</span><br><span class="line"></span><br><span class="line"># -n localhost:9876 指定名称服务的地址, 类似于zk的地址</span><br><span class="line"></span><br><span class="line">nohup sh /usr/local/rocketmq-4.4/bin/mqbroker -n localhost:9876 -c /usr/local/rocketmq-4.4/conf/broker.conf &amp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检验是否启动正常</p>
+<p>使用java的内置命令: <strong>jps 可以看到BrokerStartup和NamesrvStartup进程</strong></p>
+<p>使用Linux命令**: netstat-ntlp 可以看到9876的端口和10911的端口**</p>
+<p>使用ps-ef |grep java</p>
+<p>查看启动日志:</p>
+<p>tail -100f ~&#x2F;logs&#x2F;rocketmqlogs&#x2F;namesrv.log</p>
+<p>tail -100f ~&#x2F;logs&#x2F;rocketmqlogs&#x2F;broker.log</p>
+</li>
+<li><p>关闭RocketMQ</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 1.关闭NameServer</span><br><span class="line"></span><br><span class="line">sh /usr/local/rocketmq-4.4/bin/mqshutdown namesrv</span><br><span class="line"></span><br><span class="line"># 2.关闭Broker</span><br><span class="line"></span><br><span class="line">sh /usr/local/rocketmq-4.4/bin/mqshutdown broker</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="编写sh脚本文件"><a href="#编写sh脚本文件" class="headerlink" title="编写sh脚本文件"></a>编写sh脚本文件</h3><ul>
+<li><p>启动(startRocketMQ.sh)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># !/bin/bash</span><br><span class="line"></span><br><span class="line">echo &#x27;------------------rocketmq-nameServer-starter-------------------------&#x27; </span><br><span class="line">nohup sh /usr/local/rocketmq-4.4/bin/mqnamesrv &amp;</span><br><span class="line">echo &#x27;------------------rocketmq-nameServer-started-------------------------&#x27;</span><br><span class="line"></span><br><span class="line">echo &#x27;------------------rocketmq-brokerServer-starter-----------------------&#x27; </span><br><span class="line">nohup sh /usr/local/rocketmq-4.4/bin/mqbroker -n localhost:9876 -c /usr/local/rocketmq-4.4/conf/broker.conf &amp;</span><br><span class="line">echo &#x27;------------------rocketmq-brokerServer-started-----------------------&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭(stutdownRocketMQ.sh)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># !/bin/bash</span><br><span class="line"></span><br><span class="line">echo &#x27;------------------rocketmq-nameServer-shutdown-------------------------&#x27; </span><br><span class="line">sh /usr/local/rocketmq-4.4/bin/mqshutdown namesrv</span><br><span class="line">echo &#x27;------------------rocketmq-nameServer-shutdowned-------------------------&#x27;</span><br><span class="line"></span><br><span class="line">echo &#x27;------------------rocketmq-brokerServer-shutdown-----------------------&#x27; </span><br><span class="line">sh /usr/local/rocketmq-4.4/bin/mqshutdown broker</span><br><span class="line">echo &#x27;------------------rocketmq-brokerServer-shutdowned-----------------------&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="监控平台"><a href="#监控平台" class="headerlink" title="监控平台"></a>监控平台</h2><p>使用jar</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup  java -jar  rocketmq-console-ng-1.0.1.jar  &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SpringBoot集成"><a href="#SpringBoot集成" class="headerlink" title="SpringBoot集成"></a>SpringBoot集成</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.rocketmq&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;rocketmq-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li><p>生产者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rocketmq.name-server=127.0.0.1:9876</span><br><span class="line">rocketmq.producer.group=my-group</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rocketmq.name-server=127.0.0.1:9876</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><ul>
+<li><p>生产者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private RocketMQTemplate rocketMQTemplate;</span><br><span class="line">    @RequestMapping(&quot;01-hello&quot;)</span><br><span class="line">    public String sendMsg(String message,String age) throws Exception&#123;</span><br><span class="line">      //发送消息</span><br><span class="line">   		  SendResult sendResult = rocketMQTemplate.syncSend(&quot;01-boot:&quot;, message);</span><br><span class="line">      </span><br><span class="line">        System.out.println(sendResult.getMsgId());</span><br><span class="line">        System.out.println(sendResult.getSendStatus());</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@RocketMQMessageListener(</span><br><span class="line">        topic = &quot;01-boot&quot;,</span><br><span class="line">        consumerGroup = &quot;wolfcode-consumer&quot;</span><br><span class="line">)</span><br><span class="line">public class HelloConsumer implements RocketMQListener&lt;MessageExt&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onMessage(MessageExt messageExt) &#123;</span><br><span class="line">         System.out.println(&quot;消费消息&quot;+messageExt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="发送消息方式-生产者"><a href="#发送消息方式-生产者" class="headerlink" title="发送消息方式(生产者)"></a>发送消息方式(生产者)</h4><h5 id="发送类型"><a href="#发送类型" class="headerlink" title="发送类型"></a>发送类型</h5><ul>
+<li><p>同步消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SendResult sendResult = rocketMQTemplate.syncSend(&quot;020-boot&quot;, msg);</span><br><span class="line">System.out.println(sendResult.getMsgId());</span><br><span class="line">System.out.println(sendResult.getSendStatus());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rocketMQTemplate.asyncSend(&quot;020-boot&quot;, msg, new SendCallback() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onSuccess(SendResult sendResult) &#123;</span><br><span class="line">                System.out.println(sendResult.getMsgId());</span><br><span class="line">                System.out.println(sendResult.getSendStatus());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onException(Throwable throwable) &#123;</span><br><span class="line">                System.out.println(throwable);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一次性消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rocketMQTemplate.sendOneWay(&quot;020-boot&quot;, msg);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="发送时间"><a href="#发送时间" class="headerlink" title="发送时间"></a>发送时间</h5><blockquote>
+<p>默认立即发送</p>
+</blockquote>
+<ul>
+<li><p>延时发送</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 参数1:主题 2:消息 3:rocket发送最大允许时间 4:延时级别(18级)</span><br><span class="line">SendResult sendResult = rocketMQTemplate.syncSend(&quot;020-boot&quot;, MessageBuilder.withPayload(msg).build(),100000,3);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="消费模式-消费者"><a href="#消费模式-消费者" class="headerlink" title="消费模式(消费者)"></a>消费模式(消费者)</h4><blockquote>
+<p>以组为单位 默认为集群模式</p>
+</blockquote>
+<ul>
+<li><p>集群模式(每组只有一个可以收到)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@RocketMQMessageListener(</span><br><span class="line">        topic = &quot;020-boot&quot;,</span><br><span class="line">        messageModel = MessageModel.CLUSTERING,</span><br><span class="line">        consumerGroup = &quot;wolfcode-consumer&quot;</span><br><span class="line">)</span><br><span class="line">public class MqListenner implements RocketMQListener&lt;String&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onMessage(String s) &#123;</span><br><span class="line">        System.out.println(&quot;今天上映:&quot;+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>广播模式(每组的所有消费者都可以收到)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@RocketMQMessageListener(</span><br><span class="line">        topic = &quot;020-boot&quot;,</span><br><span class="line">        messageModel = MessageModel.BROADCASTING,</span><br><span class="line">        consumerGroup = &quot;wolfcode-consumer&quot;</span><br><span class="line">)</span><br><span class="line">public class MqListenner implements RocketMQListener&lt;String&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onMessage(String s) &#123;</span><br><span class="line">        System.out.println(&quot;今天上映:&quot;+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="消息过滤"><a href="#消息过滤" class="headerlink" title="消息过滤"></a>消息过滤</h4><h5 id="Tag标签模式"><a href="#Tag标签模式" class="headerlink" title="Tag标签模式"></a>Tag标签模式</h5><blockquote>
+<p>在发送的消息Topic:Tag 中间使用冒号隔开</p>
+</blockquote>
+<ul>
+<li><p>生产者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/sendTagMsg&quot;)</span><br><span class="line">public String sendTagMsg(String msg) &#123;</span><br><span class="line">    rocketMQTemplate.convertAndSend(&quot;020-boot:TagB&quot;,msg);</span><br><span class="line">    return &quot;success&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@RocketMQMessageListener(</span><br><span class="line">        topic = &quot;020-boot&quot;,</span><br><span class="line">        selectorType = SelectorType.TAG,</span><br><span class="line">  //接收TagB或TagA</span><br><span class="line">        secretKey = &quot;TagB || TagA&quot;,</span><br><span class="line">        consumerGroup = &quot;wolfcode-consumer&quot;</span><br><span class="line">)</span><br><span class="line">public class MqListenner implements RocketMQListener&lt;String&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onMessage(String s) &#123;</span><br><span class="line">        System.out.println(&quot;今天上映:&quot;+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="SQL92过滤"><a href="#SQL92过滤" class="headerlink" title="SQL92过滤"></a>SQL92过滤</h5><blockquote>
+<p>注意: 在使用SQL过滤的时候, 需要配置参数enablePropertyFilter&#x3D;true</p>
+</blockquote>
+<ul>
+<li><p>生产者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Sql92过滤</span><br><span class="line">@RequestMapping(&quot;/sendSQLMsg&quot;)</span><br><span class="line">public String sendSQLMsg(int age,String msg) &#123;</span><br><span class="line">    Map&lt;String,Object&gt; map=new HashMap&lt;&gt;();</span><br><span class="line">    //用户自定义属性</span><br><span class="line">    map.put(&quot;age&quot;, age);</span><br><span class="line">    map.put(&quot;name&quot;, &quot;hesj&quot;);</span><br><span class="line">    //也可以设置系统属性</span><br><span class="line">    map.put(MessageConst.PROPERTY_KEYS,age);</span><br><span class="line">    template.convertAndSend(&quot;02-RocketMQ-Top7&quot;,msg,map);</span><br><span class="line">    return &quot;success&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@RocketMQMessageListener(</span><br><span class="line">        topic = &quot;02-RocketMQ-Top7&quot;,</span><br><span class="line">        messageModel = MessageModel.CLUSTERING,</span><br><span class="line">        selectorType = SelectorType.SQL92,</span><br><span class="line">        selectorExpression = &quot;age &gt; 16&quot;,</span><br><span class="line">        consumerGroup= &quot;wolfcode-consumer7&quot;</span><br><span class="line">)</span><br><span class="line">public class MqListiner7 implements RocketMQListener&lt;String&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onMessage(String msg) &#123;</span><br><span class="line">        System.out.println(&quot;消费消息SQl92&quot;+msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/27/RocketMQ/" data-id="clc5wl9k6000seol66mwbfjn0" data-title="RocketMQ" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/12/27/RocketMQ%E6%96%87%E6%A1%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/27/RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/">微服务拆分细则</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/27/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/">使用docker搭建开发环境记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
