@@ -2233,17 +2233,29 @@ main >.inner {
   top: -10%;
   left: -10%;
 }
-.social .item.g::before {
-  background-color: thu;
-}
-.social .item.g i {
-  color: thu;
-}
-.social .item.h::before {
+.social .item.github::before {
   background-color: #191717;
 }
-.social .item.h i {
+.social .item.github i {
   color: #191717;
+}
+.social .item.zhihu::before {
+  background-color: #1e88e5;
+}
+.social .item.zhihu i {
+  color: #1e88e5;
+}
+.social .item.music::before {
+  background-color: #e60026;
+}
+.social .item.music i {
+  color: #e60026;
+}
+.social .item.weibo::before {
+  background-color: #ea716e;
+}
+.social .item.weibo i {
+  color: #ea716e;
 }
 .social .item:focus i,
 .social .item:hover i {
@@ -3587,6 +3599,7 @@ main >.inner {
 }
 #loading {
   background-color: var(--grey-1);
+  display: none;
 }
 .cat {
   position: relative;
