@@ -1,0 +1,561 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
+
+
+
+  <title>
+Typora使用gitee作为图库用picgo上传图片的教程~ |
+Brath = Hexo</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Typora使用gitee作为图库用picgo上传图片的教程~
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhtuo6nj20zk0m8ttm.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhnx9glj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="John Doe">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h2>
+<ul>
+<li>这一年，写的博客也多，总是需要<strong>插入图片</strong>的，图片存在本地的话上传到博客网站去就没法显示了，就算一个图一个图的复制粘贴上去，想移植到其他的博客网站，图就会失效，为了解决这个问题，这篇文章就诞生了！</li>
+<li>首先，还是一如既往的推荐别人是怎么搞的！</li>
+<li>参考文章如下：</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9ibG9nLmNzZG4ubmV0L21ha2VfMTExMTExMTEvYXJ0aWNsZS9kZXRhaWxzLzEwNDgzOTQ5Mg==">《Typora 上传图片到 CSDN——PicGo + Gitee (码云) 实现 markdown 免费图床 —— 开局第一篇》</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMjUzNTE1NA==">《markdown 笔记神器 Typora 如何上传图片？（图床功能）</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cuY29kZW5vbmcuY29tL2NzMTA2NTI4Nzk1Lw==">《一文教你用 Typora + Gitee (码云) + PicGo 实现 云 markdown 笔记》</span></li>
+</ul>
+<h2 id="环境配置预览"><a class="markdownIt-Anchor" href="#环境配置预览">#</a> 环境配置预览</h2>
+<ul>
+<li>安装 nodejs：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9ub2RlanMub3JnL2VuLw==">https://nodejs.org/en/</span></li>
+<li>Gitee 账户：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9naXRlZS5jb20v">https://gitee.com/</span></li>
+<li>Typora 软件:<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudHlwb3JhLmlvLyUyM3dpbmRvd3M=">https://www.typora.io/#windows</span></li>
+<li>PicGo:<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9tb2x1bmVyZmlubi5jb20vUGljR28v">https://molunerfinn.com/PicGo/</span></li>
+<li></li>
+</ul>
+<h2 id="01安装nodejs"><a class="markdownIt-Anchor" href="#01安装nodejs">#</a> 01. 安装 nodejs</h2>
+<p>请百度自行安装，不过多介绍</p>
+<p>node 和 npm 环境检测：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;node -v</span><br><span class="line">v14.16.0</span><br><span class="line"></span><br><span class="line">C:\&gt;npm -v</span><br><span class="line">6.14.11</span><br></pre></td></tr></table></figure>
+<h2 id="02gitee账户配置"><a class="markdownIt-Anchor" href="#02gitee账户配置">#</a> 02.Gitee 账户配置</h2>
+<h2 id="新建仓库"><a class="markdownIt-Anchor" href="#新建仓库">#</a> 新建仓库</h2>
+<p><img data-src="https://brath.cloud/blogImg/v2-2fe1a9ce620e81b91401ea878be94548_720w.jpg" alt="img"></p>
+<p><img data-src="https://brath.cloud/blogImg/v2-02b0a2c63381b110e5bdc4ac994bd274_720w.jpg" alt="img"></p>
+<h2 id="私人令牌token配置获取"><a class="markdownIt-Anchor" href="#私人令牌token配置获取">#</a> 私人令牌 token 配置获取</h2>
+<ul>
+<li>找到 <code>设置</code>  -&gt; <code>安全设置</code>  -&gt; <code>私人令牌</code> ，点击生成新令牌</li>
+</ul>
+<p><img data-src="https://brath.cloud/blogImg/v2-5493431b257b8313f420cd1c456d5550_720w.jpg" alt="img"></p>
+<ul>
+<li>选择下面的选项即可！</li>
+</ul>
+<p><img data-src="https://brath.cloud/blogImg/v2-06263bbbc624e2b9d5d3782cad1f68b3_720w.jpg" alt="img"></p>
+<ul>
+<li>点击提交，账户安全验证即可</li>
+</ul>
+<p><img data-src="https://brath.cloud/blogImg/v2-a9ab747329a35bc374101fe870a48084_720w.jpg" alt="img"></p>
+<ul>
+<li>保存后面生成的私人令牌</li>
+</ul>
+<p><img data-src="https://brath.cloud/blogImg/v2-cf484c849d232aaf07e91460899b0a0e_720w.jpg" alt="v2-cf484c849d232aaf07e91460899b0a0e_720w"></p>
+<ul>
+<li>gitee 配置到此完毕！</li>
+</ul>
+<h2 id="03picgo配置"><a class="markdownIt-Anchor" href="#03picgo配置">#</a> 03.PicGo 配置</h2>
+<h2 id="插件安装"><a class="markdownIt-Anchor" href="#插件安装">#</a> 插件安装</h2>
+<p><img data-src="https://brath.cloud/blogImg/v2-c6b94bdc27f8f0300673d02e4800c360_720w.jpg" alt="img"></p>
+<h2 id="插件配置"><a class="markdownIt-Anchor" href="#插件配置">#</a> 插件配置</h2>
+<p><img data-src="https://brath.cloud/blogImg/v2-599672d63434fc5cc4dff76104f21778_720w.jpg" alt="img"></p>
+<h2 id="上传尝试"><a class="markdownIt-Anchor" href="#上传尝试">#</a> 上传尝试</h2>
+<p><img data-src="https://brath.cloud/blogImg/v2-9cd264eef40166488ebdda103631689d_720w.jpg" alt="img"></p>
+<ul>
+<li>这里，您可以随便截图一张，剪贴板图片上传试试效果</li>
+<li>图片放大看看，本文的图片是不是就在下面这里！哈哈哈！</li>
+</ul>
+<p><img data-src="https://brath.cloud/blogImg/v2-05a45967b7af32a9f3299d93fdeab526_720w.jpg" alt="img"></p>
+<h2 id="04typora配置"><a class="markdownIt-Anchor" href="#04typora配置">#</a> 04.Typora 配置</h2>
+<ul>
+<li>说实话，写这篇文章，就是想用到 markdown 自动上传图片，自动同步图片到各个平台！</li>
+<li>废话不多说，建议直接和博主配置一样就行！</li>
+</ul>
+<p><img data-src="https://brath.cloud/blogImg/image-20220428093756533.png" alt="image-20220428093756533"></p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-04-28 10:29:34" itemprop="dateModified" datetime="2022-04-28T10:29:34+08:00">2022-04-28</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="John Doe WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="John Doe Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="John Doe PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>John Doe <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="Typora使用gitee作为图库用picgo上传图片的教程~">http://example.com/2022/12/27/typora配置AliCloudOss图库使用picgo上传图片/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/12/27/SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giph4fomxoj20zk0m8axp.jpg" title="SVN&amp;Git使用手册">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>SVN&Git使用手册</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitzannuj20zk0m8b29.jpg" title="Volatile关键字">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Volatile关键字</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%A2%84%E8%A7%88"><span class="toc-number">2.</span> <span class="toc-text"> 环境配置预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#01%E5%AE%89%E8%A3%85nodejs"><span class="toc-number">3.</span> <span class="toc-text"> 01. 安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02gitee%E8%B4%A6%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 02.Gitee 账户配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text"> 新建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%81%E4%BA%BA%E4%BB%A4%E7%89%8Ctoken%E9%85%8D%E7%BD%AE%E8%8E%B7%E5%8F%96"><span class="toc-number">6.</span> <span class="toc-text"> 私人令牌 token 配置获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03picgo%E9%85%8D%E7%BD%AE"><span class="toc-number">7.</span> <span class="toc-text"> 03.PicGo 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">8.</span> <span class="toc-text"> 插件安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">9.</span> <span class="toc-text"> 插件配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E5%B0%9D%E8%AF%95"><span class="toc-number">10.</span> <span class="toc-text"> 上传尝试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04typora%E9%85%8D%E7%BD%AE"><span class="toc-number">11.</span> <span class="toc-text"> 04.Typora 配置</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="John Doe"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">John Doe</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">54</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhYmluZzg1" title="https:&#x2F;&#x2F;github.com&#x2F;dabing85"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2022/12/27/SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/CAS%E6%9C%BA%E5%88%B6/" title="CAS机制">CAS机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/" title="ELASTICSEARCH7.X安全性之访问密码设置">ELASTICSEARCH7.X安全性之访问密码设置</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计">SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/" title="Docker环境部署Reids镜像作为从节点">Docker环境部署Reids镜像作为从节点</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" title="Maven通过命令提示符引入jar包的流程">Maven通过命令提示符引入jar包的流程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/" title="主从同步遇到 Got fatal error 1236 from master when reading data from binary log">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Seatav%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="Maven加强版 — mvnd的使用测试">Maven加强版 — mvnd的使用测试</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe @ Brath</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/12/27/typora配置AliCloudOss图库使用picgo上传图片/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

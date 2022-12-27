@@ -27,12 +27,12 @@
   <meta name="keywords" content="java,git,springcloud" />
 
 
-<link rel="canonical" href="http://example.com/2022/12/27/hello-world/">
+<link rel="canonical" href="http://example.com/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/">
 
 
 
   <title>
-Hello World |
+主从同步遇到 Got fatal error 1236 from master when reading data from binary log |
 Brath = Hexo</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,16 +60,16 @@ Brath = Hexo</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">Hello World
+  <h1 itemprop="name headline">主从同步遇到 Got fatal error 1236 from master when reading data from binary log
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2022-12-27 14:56:58">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T14:56:58+08:00">2022-12-27</time>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
   </span>
 </div>
 
@@ -102,12 +102,12 @@ Brath = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh0m9pdj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipesng5oej20zk0m87d4.jpg"></li>
           <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexbei4hj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
         </ul>
       </div>
     </header>
@@ -136,7 +136,7 @@ Brath = Hexo</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -151,26 +151,34 @@ Brath = Hexo</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo</span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation</span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting</span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub</span>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start">#</a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post">#</a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing</span></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server">#</a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server</span></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files">#</a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating</span></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites">#</a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment</span></p>
+    <h1 id=""><a class="markdownIt-Anchor" href="#">#</a> </h1>
+<p>首先遇到这个是因为 binlog 位置索引处的问题，不要<span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1yZXNldCZhbXA7c3BtPTEwMDEuMjEwMS4zMDAxLjcwMjA="> reset</span> slave；</p>
+<p>reset slave 会将主从同步的文件以及位置恢复到初始状态，一开始没有数据还好，有数据的话，相当于重新开始同步，可能会出现一些问题；</p>
+<p>一般做主从同步，都是要求以后的数据实现主从同步，而对于旧的数据完全可以使用数据库同步工具先将数据库同步，完了再进行主从同步；</p>
+<p>好了遇到上面的问题，正确做法是：</p>
+<p>1. 打开主服务器，进入 mysql</p>
+<p>2. 执行 flush logs；// 这时主服务器会重新创建一个 binlog 文件；</p>
+<p>3. 在主服务上执行 show master status;  显示如下：</p>
+<p><img data-src="https://brath.cloud/blogImg/1620811-20190720113929965-58969472.png" alt="img"></p>
+<p>4. 来到从服务器的 mysql；</p>
+<p>5.stop slave;</p>
+<p>6.change master to master_log_file=‘mysql-bin.000012’,master_log_pos=154;// 这里的 file 和 pos 都是上面主服务器 master 显示的。</p>
+<p>7.start slave;// 这时候就应可以了</p>
+<p>8.show slave status \G;</p>
+<p><img data-src="https://brath.cloud/blogImg/1620811-20190720114247073-1479221471.png" alt="img"></p>
 
   </div>
 
    <footer>
 
     <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-10-18 13:03:48" itemprop="dateModified" datetime="2022-10-18T13:03:48+08:00">2022-10-18</time>
+  </span>
 </div>
 
       
@@ -205,7 +213,7 @@ Brath = Hexo</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2022/12/27/hello-world/" title="Hello World">http://example.com/2022/12/27/hello-world/</a>
+    <a href="http://example.com/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/" title="主从同步遇到 Got fatal error 1236 from master when reading data from binary log">http://example.com/2022/12/27/主从同步异常记录/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -222,14 +230,22 @@ Brath = Hexo</title>
 
 <div class="post-nav">
     <div class="item left">
+      
+
+  <a href="/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclx29mstj20zk0m8hdt.jpg" title="ZGC学习笔记：ZGC简介和JDK17对ZGC的优化">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</h3>
+  </a>
+
     </div>
     <div class="item right">
       
 
-  <a href="/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeuv80yoj20zk0m8kjl.jpg" title="阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义">
+  <a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeubcbajj20zk0m8h1h.jpg" title="云服务器部署宝塔面板">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</h3>
+  <h3>云服务器部署宝塔面板</h3>
   </a>
 
     </div>
@@ -248,7 +264,7 @@ Brath = Hexo</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-number">1.</span> <span class="toc-text"> Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text"> Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-server"><span class="toc-number">1.2.</span> <span class="toc-text"> Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text"> Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text"> Deploy to remote sites</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"> </span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -320,10 +336,12 @@ Brath = Hexo</title>
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -347,7 +365,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Flutter%E6%96%87%E6%A1%A3/" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a></span>
+    <span><a href="/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/" title="云服务器部署宝塔面板">云服务器部署宝塔面板</a></span>
   </li>
 
       
@@ -356,7 +374,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/RocketMQ/" title="RocketMQ">RocketMQ</a></span>
+    <span><a href="/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/" title="ZGC学习笔记：ZGC简介和JDK17对ZGC的优化">ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</a></span>
   </li>
 
       
@@ -365,7 +383,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/" title="端口占用问题">端口占用问题</a></span>
+    <span><a href="/2022/12/27/Flutter_GetX%E6%96%87%E6%A1%A3/" title="Flutter GETX框架">Flutter GETX框架</a></span>
   </li>
 
       
@@ -374,7 +392,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/node&npm&cnpm&webpack&yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程">node&npm&cnpm&webpack&yarn安装教程</a></span>
+    <span><a href="/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></span>
   </li>
 
       
@@ -383,7 +401,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/" title="docker简单部署rocketMQ">docker简单部署rocketMQ</a></span>
+    <span><a href="/2022/12/27/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a></span>
   </li>
 
       
@@ -392,7 +410,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="SVN&amp;Git使用手册">SVN&Git使用手册</a></span>
+    <span><a href="/2022/12/27/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" title="SpringBoot自动装配原理">SpringBoot自动装配原理</a></span>
   </li>
 
       
@@ -401,7 +419,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Seatav%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></span>
+    <span><a href="/2022/12/27/Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" title="Hbase整合SpringBoot的问题">Hbase整合SpringBoot的问题</a></span>
   </li>
 
       
@@ -410,7 +428,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/RocketMQ%E6%96%87%E6%A1%A3/" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用">RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&SpringBoot简单应用</a></span>
+    <span><a href="/2022/12/27/SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计">SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</a></span>
   </li>
 
       
@@ -419,7 +437,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" title="mysql查询技巧">mysql查询技巧</a></span>
+    <span><a href="/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</a></span>
   </li>
 
       
@@ -428,7 +446,7 @@ Brath = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" title="RequestParam 和 PathVariable的区别">RequestParam 和 PathVariable的区别</a></span>
+    <span><a href="/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/" title="Docker环境部署Reids镜像作为从节点">Docker环境部署Reids镜像作为从节点</a></span>
   </li>
 
   </ul>
@@ -459,7 +477,7 @@ Brath = Hexo</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2022/12/27/hello-world/',
+    path: '2022/12/27/主从同步异常记录/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
