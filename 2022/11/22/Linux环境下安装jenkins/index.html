@@ -1,0 +1,572 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/">
+
+
+
+  <title>
+Linux环境下安装jenkins |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Linux环境下安装jenkins
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-11-22 10:19:35">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-11-22T10:19:35+08:00">2022-11-22</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>1.9k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>2 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitf0kl1j20zk0m87fe.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="linux环境下安装jenkins"><a class="markdownIt-Anchor" href="#linux环境下安装jenkins">#</a> Linux 环境下安装 jenkins</h1>
+<h3 id="1-添加存储库"><a class="markdownIt-Anchor" href="#1-添加存储库">#</a> 1、添加存储库</h3>
+<p>yum 的 repo 中默认没有 Jenkins，需要先将 Jenkins 存储库添加到 yum repos，执行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span><br></pre></td></tr></table></figure>
+<p>完成界面：</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/20201231171035460.png" alt="在这里插入图片描述"></p>
+<p>然后执行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装jenkins"><a class="markdownIt-Anchor" href="#2-安装jenkins">#</a> 2、安装 jenkins</h3>
+<p>执行安装命令： yum install jenkins<br>
+ 如下图所示，出现询问是否下载时，输入 y，然后点击回车，等待安装完成：<br>
+<img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/20201231171215646.png" alt="在这里插入图片描述"></p>
+<h3 id="3-修改配置"><a class="markdownIt-Anchor" href="#3-修改配置">#</a> <strong>3、修改配置</strong></h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1qZW5raW5zJmFtcDtzcG09MTAwMS4yMTAxLjMwMDEuNzAyMA==">jenkins</span> 安装成功后，默认的用户是 jenkins，端口是 8080，为了防止冲突，并且给用户赋权限，我们修改用户名和端口。<br>
+输入命令，进入 jenkins 配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/jenkins</span><br></pre></td></tr></table></figure>
+<p>找到如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_USER=&quot;jenkins&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Type:        string</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Default: &quot;false&quot;</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Whether to skip potentially long-running chown at the</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$JENKINS_HOME</span> location. Do not <span class="built_in">enable</span> this, <span class="string">&quot;true&quot;</span>, unless</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">you know what you<span class="string">&#x27;re doing. See JENKINS-23273.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">#JENKINS_INSTALL_SKIP_CHOWN=&quot;false&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Type: string</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Default:     &quot;-Djava.awt.headless=true&quot;</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Options to pass to java when running Jenkins.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">JENKINS_JAVA_OPTIONS=&quot;-Djava.awt.headless=true&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Type:        integer(0:65535)</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Default:     8080</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Port Jenkins is listening on.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Set to -1 to disable</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">JENKINS_PORT=&quot;8080&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Type:        string</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Default:     &quot;&quot;</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># IP address Jenkins listens on for HTTP requests.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Default is all interfaces (0.0.0.0).</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"></span></span></span><br></pre></td></tr></table></figure>
+<h4 id="修改用户名端口"><a class="markdownIt-Anchor" href="#修改用户名端口">#</a> 修改用户名，端口：</h4>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/20201231171521366.png" alt="在这里插入图片描述"></p>
+<h3 id="若为云服务器需配置安全组并开放端口才可以正常访问"><a class="markdownIt-Anchor" href="#若为云服务器需配置安全组并开放端口才可以正常访问">#</a> 若为云服务器，需配置安全组并开放端口才可以正常访问</h3>
+<h1 id="启动jenkins"><a class="markdownIt-Anchor" href="#启动jenkins">#</a> 启动 jenkins</h1>
+<h4 id="1如果是2022年7月以后安装的jekins需要下载jdk11或者jdk17版本的jdk环境"><a class="markdownIt-Anchor" href="#1如果是2022年7月以后安装的jekins需要下载jdk11或者jdk17版本的jdk环境">#</a> 1. 如果是 2022 年 7 月以后安装的 jekins，需要下载 jdk11 或者 jdk17 版本的 jdk 环境</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install fontconfig java-11-openjdk</span><br></pre></td></tr></table></figure>
+<h3 id="设置自启后启动jenkins服务systemctl-enable-now-jenkins"><a class="markdownIt-Anchor" href="#设置自启后启动jenkins服务systemctl-enable-now-jenkins">#</a> 设置自启后启动 jenkins 服务：systemctl enable --now jenkins</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288ebae0938355.png" alt="jenkins在linux下安装（rpm包）_javascript_07"></p>
+<h3 id="查看是否自启动systemctl-is-enabled-jenkins"><a class="markdownIt-Anchor" href="#查看是否自启动systemctl-is-enabled-jenkins">#</a> 查看是否自启动：systemctl is-enabled jenkins</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288ecdddd6790.png" alt="jenkins在linux下安装（rpm包）_java_08"></p>
+<h3 id="查看服务状态systemctl-status-jenkinsservice"><a class="markdownIt-Anchor" href="#查看服务状态systemctl-status-jenkinsservice">#</a> 查看服务状态：systemctl status jenkins.service</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288ee068451100.png" alt="jenkins在linux下安装（rpm包）_java_09"></p>
+<h3 id="jenkins-failed-to-find-a-valid-java-installation"><a class="markdownIt-Anchor" href="#jenkins-failed-to-find-a-valid-java-installation">#</a> jenkins: failed to find a valid Java installation</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288eeec5c74170.png" alt="jenkins在linux下安装（rpm包）_javascript_10"></p>
+<h3 id="使用以下方法启动jenkins"><a class="markdownIt-Anchor" href="#使用以下方法启动jenkins">#</a> 使用以下方法启动 jenkins</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">./jenkins start</span><br><span class="line"># 停止</span><br><span class="line">./jenkins stop</span><br><span class="line"># 状态</span><br><span class="line">./jenkins status</span><br></pre></td></tr></table></figure>
+<h3 id="提示jdk版本不满足-可能是jdk11没有配置到jeknins上"><a class="markdownIt-Anchor" href="#提示jdk版本不满足-可能是jdk11没有配置到jeknins上">#</a> 提示 jdk 版本不满足，可能是 jdk11 没有配置到 jeknins 上</h3>
+<h4 id="jenkins-requires-java-versions-17-11-but-you-are-running-with-java-18-from-usrlocaljdk180_211jre"><a class="markdownIt-Anchor" href="#jenkins-requires-java-versions-17-11-but-you-are-running-with-java-18-from-usrlocaljdk180_211jre">#</a> Jenkins requires Java versions [17, 11] but you are running with Java 1.8 from /usr/local/jdk1.8.0_211/jre</h4>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013407_6337288f30b9997576.png" alt="jenkins在linux下安装（rpm包）_json_13"></p>
+<h4 id="将jdk11的环境配置到-etcrcdinitdjenkins-的candidates中"><a class="markdownIt-Anchor" href="#将jdk11的环境配置到-etcrcdinitdjenkins-的candidates中">#</a> 将 jdk11 的环境配置到 /etc/rc.d/init.d/jenkins 的 candidates 中</h4>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122105322847.png" alt="image-20221122105322847"></p>
+<h4 id="重新启动服务没有报错"><a class="markdownIt-Anchor" href="#重新启动服务没有报错">#</a> 重新启动服务，没有报错</h4>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122105452465.png" alt="image-20221122105452465"></p>
+<h4 id="访问-jenkins第一次需要输入生成的密码在-varlibjenkinssecrets-目录下的initialadminpassword文件中"><a class="markdownIt-Anchor" href="#访问-jenkins第一次需要输入生成的密码在-varlibjenkinssecrets-目录下的initialadminpassword文件中">#</a> 访问 Jenkins，第一次需要输入生成的密码，在 /var/lib/jenkins/secrets 目录下的 initialAdminPassword 文件中</h4>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122104907426.png" alt="image-20221122104907426"></p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122104919096.png" alt="image-20221122104919096"></p>
+<h2 id="成功"><a class="markdownIt-Anchor" href="#成功">#</a> 成功</h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122105607288.png" alt="image-20221122105607288"></p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-11-22 10:56:09" itemprop="dateModified" datetime="2022-11-22T10:56:09+08:00">2022-11-22</time>
+  </span>
+  <span id="2022/11/22/Linux环境下安装jenkins/" class="item leancloud_visitors" data-flag-title="Linux环境下安装jenkins" title="Views">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">Views</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">times</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/" title="Linux环境下安装jenkins">http://example.com/2022/11/22/Linux环境下安装jenkins/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/11/24/Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipetv6p75j20zk0m8x6p.jpg" title="Docker的基础用法">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Docker的基础用法</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins"><span class="toc-number">1.</span> <span class="toc-text"> Linux 环境下安装 jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E5%AD%98%E5%82%A8%E5%BA%93"><span class="toc-number">1.0.1.</span> <span class="toc-text"> 1、添加存储库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85jenkins"><span class="toc-number">1.0.2.</span> <span class="toc-text"> 2、安装 jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">1.0.3.</span> <span class="toc-text"> 3、修改配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%90%8D%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.0.3.1.</span> <span class="toc-text"> 修改用户名，端口：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8B%A5%E4%B8%BA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%9C%80%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E7%BB%84%E5%B9%B6%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3%E6%89%8D%E5%8F%AF%E4%BB%A5%E6%AD%A3%E5%B8%B8%E8%AE%BF%E9%97%AE"><span class="toc-number">1.0.4.</span> <span class="toc-text"> 若为云服务器，需配置安全组并开放端口才可以正常访问</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8jenkins"><span class="toc-number">2.</span> <span class="toc-text"> 启动 jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E5%A6%82%E6%9E%9C%E6%98%AF2022%E5%B9%B47%E6%9C%88%E4%BB%A5%E5%90%8E%E5%AE%89%E8%A3%85%E7%9A%84jekins%E9%9C%80%E8%A6%81%E4%B8%8B%E8%BD%BDjdk11%E6%88%96%E8%80%85jdk17%E7%89%88%E6%9C%AC%E7%9A%84jdk%E7%8E%AF%E5%A2%83"><span class="toc-number">2.0.0.1.</span> <span class="toc-text"> 1. 如果是 2022 年 7 月以后安装的 jekins，需要下载 jdk11 或者 jdk17 版本的 jdk 环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%90%8E%E5%90%AF%E5%8A%A8jenkins%E6%9C%8D%E5%8A%A1systemctl-enable-now-jenkins"><span class="toc-number">2.0.1.</span> <span class="toc-text"> 设置自启后启动 jenkins 服务：systemctl enable --now jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E8%87%AA%E5%90%AF%E5%8A%A8systemctl-is-enabled-jenkins"><span class="toc-number">2.0.2.</span> <span class="toc-text"> 查看是否自启动：systemctl is-enabled jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E7%8A%B6%E6%80%81systemctl-status-jenkinsservice"><span class="toc-number">2.0.3.</span> <span class="toc-text"> 查看服务状态：systemctl status jenkins.service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jenkins-failed-to-find-a-valid-java-installation"><span class="toc-number">2.0.4.</span> <span class="toc-text"> jenkins: failed to find a valid Java installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E6%96%B9%E6%B3%95%E5%90%AF%E5%8A%A8jenkins"><span class="toc-number">2.0.5.</span> <span class="toc-text"> 使用以下方法启动 jenkins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BAjdk%E7%89%88%E6%9C%AC%E4%B8%8D%E6%BB%A1%E8%B6%B3-%E5%8F%AF%E8%83%BD%E6%98%AFjdk11%E6%B2%A1%E6%9C%89%E9%85%8D%E7%BD%AE%E5%88%B0jeknins%E4%B8%8A"><span class="toc-number">2.0.6.</span> <span class="toc-text"> 提示 jdk 版本不满足，可能是 jdk11 没有配置到 jeknins 上</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jenkins-requires-java-versions-17-11-but-you-are-running-with-java-18-from-usrlocaljdk180_211jre"><span class="toc-number">2.0.6.1.</span> <span class="toc-text"> Jenkins requires Java versions [17, 11] but you are running with Java 1.8 from &#x2F;usr&#x2F;local&#x2F;jdk1.8.0_211&#x2F;jre</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86jdk11%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%88%B0-etcrcdinitdjenkins-%E7%9A%84candidates%E4%B8%AD"><span class="toc-number">2.0.6.2.</span> <span class="toc-text"> 将 jdk11 的环境配置到 &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;jenkins 的 candidates 中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E6%B2%A1%E6%9C%89%E6%8A%A5%E9%94%99"><span class="toc-number">2.0.6.3.</span> <span class="toc-text"> 重新启动服务，没有报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-jenkins%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%9F%E6%88%90%E7%9A%84%E5%AF%86%E7%A0%81%E5%9C%A8-varlibjenkinssecrets-%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84initialadminpassword%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-number">2.0.6.4.</span> <span class="toc-text"> 访问 Jenkins，第一次需要输入生成的密码，在 &#x2F;var&#x2F;lib&#x2F;jenkins&#x2F;secrets 目录下的 initialAdminPassword 文件中</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%8A%9F"><span class="toc-number">2.1.</span> <span class="toc-text"> 成功</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">56</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/CAS-ABA%E9%97%AE%E9%A2%98/" title="CAS-ABA问题">CAS-ABA问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/" title="阿里云OSS的CDN加速和OSS传输加速的区别">阿里云OSS的CDN加速和OSS传输加速的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/" title="ZGC学习笔记：ZGC简介和JDK17对ZGC的优化">ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Squirrel SQL客户端安装与使用">Squirrel SQL客户端安装与使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" title="Knife4J接口文档">Knife4J接口文档</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="CompletableFuture使用文档">CompletableFuture使用文档</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/" title="Linux环境下安装jenkins">Linux环境下安装jenkins</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/" title="宝塔部署Docker—Mysql镜像">宝塔部署Docker—Mysql镜像</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">301k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">4:33</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/11/22/Linux环境下安装jenkins/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
