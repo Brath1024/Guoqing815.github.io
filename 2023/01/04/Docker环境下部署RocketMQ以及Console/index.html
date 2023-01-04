@@ -27,12 +27,12 @@
   <meta name="keywords" content="java,git,springcloud" />
 
 
-<link rel="canonical" href="http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
+<link rel="canonical" href="http://example.com/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/">
 
 
 
   <title>
-Typora使用gitee作为图库用picgo上传图片的教程~ |
+Docker环境下部署RocketMQ以及Console |
 Brath = BrathBlog</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,23 +60,23 @@ Brath = BrathBlog</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">Typora使用gitee作为图库用picgo上传图片的教程~
+  <h1 itemprop="name headline">Docker环境下部署RocketMQ以及Console
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2022-12-27 16:18:48">
+  <span class="item" title="Created: 2023-01-04 08:25:41">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+    <time itemprop="dateCreated datePublished" datetime="2023-01-04T08:25:41+08:00">2023-01-04</time>
   </span>
   <span class="item" title="Symbols count in article">
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>735</span>
+    <span>1.7k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -84,7 +84,7 @@ Brath = BrathBlog</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>1 mins.</span>
+    <span>2 mins.</span>
   </span>
 </div>
 
@@ -117,12 +117,12 @@ Brath = BrathBlog</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeyonbf9j20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipewf5l51j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh0m9pdj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4lm9i7j20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -151,7 +151,7 @@ Brath = BrathBlog</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,69 +166,16 @@ Brath = BrathBlog</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <h2 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h2>
-<ul>
-<li>这一年，写的博客也多，总是需要<strong>插入图片</strong>的，图片存在本地的话上传到博客网站去就没法显示了，就算一个图一个图的复制粘贴上去，想移植到其他的博客网站，图就会失效，为了解决这个问题，这篇文章就诞生了！</li>
-<li>首先，还是一如既往的推荐别人是怎么搞的！</li>
-<li>参考文章如下：</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9ibG9nLmNzZG4ubmV0L21ha2VfMTExMTExMTEvYXJ0aWNsZS9kZXRhaWxzLzEwNDgzOTQ5Mg==">《Typora 上传图片到 CSDN——PicGo + Gitee (码云) 实现 markdown 免费图床 —— 开局第一篇》</span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMjUzNTE1NA==">《markdown 笔记神器 Typora 如何上传图片？（图床功能）</span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cuY29kZW5vbmcuY29tL2NzMTA2NTI4Nzk1Lw==">《一文教你用 Typora + Gitee (码云) + PicGo 实现 云 markdown 笔记》</span></li>
-</ul>
-<h2 id="环境配置预览"><a class="markdownIt-Anchor" href="#环境配置预览">#</a> 环境配置预览</h2>
-<ul>
-<li>安装 nodejs：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9ub2RlanMub3JnL2VuLw==">https://nodejs.org/en/</span></li>
-<li>Gitee 账户：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9naXRlZS5jb20v">https://gitee.com/</span></li>
-<li>Typora 软件:<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudHlwb3JhLmlvLyUyM3dpbmRvd3M=">https://www.typora.io/#windows</span></li>
-<li>PicGo:<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9tb2x1bmVyZmlubi5jb20vUGljR28v">https://molunerfinn.com/PicGo/</span></li>
-<li></li>
-</ul>
-<h2 id="01安装nodejs"><a class="markdownIt-Anchor" href="#01安装nodejs">#</a> 01. 安装 nodejs</h2>
-<p>请百度自行安装，不过多介绍</p>
-<p>node 和 npm 环境检测：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;node -v</span><br><span class="line">v14.16.0</span><br><span class="line"></span><br><span class="line">C:\&gt;npm -v</span><br><span class="line">6.14.11</span><br></pre></td></tr></table></figure>
-<h2 id="02gitee账户配置"><a class="markdownIt-Anchor" href="#02gitee账户配置">#</a> 02.Gitee 账户配置</h2>
-<h2 id="新建仓库"><a class="markdownIt-Anchor" href="#新建仓库">#</a> 新建仓库</h2>
-<p><img data-src="https://brath.cloud/blogImg/v2-2fe1a9ce620e81b91401ea878be94548_720w.jpg" alt="img"></p>
-<p><img data-src="https://brath.cloud/blogImg/v2-02b0a2c63381b110e5bdc4ac994bd274_720w.jpg" alt="img"></p>
-<h2 id="私人令牌token配置获取"><a class="markdownIt-Anchor" href="#私人令牌token配置获取">#</a> 私人令牌 token 配置获取</h2>
-<ul>
-<li>找到 <code>设置</code>  -&gt; <code>安全设置</code>  -&gt; <code>私人令牌</code> ，点击生成新令牌</li>
-</ul>
-<p><img data-src="https://brath.cloud/blogImg/v2-5493431b257b8313f420cd1c456d5550_720w.jpg" alt="img"></p>
-<ul>
-<li>选择下面的选项即可！</li>
-</ul>
-<p><img data-src="https://brath.cloud/blogImg/v2-06263bbbc624e2b9d5d3782cad1f68b3_720w.jpg" alt="img"></p>
-<ul>
-<li>点击提交，账户安全验证即可</li>
-</ul>
-<p><img data-src="https://brath.cloud/blogImg/v2-a9ab747329a35bc374101fe870a48084_720w.jpg" alt="img"></p>
-<ul>
-<li>保存后面生成的私人令牌</li>
-</ul>
-<p><img data-src="https://brath.cloud/blogImg/v2-cf484c849d232aaf07e91460899b0a0e_720w.jpg" alt="v2-cf484c849d232aaf07e91460899b0a0e_720w"></p>
-<ul>
-<li>gitee 配置到此完毕！</li>
-</ul>
-<h2 id="03picgo配置"><a class="markdownIt-Anchor" href="#03picgo配置">#</a> 03.PicGo 配置</h2>
-<h2 id="插件安装"><a class="markdownIt-Anchor" href="#插件安装">#</a> 插件安装</h2>
-<p><img data-src="https://brath.cloud/blogImg/v2-c6b94bdc27f8f0300673d02e4800c360_720w.jpg" alt="img"></p>
-<h2 id="插件配置"><a class="markdownIt-Anchor" href="#插件配置">#</a> 插件配置</h2>
-<p><img data-src="https://brath.cloud/blogImg/v2-599672d63434fc5cc4dff76104f21778_720w.jpg" alt="img"></p>
-<h2 id="上传尝试"><a class="markdownIt-Anchor" href="#上传尝试">#</a> 上传尝试</h2>
-<p><img data-src="https://brath.cloud/blogImg/v2-9cd264eef40166488ebdda103631689d_720w.jpg" alt="img"></p>
-<ul>
-<li>这里，您可以随便截图一张，剪贴板图片上传试试效果</li>
-<li>图片放大看看，本文的图片是不是就在下面这里！哈哈哈！</li>
-</ul>
-<p><img data-src="https://brath.cloud/blogImg/v2-05a45967b7af32a9f3299d93fdeab526_720w.jpg" alt="img"></p>
-<h2 id="04typora配置"><a class="markdownIt-Anchor" href="#04typora配置">#</a> 04.Typora 配置</h2>
-<ul>
-<li>说实话，写这篇文章，就是想用到 markdown 自动上传图片，自动同步图片到各个平台！</li>
-<li>废话不多说，建议直接和博主配置一样就行！</li>
-</ul>
-<p><img data-src="https://brath.cloud/blogImg/image-20220428093756533.png" alt="image-20220428093756533"></p>
+    <h1 id="docker环境下部署rocketmq以及console"><a class="markdownIt-Anchor" href="#docker环境下部署rocketmq以及console">#</a> Docker 环境下部署 RocketMQ 以及 Console</h1>
+<h2 id="1docker-安装rocketmq镜像"><a class="markdownIt-Anchor" href="#1docker-安装rocketmq镜像">#</a> 1.docker 安装 rocketmq 镜像</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#拉取镜像 </span><br><span class="line">docker pull foxiswho/rocketmq:server-4.7.0</span><br><span class="line">docker pull foxiswho/rocketmq:broker-4.7.0</span><br></pre></td></tr></table></figure>
+<h2 id="2创建server和broker目录并在目录opt下创建brokerconf"><a class="markdownIt-Anchor" href="#2创建server和broker目录并在目录opt下创建brokerconf">#</a> 2. 创建 server 和 broker 目录，并在目录 /opt 下创建 broker.conf</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建目录</span></span><br><span class="line">mkdir /opt/rocketmq-server</span><br><span class="line">mkdir /opt/rocketmq-broker/conf -p</span><br><span class="line">[root@localhost opt]# cat /opt/rocketmq-broker/conf/broker.conf </span><br><span class="line">namesrvAddr=&#123;YourNameIPAddr&#125; eg：192.168.1.200:9876</span><br><span class="line">brokerClusterName = DefaultCluster</span><br><span class="line">brokerName = broker-a</span><br><span class="line">brokerId = 0</span><br><span class="line">deleteWhen = 04</span><br><span class="line">fileReservedTime = 48</span><br><span class="line">brokerRole = ASYNC_MASTER</span><br><span class="line">flushDiskType = ASYNC_FLUSH</span><br><span class="line">brokerIP1 = &#123;YourBrokerIPAddr&#125; eg：192.168.1.200</span><br><span class="line">listenPort=10911</span><br></pre></td></tr></table></figure>
+<h2 id="3启动容器并在防火墙放行端口-9876-10911-11011"><a class="markdownIt-Anchor" href="#3启动容器并在防火墙放行端口-9876-10911-11011">#</a> 3. 启动容器并在防火墙放行端口 9876 、10911 、11011</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">RocketMQ默认使用3个端口：9876 、10911 、11011</span><br><span class="line">如果防火墙没有关闭的话，那么防火墙就必须开放这些端口：</span><br><span class="line">nameserver 默认使用 9876 端口</span><br><span class="line">master 默认使用 10911 端口</span><br><span class="line">slave 默认使用11011 端口</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动rocketmq-server</span></span><br><span class="line">docker run -d \</span><br><span class="line">--restart=always \</span><br><span class="line">--name rmqnamesrv \</span><br><span class="line">-p 9876:9876 \</span><br><span class="line">-v /opt/rocketmq-server/logs:/root/logs \</span><br><span class="line">-v /opt/rocketmq-server/store:/root/store \</span><br><span class="line">-e &quot;MAX_POSSIBLE_HEAP=100000000&quot; \</span><br><span class="line">foxiswho/rocketmq:4.7.0 \</span><br><span class="line">sh mqnamesrv</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动rocketmq-broker</span></span><br><span class="line">docker run -d  \</span><br><span class="line">--restart=always \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqnamesrv:namesrv \</span><br><span class="line">-p 10911:10911 \</span><br><span class="line">-p 10909:10909 \</span><br><span class="line">-v  /opt/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v  /opt/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /opt/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.7.0/conf/broker.conf \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;MAX_POSSIBLE_HEAP=200000000&quot; \</span><br><span class="line">-e &quot;autoCreateTopicEnable=true&quot; \</span><br><span class="line">foxiswho/rocketmq:4.7.0 \</span><br><span class="line">sh mqbroker -c /opt/rocketmq-4.7.0/conf/broker.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动RocketMQ的管理工具rocketmq-console</span></span><br><span class="line">docker run -itd -e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.1.200:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; -p 9877:8080 -t styletang/rocketmq-console-ng:latest</span><br></pre></td></tr></table></figure>
+<h2 id="4测试访问console控制台"><a class="markdownIt-Anchor" href="#4测试访问console控制台">#</a> 4. 测试访问 console 控制台</h2>
+<p>浏览器输入：192.168.1.200:9877</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230104082814121.png" alt="image-20230104082814121"></p>
 
   </div>
 
@@ -240,7 +187,7 @@ Brath = BrathBlog</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2022-04-28 10:29:34" itemprop="dateModified" datetime="2022-04-28T10:29:34+08:00">2022-04-28</time>
+    <time title="Modified: 2023-01-04 08:30:13" itemprop="dateModified" datetime="2023-01-04T08:30:13+08:00">2023-01-04</time>
   </span>
 </div>
 
@@ -276,7 +223,7 @@ Brath = BrathBlog</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="Typora使用gitee作为图库用picgo上传图片的教程~">http://example.com/2022/12/27/typora配置AliCloudOss图库使用picgo上传图片/</a>
+    <a href="http://example.com/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/" title="Docker环境下部署RocketMQ以及Console">http://example.com/2023/01/04/Docker环境下部署RocketMQ以及Console/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -295,22 +242,14 @@ Brath = BrathBlog</title>
     <div class="item left">
       
 
-  <a href="/2022/12/27/SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewr8iypj20zk0m8b29.jpg" title="SVN&amp;Git使用手册">
+  <a href="/2022/12/29/TheadLocal/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicmnywqgpj20zk0m8dwx.jpg" title="ThreadLocal">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>SVN&Git使用手册</h3>
+  <h3>ThreadLocal</h3>
   </a>
 
     </div>
     <div class="item right">
-      
-
-  <a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclhtuo6nj20zk0m8ttm.jpg" title="Volatile关键字">
-  <span class="type">Next Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>Volatile关键字</h3>
-  </a>
-
     </div>
 </div>
 
@@ -327,7 +266,7 @@ Brath = BrathBlog</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%A2%84%E8%A7%88"><span class="toc-number">2.</span> <span class="toc-text"> 环境配置预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#01%E5%AE%89%E8%A3%85nodejs"><span class="toc-number">3.</span> <span class="toc-text"> 01. 安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02gitee%E8%B4%A6%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 02.Gitee 账户配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text"> 新建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%81%E4%BA%BA%E4%BB%A4%E7%89%8Ctoken%E9%85%8D%E7%BD%AE%E8%8E%B7%E5%8F%96"><span class="toc-number">6.</span> <span class="toc-text"> 私人令牌 token 配置获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03picgo%E9%85%8D%E7%BD%AE"><span class="toc-number">7.</span> <span class="toc-text"> 03.PicGo 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">8.</span> <span class="toc-text"> 插件安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">9.</span> <span class="toc-text"> 插件配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E5%B0%9D%E8%AF%95"><span class="toc-number">10.</span> <span class="toc-text"> 上传尝试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04typora%E9%85%8D%E7%BD%AE"><span class="toc-number">11.</span> <span class="toc-text"> 04.Typora 配置</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2rocketmq%E4%BB%A5%E5%8F%8Aconsole"><span class="toc-number">1.</span> <span class="toc-text"> Docker 环境下部署 RocketMQ 以及 Console</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1docker-%E5%AE%89%E8%A3%85rocketmq%E9%95%9C%E5%83%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.docker 安装 rocketmq 镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E5%88%9B%E5%BB%BAserver%E5%92%8Cbroker%E7%9B%AE%E5%BD%95%E5%B9%B6%E5%9C%A8%E7%9B%AE%E5%BD%95opt%E4%B8%8B%E5%88%9B%E5%BB%BAbrokerconf"><span class="toc-number">1.2.</span> <span class="toc-text"> 2. 创建 server 和 broker 目录，并在目录 &#x2F;opt 下创建 broker.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8%E5%B9%B6%E5%9C%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%94%BE%E8%A1%8C%E7%AB%AF%E5%8F%A3-9876-10911-11011"><span class="toc-number">1.3.</span> <span class="toc-text"> 3. 启动容器并在防火墙放行端口 9876 、10911 、11011</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E6%B5%8B%E8%AF%95%E8%AE%BF%E9%97%AEconsole%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-number">1.4.</span> <span class="toc-text"> 4. 测试访问 console 控制台</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -402,12 +341,10 @@ Brath = BrathBlog</title>
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2022/12/27/SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -431,7 +368,25 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/" title="Linux环境下安装jenkins">Linux环境下安装jenkins</a></span>
+    <span><a href="/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" title="阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义">阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/" title="Docker环境下部署RocketMQ以及Console">Docker环境下部署RocketMQ以及Console</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" title="Volatile关键字">Volatile关键字</a></span>
   </li>
 
       
@@ -449,7 +404,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="MySQL8下载与安装教程">MySQL8下载与安装教程</a></span>
+    <span><a href="/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/" title="端口占用问题">端口占用问题</a></span>
   </li>
 
       
@@ -458,7 +413,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" title="阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义">阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</a></span>
+    <span><a href="/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</a></span>
   </li>
 
       
@@ -467,16 +422,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="CompletableFuture使用文档">CompletableFuture使用文档</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">Github访问加速方法</a></span>
+    <span><a href="/2022/12/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a></span>
   </li>
 
       
@@ -494,16 +440,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" title="redis主从集群-哨兵模式搭建文档">redis主从集群-哨兵模式搭建文档</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" title="Maven通过命令提示符引入jar包的流程">Maven通过命令提示符引入jar包的流程</a></span>
+    <span><a href="/2022/12/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="设计模式（一）">设计模式（一）</a></span>
   </li>
 
       
@@ -555,7 +492,7 @@ Brath = BrathBlog</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2022/12/27/typora配置AliCloudOss图库使用picgo上传图片/',
+    path: '2023/01/04/Docker环境下部署RocketMQ以及Console/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
