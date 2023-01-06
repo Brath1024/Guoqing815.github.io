@@ -27,12 +27,12 @@
   <meta name="keywords" content="java,git,springcloud" />
 
 
-<link rel="canonical" href="http://example.com/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/">
+<link rel="canonical" href="http://example.com/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/">
 
 
 
   <title>
-Github访问加速方法 |
+Linux下使用war包部署Jenkins |
 Brath = BrathBlog</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,23 +60,23 @@ Brath = BrathBlog</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">Github访问加速方法
+  <h1 itemprop="name headline">Linux下使用war包部署Jenkins
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2022-12-27 16:18:48">
+  <span class="item" title="Created: 2023-01-06 09:06:38">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+    <time itemprop="dateCreated datePublished" datetime="2023-01-06T09:06:38+08:00">2023-01-06</time>
   </span>
   <span class="item" title="Symbols count in article">
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>1.1k</span>
+    <span>591</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Brath = BrathBlog</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicm0n457cj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
           <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipetv6p75j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -151,7 +151,7 @@ Brath = BrathBlog</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,26 +166,20 @@ Brath = BrathBlog</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <h2 id="1-获取延迟最小ip地址"><a class="markdownIt-Anchor" href="#1-获取延迟最小ip地址">#</a> 1. 获取延迟最小 IP 地址</h2>
-<p>首先，打开</p>
-<p><span class="exturl" data-url="aHR0cDovL3Rvb2wuY2hpbmF6LmNvbS9kbnM/dHlwZT0xJmFtcDtob3N0PWdpdGh1Yi5jb20mYW1wO2lwPQ==">http://tool.chinaz.com/dns?type=1&amp;host=github.com&amp;ip=</span></p>
-<p>查询 Github 的地址，选择延迟最小的</p>
-<p><img data-src="E:%5Cmd%E5%9B%BE%E7%89%87%5C1640222585966.png" alt="1640222585966"></p>
-<h2 id="2-修改系统hosts文件"><a class="markdownIt-Anchor" href="#2-修改系统hosts文件">#</a> <strong>2. 修改系统 Hosts 文件</strong></h2>
-<p>接着，打开系统 hosts 文件 (需管理员权限)。<br>
-路径：C:\Windows\System32\drivers\etc</p>
-<blockquote>
-<p>mac 或者其他 linux 系统的话，是 /etc 下的 hosts 文件，需要切入到 root 用户修改</p>
-</blockquote>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># Copyright (c) 1993-2009 Microsoft Corp. </span><br><span class="line"># </span><br><span class="line"># This is a sample HOSTS file used by Microsoft TCP/IP for Windows. </span><br><span class="line"># </span><br><span class="line"># This file contains the mappings of IP addresses to host names. Each </span><br><span class="line"># entry should be kept on an individual line. The IP address should </span><br><span class="line"># be placed in the first column followed by the corresponding host name. </span><br><span class="line"># The IP address and the host name should be separated by at least one </span><br><span class="line"># space. </span><br><span class="line"># </span><br><span class="line"># Additionally, comments (such as these) may be inserted on individual </span><br><span class="line"># lines or following the machine name denoted by a &#x27;#&#x27; symbol. </span><br><span class="line"># </span><br><span class="line"># For example: </span><br><span class="line"># </span><br><span class="line">#      102.54.94.97     rhino.acme.com          # source server </span><br><span class="line">#       38.25.63.10     x.acme.com              # x client host </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># localhost name resolution is handled within DNS itself. </span><br><span class="line">#   127.0.0.1       localhost </span><br><span class="line">#   ::1             localhost </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">52.192.72.89    github.com</span><br></pre></td></tr></table></figure>
-<p>并在末尾添加记录并保存。(需管理员权限，注意 IP 地址与域名间需留有空格)</p>
-<h2 id="3-刷新系统dns缓存"><a class="markdownIt-Anchor" href="#3-刷新系统dns缓存">#</a> <strong>3. 刷新系统 DNS 缓存</strong></h2>
-<p>最后，Windows+X 打开系统命令行（管理员身份）或 powershell</p>
-<p>运行 ipconfig /flushdns 手动刷新系统 DNS 缓存。</p>
-<blockquote>
-<p>mac 系统修改完 hosts 文件，保存并退出就可以了。不要要多一步刷新操作.<br>
-centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
-</blockquote>
+    <h1 id="linux下使用war包部署jenkins"><a class="markdownIt-Anchor" href="#linux下使用war包部署jenkins">#</a> Linux 下使用 war 包部署 Jenkins</h1>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h2>
+<p>jenkins 可以多种方式安装，可以 docker，也可以直接下载 war 包，然后 java -jar 方式启动。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.创建安装目录</span><br><span class="line">	mkdir -p /jenkins</span><br><span class="line">2.切换目录</span><br><span class="line">	cd  /jenkins</span><br><span class="line">3.下载war包</span><br><span class="line">	wget -O /jenkins/jenkins.war http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">4.启动</span><br><span class="line">	BUILD_ID=dontKillMe nohup java -DJENKINS_HOME=/jenkins (如果有历史home可以指定其他home：/root/.jenkins) -Xms1046m -Xmx2000m -jar jenkins.war --httpPort=9444  &gt;&gt;jenkinsLog.log 2&gt;&amp;1 &amp;</span><br><span class="line">5.访问</span><br><span class="line">	http://&#123;your ip&#125;:9444</span><br></pre></td></tr></table></figure>
+<h3 id="备注"><a class="markdownIt-Anchor" href="#备注">#</a> <strong>备注:</strong></h3>
+<ol>
+<li>–httpPort 自定义端口</li>
+<li>jenkins 默认工作目录：/root/.jenkins</li>
+<li>nohup 后台启动</li>
+<li>‘&gt;&gt;log’ 以追加的方式记录日志</li>
+<li>2&gt;&amp;1 2: 标准异常输出 1: 标准输出 ，2&gt;&amp;1 两种输出都记录到 log 文件中</li>
+<li>&amp; 后台启动方式</li>
+<li>BUILD_ID=dontKillMe 防止误杀包</li>
+</ol>
 
   </div>
 
@@ -197,7 +191,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2021-12-23 09:24:30" itemprop="dateModified" datetime="2021-12-23T09:24:30+08:00">2021-12-23</time>
+    <time title="Modified: 2023-01-06 09:09:15" itemprop="dateModified" datetime="2023-01-06T09:09:15+08:00">2023-01-06</time>
   </span>
 </div>
 
@@ -233,7 +227,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">http://example.com/2022/12/27/Github访问加速/</a>
+    <a href="http://example.com/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" title="Linux下使用war包部署Jenkins">http://example.com/2023/01/06/Linux下使用war包部署Jenkins/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -252,20 +246,20 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
     <div class="item left">
       
 
-  <a href="/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclfw2t96j20zk0m8x6p.jpg" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">
+  <a href="/2023/01/06/Docker%E5%AE%89%E8%A3%85Jenkins/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclgrvbd6j20zk0m8qv5.jpg" title="Docker安装Jenkins">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</h3>
+  <h3>Docker安装Jenkins</h3>
   </a>
 
     </div>
     <div class="item right">
       
 
-  <a href="/2022/12/27/Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciukx8a7j20zk0m8aio.jpg" title="Hbase整合SpringBoot的问题">
+  <a href="/2023/01/06/Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipesx5fdwj20zk0m81kx.jpg" title="Untitled">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>Hbase整合SpringBoot的问题</h3>
+  <h3>Untitled</h3>
   </a>
 
     </div>
@@ -284,7 +278,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96%E5%BB%B6%E8%BF%9F%E6%9C%80%E5%B0%8Fip%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text"> 1. 获取延迟最小 IP 地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9Fhosts%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text"> 2. 修改系统 Hosts 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%B7%E6%96%B0%E7%B3%BB%E7%BB%9Fdns%E7%BC%93%E5%AD%98"><span class="toc-number">3.</span> <span class="toc-text"> 3. 刷新系统 DNS 缓存</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2jenkins"><span class="toc-number">1.</span> <span class="toc-text"> Linux 下使用 war 包部署 Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E6%B3%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 备注:</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -359,12 +353,12 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+        <a href="/2023/01/06/Docker%E5%AE%89%E8%A3%85Jenkins/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2022/12/27/Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+        <a href="/2023/01/06/Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -388,7 +382,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" title="Linux下使用war包部署Jenkins">Linux下使用war包部署Jenkins</a></span>
+    <span><a href="/2022/12/27/node&npm&cnpm&webpack&yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程">node&npm&cnpm&webpack&yarn安装教程</a></span>
   </li>
 
       
@@ -397,7 +391,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="Typora使用gitee作为图库用picgo上传图片的教程~">Typora使用gitee作为图库用picgo上传图片的教程~</a></span>
+    <span><a href="/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/" title="Docker环境下部署RocketMQ以及Console">Docker环境下部署RocketMQ以及Console</a></span>
   </li>
 
       
@@ -406,7 +400,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">Github访问加速方法</a></span>
+    <span><a href="/2022/12/27/Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" title="Linux下docer部署mysql">Linux下docer部署mysql</a></span>
   </li>
 
       
@@ -415,7 +409,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/RocketMQ/" title="RocketMQ">RocketMQ</a></span>
+    <span><a href="/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/" title="端口占用问题">端口占用问题</a></span>
   </li>
 
       
@@ -424,7 +418,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" title="SpringBoot自动装配原理">SpringBoot自动装配原理</a></span>
+    <span><a href="/2023/01/06/Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" title="Untitled">Untitled</a></span>
   </li>
 
       
@@ -433,7 +427,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Flutter%E6%96%87%E6%A1%A3/" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a></span>
+    <span><a href="/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></span>
   </li>
 
       
@@ -442,7 +436,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/11/24/Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" title="Docker的基础用法">Docker的基础用法</a></span>
+    <span><a href="/2022/12/27/Seatav%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></span>
   </li>
 
       
@@ -451,7 +445,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" title="Knife4J接口文档">Knife4J接口文档</a></span>
+    <span><a href="/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/" title="微服务拆分细则">微服务拆分细则</a></span>
   </li>
 
       
@@ -460,7 +454,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/CAS%E6%9C%BA%E5%88%B6/" title="CAS机制">CAS机制</a></span>
+    <span><a href="/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</a></span>
   </li>
 
       
@@ -469,7 +463,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Flutter_GetX%E6%96%87%E6%A1%A3/" title="Flutter GETX框架">Flutter GETX框架</a></span>
+    <span><a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" title="Volatile关键字">Volatile关键字</a></span>
   </li>
 
   </ul>
@@ -512,7 +506,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2022/12/27/Github访问加速/',
+    path: '2023/01/06/Linux下使用war包部署Jenkins/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
