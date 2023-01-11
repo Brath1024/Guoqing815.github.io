@@ -27,12 +27,12 @@
   <meta name="keywords" content="java,git,springcloud" />
 
 
-<link rel="canonical" href="http://example.com/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+<link rel="canonical" href="http://example.com/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/">
 
 
 
   <title>
-腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案 |
+【MySQL】MySQL主从开关机顺序 |
 Brath = BrathBlog</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,23 +60,23 @@ Brath = BrathBlog</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案
+  <h1 itemprop="name headline">【MySQL】MySQL主从开关机顺序
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2022-12-27 16:18:48">
+  <span class="item" title="Created: 2023-01-11 08:50:56">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+    <time itemprop="dateCreated datePublished" datetime="2023-01-11T08:50:56+08:00">2023-01-11</time>
   </span>
   <span class="item" title="Symbols count in article">
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>664</span>
+    <span>474</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Brath = BrathBlog</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclga70tsj20zk0m84mr.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipetv6p75j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
         </ul>
       </div>
     </header>
@@ -151,7 +151,7 @@ Brath = BrathBlog</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,13 +166,25 @@ Brath = BrathBlog</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <h3 id="腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案"><a class="markdownIt-Anchor" href="#腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案">#</a> 腾讯云服务器 liux 系统下无法通过 springBoot 内置 mail 发送邮件的解决方案</h3>
-<p>原因</p>
-<p>原来是腾讯云基于安全考虑，禁用了端口 25。改成 465 或者解封 25 就可以发邮件了。</p>
-<p>原始配置  本地可发送</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  mail:</span><br><span class="line">    username: ***********</span><br><span class="line">    password: ***********</span><br><span class="line">    host: smtp<span class="number">.163</span>.com</span><br><span class="line">    port: <span class="number">25</span></span><br><span class="line">    <span class="keyword">default</span>-encoding: UTF-<span class="number">8</span></span><br><span class="line">    properties:</span><br><span class="line">      mail:</span><br><span class="line">        smtp:</span><br><span class="line">          timeout: <span class="number">10000</span></span><br><span class="line">          auth: <span class="literal">true</span></span><br><span class="line">          starttls:</span><br><span class="line">            enable: <span class="literal">true</span></span><br><span class="line">            required: <span class="literal">true</span></span><br><span class="line">          socketFactory:</span><br><span class="line">            port: <span class="number">25</span></span><br><span class="line">            class: javax.net.ssl.SSLSocketFactory</span><br><span class="line">            fallback: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>修改的配置 测试 部署到服务器上是可以发送的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  mail:</span><br><span class="line">    username: ***********</span><br><span class="line">    password: ***********</span><br><span class="line">    host: smtp<span class="number">.163</span>.com</span><br><span class="line">    port: <span class="number">465</span></span><br><span class="line">    <span class="keyword">default</span>-encoding: UTF-<span class="number">8</span></span><br><span class="line">    properties:</span><br><span class="line">      mail:</span><br><span class="line">        smtp:</span><br><span class="line">          timeout: <span class="number">10000</span></span><br><span class="line">          auth: <span class="literal">true</span></span><br><span class="line">          starttls:</span><br><span class="line">            enable: <span class="literal">true</span></span><br><span class="line">            required: <span class="literal">true</span></span><br><span class="line">          socketFactory:</span><br><span class="line">            port: <span class="number">465</span></span><br><span class="line">            class: javax.net.ssl.SSLSocketFactory</span><br><span class="line">            fallback: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+    <p>MySQL 主从开关机顺序<br>
+停应用 -&gt; 停数据库（先备后主） -&gt; 改配置 -&gt; 启数据库（先主后备）-&gt; 启应用</p>
+<p>关闭 MySQL 从库<br>
+ a. 先查看当前的主从同步状态 show slave statusG; 看是否双 yes<br>
+b. 执行 stop slave<br>
+c. 停止从库服务 mysqladmin shutdown -u 用户名 -p 密码<br>
+ d. 查看是否还有 mysql 的进程 ps -ef | grep mysql<br>
+d. 如果部署了多个实例，那每个实例都要按照以上步骤来操作</p>
+<p>关闭 MySQL 主库<br>
+ a. 停止主库服务 mysqladmin shutdown -u 用户名 -p 密码<br>
+ b. 查看是否还有 mysql 的进程 ps -ef | grep mysql</p>
+<p>启动 MySQL 主库<br>
+ a. 启动主库服务 mysqladmin start -u 用户名 -p 密码<br>
+ b. 查看 mysql 的进程 ps -ef | grep mysql</p>
+<p>启动 MySQL 从库<br>
+ a. 启动从库服务 mysqladmin start -u 用户名 -p 密码<br>
+ b. 启动复制 start slave;<br>
+c. 检查同步状态 show slave statusG; 是否双 yes<br>
+d. 查看 mysql 的进程 ps -ef | grep mysql</p>
 
   </div>
 
@@ -184,7 +196,7 @@ Brath = BrathBlog</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2022-07-15 11:30:24" itemprop="dateModified" datetime="2022-07-15T11:30:24+08:00">2022-07-15</time>
+    <time title="Modified: 2022-11-18 14:37:41" itemprop="dateModified" datetime="2022-11-18T14:37:41+08:00">2022-11-18</time>
   </span>
 </div>
 
@@ -220,7 +232,7 @@ Brath = BrathBlog</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案">http://example.com/2022/12/27/腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案/</a>
+    <a href="http://example.com/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/" title="【MySQL】MySQL主从开关机顺序">http://example.com/2023/01/11/【MySQL】MySQL主从开关机顺序/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -239,20 +251,20 @@ Brath = BrathBlog</title>
     <div class="item left">
       
 
-  <a href="/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipey84bjtj20zk0m8hdt.jpg" title="端口占用问题">
+  <a href="/2023/01/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuja1j1j20zk0m8kjl.jpg" title="Java多线程学习（吐血超详细总结）">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>端口占用问题</h3>
+  <h3>Java多线程学习（吐血超详细总结）</h3>
   </a>
 
     </div>
     <div class="item right">
       
 
-  <a href="/2022/12/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciukx8a7j20zk0m8aio.jpg" title="设计模式（一）">
+  <a href="/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyhsblkj20zk0m81kx.jpg" title="JVM学习记录">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>设计模式（一）</h3>
+  <h3>JVM学习记录</h3>
   </a>
 
     </div>
@@ -271,7 +283,6 @@ Brath = BrathBlog</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springboot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text"> 腾讯云服务器 liux 系统下无法通过 springBoot 内置 mail 发送邮件的解决方案</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -346,12 +357,12 @@ Brath = BrathBlog</title>
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+        <a href="/2023/01/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2022/12/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+        <a href="/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -375,42 +386,6 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" title="Mysql主从集群搭建文档，实现读写分离">Mysql主从集群搭建文档，实现读写分离</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" title="mysql查询技巧">mysql查询技巧</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/" title="docker简单部署rocketMQ">docker简单部署rocketMQ</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" title="Volatile关键字">Volatile关键字</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
     <span><a href="/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" title="Linux下使用war包部署Jenkins">Linux下使用war包部署Jenkins</a></span>
   </li>
 
@@ -420,7 +395,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Squirrel SQL客户端安装与使用">Squirrel SQL客户端安装与使用</a></span>
+    <span><a href="/2022/12/27/MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" title="Maven通过命令提示符引入jar包的流程">Maven通过命令提示符引入jar包的流程</a></span>
   </li>
 
       
@@ -429,7 +404,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" title="阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义">阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</a></span>
+    <span><a href="/2022/12/27/Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" title="Knife4J接口文档">Knife4J接口文档</a></span>
   </li>
 
       
@@ -438,7 +413,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="设计模式（一）">设计模式（一）</a></span>
+    <span><a href="/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">Github访问加速方法</a></span>
   </li>
 
       
@@ -447,7 +422,7 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/" title="微服务拆分细则">微服务拆分细则</a></span>
+    <span><a href="/2022/12/29/TheadLocal/" title="ThreadLocal">ThreadLocal</a></span>
   </li>
 
       
@@ -456,7 +431,43 @@ Brath = BrathBlog</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/" title="Docker环境部署Reids镜像作为从节点">Docker环境部署Reids镜像作为从节点</a></span>
+    <span><a href="/2022/12/27/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" title="SpringBoot自动装配原理">SpringBoot自动装配原理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="MySQL8下载与安装教程">MySQL8下载与安装教程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/" title="主从同步遇到 Got fatal error 1236 from master when reading data from binary log">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" title="Nginx以及Keepalived安装以及部署">Nginx以及Keepalived安装以及部署</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/CAS%E6%9C%BA%E5%88%B6/" title="CAS机制">CAS机制</a></span>
   </li>
 
   </ul>
@@ -499,7 +510,7 @@ Brath = BrathBlog</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2022/12/27/腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案/',
+    path: '2023/01/11/【MySQL】MySQL主从开关机顺序/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"

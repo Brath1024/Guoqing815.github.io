@@ -5,8 +5,222 @@
         <link>http://example.com</link>
         <description></description>
         <language>en</language>
-        <pubDate>Fri, 06 Jan 2023 09:27:00 +0800</pubDate>
-        <lastBuildDate>Fri, 06 Jan 2023 09:27:00 +0800</lastBuildDate>
+        <pubDate>Wed, 11 Jan 2023 08:54:34 +0800</pubDate>
+        <lastBuildDate>Wed, 11 Jan 2023 08:54:34 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</guid>
+            <title>JVM学习记录</title>
+            <link>http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</link>
+            <pubDate>Wed, 11 Jan 2023 08:54:34 +0800</pubDate>
+            <description><![CDATA[ &lt;h4 id=&#34;jvm位置在操作系统之上运行操作系统在硬件之上运行&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jvm位置在操作系统之上运行操作系统在硬件之上运行&#34;&gt;#&lt;/a&gt; JVM 位置：在操作系统之上运行，操作系统在硬件之上运行&lt;/h4&gt;
+&lt;p&gt;JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM&lt;/p&gt;
+&lt;h4 id=&#34;jvm体系结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jvm体系结构&#34;&gt;#&lt;/a&gt; JVM 体系结构：&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/JVM%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E7%94%BB%E5%9B%BE%EF%BC%88%E7%B2%BE%E7%BB%86%EF%BC%89.jpg&#34; alt=&#34;JVM底层结构画图（精细）&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Java File&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Class File&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Class Loader SubSystem {&lt;/p&gt;
+&lt;p&gt;1 . Loading : [1 . ApplicationClassLoader   2 . ExtClassLoader  3 . BootStrapClassLoader]&lt;/p&gt;
+&lt;p&gt;2 . Linking : [1. Verify  2.Prepare  3. Resolve ]&lt;/p&gt;
+&lt;p&gt;3 . Initialization&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;=&amp;gt; RuntimeData Areas ：(1,2) : Memory sharing，(3,4,5) : Memory is not shared{&lt;/p&gt;
+&lt;p&gt;1 . Method Area&lt;/p&gt;
+&lt;p&gt;2 . Heap Area &lt;/p&gt;
+&lt;p&gt;3 . Stack Area   {&lt;/p&gt;
+&lt;p&gt;T1 [1. Thread  2. Stack Frame ]&lt;/p&gt;
+&lt;p&gt;T2 [1. Thread  2. Stack Frame ]&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;4 . Native MethodStack Area    --&amp;gt; JNI&lt;/p&gt;
+&lt;p&gt;5 . Program Counter Register [PC Registers for Thread]&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Execution Engine {&lt;/p&gt;
+&lt;p&gt;1 . interpreter&lt;/p&gt;
+&lt;p&gt;2 . JIT Compiler  {&lt;/p&gt;
+&lt;p&gt;Intermediate Code Generator&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Code Optimizer&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Target Code Generator&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;3 . Profiler&lt;/p&gt;
+&lt;p&gt;4 . Garbage Collection&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Java Native Method Interface （JNI）&lt;/p&gt;
+&lt;p&gt;=&amp;gt; Native Method Library&lt;/p&gt;
+&lt;h4 id=&#34;类加载器-classloader-subsystem-类加载器子系统-运行时在堆中运行-不运行时是独立子系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#类加载器-classloader-subsystem-类加载器子系统-运行时在堆中运行-不运行时是独立子系统&#34;&gt;#&lt;/a&gt; 类加载器： ClassLoader SubSystem : 类加载器子系统 运行时在堆中运行 不运行时是独立子系统&lt;/h4&gt;
+&lt;p&gt;application ClassLoader 应用程序加载器  主要负责加载应用程序的主函数类&lt;/p&gt;
+&lt;p&gt;Ext ClassLoader 扩展加载器  主要负责加载 jre/lib/ext 目录下的一些扩展的 jar。&lt;/p&gt;
+&lt;p&gt;BootStrap ClassLoader 根类加载器  主要负责加载核心的类库 (java.lang.* 等)&lt;/p&gt;
+&lt;p&gt;加载过程：class File =&amp;gt; Loading 加载 =&amp;gt; Linking （验证，准备，解析） 链接 =&amp;gt; Initialization 初始化&lt;/p&gt;
+&lt;h4 id=&#34;双亲委派机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#双亲委派机制&#34;&gt;#&lt;/a&gt; 双亲委派机制&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/20201217213314510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvZGV5YW5iYW8=,size_16,color_FFFFFF,t_70&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从上图中我们就更容易理解了，当一个 Hello.class 这样的文件要被加载时。不考虑我们自定义类加载器，首先会在 AppClassLoader 中检查是否加载过，如果有那就无需再加载了。如果没有，那么会拿到父加载器，然后调用父加载器的 loadClass 方法。父类中同理也会先检查自己是否已经加载过，如果没有再往上。注意这个类似递归的过程，直到到达 Bootstrap classLoader 之前，都是在检查是否加载过，并不会选择自己去加载。直到 BootstrapClassLoader，已经没有父加载器了，这时候开始考虑自己是否能加载了，如果自己无法加载，会下沉到子加载器去加载，一直到最底层，如果没有任何加载器能加载，就会抛出 ClassNotFoundException。那么有人就有下面这种疑问了？&lt;/p&gt;
+&lt;p&gt;为什么要设计这种机制&lt;br&gt;
+这种设计有个好处是，如果有人想替换系统级别的类：String.java。篡改它的实现，在这种机制下这些系统的类已经被 Bootstrap classLoader 加载过了（为什么？因为当一个类需要加载的时候，最先去尝试加载的就是 BootstrapClassLoader），所以其他类加载器并没有机会再去加载，从一定程度上防止了危险代码的植入。&lt;/p&gt;
+&lt;p&gt;沙箱安全机制&lt;/p&gt;
+&lt;p&gt;在 Java 中将执行程序分成本地代码和远程代码两种，本地代码默认视为可信任的，而远程代码则被看作是不受信的。对于授信的本地代码，可以访问一切本地资源。而对于非授信的远程代码在早期的 Java 实现中，安全依赖于沙箱 (Sandbox) 机制。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/20200312212803678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDkyNzQzNg==,size_16,color_FFFFFF,t_70&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;当前最新的安全机制实现，则引入了域 (Domain) 的概念。虚拟机会把所有代码加载到不同的系统域和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统域的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域 (Protected Domain)，对应不一样的权限 (Permission)。存在于不同域中的类文件就具有了当前域的全部权限，如下图所示&lt;/p&gt;
+&lt;h4 id=&#34;native&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#native&#34;&gt;#&lt;/a&gt; Native&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;native 即 JNI,Java Native Interface&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Native 关键字是  JNI，也就是 java 本地方法接口，用来调用本地方法库，可以调用本地方法中的 C 语言代码&lt;/p&gt;
+&lt;h4 id=&#34;pc寄存器&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pc寄存器&#34;&gt;#&lt;/a&gt; PC 寄存器&lt;/h4&gt;
+&lt;p&gt;每次线程启动的时候会创建一个 PC 寄存器，保存正在执行的 JVM 指令地址，每个线程都有自己的 PC 寄存器，是一个比较小的内存空间，是为一个一个不会出现 OutOfMemoryError 的内存区域，它的生命周期随着线程的创建而创建，随着线程的结束而死亡。&lt;/p&gt;
+&lt;h4 id=&#34;方法区&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#方法区&#34;&gt;#&lt;/a&gt; 方法区&lt;/h4&gt;
+&lt;p&gt;Hotspot 虚拟机，方法区别称：non-heap（非堆），其实就是存储堆类型的数据，而不占据堆内存的空间&lt;/p&gt;
+&lt;p&gt;方法区和堆区线程共享，方法区大小和堆一样，可以选择固定大小或者拓展&lt;/p&gt;
+&lt;p&gt;方法区大小决定了系统可以保存多少个类，如果系统定义了太多的类，导致方法区溢出，虚拟机同样会抛出内存溢出错误。&lt;/p&gt;
+&lt;p&gt;关闭 JVM 就会释放这个区域的内存&lt;/p&gt;
+&lt;p&gt;设置方法区的内存大小：&lt;/p&gt;
+&lt;h4 id=&#34;jdk17-之前&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jdk17-之前&#34;&gt;#&lt;/a&gt; JDK1.7 之前：&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;-XX：PermSize 设置永久代初始分配空间  默认是 20.75m&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-XX：MaxPermSize 设置最大永久代分配空间，32 位机器默认 64m，64 位机器默认 82m&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;jdk18-及以后永久代被元空间代替metaspace&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jdk18-及以后永久代被元空间代替metaspace&#34;&gt;#&lt;/a&gt; JDK1.8 及以后：永久代被元空间代替（MetaSpace）&lt;/h4&gt;
+&lt;p&gt;元空间大小可以用参数：-XX:MetaspaceSzie 和 -XX:MaxMetaspaceSize 指定&lt;/p&gt;
+&lt;p&gt;-XX:MetaspaceSzie 默认 21.75m -XX:MaxMetaspaceSize 默认 - 1 没有限制&lt;/p&gt;
+&lt;p&gt;默认情况下，虚拟机会耗尽所有可用的系统内存，如果元空间发生溢出，虚拟机照样会抛出 OOM&lt;/p&gt;
+&lt;p&gt;如果初始高位线设置过低，通过垃圾回收器日志可以观察到 Full GC 多次调用，为了避免频繁 GC，&lt;/p&gt;
+&lt;p&gt;建议将 - XX:MetaspaceSize 设置为一个相对较高的值。&lt;/p&gt;
+&lt;h4 id=&#34;栈数据结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#栈数据结构&#34;&gt;#&lt;/a&gt; 栈：数据结构&lt;/h4&gt;
+&lt;p&gt;程序 = 数据结构 + 算法&lt;/p&gt;
+&lt;p&gt;先进后出，后进先出&lt;/p&gt;
+&lt;p&gt;栈是桶的概念：先进去的后出来，后进去的先出来&lt;/p&gt;
+&lt;p&gt;栈有压栈、弹栈&lt;/p&gt;
+&lt;p&gt;队列是管道概念：先进先出 (F I F O) ，后进后出 First Input First Out&lt;/p&gt;
+&lt;p&gt;喝多了吐就是栈，吃多了拉就是队列&lt;/p&gt;
+&lt;p&gt;栈：主管程序运行，生命周期和线程同步；&lt;/p&gt;
+&lt;p&gt;main 主线程结束，栈内存也就释放了，对于栈来说，不存在垃圾回收问题，一旦线程结束，栈就 Over 了。&lt;/p&gt;
+&lt;p&gt;栈存什么东西：&lt;/p&gt;
+&lt;p&gt;八大基本数据类型 + 对象的引用地址 + 实例方法&lt;/p&gt;
+&lt;p&gt;栈运行原理：栈帧：方法索引，输入输出参数，本地变量，类引用，父帧，子帧&lt;/p&gt;
+&lt;p&gt;栈满了就会抛出错误 Error：StackOverflowError 栈溢出&lt;/p&gt;
+&lt;h3 id=&#34;堆heap&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#堆heap&#34;&gt;#&lt;/a&gt; 堆：Heap&lt;/h3&gt;
+&lt;p&gt;​		一个 JVM 只有一个堆内存，堆内存大小是可以调节的。&lt;/p&gt;
+&lt;p&gt;​		类加载器读取的类文件后，一般会把：类，方法，常量，变量，引用类型的真实对象放到堆中。&lt;/p&gt;
+&lt;p&gt;​		堆内存还要细分为三个区域：{&lt;/p&gt;
+&lt;p&gt;新生代：Eden Space：&lt;/p&gt;
+&lt;p&gt;Survior0 区和 Survior1 区：幸存者 0/1 区&lt;/p&gt;
+&lt;p&gt;经过新生代的轻 GC 15 次的考验进入老年代。&lt;/p&gt;
+&lt;p&gt;老年代：重量级 Full GC 垃圾回收&lt;/p&gt;
+&lt;p&gt;永久代：（1.8 移除）&lt;/p&gt;
+&lt;p&gt;GC 垃圾回收集中在新生代和老年代执行。&lt;/p&gt;
+&lt;p&gt;假设内存满了，爆出 OOM，堆内存溢出。&lt;/p&gt;
+&lt;p&gt;内存溢出代码怎么写：&lt;/p&gt;
+&lt;p&gt;利用 while 循环一个字符串无限 += 随机数&lt;/p&gt;
+&lt;p&gt;JDK8 以后，永久代被移除，更名为元空间：MetaSpace&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;h4 id=&#34;详解&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#详解&#34;&gt;#&lt;/a&gt; 详解：&lt;/h4&gt;
+&lt;h5 id=&#34;新生代&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#新生代&#34;&gt;#&lt;/a&gt; 新生代：&lt;/h5&gt;
+&lt;p&gt;​	类：诞生成长的地方，也可能类死亡的地方&lt;/p&gt;
+&lt;p&gt;​	Eden 区、幸存者 0 和 1 区，&lt;/p&gt;
+&lt;p&gt;​	所有对象都是在 Eden 区 new 出来的&lt;/p&gt;
+&lt;p&gt;​	Eden 区没死亡的对象在幸存者区存活&lt;/p&gt;
+&lt;p&gt;​	如果 Eden 区存储触发了轻 GC 回收机制，就会对 Eden 区进行清除，存活下来对象在幸存区，清除的对象会消失。当 Eden 区和幸存者区都满了之后会执行一次 Full GC，再次存活下来的对象会进入老年代。&lt;/p&gt;
+&lt;p&gt;Tips：新生代 99% 都是临时对象！，能进入老年代的对象并不多。所以平时很少见到 OOM 的错误&lt;/p&gt;
+&lt;h5 id=&#34;老年代&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#老年代&#34;&gt;#&lt;/a&gt; 老年代：&lt;/h5&gt;
+&lt;p&gt;每次发生轻 GC 会对新生代进行对象清理，当新生代和幸存区的对象在轻 GC 清除下存活 15 次之后，进入老年代&lt;/p&gt;
+&lt;p&gt;永久代：用来存放 jdk 自身携带的 calss 对象，interface 元数据，存储的是运行的一些时环境，永久代不存在垃圾回收，关闭 JJVM 虚拟机就会释放永久代内存。&lt;/p&gt;
+&lt;p&gt;假设一个启动类，加载了大量的第三方 jar 包，或者一个 tomcat 部署了太多应用，或者大量动态生成的反射类，如果不断的加载，可能会导致永久代内存溢出。&lt;/p&gt;
+&lt;p&gt;jdk1.6 之前：永久代，常量池存在于方法区中&lt;/p&gt;
+&lt;p&gt;jdk1.7：去永久代，常量池在堆中&lt;/p&gt;
+&lt;p&gt;jdk1.8：无永久代，常量池在元空间中&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;元空间：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（方法区）：非堆&lt;/p&gt;
+&lt;p&gt;非堆指的是空间上，不属于堆空间；但是由于存储的内容，特性上又被称为堆&lt;/p&gt;
+&lt;p&gt;默认情况下：虚拟机被分配到的总内存是电脑内存的 1/4 ，而初始化的内存只有 1/64&lt;/p&gt;
+&lt;p&gt;因为与堆共享内存，逻辑上存在，物理上不存在&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908225948384.png&#34; alt=&#34;image-20210908225948384&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908230652551.png&#34; alt=&#34;image-20210908230652551&#34;&gt;&lt;/p&gt;
+&lt;p&gt;dump 文件～Jprofiler 插件&lt;/p&gt;
+&lt;p&gt;-Xms : 初始化内存&lt;/p&gt;
+&lt;p&gt;-Xmx : 最大内存&lt;/p&gt;
+&lt;p&gt;-XX:+PrintGCDetails  打印 GC 回收的详细信息&lt;/p&gt;
+&lt;p&gt;-XX:+HeapDumpOnOutOfMemoryError 发生 OOM 异常打印 dump 内存快照&lt;/p&gt;
+&lt;p&gt;-XX:MaxTenuringReshlod 设置最大存活时间，默认是 15 次&lt;/p&gt;
+&lt;p&gt;GC：垃圾回收&lt;/p&gt;
+&lt;p&gt;JVM 在进行 GC 时：大部分回收都在新生代，并不是三个区都回收&lt;/p&gt;
+&lt;p&gt;新生代&lt;/p&gt;
+&lt;p&gt;幸存区（form、to）Survior0、Survior1 区&lt;/p&gt;
+&lt;p&gt;老年代&lt;/p&gt;
+&lt;p&gt;GC 两个种类：轻 GC（GC）、重 GC（Full GC）&lt;/p&gt;
+&lt;p&gt;轻 GC 对新生代和幸存区进行回收&lt;/p&gt;
+&lt;p&gt;重 GC 进行全局回收&lt;/p&gt;
+&lt;p&gt;如何区分 from 和 to 区：谁空谁是 to 区&lt;/p&gt;
+&lt;p&gt;1 . 每次 GC 都会将 Eden 区活的对象移到幸存区中：一旦 Eden 区被 GC 后，就会是空的！&lt;/p&gt;
+&lt;p&gt;2 . 当一个对象经历了 15 次 GC，还没有死，就会进入老年代&lt;/p&gt;
+&lt;p&gt;-XX:MaxTenuringReshold，通过这个参数可以设定进入老年代的时间（指定在 0~15 次之间）&lt;/p&gt;
+&lt;h4 id=&#34;常用算法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#常用算法&#34;&gt;#&lt;/a&gt; &lt;strong&gt;常用算法：&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;**1 . 标记清除 **&lt;/p&gt;
+&lt;p&gt;分为两步骤：标记 ---- 清除&lt;/p&gt;
+&lt;p&gt;标记：扫描，对存活的对象进行标记&lt;/p&gt;
+&lt;p&gt;清除：扫描，对没有标记的对象进行清除&lt;/p&gt;
+&lt;p&gt;优点：简单，成功率高&lt;/p&gt;
+&lt;p&gt;缺点：两次扫描严重耗时，清除会产生内存碎片&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2 .  标记压缩（标记 — 清除 — 压缩）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;标记清除的优化版：防止内存碎片产生&lt;/p&gt;
+&lt;p&gt;在标记清除基础上，再次扫描，向一端移动仍存活的对象，清除另一外的碎片&lt;/p&gt;
+&lt;p&gt;优点：在标记清除优点上优化了内存碎片&lt;/p&gt;
+&lt;p&gt;缺点：对于标记清除又多了一次移动成本，时间增加&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3 .  复制算法&lt;/strong&gt;（新生代主要用的复制算法）&lt;/p&gt;
+&lt;p&gt;把 from 区向 to 区复制一份，然后清空 from 区，这时 from 区会变成 to 区，复制过去的 to 区变成 from 区等待回收。&lt;/p&gt;
+&lt;p&gt;优点：没有内存碎片&lt;/p&gt;
+&lt;p&gt;缺点：浪费内存空间（多了一半空间永远是 to 区，假设对象 100% 存活）极端情况下不适用&lt;/p&gt;
+&lt;p&gt;复制算法最佳使用场景：对象存活度较低的时候，新生区使用复制算法！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4 . 分代收集算法：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​		&lt;strong&gt;由于每个收集算法都无法符合所有的场景，就好比每个对象所在的内存阶段不一样，被回收的概率也不一样，比如在新生代，基本 90% 的对象会被回收，而到了老年代则一半以上的对象存活，所以针对不同的场景，回收的策略也就不一样，所以引出了分代收集算法，根据新生代和老年代不同的场景下使用不同的算法，比如新生代用复制算法，老年代则用标记整理算法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5.  引用计数器（不高效）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;给每个对象设置计数器，只要有引用就会计数，当一个对象计数器为 0 时，进行回收。缺点：效率低下，现在基本不用&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结：&lt;/h2&gt;
+&lt;p&gt;内存效率：复制算法 &amp;gt; 标记清除算法 &amp;gt; 标记压缩（时间复杂度）&lt;/p&gt;
+&lt;p&gt;内存整齐度：复制算法 == 标记压缩算法 &amp;gt; 标记清除算法&lt;/p&gt;
+&lt;p&gt;内存利用率：标记压缩算法 == 标记清除算法 &amp;gt; 复制算法&lt;/p&gt;
+&lt;p&gt;// 思考一个问题：难道没有最优算法吗？&lt;/p&gt;
+&lt;p&gt;答案：永远不能有最优算法。只有最合适的算法。&lt;/p&gt;
+&lt;p&gt;GC：分代收集算法：根据每个代需求来配置不同算法&lt;/p&gt;
+&lt;p&gt;年轻代：存活率低：需求时间短：所以用复制算法&lt;/p&gt;
+&lt;p&gt;老年代：存活率高、区域大：标记清除 + 标记压缩混合&lt;/p&gt;
+&lt;p&gt;内存碎片不是很多就标记清除，内存碎片太多就用压缩&lt;/p&gt;
+&lt;p&gt;JMM：&lt;/p&gt;
+&lt;p&gt;1 . 什么是 JMM：Java 内存模型（Java Memory Model）&lt;/p&gt;
+&lt;p&gt;2 . JMM 作用：&lt;/p&gt;
+&lt;p&gt;3 . 如何学习：&lt;/p&gt;
+&lt;p&gt;经历过很多面试大部分都会问一句： 你知道 Java 内存模型么？ 然后我就 pulapula 的说一大堆什么堆呀，栈呀，GC 呀什么的，这段时间把 JVM 虚拟机和多线程编程完整的学习了一遍，发现 JMM 和堆 / 栈这些完全不是一个概念，不知道是不是就是因为这才被拒了十来次的 / 尴尬。&lt;/p&gt;
+&lt;p&gt;JVM 是 Java 实现的虚拟计算机（Java Virtual Machine），对于熟悉计算机结构的同学，我感觉把这些概念和物理机对应起来更好理解。&lt;/p&gt;
+&lt;p&gt;JVM 对应的就是物理机，它有存放数据的存储区：堆、栈等由 JVM 管理的内存（对应于物理机的内存）、执行数据计算的执行单元：线程（对应于物理机的 CPU）、加速线程执行的本次存储区：可能会从存储区里分配一块空间来存储线程本地数据，比如栈（对应于物理机的 cache）。&lt;/p&gt;
+&lt;p&gt;众所周知，现代计算机一般都会包含多个处理器，多个处理器共享主内存。为了提升性能，会在每个处理器上增加一个小容量的 cache 加速数据读写。cache 会导致了缓存一致性问题，为了解决缓存一致性问题又引入了一系列 Cache 一致性协议（比如 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol）来解决 CPU 本地缓存和主内存数据不一致问题。&lt;/p&gt;
+&lt;p&gt;而 JVM 中管理下的存储空间（包括堆、栈等）就对应与物理机的内存；&lt;/p&gt;
+&lt;p&gt;线程本次存储区（例如栈）就对应于物理机的 cache；&lt;/p&gt;
+&lt;p&gt;而 JMM 就对应于类似于 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol 这样的缓存一致性协议，用于定义数据读写的规则。&lt;/p&gt;
+&lt;p&gt;JMM 相对于物理机的缓存一致性协议来说它还要处理 JVM 自身特有的问题：重排序问题，参见： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2Ntc2Jsb2dzLmNvbS8/cD0yMTE2JUUzJTgwJTgy&#34;&gt;http://cmsblogs.com/?p=2116。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;那么 JMM 都有哪些内容呢？&lt;/p&gt;
+&lt;p&gt;官方文档： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEwMS45Ni4xMC42NC93d3cuY3MudW1kLmVkdS9+cHVnaC9qYXZhL21lbW9yeU1vZGVsL0NvbW11bml0eVJldmlldy5wZGY=&#34;&gt;http://101.96.10.64/www.cs.umd.edu/~pugh/java/memoryModel/CommunityReview.pdf&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;通俗理解就是 happens-before 原则 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY2hlbnNzeS9wLzYzOTMzMjEuaHRtbA==&#34;&gt;https://www.cnblogs.com/chenssy/p/6393321.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/</guid>
+            <title>【MySQL】MySQL主从开关机顺序</title>
+            <link>http://example.com/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/</link>
+            <pubDate>Wed, 11 Jan 2023 08:50:56 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;MySQL 主从开关机顺序&lt;br&gt;
+停应用 -&amp;gt; 停数据库（先备后主） -&amp;gt; 改配置 -&amp;gt; 启数据库（先主后备）-&amp;gt; 启应用&lt;/p&gt;
+&lt;p&gt;关闭 MySQL 从库&lt;br&gt;
+ a. 先查看当前的主从同步状态 show slave statusG; 看是否双 yes&lt;br&gt;
+b. 执行 stop slave&lt;br&gt;
+c. 停止从库服务 mysqladmin shutdown -u 用户名 -p 密码&lt;br&gt;
+ d. 查看是否还有 mysql 的进程 ps -ef | grep mysql&lt;br&gt;
+d. 如果部署了多个实例，那每个实例都要按照以上步骤来操作&lt;/p&gt;
+&lt;p&gt;关闭 MySQL 主库&lt;br&gt;
+ a. 停止主库服务 mysqladmin shutdown -u 用户名 -p 密码&lt;br&gt;
+ b. 查看是否还有 mysql 的进程 ps -ef | grep mysql&lt;/p&gt;
+&lt;p&gt;启动 MySQL 主库&lt;br&gt;
+ a. 启动主库服务 mysqladmin start -u 用户名 -p 密码&lt;br&gt;
+ b. 查看 mysql 的进程 ps -ef | grep mysql&lt;/p&gt;
+&lt;p&gt;启动 MySQL 从库&lt;br&gt;
+ a. 启动从库服务 mysqladmin start -u 用户名 -p 密码&lt;br&gt;
+ b. 启动复制 start slave;&lt;br&gt;
+c. 检查同步状态 show slave statusG; 是否双 yes&lt;br&gt;
+d. 查看 mysql 的进程 ps -ef | grep mysql&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://example.com/2023/01/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/</guid>
             <title>Java多线程学习（吐血超详细总结）</title>

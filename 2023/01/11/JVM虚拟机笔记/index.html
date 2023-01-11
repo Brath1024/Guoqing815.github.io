@@ -1,0 +1,699 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/">
+
+
+
+  <title>
+JVM学习记录 |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">JVM学习记录
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-01-11 08:54:34">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-01-11T08:54:34+08:00">2023-01-11</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>5.9k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>5 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipewf5l51j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giph4baakhj20zk0m8h5q.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h4 id="jvm位置在操作系统之上运行操作系统在硬件之上运行"><a class="markdownIt-Anchor" href="#jvm位置在操作系统之上运行操作系统在硬件之上运行">#</a> JVM 位置：在操作系统之上运行，操作系统在硬件之上运行</h4>
+<p>JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM</p>
+<h4 id="jvm体系结构"><a class="markdownIt-Anchor" href="#jvm体系结构">#</a> JVM 体系结构：</h4>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/JVM%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E7%94%BB%E5%9B%BE%EF%BC%88%E7%B2%BE%E7%BB%86%EF%BC%89.jpg" alt="JVM底层结构画图（精细）"></p>
+<p>Java File</p>
+<p>=&gt; Class File</p>
+<p>=&gt; Class Loader SubSystem {</p>
+<p>1 . Loading : [1 . ApplicationClassLoader   2 . ExtClassLoader  3 . BootStrapClassLoader]</p>
+<p>2 . Linking : [1. Verify  2.Prepare  3. Resolve ]</p>
+<p>3 . Initialization</p>
+<p>}</p>
+<p>=&gt; RuntimeData Areas ：(1,2) : Memory sharing，(3,4,5) : Memory is not shared{</p>
+<p>1 . Method Area</p>
+<p>2 . Heap Area </p>
+<p>3 . Stack Area   {</p>
+<p>T1 [1. Thread  2. Stack Frame ]</p>
+<p>T2 [1. Thread  2. Stack Frame ]</p>
+<p>}</p>
+<p>4 . Native MethodStack Area    --&gt; JNI</p>
+<p>5 . Program Counter Register [PC Registers for Thread]</p>
+<p>}</p>
+<p>=&gt; Execution Engine {</p>
+<p>1 . interpreter</p>
+<p>2 . JIT Compiler  {</p>
+<p>Intermediate Code Generator</p>
+<p>=&gt; Code Optimizer</p>
+<p>=&gt; Target Code Generator</p>
+<p>}</p>
+<p>3 . Profiler</p>
+<p>4 . Garbage Collection</p>
+<p>}</p>
+<p>=&gt; Java Native Method Interface （JNI）</p>
+<p>=&gt; Native Method Library</p>
+<h4 id="类加载器-classloader-subsystem-类加载器子系统-运行时在堆中运行-不运行时是独立子系统"><a class="markdownIt-Anchor" href="#类加载器-classloader-subsystem-类加载器子系统-运行时在堆中运行-不运行时是独立子系统">#</a> 类加载器： ClassLoader SubSystem : 类加载器子系统 运行时在堆中运行 不运行时是独立子系统</h4>
+<p>application ClassLoader 应用程序加载器  主要负责加载应用程序的主函数类</p>
+<p>Ext ClassLoader 扩展加载器  主要负责加载 jre/lib/ext 目录下的一些扩展的 jar。</p>
+<p>BootStrap ClassLoader 根类加载器  主要负责加载核心的类库 (java.lang.* 等)</p>
+<p>加载过程：class File =&gt; Loading 加载 =&gt; Linking （验证，准备，解析） 链接 =&gt; Initialization 初始化</p>
+<h4 id="双亲委派机制"><a class="markdownIt-Anchor" href="#双亲委派机制">#</a> 双亲委派机制</h4>
+<p><img data-src="https://img-blog.csdnimg.cn/20201217213314510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvZGV5YW5iYW8=,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>从上图中我们就更容易理解了，当一个 Hello.class 这样的文件要被加载时。不考虑我们自定义类加载器，首先会在 AppClassLoader 中检查是否加载过，如果有那就无需再加载了。如果没有，那么会拿到父加载器，然后调用父加载器的 loadClass 方法。父类中同理也会先检查自己是否已经加载过，如果没有再往上。注意这个类似递归的过程，直到到达 Bootstrap classLoader 之前，都是在检查是否加载过，并不会选择自己去加载。直到 BootstrapClassLoader，已经没有父加载器了，这时候开始考虑自己是否能加载了，如果自己无法加载，会下沉到子加载器去加载，一直到最底层，如果没有任何加载器能加载，就会抛出 ClassNotFoundException。那么有人就有下面这种疑问了？</p>
+<p>为什么要设计这种机制<br>
+这种设计有个好处是，如果有人想替换系统级别的类：String.java。篡改它的实现，在这种机制下这些系统的类已经被 Bootstrap classLoader 加载过了（为什么？因为当一个类需要加载的时候，最先去尝试加载的就是 BootstrapClassLoader），所以其他类加载器并没有机会再去加载，从一定程度上防止了危险代码的植入。</p>
+<p>沙箱安全机制</p>
+<p>在 Java 中将执行程序分成本地代码和远程代码两种，本地代码默认视为可信任的，而远程代码则被看作是不受信的。对于授信的本地代码，可以访问一切本地资源。而对于非授信的远程代码在早期的 Java 实现中，安全依赖于沙箱 (Sandbox) 机制。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/20200312212803678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDkyNzQzNg==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>当前最新的安全机制实现，则引入了域 (Domain) 的概念。虚拟机会把所有代码加载到不同的系统域和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统域的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域 (Protected Domain)，对应不一样的权限 (Permission)。存在于不同域中的类文件就具有了当前域的全部权限，如下图所示</p>
+<h4 id="native"><a class="markdownIt-Anchor" href="#native">#</a> Native</h4>
+<p><strong>native 即 JNI,Java Native Interface</strong></p>
+<p>Native 关键字是  JNI，也就是 java 本地方法接口，用来调用本地方法库，可以调用本地方法中的 C 语言代码</p>
+<h4 id="pc寄存器"><a class="markdownIt-Anchor" href="#pc寄存器">#</a> PC 寄存器</h4>
+<p>每次线程启动的时候会创建一个 PC 寄存器，保存正在执行的 JVM 指令地址，每个线程都有自己的 PC 寄存器，是一个比较小的内存空间，是为一个一个不会出现 OutOfMemoryError 的内存区域，它的生命周期随着线程的创建而创建，随着线程的结束而死亡。</p>
+<h4 id="方法区"><a class="markdownIt-Anchor" href="#方法区">#</a> 方法区</h4>
+<p>Hotspot 虚拟机，方法区别称：non-heap（非堆），其实就是存储堆类型的数据，而不占据堆内存的空间</p>
+<p>方法区和堆区线程共享，方法区大小和堆一样，可以选择固定大小或者拓展</p>
+<p>方法区大小决定了系统可以保存多少个类，如果系统定义了太多的类，导致方法区溢出，虚拟机同样会抛出内存溢出错误。</p>
+<p>关闭 JVM 就会释放这个区域的内存</p>
+<p>设置方法区的内存大小：</p>
+<h4 id="jdk17-之前"><a class="markdownIt-Anchor" href="#jdk17-之前">#</a> JDK1.7 之前：</h4>
+<p><strong>-XX：PermSize 设置永久代初始分配空间  默认是 20.75m</strong></p>
+<p><strong>-XX：MaxPermSize 设置最大永久代分配空间，32 位机器默认 64m，64 位机器默认 82m</strong></p>
+<h4 id="jdk18-及以后永久代被元空间代替metaspace"><a class="markdownIt-Anchor" href="#jdk18-及以后永久代被元空间代替metaspace">#</a> JDK1.8 及以后：永久代被元空间代替（MetaSpace）</h4>
+<p>元空间大小可以用参数：-XX:MetaspaceSzie 和 -XX:MaxMetaspaceSize 指定</p>
+<p>-XX:MetaspaceSzie 默认 21.75m -XX:MaxMetaspaceSize 默认 - 1 没有限制</p>
+<p>默认情况下，虚拟机会耗尽所有可用的系统内存，如果元空间发生溢出，虚拟机照样会抛出 OOM</p>
+<p>如果初始高位线设置过低，通过垃圾回收器日志可以观察到 Full GC 多次调用，为了避免频繁 GC，</p>
+<p>建议将 - XX:MetaspaceSize 设置为一个相对较高的值。</p>
+<h4 id="栈数据结构"><a class="markdownIt-Anchor" href="#栈数据结构">#</a> 栈：数据结构</h4>
+<p>程序 = 数据结构 + 算法</p>
+<p>先进后出，后进先出</p>
+<p>栈是桶的概念：先进去的后出来，后进去的先出来</p>
+<p>栈有压栈、弹栈</p>
+<p>队列是管道概念：先进先出 (F I F O) ，后进后出 First Input First Out</p>
+<p>喝多了吐就是栈，吃多了拉就是队列</p>
+<p>栈：主管程序运行，生命周期和线程同步；</p>
+<p>main 主线程结束，栈内存也就释放了，对于栈来说，不存在垃圾回收问题，一旦线程结束，栈就 Over 了。</p>
+<p>栈存什么东西：</p>
+<p>八大基本数据类型 + 对象的引用地址 + 实例方法</p>
+<p>栈运行原理：栈帧：方法索引，输入输出参数，本地变量，类引用，父帧，子帧</p>
+<p>栈满了就会抛出错误 Error：StackOverflowError 栈溢出</p>
+<h3 id="堆heap"><a class="markdownIt-Anchor" href="#堆heap">#</a> 堆：Heap</h3>
+<p>​		一个 JVM 只有一个堆内存，堆内存大小是可以调节的。</p>
+<p>​		类加载器读取的类文件后，一般会把：类，方法，常量，变量，引用类型的真实对象放到堆中。</p>
+<p>​		堆内存还要细分为三个区域：{</p>
+<p>新生代：Eden Space：</p>
+<p>Survior0 区和 Survior1 区：幸存者 0/1 区</p>
+<p>经过新生代的轻 GC 15 次的考验进入老年代。</p>
+<p>老年代：重量级 Full GC 垃圾回收</p>
+<p>永久代：（1.8 移除）</p>
+<p>GC 垃圾回收集中在新生代和老年代执行。</p>
+<p>假设内存满了，爆出 OOM，堆内存溢出。</p>
+<p>内存溢出代码怎么写：</p>
+<p>利用 while 循环一个字符串无限 += 随机数</p>
+<p>JDK8 以后，永久代被移除，更名为元空间：MetaSpace</p>
+<p>}</p>
+<h4 id="详解"><a class="markdownIt-Anchor" href="#详解">#</a> 详解：</h4>
+<h5 id="新生代"><a class="markdownIt-Anchor" href="#新生代">#</a> 新生代：</h5>
+<p>​	类：诞生成长的地方，也可能类死亡的地方</p>
+<p>​	Eden 区、幸存者 0 和 1 区，</p>
+<p>​	所有对象都是在 Eden 区 new 出来的</p>
+<p>​	Eden 区没死亡的对象在幸存者区存活</p>
+<p>​	如果 Eden 区存储触发了轻 GC 回收机制，就会对 Eden 区进行清除，存活下来对象在幸存区，清除的对象会消失。当 Eden 区和幸存者区都满了之后会执行一次 Full GC，再次存活下来的对象会进入老年代。</p>
+<p>Tips：新生代 99% 都是临时对象！，能进入老年代的对象并不多。所以平时很少见到 OOM 的错误</p>
+<h5 id="老年代"><a class="markdownIt-Anchor" href="#老年代">#</a> 老年代：</h5>
+<p>每次发生轻 GC 会对新生代进行对象清理，当新生代和幸存区的对象在轻 GC 清除下存活 15 次之后，进入老年代</p>
+<p>永久代：用来存放 jdk 自身携带的 calss 对象，interface 元数据，存储的是运行的一些时环境，永久代不存在垃圾回收，关闭 JJVM 虚拟机就会释放永久代内存。</p>
+<p>假设一个启动类，加载了大量的第三方 jar 包，或者一个 tomcat 部署了太多应用，或者大量动态生成的反射类，如果不断的加载，可能会导致永久代内存溢出。</p>
+<p>jdk1.6 之前：永久代，常量池存在于方法区中</p>
+<p>jdk1.7：去永久代，常量池在堆中</p>
+<p>jdk1.8：无永久代，常量池在元空间中</p>
+<p><strong>元空间：</strong></p>
+<p>（方法区）：非堆</p>
+<p>非堆指的是空间上，不属于堆空间；但是由于存储的内容，特性上又被称为堆</p>
+<p>默认情况下：虚拟机被分配到的总内存是电脑内存的 1/4 ，而初始化的内存只有 1/64</p>
+<p>因为与堆共享内存，逻辑上存在，物理上不存在</p>
+<p><img data-src="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908225948384.png" alt="image-20210908225948384"></p>
+<p><img data-src="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908230652551.png" alt="image-20210908230652551"></p>
+<p>dump 文件～Jprofiler 插件</p>
+<p>-Xms : 初始化内存</p>
+<p>-Xmx : 最大内存</p>
+<p>-XX:+PrintGCDetails  打印 GC 回收的详细信息</p>
+<p>-XX:+HeapDumpOnOutOfMemoryError 发生 OOM 异常打印 dump 内存快照</p>
+<p>-XX:MaxTenuringReshlod 设置最大存活时间，默认是 15 次</p>
+<p>GC：垃圾回收</p>
+<p>JVM 在进行 GC 时：大部分回收都在新生代，并不是三个区都回收</p>
+<p>新生代</p>
+<p>幸存区（form、to）Survior0、Survior1 区</p>
+<p>老年代</p>
+<p>GC 两个种类：轻 GC（GC）、重 GC（Full GC）</p>
+<p>轻 GC 对新生代和幸存区进行回收</p>
+<p>重 GC 进行全局回收</p>
+<p>如何区分 from 和 to 区：谁空谁是 to 区</p>
+<p>1 . 每次 GC 都会将 Eden 区活的对象移到幸存区中：一旦 Eden 区被 GC 后，就会是空的！</p>
+<p>2 . 当一个对象经历了 15 次 GC，还没有死，就会进入老年代</p>
+<p>-XX:MaxTenuringReshold，通过这个参数可以设定进入老年代的时间（指定在 0~15 次之间）</p>
+<h4 id="常用算法"><a class="markdownIt-Anchor" href="#常用算法">#</a> <strong>常用算法：</strong></h4>
+<p>**1 . 标记清除 **</p>
+<p>分为两步骤：标记 ---- 清除</p>
+<p>标记：扫描，对存活的对象进行标记</p>
+<p>清除：扫描，对没有标记的对象进行清除</p>
+<p>优点：简单，成功率高</p>
+<p>缺点：两次扫描严重耗时，清除会产生内存碎片</p>
+<p><strong>2 .  标记压缩（标记 — 清除 — 压缩）</strong></p>
+<p>标记清除的优化版：防止内存碎片产生</p>
+<p>在标记清除基础上，再次扫描，向一端移动仍存活的对象，清除另一外的碎片</p>
+<p>优点：在标记清除优点上优化了内存碎片</p>
+<p>缺点：对于标记清除又多了一次移动成本，时间增加</p>
+<p><strong>3 .  复制算法</strong>（新生代主要用的复制算法）</p>
+<p>把 from 区向 to 区复制一份，然后清空 from 区，这时 from 区会变成 to 区，复制过去的 to 区变成 from 区等待回收。</p>
+<p>优点：没有内存碎片</p>
+<p>缺点：浪费内存空间（多了一半空间永远是 to 区，假设对象 100% 存活）极端情况下不适用</p>
+<p>复制算法最佳使用场景：对象存活度较低的时候，新生区使用复制算法！</p>
+<p><strong>4 . 分代收集算法：</strong></p>
+<p>​		<strong>由于每个收集算法都无法符合所有的场景，就好比每个对象所在的内存阶段不一样，被回收的概率也不一样，比如在新生代，基本 90% 的对象会被回收，而到了老年代则一半以上的对象存活，所以针对不同的场景，回收的策略也就不一样，所以引出了分代收集算法，根据新生代和老年代不同的场景下使用不同的算法，比如新生代用复制算法，老年代则用标记整理算法</strong></p>
+<p><strong>5.  引用计数器（不高效）</strong></p>
+<p>给每个对象设置计数器，只要有引用就会计数，当一个对象计数器为 0 时，进行回收。缺点：效率低下，现在基本不用</p>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结：</h2>
+<p>内存效率：复制算法 &gt; 标记清除算法 &gt; 标记压缩（时间复杂度）</p>
+<p>内存整齐度：复制算法 == 标记压缩算法 &gt; 标记清除算法</p>
+<p>内存利用率：标记压缩算法 == 标记清除算法 &gt; 复制算法</p>
+<p>// 思考一个问题：难道没有最优算法吗？</p>
+<p>答案：永远不能有最优算法。只有最合适的算法。</p>
+<p>GC：分代收集算法：根据每个代需求来配置不同算法</p>
+<p>年轻代：存活率低：需求时间短：所以用复制算法</p>
+<p>老年代：存活率高、区域大：标记清除 + 标记压缩混合</p>
+<p>内存碎片不是很多就标记清除，内存碎片太多就用压缩</p>
+<p>JMM：</p>
+<p>1 . 什么是 JMM：Java 内存模型（Java Memory Model）</p>
+<p>2 . JMM 作用：</p>
+<p>3 . 如何学习：</p>
+<p>经历过很多面试大部分都会问一句： 你知道 Java 内存模型么？ 然后我就 pulapula 的说一大堆什么堆呀，栈呀，GC 呀什么的，这段时间把 JVM 虚拟机和多线程编程完整的学习了一遍，发现 JMM 和堆 / 栈这些完全不是一个概念，不知道是不是就是因为这才被拒了十来次的 / 尴尬。</p>
+<p>JVM 是 Java 实现的虚拟计算机（Java Virtual Machine），对于熟悉计算机结构的同学，我感觉把这些概念和物理机对应起来更好理解。</p>
+<p>JVM 对应的就是物理机，它有存放数据的存储区：堆、栈等由 JVM 管理的内存（对应于物理机的内存）、执行数据计算的执行单元：线程（对应于物理机的 CPU）、加速线程执行的本次存储区：可能会从存储区里分配一块空间来存储线程本地数据，比如栈（对应于物理机的 cache）。</p>
+<p>众所周知，现代计算机一般都会包含多个处理器，多个处理器共享主内存。为了提升性能，会在每个处理器上增加一个小容量的 cache 加速数据读写。cache 会导致了缓存一致性问题，为了解决缓存一致性问题又引入了一系列 Cache 一致性协议（比如 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol）来解决 CPU 本地缓存和主内存数据不一致问题。</p>
+<p>而 JVM 中管理下的存储空间（包括堆、栈等）就对应与物理机的内存；</p>
+<p>线程本次存储区（例如栈）就对应于物理机的 cache；</p>
+<p>而 JMM 就对应于类似于 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol 这样的缓存一致性协议，用于定义数据读写的规则。</p>
+<p>JMM 相对于物理机的缓存一致性协议来说它还要处理 JVM 自身特有的问题：重排序问题，参见： <span class="exturl" data-url="aHR0cDovL2Ntc2Jsb2dzLmNvbS8/cD0yMTE2JUUzJTgwJTgy">http://cmsblogs.com/?p=2116。</span></p>
+<p>那么 JMM 都有哪些内容呢？</p>
+<p>官方文档： <span class="exturl" data-url="aHR0cDovLzEwMS45Ni4xMC42NC93d3cuY3MudW1kLmVkdS9+cHVnaC9qYXZhL21lbW9yeU1vZGVsL0NvbW11bml0eVJldmlldy5wZGY=">http://101.96.10.64/www.cs.umd.edu/~pugh/java/memoryModel/CommunityReview.pdf</span></p>
+<p>通俗理解就是 happens-before 原则 <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY2hlbnNzeS9wLzYzOTMzMjEuaHRtbA==">https://www.cnblogs.com/chenssy/p/6393321.html</span></p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2023-01-11 08:55:00" itemprop="dateModified" datetime="2023-01-11T08:55:00+08:00">2023-01-11</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/" title="JVM学习记录">http://example.com/2023/01/11/JVM虚拟机笔记/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclil3m4ej20zk0m8tn8.jpg" title="【MySQL】MySQL主从开关机顺序">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>【MySQL】MySQL主从开关机顺序</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#jvm%E4%BD%8D%E7%BD%AE%E5%9C%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E4%B8%8A%E8%BF%90%E8%A1%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%A1%AC%E4%BB%B6%E4%B9%8B%E4%B8%8A%E8%BF%90%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text"> JVM 位置：在操作系统之上运行，操作系统在硬件之上运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jvm%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text"> JVM 体系结构：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8-classloader-subsystem-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%AD%90%E7%B3%BB%E7%BB%9F-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%9C%A8%E5%A0%86%E4%B8%AD%E8%BF%90%E8%A1%8C-%E4%B8%8D%E8%BF%90%E8%A1%8C%E6%97%B6%E6%98%AF%E7%8B%AC%E7%AB%8B%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text"> 类加载器： ClassLoader SubSystem : 类加载器子系统 运行时在堆中运行 不运行时是独立子系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text"> 双亲委派机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#native"><span class="toc-number">5.</span> <span class="toc-text"> Native</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pc%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.</span> <span class="toc-text"> PC 寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="toc-number">7.</span> <span class="toc-text"> 方法区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk17-%E4%B9%8B%E5%89%8D"><span class="toc-number">8.</span> <span class="toc-text"> JDK1.7 之前：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk18-%E5%8F%8A%E4%BB%A5%E5%90%8E%E6%B0%B8%E4%B9%85%E4%BB%A3%E8%A2%AB%E5%85%83%E7%A9%BA%E9%97%B4%E4%BB%A3%E6%9B%BFmetaspace"><span class="toc-number">9.</span> <span class="toc-text"> JDK1.8 及以后：永久代被元空间代替（MetaSpace）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">10.</span> <span class="toc-text"> 栈：数据结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86heap"><span class="toc-number"></span> <span class="toc-text"> 堆：Heap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text"> 详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3"><span class="toc-number">1.1.</span> <span class="toc-text"> 新生代：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-number">1.2.</span> <span class="toc-text"> 老年代：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text"> 常用算法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number"></span> <span class="toc-text"> 总结：</span></a>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">64</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Flutter%E6%96%87%E6%A1%A3/" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="Maven加强版 — mvnd的使用测试">Maven加强版 — mvnd的使用测试</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/06/Docker%E5%AE%89%E8%A3%85Jenkins/" title="Docker安装Jenkins">Docker安装Jenkins</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/" title="ZGC学习笔记：ZGC简介和JDK17对ZGC的优化">ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">Github访问加速方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" title="Flutter 流畅度优化组件 Keframe">Flutter 流畅度优化组件 Keframe</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/Seatav%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/CAS%E6%9C%BA%E5%88%B6/" title="CAS机制">CAS机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" title="Linux下使用war包部署Jenkins">Linux下使用war包部署Jenkins</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/RocketMQ%E6%96%87%E6%A1%A3/" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用">RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&SpringBoot简单应用</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">371k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">5:37</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/01/11/JVM虚拟机笔记/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
