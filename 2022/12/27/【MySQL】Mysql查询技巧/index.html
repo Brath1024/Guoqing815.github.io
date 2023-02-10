@@ -1,0 +1,544 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/">
+
+
+
+  <title>
+mysql查询技巧 |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">mysql查询技巧
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>1.2k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclx29mstj20zk0m8hdt.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="mysql-查询当天-昨天-本周-上周-本月-上月-今年-去年数据"><a class="markdownIt-Anchor" href="#mysql-查询当天-昨天-本周-上周-本月-上月-今年-去年数据">#</a> mysql 查询当天、昨天、本周、上周、本月、上月、今年、去年数据</h1>
+<h2 id="mysql查询今天-昨天-7天-近30天-本月-上一月-数据"><a class="markdownIt-Anchor" href="#mysql查询今天-昨天-7天-近30天-本月-上一月-数据">#</a> mysql 查询今天、昨天、7 天、近 30 天、本月、上一月 数据</h2>
+<p>今天	select * from 表名 where to_days (时间字段名) = to_days (now ());</p>
+<p>昨天	SELECT * FROM 表名 WHERE TO_DAYS (NOW () ) - TO_DAYS ( 时间字段名) = 1</p>
+<p>近 7 天	SELECT * FROM 表名 where DATE_SUB (CURDATE (), INTERVAL 7 DAY) &lt;= date (时间字段名)</p>
+<p>查询当前这周的数据<br>
+ SELECT name,submittime FROM enterprise WHERE YEARWEEK (date_format (submittime,’% Y-% m-% d’)) = YEARWEEK (now ());</p>
+<p>查询上周的数据<br>
+ SELECT name,submittime FROM enterprise WHERE YEARWEEK (date_format (submittime,’% Y-% m-% d’)) = YEARWEEK (now ())-1;</p>
+<p>近 30 天	SELECT * FROM 表名 where DATE_SUB (CURDATE (), INTERVAL 30 DAY) &lt;= date (时间字段名) 本月 SELECT * FROM 表名 WHERE DATE_FORMAT ( 时间字段名，‘% Y% m’ ) = DATE_FORMAT ( CURDATE ( ) , ‘% Y% m’ )</p>
+<p>上一月	SELECT * FROM 表名 WHERE PERIOD_DIFF (date_format ( now () , ‘% Y% m’ ) , date_format ( 时间字段名，‘% Y% m’ ) ) =1</p>
+<p>查询距离当前现在 6 个月的数据<br>
+ select name,submittime from enterprise where submittime between date_sub (now (),interval 6 month) and now (); #查询本季度数据	select * from  <code>ht_invoice_information</code>  where QUARTER(create_date)=QUARTER(now());</p>
+<p>查询上季度数据	select * from  <code>ht_invoice_information</code>  where QUARTER(create_date)=QUARTER(DATE_SUB(now(),interval 1 QUARTER));</p>
+<p>查询本年数据	select * from  <code>ht_invoice_information</code>  where YEAR(create_date)=YEAR(NOW());</p>
+<p>查询上年数据	select * from  <code>ht_invoice_information</code>  where year(create_date)=year(date_sub(now(),interval 1 year));</p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-08-12 09:16:06" itemprop="dateModified" datetime="2022-08-12T09:16:06+08:00">2022-08-12</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" title="mysql查询技巧">http://example.com/2022/12/27/【MySQL】Mysql查询技巧/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeybxm1pj20zk0m8niv.jpg" title="MySQL安装 starting the server失败的解决办法">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>MySQL安装 starting the server失败的解决办法</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/12/27/%E3%80%90Nginx%E3%80%91Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuja1j1j20zk0m8kjl.jpg" title="Nginx以及Keepalived安装以及部署">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Nginx以及Keepalived安装以及部署</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql-%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%A4%A9-%E6%98%A8%E5%A4%A9-%E6%9C%AC%E5%91%A8-%E4%B8%8A%E5%91%A8-%E6%9C%AC%E6%9C%88-%E4%B8%8A%E6%9C%88-%E4%BB%8A%E5%B9%B4-%E5%8E%BB%E5%B9%B4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.</span> <span class="toc-text"> mysql 查询当天、昨天、本周、上周、本月、上月、今年、去年数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%9F%A5%E8%AF%A2%E4%BB%8A%E5%A4%A9-%E6%98%A8%E5%A4%A9-7%E5%A4%A9-%E8%BF%9130%E5%A4%A9-%E6%9C%AC%E6%9C%88-%E4%B8%8A%E4%B8%80%E6%9C%88-%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.</span> <span class="toc-text"> mysql 查询今天、昨天、7 天、近 30 天、本月、上一月 数据</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">68</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2022/12/27/%E3%80%90Nginx%E3%80%91Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" title="Linux下docer部署mysql">Linux下docer部署mysql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" title="Untitled">Untitled</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/" title="ELASTICSEARCH7.X安全性之访问密码设置">ELASTICSEARCH7.X安全性之访问密码设置</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" title="Flutter开发中使用WIFI真机调试">Flutter开发中使用WIFI真机调试</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Node%E3%80%91node&npm&cnpm&webpack&yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程">node&npm&cnpm&webpack&yarn安装教程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/" title="宝塔部署Docker—Mysql镜像">宝塔部署Docker—Mysql镜像</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Git%E3%80%91SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="SVN&amp;Git使用手册">SVN&Git使用手册</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">385k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">5:50</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/12/27/【MySQL】Mysql查询技巧/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

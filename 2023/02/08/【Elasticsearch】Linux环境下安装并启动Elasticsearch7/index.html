@@ -1,0 +1,575 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch7/">
+
+
+
+  <title>
+Linux环境下安装并启动Elasticsearch7 |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Linux环境下安装并启动Elasticsearch7
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-02-08 15:29:50">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-02-08T15:29:50+08:00">2023-02-08</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>1.3k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicli9lfebj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch7/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h3 id="elasticsearch"><a class="markdownIt-Anchor" href="#elasticsearch">#</a> Elasticsearch</h3>
+<p>​        Elasticsearch (ES) 是一个基于 Lucene 构建的开源、分布式、RESTful 接口全文搜索引擎。Elasticsearch 还是一个分布式文档数据库，其中每个字段均是被索引的数据且可被搜索，它能够扩展至数以百计的服务器存储以及处理 PB 级的数据。它可以在很短的时间内在存储、搜索和分析大量的数据。它通常作为具有复杂搜索场景情况下的核心发动机。es 是由 java 语言编写的。</p>
+<pre><code>Elasticsearch就是为高可用和可扩展而生的。可以通过购置性能更强的服务器来完成。
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.elastic.co/cn/elasticsearch/">Elasticsearch：官方分布式搜索和分析引擎 | Elastic<img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/icon-default.png" alt="img">https://www.elastic.co/cn/elasticsearch/</a></p>
+<h2 id=""><a class="markdownIt-Anchor" href="#">#</a> </h2>
+<h2 id="linux里部署es"><a class="markdownIt-Anchor" href="#linux里部署es">#</a> Linux 里部署 ES</h2>
+<h3 id="下载地址"><a class="markdownIt-Anchor" href="#下载地址">#</a> 下载地址</h3>
+<p>​        我下载的版本是 ES7.15.1</p>
+<p>Elasticsearch 7.15.1 | Elastic<img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/apple-icon-57x57.png" alt="img"><span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxhc3RpYy5jby9jbi9kb3dubG9hZHMvcGFzdC1yZWxlYXNlcy9lbGFzdGljc2VhcmNoLTctMTUtMQ==">https://www.elastic.co/cn/downloads/past-releases/elasticsearch-7-15-1</span></p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/74a3f6fc611945ebb8e492204fe4b51f.png" alt="img"></p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/4490382f8fd54a48bbd8e2ffaf2ce6ea.png" alt="img"></p>
+<h3 id="上传到linux"><a class="markdownIt-Anchor" href="#上传到linux">#</a> 上传到 Linux</h3>
+<p>​    压缩包下载完成后上传到服务器</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3732b77fcd15428e8397739b50f6b3b1.png" alt="img"></p>
+<h3 id="解压软件"><a class="markdownIt-Anchor" href="#解压软件">#</a> 解压软件</h3>
+<p>​     解压到上级目录，然后进行改名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解压缩</span></span><br><span class="line">tar -zxvf elasticsearch-7.15.1-linux-x86_64.tar.gz -C ../</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">改名</span></span><br><span class="line">mv elasticsearch-7.15.1 es-7.15.1</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/e6ff579f0e6b4aa6994e17629bbaa96a.png" alt="img"></p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/7678de3df173498e92409dc8300f09b5.png" alt="img"></p>
+<p>在 /opt 目录下新建 module/es 目录，同时把 es-7.15.1 移到该目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv es-7.15.1 /opt/module/es</span><br></pre></td></tr></table></figure>
+<h3 id="创建用户"><a class="markdownIt-Anchor" href="#创建用户">#</a> 创建用户</h3>
+<p>​    因为安全问题， Elasticsearch 不允许 root 用户直接运行，所以要创建新用户，在 root 用户中创建新用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd es #新增 es 用户</span><br><span class="line">passwd es #为 es 用户设置密码</span><br><span class="line">userdel -r es #如果错了，可以删除再加</span><br><span class="line">chown -R es:es /opt/module/es/es-7.15.1 #文件夹所有者</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/cf9ac437254f47bfa9e26f4770fa9667.png" alt="img"></p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3b5a89b6cdbb4a3bb6220423400e25d2.png" alt="img"></p>
+<h3 id="修改配置文件"><a class="markdownIt-Anchor" href="#修改配置文件">#</a> 修改配置文件</h3>
+<p>修改 /root/es-7.15.1/config/elasticsearch.yml 文件。</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d40fbb16c317400495682be93a2e07d7.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 加入如下配置</span><br><span class="line">cluster.name: elasticsearch</span><br><span class="line">node.name: node-1</span><br><span class="line">network.host: 0.0.0.0</span><br><span class="line">http.port: 9200</span><br><span class="line">cluster.initial_master_nodes: [&quot;node-1&quot;]</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/00e7d21c15c640ba949d3dda5e9ee885.png" alt="img"></p>
+<h3 id="修改etcsecuritylimitsconf"><a class="markdownIt-Anchor" href="#修改etcsecuritylimitsconf">#</a> 修改 /etc/security/limits.conf</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 在文件末尾中增加下面内容</span><br><span class="line"># 每个进程可以打开的文件数的限制</span><br><span class="line">es soft nofile 65536</span><br><span class="line">es hard nofile 65536</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/4d4441f8e29346a0bc5a0ac8959477d9.png" alt="img"></p>
+<h3 id="修改etcsysctlconf"><a class="markdownIt-Anchor" href="#修改etcsysctlconf">#</a> 修改 /etc/sysctl.conf</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在文件中增加下面内容</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一个进程可以拥有的 VMA(虚拟内存区域)的数量,默认值为 65536</span></span><br><span class="line">vm.max_map_count=655360</span><br></pre></td></tr></table></figure>
+<h3 id="重新加载"><a class="markdownIt-Anchor" href="#重新加载">#</a> 重新加载</h3>
+<p>sysctl -p</p>
+<h3 id="注意"><a class="markdownIt-Anchor" href="#注意">#</a> 注意：</h3>
+<p>​    启动前需要先切换到 es 用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su es</span><br></pre></td></tr></table></figure>
+<h3 id="启动es"><a class="markdownIt-Anchor" href="#启动es">#</a> 启动 es</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动 进入bin目录：</span></span><br><span class="line">./elasticsearch</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">后台启动</span></span><br><span class="line">./elasticsearch -d  </span><br></pre></td></tr></table></figure>
+<h3 id="测试连接"><a class="markdownIt-Anchor" href="#测试连接">#</a> 测试连接</h3>
+<p>​    浏览器中打开 <span class="exturl" data-url="aHR0cDovL3huLS1pcC1mcjVjODZseDd6OjkyMDAv">http:// 服务器 IP:9200/</span>, 出现如下则说明安装成功</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0197dcff901f47279750939332674547.png" alt="img"></p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2023-02-08 15:43:50" itemprop="dateModified" datetime="2023-02-08T15:43:50+08:00">2023-02-08</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch7/" title="Linux环境下安装并启动Elasticsearch7">http://example.com/2023/02/08/【Elasticsearch】Linux环境下安装并启动Elasticsearch7/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/01/12/%E3%80%90Flutter%E3%80%91Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevuctzzj20zk0m84qp.jpg" title="Flutter集成中国移动一键登录业务，亲测可行">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Flutter集成中国移动一键登录业务，亲测可行</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch-head/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclx6phq6j20zk0m8e36.jpg" title="Linux环境下安装并启动Elasticsearch-head">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Linux环境下安装并启动Elasticsearch-head</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch"><span class="toc-number">1.</span> <span class="toc-text"> Elasticsearch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number"></span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E9%87%8C%E9%83%A8%E7%BD%B2es"><span class="toc-number"></span> <span class="toc-text"> Linux 里部署 ES</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text"> 下载地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E5%88%B0linux"><span class="toc-number">2.</span> <span class="toc-text"> 上传到 Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E8%BD%AF%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text"> 解压软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">4.</span> <span class="toc-text"> 创建用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text"> 修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9etcsecuritylimitsconf"><span class="toc-number">6.</span> <span class="toc-text"> 修改 &#x2F;etc&#x2F;security&#x2F;limits.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9etcsysctlconf"><span class="toc-number">7.</span> <span class="toc-text"> 修改 &#x2F;etc&#x2F;sysctl.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD"><span class="toc-number">8.</span> <span class="toc-text"> 重新加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">9.</span> <span class="toc-text"> 注意：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8es"><span class="toc-number">10.</span> <span class="toc-text"> 启动 es</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-number">11.</span> <span class="toc-text"> 测试连接</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">68</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/01/12/%E3%80%90Flutter%E3%80%91Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch-head/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="设计模式（一）">设计模式（一）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/11/22/%E3%80%90Jenkins%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/" title="Linux环境下安装jenkins">Linux环境下安装jenkins</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CAS-ABA%E9%97%AE%E9%A2%98/" title="CAS-ABA问题">CAS-ABA问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用">RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&SpringBoot简单应用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" title="Untitled">Untitled</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="CompletableFuture使用文档">CompletableFuture使用文档</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">Github访问加速方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4/" title="Mysql主从集群搭建文档，实现读写分离">Mysql主从集群搭建文档，实现读写分离</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/" title="ThreadLocal">ThreadLocal</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">385k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">5:50</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/02/08/【Elasticsearch】Linux环境下安装并启动Elasticsearch7/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

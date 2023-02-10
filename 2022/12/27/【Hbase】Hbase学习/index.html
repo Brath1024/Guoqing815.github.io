@@ -1,0 +1,716 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/">
+
+
+
+  <title>
+Hbase |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Hbase
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>6.9k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>6 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍">#</a> 介绍：</h2>
+<p>​		Hbase 是 bigtable 的开源山寨版本。是建立在 HDFS 之上，提供高可靠性、高性能、列存储、可伸缩、实时读写的数据库系统。它介于 nosql 和 RDBMS 之间，仅能通过主键 (row key) 和主键的 range 来检索数据，仅支持单行事务 (可通过 hive 支持来实现多表 join 等复杂操作)。主要用来存储非结构化和半结构化的松散数据。与 hadoop 一样，Hbase 目标主要依靠横向扩展，通过不断增加廉价的商用服务器，来增加计算和存储能力。</p>
+<h2 id="特点"><a class="markdownIt-Anchor" href="#特点">#</a> 特点：</h2>
+<p>​		HBase 中的表一般有这样的特点：</p>
+<ol>
+<li>
+<p>大：一个表可以有上亿行，上百万列</p>
+</li>
+<li>
+<p>面向列：面向列 (族) 的存储和权限控制，列 (族) 独立检索。</p>
+</li>
+<li>
+<p>稀疏：对于为空 (null) 的列，并不占用存储空间，因此，表可以设计的非常稀疏。</p>
+</li>
+</ol>
+<p>下面一幅图是 Hbase 在 Hadoop Ecosystem 中的位置。</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160429998.png" alt="20180608160429998"></p>
+<h2 id="二-逻辑视图"><a class="markdownIt-Anchor" href="#二-逻辑视图">#</a> 二、 逻辑视图</h2>
+<p>HBase 以表的形式存储数据。表有行和列组成。列划分为若干个列族 (row family)</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160501841.png" alt="20180608160501841"></p>
+<p>Row Key</p>
+<p>与 nosql 数据库们一样，row key 是用来检索记录的主键。访问 hbase table 中的行，只有三种方式：</p>
+<p>1 通过单个 row key 访问</p>
+<p>2 通过 row key 的 range</p>
+<p>3 全表扫描</p>
+<p>Row key 行键 (Row key) 可以是任意字符串 (最大长度是 64KB，实际应用中长度一般为 10-100bytes)，在 hbase 内部，row key 保存为字节数组。</p>
+<p>存储时，数据按照 Row key 的字典序 (byte order) 排序存储。设计 key 时，要充分排序存储这个特性，将经常一起读取的行存储放到一起。(位置相关性)</p>
+<p>注意：</p>
+<p>字典序对 int 排序的结果是 1,10,100,11,12,13,14,15,16,17,18,19,2,20,21,…,9,91,92,93,94,95,96,97,98,99。要保持整形的自然序，行键必须用 0 作左填充。</p>
+<p>行的一次读写是原子操作 (不论一次读写多少列)。这个设计决策能够使用户很容易的理解程序在对同一个行进行并发更新操作时的行为。</p>
+<p>列族</p>
+<p>hbase 表中的每个列，都归属与某个列族。列族是表的 chema 的一部分 (而列不是)，必须在使用表之前定义。列名都以列族作为前缀。例如<em> courses:history ， courses:math 都属于 courses</em> 这个列族。</p>
+<p>访问控制、磁盘和内存的使用统计都是在列族层面进行的。实际应用中，列族上的控制权限能 帮助我们管理不同类型的应用：我们允许一些应用可以添加新的基本数据、一些应用可以读取基本数据并创建继承的列族、一些应用则只允许浏览数据（甚至可能因 为隐私的原因不能浏览所有数据）。</p>
+<p>时间戳</p>
+<p>HBase 中通过 row 和 columns 确定的为一个存贮单元称为 cell。每个 cell 都保存着同一份数据的多个版本。版本通过时间戳来索引。时间戳的类型是 64 位整型。时间戳可以由 hbase (在数据写入时自动) 赋值，此时时间戳是精确到毫秒的当前系统时间。时间戳也可以由客户显式赋值。如果应用程序要避免数据版本冲突，就必须自己生成具有唯一性的时间戳。每个 cell 中，不同版本的数据按照时间倒序排序，即最新的数据排在最前面。</p>
+<p>为了避免数据存在过多版本造成的的管理 (包括存贮和索引) 负担，hbase 提供了两种数据版本回收方式。一是保存数据的最后 n 个版本，二是保存最近一段时间内的版本（比如最近七天）。用户可以针对每个列族进行设置。</p>
+<p>Cell</p>
+<p>由 *{row key, column (* =<family> + <label><em>), version}</em> 唯一确定的单元。cell 中的数据是没有类型的，全部是字节码形式存贮。</p>
+<h2 id="三-物理存储"><a class="markdownIt-Anchor" href="#三-物理存储">#</a> 三、 物理存储</h2>
+<p>1 . 已经提到过，Table 中的所有行都按照 row key 的字典序排列。</p>
+<p>2 . Table 在行的方向上分割为多个 Hregion。</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C2018060816055431.png" alt="2018060816055431"></p>
+<p>3 .  region 按大小分割的，每个表一开始只有一个 region，随着数据不断插入表，region 不断增大，当增大到一个阀值的时候，Hregion 就会等分会两个新的 Hregion。当 table 中的行不断增多，就会有越来越多的 Hregion。</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160613225.png" alt="20180608160613225"></p>
+<p>4 . Hregion 是 Hbase 中分布式存储和负载均衡的最小单元。最小单元就表示不同的 Hregion 可以分布在不同的 HRegion server 上。但一个 Hregion 是不会拆分到多个 server 上的。</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160632130.png" alt="20180608160632130"></p>
+<p>5 . HRegion 虽然是分布式存储的最小单元，但并不是存储的最小单元。</p>
+<p>事实上，HRegion 由一个或者多个 Store 组成，每个 store 保存一个 columns family。</p>
+<p>每个 Strore 又由一个 memStore 和 0 至多个 StoreFile 组成。如图：</p>
+<p>StoreFile 以 HFile 格式保存在 HDFS 上。</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C2018060816065423.png" alt="2018060816065423"></p>
+<p>HFile 的格式为：<img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160715293.png" alt="20180608160715293"></p>
+<p>Trailer 部分的格式:</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160733415.png" alt="20180608160733415"></p>
+<p>HFile 分为六个部分：</p>
+<p>Data Block 段–保存表中的数据，这部分可以被压缩</p>
+<p>Meta Block 段 (可选的)–保存用户自定义的 kv 对，可以被压缩。</p>
+<p>File Info 段–Hfile 的元信息，不被压缩，用户也可以在这一部分添加自己的元信息。</p>
+<p>Data Block Index 段–Data Block 的索引。每条索引的 key 是被索引的 block 的第一条记录的 key。</p>
+<p>Meta Block Index 段 (可选的)–Meta Block 的索引。</p>
+<p>Trailer–这一段是定长的。保存了每一段的偏移量，读取一个 HFile 时，会首先 读取 Trailer，Trailer 保存了每个段的起始位置 (段的 Magic Number 用来做安全 check)，然后，DataBlock Index 会被读取到内存中，这样，当检索某个 key 时，不需要扫描整个 HFile，而只需从内存中找到 key 所在的 block，通过一次磁盘 io 将整个 block 读取到内存中，再找到需要的 key。DataBlock Index 采用 LRU 机制淘汰。</p>
+<p>HFile 的 Data Block，Meta Block 通常采用压缩方式存储，压缩之后可以大大减少网络 IO 和磁盘 IO，随之而来的开销当然是需要花费 cpu 进行压缩和解压缩。</p>
+<p>目标 Hfile 的压缩支持两种方式：Gzip，Lzo。</p>
+<p>HLog(WAL log)</p>
+<p>WAL 意为 Write ahead log (<span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9Xcml0ZS1haGVhZF9sb2dnaW5n">http://en.wikipedia.org/wiki/Write-ahead_logging</span>)，类似 mysql 中的 binlog, 用来 做灾难恢复只用，Hlog 记录数据的所有变更，一旦数据修改，就可以从 log 中进行恢复。</p>
+<p>每个 Region Server 维护一个 Hlog, 而不是每个 Region 一个。这样不同 region (来自不同 table) 的日志会混在一起，这样做的目的是不断追加单个 文件相对于同时写多个文件而言，可以减少磁盘寻址次数，因此可以提高对 table 的写性能。带来的麻烦是，如果一台 region server 下线，为了恢复其上的 region，需要将 region server 上的 log 进行拆分，然后分发到其它 region server 上进行恢复。</p>
+<p>HLog 文件就是一个普通的 Hadoop Sequence File，Sequence File 的 Key 是 HLogKey 对象，HLogKey 中记录了写入数据的归属信息，除了 table 和 region 名字外，同时还包括 sequence number 和 timestamp，timestamp 是” 写入时间”，sequence number 的起始值为 0，或者是最近一次存入文件系统中 sequence number。HLog Sequece File 的 Value 是 HBase 的 KeyValue 对象，即对应 HFile 中的 KeyValue，可参见上文描述。</p>
+<h2 id="四-系统架构"><a class="markdownIt-Anchor" href="#四-系统架构">#</a> 四、 系统架构</h2>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160828501.png" alt="20180608160828501"></p>
+<p>Client</p>
+<p>1 包含访问 hbase 的接口，client 维护着一些 cache 来加快对 hbase 的访问，比如 regione 的位置信息。</p>
+<p>Zookeeper</p>
+<p>1 保证任何时候，集群中只有一个 master</p>
+<p>2 存贮所有 Region 的寻址入口。</p>
+<p>3 实时监控 Region Server 的状态，将 Region server 的上线和下线信息实时通知给 Master</p>
+<p>4 存储 Hbase 的 schema, 包括有哪些 table，每个 table 有哪些 column family</p>
+<p>Master</p>
+<p>1 为 Region server 分配 region</p>
+<p>2 负责 region server 的负载均衡</p>
+<p>3 发现失效的 region server 并重新分配其上的 region</p>
+<p>4 GFS 上的垃圾文件回收</p>
+<p>5 处理 schema 更新请求</p>
+<p>Region Server</p>
+<p>1 Region server 维护 Master 分配给它的 region，处理对这些 region 的 IO 请求</p>
+<p>2 Region server 负责切分在运行过程中变得过大的 region</p>
+<p>可以看到，client 访问 hbase 上数据的过程并不需要 master 参与（寻址访问 zookeeper 和 region server，数据读写访问 regione server），master 仅仅维护者 table 和 region 的元数据信息，负载很低。</p>
+<h2 id="五-关键算法-流程"><a class="markdownIt-Anchor" href="#五-关键算法-流程">#</a> 五、关键算法 / 流程</h2>
+<p>region 定位</p>
+<p>系统如何找到某个 row key (或者某个 row key range) 所在的 region</p>
+<p>bigtable 使用三层类似 B + 树的结构来保存 region 位置。</p>
+<p>第一层是保存 zookeeper 里面的文件，它持有 root region 的位置。</p>
+<p>第二层 root region 是.META. 表的第一个 region 其中保存了.META.z 表其它 region 的位置。通过 root region，我们就可以访问.META. 表的数据。</p>
+<p>.META. 是第三层，它是一个特殊的表，保存了 hbase 中所有数据表的 region 位置信息。</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160858652.png" alt="20180608160858652"></p>
+<p>说明：</p>
+<p>1 root region 永远不会被 split，保证了最需要三次跳转，就能定位到任意 region 。</p>
+<p>2.META. 表每行保存一个 region 的位置信息，row key 采用表名 + 表的最后一样编码而成。</p>
+<p>3 为了加快访问，.META. 表的全部 region 都保存在内存中。</p>
+<p>假设，.META. 表的一行在内存中大约占用 1KB。并且每个 region 限制为 128MB。</p>
+<p>那么上面的三层结构可以保存的 region 数目为：</p>
+<p>(128MB/1KB) * (128MB/1KB) = = 2 (34) 个 region</p>
+<p>4 client 会将查询过的位置信息保存缓存起来，缓存不会主动失效，因此如果 client 上的缓存全部失效，则需要进行 6 次网络来回，才能定位到正确的 region (其中三次用来发现缓存失效，另外三次用来获取位置信息)。</p>
+<p>读写过程</p>
+<p>上文提到，hbase 使用 MemStore 和 StoreFile 存储对表的更新。</p>
+<p>数据在更新时首先写入 Log (WAL log) 和内存 (MemStore) 中，MemStore 中的数据是排序的，当 MemStore 累计到一定阈值时，就会创建一个新的 MemStore，并 且将老的 MemStore 添加到 flush 队列，由单独的线程 flush 到磁盘上，成为一个 StoreFile。于此同时，系统会在 zookeeper 中 记录一个 redo point，表示这个时刻之前的变更已经持久化了。(minor compact)</p>
+<p>当系统出现意外时，可能导致内存 (MemStore) 中的数据丢失，此时使用 Log (WAL log) 来恢复 checkpoint 之后的数据。</p>
+<p>前面提到过 StoreFile 是只读的，一旦创建后就不可以再修改。因此 Hbase 的更 新其实是不断追加的操作。当一个 Store 中的 StoreFile 达到一定的阈值后，就会进行一次合并 (major compact), 将对同一个 key 的修改合并到一起，形成一个大的 StoreFile，当 StoreFile 的大小达到一定阈值后，又会对 StoreFile 进行 split，等分为两个 StoreFile。</p>
+<p>由于对表的更新是不断追加的，处理读请求时，需要访问 Store 中全部的 StoreFile 和 MemStore，将他们的按照 row key 进行合并，由于 StoreFile 和 MemStore 都是经过排序的，并且 StoreFile 带有内存中索引，合并的过程还是比较快。</p>
+<p>写请求处理过程</p>
+<p><img data-src="f:%5Cmd%E5%9B%BE%E7%89%87%5C20180608160916374.png" alt="20180608160916374"></p>
+<p>1 client 向 region server 提交写请求</p>
+<p>2 region server 找到目标 region</p>
+<p>3 region 检查数据是否与 schema 一致</p>
+<p>4 如果客户端没有指定版本，则获取当前系统时间作为数据版本</p>
+<p>5 将更新写入 WAL log</p>
+<p>6 将更新写入 Memstore</p>
+<p>7 判断 Memstore 的是否需要 flush 为 Store 文件。</p>
+<p>region 分配</p>
+<p>任何时刻，一个 region 只能分配给一个 region server。master 记录了当前有哪些可用的 region server。以及当前哪些 region 分配给了哪些 region server，哪些 region 还没有分配。当存在未分配的 region，并且有一个 region server 上有可用空间时，master 就给这个 region server 发送一个装载请求，把 region 分配给这个 region server。region server 得到请求后，就开始对此 region 提供服务。</p>
+<p>region server 上线</p>
+<p>master 使用 zookeeper 来跟踪 region server 状态。当某个 region server 启动时，会首先在 zookeeper 上的 server 目录下建立代表自己的文件，并获得该文件的独占锁。由于 master 订阅了 server 目录上的变更消息，当 server 目录下的文件出现新增或删除操作时，master 可以得到来自 zookeeper 的实时通知。因此一旦 region server 上线，master 能马上得到消息。</p>
+<p>region server 下线</p>
+<p>当 region server 下线时，它和 zookeeper 的会话断开，zookeeper 而自动释放代表这台 server 的文件上的独占锁。而 master 不断轮询 server 目录下文件的锁状态。如果 master 发现某个 region server 丢失了它自己的独占锁，(或者 master 连续几次和 region server 通信都无法成功),master 就是尝试去获取代表这个 region server 的读写锁，一旦获取成功，就可以确定：</p>
+<p>1 region server 和 zookeeper 之间的网络断开了。</p>
+<p>2 region server 挂了。</p>
+<p>的其中一种情况发生了，无论哪种情况，region server 都无法继续为它的 region 提供服务了，此时 master 会删除 server 目录下代表这台 region server 的文件，并将这台 region server 的 region 分配给其它还活着的同志。</p>
+<p>如果网络短暂出现问题导致 region server 丢失了它的锁，那么 region server 重新连接到 zookeeper 之后，只要代表它的文件还在，它就会不断尝试获取这个文件上的锁，一旦获取到了，就可以继续提供服务。</p>
+<p>master 上线</p>
+<p>master 启动进行以下步骤:</p>
+<p>1 从 zookeeper 上获取唯一一个代码 master 的锁，用来阻止其它 master 成为 master。</p>
+<p>2 扫描 zookeeper 上的 server 目录，获得当前可用的 region server 列表。</p>
+<p>3 和 2 中的每个 region server 通信，获得当前已分配的 region 和 region server 的对应关系。</p>
+<p>4 扫描.META.region 的集合，计算得到当前还未分配的 region，将他们放入待分配 region 列表。</p>
+<p>master 下线</p>
+<p>由于 master 只维护表和 region 的元数据，而不参与表数据 IO 的过 程，master 下线仅导致所有元数据的修改被冻结 (无法创建删除表，无法修改表的 schema，无法进行 region 的负载均衡，无法处理 region 上下线，无法进行 region 的合并，唯一例外的是 region 的 split 可以正常进行，因为只有 region server 参与)，表的数据读写还可以正常进行。因此 master 下线短时间内对整个 hbase 集群没有影响。从上线过程可以看到，master 保存的 信息全是可以冗余信息（都可以从系统其它地方收集到或者计算出来），因此，一般 hbase 集群中总是有一个 master 在提供服务，还有一个以上 的’master’在等待时机抢占它的位置。</p>
+<p>六、访问接口</p>
+<ul>
+<li>HBase Shell</li>
+<li>Java clietn API</li>
+<li>HBase non-java access</li>
+<li>
+<ul>
+<li>languages talking to the JVM</li>
+<li>
+<ul>
+<li>Jython interface to HBase</li>
+<li>Groovy DSL for HBase</li>
+<li>Scala interface to HBase</li>
+</ul>
+</li>
+<li>languages with a custom protocol</li>
+<li>
+<ul>
+<li>REST gateway specification for HBase</li>
+<li>充分利用 HTTP 协议：GET POST PUT DELETE</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>§</p>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>text/plain</li>
+<li>text/xml</li>
+<li>application/json</li>
+<li>application/x-protobuf</li>
+</ul>
+</li>
+<li>Thrift gateway specification for HBase</li>
+<li>
+<ul>
+<li>java</li>
+<li>cpp</li>
+<li>rb</li>
+<li>py</li>
+<li>perl</li>
+<li>php</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HBase Map Reduce</li>
+<li>Hive/Pig</li>
+</ul>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2021-10-20 19:26:18" itemprop="dateModified" datetime="2021-10-20T19:26:18+08:00">2021-10-20</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" title="Hbase">http://example.com/2022/12/27/【Hbase】Hbase学习/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuv0socj20zk0m8qes.jpg" title="Hbase整合SpringBoot的问题">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Hbase整合SpringBoot的问题</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeu1usa7j20zk0m8b29.jpg" title="Hexo搭建">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Hexo搭建</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text"> 介绍：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text"> 特点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E9%80%BB%E8%BE%91%E8%A7%86%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text"> 二、 逻辑视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E7%89%A9%E7%90%86%E5%AD%98%E5%82%A8"><span class="toc-number">4.</span> <span class="toc-text"> 三、 物理存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text"> 四、 系统架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%85%B3%E9%94%AE%E7%AE%97%E6%B3%95-%E6%B5%81%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text"> 五、关键算法 &#x2F; 流程</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">68</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/" title="ThreadLocal">ThreadLocal</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/" title="Java多线程学习（吐血超详细总结）">Java多线程学习（吐血超详细总结）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Typora%E3%80%91typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="Typora使用gitee作为图库用picgo上传图片的教程~">Typora使用gitee作为图库用picgo上传图片的教程~</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" title="Hbase">Hbase</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计">SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/" title="【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work">【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/" title="Flutter GETX框架">Flutter GETX框架</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/" title="ELASTICSEARCH7.X安全性之访问密码设置">ELASTICSEARCH7.X安全性之访问密码设置</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">385k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">5:50</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/12/27/【Hbase】Hbase学习/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

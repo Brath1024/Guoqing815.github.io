@@ -1,0 +1,595 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/">
+
+
+
+  <title>
+Docker安装Jenkins |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Docker安装Jenkins
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-01-06 08:37:50">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-01-06T08:37:50+08:00">2023-01-06</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>3.5k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>3 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciukx8a7j20zk0m8aio.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="docker安装jenkins"><a class="markdownIt-Anchor" href="#docker安装jenkins">#</a> Docker 安装 Jenkins</h1>
+<h1 id="一-前言"><a class="markdownIt-Anchor" href="#一-前言">#</a> 一、前言</h1>
+<h2 id="1-领头羊"><a class="markdownIt-Anchor" href="#1-领头羊">#</a> 1、领头羊</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作为领先的开源自动化服务器，Jenkins 提供了数百个插件来支持构建、部署和自动化任何项目。</span><br></pre></td></tr></table></figure>
+<h2 id="2-特点"><a class="markdownIt-Anchor" href="#2-特点">#</a> 2、特点</h2>
+<ul>
+<li>持续集成和持续交付：作为可扩展的自动化服务器，Jenkins 可以用作简单的 CI 服务器或变成任何项目的持续交付中心。</li>
+<li>简易安装：Jenkins 是一个独立的基于 Java 的程序，可以开箱即用，包含适用于 Windows、Linux、macOS 和其他类 Unix 操作系统的软件包。</li>
+<li>易于配置：Jenkins 可以通过其 Web 界面轻松设置和配置，其中包括即时错误检查和内置帮助。</li>
+<li>插件：凭借更新中心的数百个插件，Jenkins 与持续集成和持续交付工具链中的几乎所有工具集成。</li>
+<li>可扩展：Jenkins 可以通过其插件架构进行扩展，为 Jenkins 可以做的事情提供几乎无限的可能性。</li>
+<li>分散式：Jenkins 可以轻松地在多台机器上分配工作，帮助更快地跨多个平台推动构建、测试和部署。</li>
+</ul>
+<h1 id="二-docker安装jenkins"><a class="markdownIt-Anchor" href="#二-docker安装jenkins">#</a> 二、<span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1Eb2NrZXIlRTUlQUUlODklRTglQTMlODVKZW5raW5zJmFtcDtzcG09MTAwMS4yMTAxLjMwMDEuNzAyMA==">Docker 安装 Jenkins</span></h1>
+<h2 id="1-docker-search-jenkins查询镜像"><a class="markdownIt-Anchor" href="#1-docker-search-jenkins查询镜像">#</a> 1、docker search jenkins 查询镜像</h2>
+<h3 id="11-正常查询结果"><a class="markdownIt-Anchor" href="#11-正常查询结果">#</a> 1.1、正常查询结果</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker search jenkins</span><br><span class="line">NAME                               DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">jenkins                            DEPRECATED; use &quot;jenkins/jenkins:lts&quot; instead   5504                [OK]                </span><br><span class="line">jenkins/jenkins                    The leading open source automation server       3087                                    </span><br><span class="line">jenkins/jnlp-slave                 a Jenkins agent which can connect to Jenkins…   150                                     [OK]</span><br><span class="line">jenkins/inbound-agent                                                              65                                      </span><br><span class="line">bitnami/jenkins                    Bitnami Docker Image for Jenkins                53                                      [OK]</span><br><span class="line">jenkins/slave                      base image for a Jenkins Agent, which includ…   48                                      [OK]</span><br><span class="line">jenkins/agent                                                                      39                                      </span><br><span class="line">jenkins/ssh-slave                  A Jenkins slave using SSH to establish conne…   38                                      [OK]</span><br><span class="line">jenkins/ssh-agent                  Docker image for Jenkins agents connected ov…   24                                      </span><br><span class="line">jenkins/jnlp-agent-docker                                                          8                                       </span><br><span class="line">jenkins/jnlp-agent-maven           A JNLP-based agent with Maven 3 built in        7                                       </span><br><span class="line">jenkins/pct                        Plugin Compat Tester                            5                                       [OK]</span><br><span class="line">jenkins/jenkins-experimental       Experimental images of Jenkins. These images…   3                                       [OK]</span><br><span class="line">jenkins/jnlp-agent-python          A JNLP-based agent with Python built in         3                                       </span><br><span class="line">jenkins/jnlp-agent-alpine                                                          2                                       </span><br><span class="line">jenkins/jnlp-agent-node                                                            1                                       </span><br><span class="line">rancher/jenkins-jenkins                                                            1                                       </span><br><span class="line">jenkins/ath                        Jenkins Acceptance Test Harness                 1                                       [OK]</span><br><span class="line">jenkins/core-changelog-generator   Tool for generating Jenkins core changelogs     1                                       </span><br><span class="line">jenkins/jenkinsfile-runner         Jenkinsfile Runner packages                     1                                       </span><br><span class="line">jenkins/core-pr-tester             Docker image for testing pull-requests sent …   1                                       </span><br><span class="line">jenkins/jnlp-agent-ruby                                                            1                                       </span><br><span class="line">jenkins/remoting-kafka-agent       Remoting Kafka Agent                            1                                       [OK]</span><br><span class="line">rancher/jenkins-jnlp-slave                                                         0                                       </span><br><span class="line">rancher/jenkins-slave              Jenkins Build Slave                             0                                       [OK]</span><br><span class="line">[root@localhost ~]# ^C</span><br><span class="line">[root@localhost ~]# </span><br></pre></td></tr></table></figure>
+<h3 id="12-可能异常情况这个异常解决方法为下面第2点"><a class="markdownIt-Anchor" href="#12-可能异常情况这个异常解决方法为下面第2点">#</a> 1.2、可能异常情况，这个异常解决方法为下面第 2 点</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/07f347955491462592d6f37cc2394fc6.png" alt="img"></p>
+<h2 id="2-上面报这个error解决方法"><a class="markdownIt-Anchor" href="#2-上面报这个error解决方法">#</a> 2、上面报这个 ERROR 解决方法</h2>
+<h3 id="21-更新时间同步即可ntpdate-cnpoolntporg"><a class="markdownIt-Anchor" href="#21-更新时间同步即可ntpdate-cnpoolntporg">#</a> 2.1、更新<span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTYlOTclQjYlRTklOTclQjQlRTUlOTAlOEMlRTYlQUQlQTUmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw">时间同步</span>即可：ntpdate <span class="exturl" data-url="aHR0cDovL2NuLnBvb2wubnRwLm9yZw==">cn.pool.ntp.org</span></h3>
+<h3 id="22-如果提示不存在-ntpdate-命令需要先安装该命令yum-install-ntpdate"><a class="markdownIt-Anchor" href="#22-如果提示不存在-ntpdate-命令需要先安装该命令yum-install-ntpdate">#</a> 2.2、如果提示不存在 <span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1udHBkYXRlJmFtcDtzcG09MTAwMS4yMTAxLjMwMDEuNzAyMA==">ntpdate</span> 命令需要先安装该命令：yum install ntpdate</h3>
+<h3 id="23-date中国时间"><a class="markdownIt-Anchor" href="#23-date中国时间">#</a> 2.3、date 中国时间</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/315167c9692b4ebbad480fdffdf439c0.png" alt="img"></p>
+<h2 id="3-docker-pull-jenkinsciblueocean拉取jenkins镜像"><a class="markdownIt-Anchor" href="#3-docker-pull-jenkinsciblueocean拉取jenkins镜像">#</a> 3、****docker pull jenkinsci/blueocean**** 拉取 Jenkins 镜像</h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/1ef511da220c4ca4bca8143aa55c9e52.png" alt="img"></p>
+<h2 id="4-docker-images-查看本地镜像"><a class="markdownIt-Anchor" href="#4-docker-images-查看本地镜像">#</a> 4、docker images 查看本地镜像</h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d9690427ee344603ac96cfa1a6a5510c.png" alt="img"></p>
+<h2 id="5-centos7安装jdk安装-已有jdk可以跳过"><a class="markdownIt-Anchor" href="#5-centos7安装jdk安装-已有jdk可以跳过">#</a> 5、CentOS7 安装 JDK 安装 已有 JDK 可以跳过</h2>
+<h3 id="51-可以下载linux版本targz压缩包到本地不用解压"><a class="markdownIt-Anchor" href="#51-可以下载linux版本targz压缩包到本地不用解压">#</a> 5.1、可以下载 linux 版本 tar.gz 压缩包到本地不用解压</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b413890d2adc4b8ea27f016d215c14e7.png" alt="img"></p>
+<h3 id="52-cd-usr-mkdir-java进入usr创建java文件夹"><a class="markdownIt-Anchor" href="#52-cd-usr-mkdir-java进入usr创建java文件夹">#</a> 5.2、****cd /usr, mkdir java**** 进入 usr 创建 java 文件夹</h3>
+<h3 id="53-cd-java进入java文件夹用rz将linux版的jdk压缩包上传到这里"><a class="markdownIt-Anchor" href="#53-cd-java进入java文件夹用rz将linux版的jdk压缩包上传到这里">#</a> 5.3、****cd java*<em><strong> 进入 java 文件夹，用</strong></em> * rz**** 将 linux 版的 jdk 压缩包上传到这里</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/32e9bd440462402a80f0aa6a0ef32a18.png" alt="img"></p>
+<h3 id="54-将jdk移到javamv-jdk-8u301-linux-x64targz-usrjava移动文件命令"><a class="markdownIt-Anchor" href="#54-将jdk移到javamv-jdk-8u301-linux-x64targz-usrjava移动文件命令">#</a> 5.4、(将 JDK 移到 java，mv jdk-8u301-linux-x64.tar.gz/usr/java) 移动文件命令</h3>
+<h3 id="55-tar-zxvf-jdk-8u301-linux-x64targz解压会有jdk180_301出现"><a class="markdownIt-Anchor" href="#55-tar-zxvf-jdk-8u301-linux-x64targz解压会有jdk180_301出现">#</a> 5.5、<em><strong>*tar*</strong></em> <em><strong>*-*</strong></em><em><strong>*zxvf*</strong></em> jdk-8u301-linux-x64.tar.gz，解压会有 jdk1.8.0_301 出现</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/100d06f1ce4e4ee7b4b209cbf37491db.png" alt="img"></p>
+<h3 id="56-vi-etcprofile配置linux系统jdk环境变量"><a class="markdownIt-Anchor" href="#56-vi-etcprofile配置linux系统jdk环境变量">#</a> 5.6、****vi /etc/profile**** 配置 linux 系统 JDK 环境变量</h3>
+<p><strong>1) 配置内容</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_301</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br></pre></td></tr></table></figure>
+<h3 id="57-source-etcprofile使配置生效"><a class="markdownIt-Anchor" href="#57-source-etcprofile使配置生效">#</a> 5.7、****source /etc/profile**** 使配置生效</h3>
+<h3 id="58-sudo-yum-install-glibci686可能报错解决方案-否则会会报找不到"><a class="markdownIt-Anchor" href="#58-sudo-yum-install-glibci686可能报错解决方案-否则会会报找不到">#</a> 5.8、<em><strong>*sudo yum install glibc.i686*</strong></em>，可能报错解决方案、否则会会报找不到</h3>
+<h3 id="59-java-version测试出现如下即为成功"><a class="markdownIt-Anchor" href="#59-java-version测试出现如下即为成功">#</a> 5.9、****java -version**** 测试，出现如下即为成功</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f3cca3db43c84bf79be1bfa8282c4ba9.png" alt="img"></p>
+<h2 id="6-centos7安装maven"><a class="markdownIt-Anchor" href="#6-centos7安装maven">#</a> 6、CentOS7 安装 Maven</h2>
+<h3 id="61-cd-usrlocal"><a class="markdownIt-Anchor" href="#61-cd-usrlocal">#</a> 6.1、<em><strong>*cd /usr/local*</strong></em></h3>
+<h3 id="62-rz上传tar-zxvf-apache-maven-361-bintargz解压"><a class="markdownIt-Anchor" href="#62-rz上传tar-zxvf-apache-maven-361-bintargz解压">#</a> 6.2、****rz*<em><strong> 上传，</strong></em>*tar -zxvf apache-maven-3.6.1-bin.tar.gz**** 解压</h3>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/1055aa0df0184f6bb28bde13fed60bc5.png" alt="img"></p>
+<h3 id="63-vi-etcprofile"><a class="markdownIt-Anchor" href="#63-vi-etcprofile">#</a> 6.3、<em><strong>*vi /etc/profile*</strong></em></h3>
+<h3 id="64-source-etcprofile刷新环境变量"><a class="markdownIt-Anchor" href="#64-source-etcprofile刷新环境变量">#</a> 6.4、****source /etc/profile**** 刷新环境变量</h3>
+<h3 id="65-mvn-v查看版本"><a class="markdownIt-Anchor" href="#65-mvn-v查看版本">#</a> 6.5、****mvn -v**** 查看版本</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# mvn -v</span><br><span class="line">Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)</span><br><span class="line">Maven home: /usr/local/apache-maven-3.6.3</span><br><span class="line">Java version: 1.8.0_301, vendor: Oracle Corporation, runtime: /usr/java/jdk1.8.0_301/jre</span><br><span class="line">Default locale: en_US, platform encoding: UTF-8</span><br><span class="line">OS name: &quot;linux&quot;, version: &quot;3.10.0-1127.el7.x86_64&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</span><br><span class="line">[root@localhost local]# </span><br></pre></td></tr></table></figure>
+<p>到此 JDK、Maven 环境准备完成</p>
+<h2 id="7-启动容器并挂载上面配置的环境"><a class="markdownIt-Anchor" href="#7-启动容器并挂载上面配置的环境">#</a> 7、<em><strong>* 启动容器，并 *</strong></em><em><strong>* 挂载上面配置的环境 *</strong></em></h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-u root \</span><br><span class="line">-d \</span><br><span class="line">--restart=always \</span><br><span class="line">-p 8001:8080 \</span><br><span class="line">-p 50000:50000 \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-v /var/jenkins_home:/var/jenkins_home \</span><br><span class="line">jenkinsci/blueocean</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/172131aa0a9f47b3a15e5bd5d4555986.png" alt="img"></p>
+<h2 id="9-访问jenkins提示输入密码"><a class="markdownIt-Anchor" href="#9-访问jenkins提示输入密码">#</a> 9、访问 Jenkins，提示输入密码</h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/2b6d909e4c4e46efaa98216f1c33fdf7.png" alt="img"></p>
+<h2 id="10-初次可以选择推荐的"><a class="markdownIt-Anchor" href="#10-初次可以选择推荐的">#</a> 10、初次可以选择推荐的</h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/5e9a6ebdd6954093bf6a23f4f876221a.png" alt="img"></p>
+<h2 id="11-等待安装"><a class="markdownIt-Anchor" href="#11-等待安装">#</a> 11、 <strong>等待安装</strong></h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/25caae9dae8b49878adca5e32647e915.png" alt="img"></p>
+<h2 id="12-如下访问jenkins成功啦"><a class="markdownIt-Anchor" href="#12-如下访问jenkins成功啦">#</a> 12、如下访问 Jenkins 成功啦</h2>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/4beeeb654aec4e608a22ce6b49afa1ae.png" alt="img"></p>
+<p>到此就结束 Docker 安装 Jenkins 啦，后面的章节将介绍如何配置 jenkins，敬请期待！</p>
+<h6 id="版权声明本文为csdn博主卡布奇诺-海晨的原创文章遵循cc-40-by-sa版权协议转载请附上原文出处链接及本声明"><a class="markdownIt-Anchor" href="#版权声明本文为csdn博主卡布奇诺-海晨的原创文章遵循cc-40-by-sa版权协议转载请附上原文出处链接及本声明">#</a> 版权声明：本文为 CSDN 博主「卡布奇诺 - 海晨」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。</h6>
+<h6 id="原文链接httpsblogcsdnnetqq_57756904articledetails125697440"><a class="markdownIt-Anchor" href="#原文链接httpsblogcsdnnetqq_57756904articledetails125697440">#</a> 原文链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU3NzU2OTA0L2FydGljbGUvZGV0YWlscy8xMjU2OTc0NDA=">https://blog.csdn.net/qq_57756904/article/details/125697440</span></h6>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2023-01-06 08:43:00" itemprop="dateModified" datetime="2023-01-06T08:43:00+08:00">2023-01-06</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/" title="Docker安装Jenkins">http://example.com/2023/01/06/【Docker】Docker安装Jenkins/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/01/04/%E3%80%90RocketMQ%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclffsa1cj20zk0m811l.jpg" title="Docker环境下部署RocketMQ以及Console">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Docker环境下部署RocketMQ以及Console</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/01/06/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclhfehz7j20zk0m8u0x.jpg" title="Linux下使用war包部署Jenkins">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Linux下使用war包部署Jenkins</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker%E5%AE%89%E8%A3%85jenkins"><span class="toc-number">1.</span> <span class="toc-text"> Docker 安装 Jenkins</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E5%89%8D%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text"> 一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%86%E5%A4%B4%E7%BE%8A"><span class="toc-number">2.1.</span> <span class="toc-text"> 1、领头羊</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%89%B9%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text"> 2、特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-docker%E5%AE%89%E8%A3%85jenkins"><span class="toc-number">3.</span> <span class="toc-text"> 二、Docker 安装 Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-docker-search-jenkins%E6%9F%A5%E8%AF%A2%E9%95%9C%E5%83%8F"><span class="toc-number">3.1.</span> <span class="toc-text"> 1、docker search jenkins 查询镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E6%AD%A3%E5%B8%B8%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 1.1、正常查询结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E5%8F%AF%E8%83%BD%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E8%BF%99%E4%B8%AA%E5%BC%82%E5%B8%B8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%BA%E4%B8%8B%E9%9D%A2%E7%AC%AC2%E7%82%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 1.2、可能异常情况，这个异常解决方法为下面第 2 点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8A%E9%9D%A2%E6%8A%A5%E8%BF%99%E4%B8%AAerror%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text"> 2、上面报这个 ERROR 解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E5%8D%B3%E5%8F%AFntpdate-cnpoolntporg"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 2.1、更新时间同步即可：ntpdate cn.pool.ntp.org</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E5%A6%82%E6%9E%9C%E6%8F%90%E7%A4%BA%E4%B8%8D%E5%AD%98%E5%9C%A8-ntpdate-%E5%91%BD%E4%BB%A4%E9%9C%80%E8%A6%81%E5%85%88%E5%AE%89%E8%A3%85%E8%AF%A5%E5%91%BD%E4%BB%A4yum-install-ntpdate"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2.2、如果提示不存在 ntpdate 命令需要先安装该命令：yum install ntpdate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-date%E4%B8%AD%E5%9B%BD%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 2.3、date 中国时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-docker-pull-jenkinsciblueocean%E6%8B%89%E5%8F%96jenkins%E9%95%9C%E5%83%8F"><span class="toc-number">3.3.</span> <span class="toc-text"> 3、****docker pull jenkinsci&#x2F;blueocean**** 拉取 Jenkins 镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-docker-images-%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="toc-number">3.4.</span> <span class="toc-text"> 4、docker images 查看本地镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-centos7%E5%AE%89%E8%A3%85jdk%E5%AE%89%E8%A3%85-%E5%B7%B2%E6%9C%89jdk%E5%8F%AF%E4%BB%A5%E8%B7%B3%E8%BF%87"><span class="toc-number">3.5.</span> <span class="toc-text"> 5、CentOS7 安装 JDK 安装 已有 JDK 可以跳过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#51-%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BDlinux%E7%89%88%E6%9C%ACtargz%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%B8%8D%E7%94%A8%E8%A7%A3%E5%8E%8B"><span class="toc-number">3.5.1.</span> <span class="toc-text"> 5.1、可以下载 linux 版本 tar.gz 压缩包到本地不用解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-cd-usr-mkdir-java%E8%BF%9B%E5%85%A5usr%E5%88%9B%E5%BB%BAjava%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.5.2.</span> <span class="toc-text"> 5.2、****cd &#x2F;usr, mkdir java**** 进入 usr 创建 java 文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-cd-java%E8%BF%9B%E5%85%A5java%E6%96%87%E4%BB%B6%E5%A4%B9%E7%94%A8rz%E5%B0%86linux%E7%89%88%E7%9A%84jdk%E5%8E%8B%E7%BC%A9%E5%8C%85%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%BF%99%E9%87%8C"><span class="toc-number">3.5.3.</span> <span class="toc-text"> 5.3、****cd java* 进入 java 文件夹，用 * rz**** 将 linux 版的 jdk 压缩包上传到这里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-%E5%B0%86jdk%E7%A7%BB%E5%88%B0javamv-jdk-8u301-linux-x64targz-usrjava%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4"><span class="toc-number">3.5.4.</span> <span class="toc-text"> 5.4、(将 JDK 移到 java，mv jdk-8u301-linux-x64.tar.gz&#x2F;usr&#x2F;java) 移动文件命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-tar-zxvf-jdk-8u301-linux-x64targz%E8%A7%A3%E5%8E%8B%E4%BC%9A%E6%9C%89jdk180_301%E5%87%BA%E7%8E%B0"><span class="toc-number">3.5.5.</span> <span class="toc-text"> 5.5、*tar* *-**zxvf* jdk-8u301-linux-x64.tar.gz，解压会有 jdk1.8.0_301 出现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-vi-etcprofile%E9%85%8D%E7%BD%AElinux%E7%B3%BB%E7%BB%9Fjdk%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.5.6.</span> <span class="toc-text"> 5.6、****vi &#x2F;etc&#x2F;profile**** 配置 linux 系统 JDK 环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-source-etcprofile%E4%BD%BF%E9%85%8D%E7%BD%AE%E7%94%9F%E6%95%88"><span class="toc-number">3.5.7.</span> <span class="toc-text"> 5.7、****source &#x2F;etc&#x2F;profile**** 使配置生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#58-sudo-yum-install-glibci686%E5%8F%AF%E8%83%BD%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-%E5%90%A6%E5%88%99%E4%BC%9A%E4%BC%9A%E6%8A%A5%E6%89%BE%E4%B8%8D%E5%88%B0"><span class="toc-number">3.5.8.</span> <span class="toc-text"> 5.8、*sudo yum install glibc.i686*，可能报错解决方案、否则会会报找不到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#59-java-version%E6%B5%8B%E8%AF%95%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E5%8D%B3%E4%B8%BA%E6%88%90%E5%8A%9F"><span class="toc-number">3.5.9.</span> <span class="toc-text"> 5.9、****java -version**** 测试，出现如下即为成功</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-centos7%E5%AE%89%E8%A3%85maven"><span class="toc-number">3.6.</span> <span class="toc-text"> 6、CentOS7 安装 Maven</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#61-cd-usrlocal"><span class="toc-number">3.6.1.</span> <span class="toc-text"> 6.1、*cd &#x2F;usr&#x2F;local*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#62-rz%E4%B8%8A%E4%BC%A0tar-zxvf-apache-maven-361-bintargz%E8%A7%A3%E5%8E%8B"><span class="toc-number">3.6.2.</span> <span class="toc-text"> 6.2、****rz* 上传，*tar -zxvf apache-maven-3.6.1-bin.tar.gz**** 解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#63-vi-etcprofile"><span class="toc-number">3.6.3.</span> <span class="toc-text"> 6.3、*vi &#x2F;etc&#x2F;profile*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#64-source-etcprofile%E5%88%B7%E6%96%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.6.4.</span> <span class="toc-text"> 6.4、****source &#x2F;etc&#x2F;profile**** 刷新环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#65-mvn-v%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="toc-number">3.6.5.</span> <span class="toc-text"> 6.5、****mvn -v**** 查看版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8%E5%B9%B6%E6%8C%82%E8%BD%BD%E4%B8%8A%E9%9D%A2%E9%85%8D%E7%BD%AE%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">3.7.</span> <span class="toc-text"> 7、* 启动容器，并 ** 挂载上面配置的环境 *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%AE%BF%E9%97%AEjenkins%E6%8F%90%E7%A4%BA%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81"><span class="toc-number">3.8.</span> <span class="toc-text"> 9、访问 Jenkins，提示输入密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%88%9D%E6%AC%A1%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E6%8E%A8%E8%8D%90%E7%9A%84"><span class="toc-number">3.9.</span> <span class="toc-text"> 10、初次可以选择推荐的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E7%AD%89%E5%BE%85%E5%AE%89%E8%A3%85"><span class="toc-number">3.10.</span> <span class="toc-text"> 11、 等待安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%A6%82%E4%B8%8B%E8%AE%BF%E9%97%AEjenkins%E6%88%90%E5%8A%9F%E5%95%A6"><span class="toc-number">3.11.</span> <span class="toc-text"> 12、如下访问 Jenkins 成功啦</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%E6%9C%AC%E6%96%87%E4%B8%BAcsdn%E5%8D%9A%E4%B8%BB%E5%8D%A1%E5%B8%83%E5%A5%87%E8%AF%BA-%E6%B5%B7%E6%99%A8%E7%9A%84%E5%8E%9F%E5%88%9B%E6%96%87%E7%AB%A0%E9%81%B5%E5%BE%AAcc-40-by-sa%E7%89%88%E6%9D%83%E5%8D%8F%E8%AE%AE%E8%BD%AC%E8%BD%BD%E8%AF%B7%E9%99%84%E4%B8%8A%E5%8E%9F%E6%96%87%E5%87%BA%E5%A4%84%E9%93%BE%E6%8E%A5%E5%8F%8A%E6%9C%AC%E5%A3%B0%E6%98%8E"><span class="toc-number">3.11.0.0.0.1.</span> <span class="toc-text"> 版权声明：本文为 CSDN 博主「卡布奇诺 - 海晨」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5httpsblogcsdnnetqq_57756904articledetails125697440"><span class="toc-number">3.11.0.0.0.2.</span> <span class="toc-text"> 原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_57756904&#x2F;article&#x2F;details&#x2F;125697440</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">68</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/01/04/%E3%80%90RocketMQ%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/01/06/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Git%E3%80%91SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="SVN&amp;Git使用手册">SVN&Git使用手册</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" title="Linux下docer部署mysql">Linux下docer部署mysql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" title="Hbase整合SpringBoot的问题">Hbase整合SpringBoot的问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/06/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" title="Linux下使用war包部署Jenkins">Linux下使用war包部署Jenkins</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用">RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&SpringBoot简单应用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CAS-ABA%E9%97%AE%E9%A2%98/" title="CAS-ABA问题">CAS-ABA问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/11/24/%E3%80%90Docker%E3%80%91Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" title="Docker的基础用法">Docker的基础用法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="MySQL8下载与安装教程">MySQL8下载与安装教程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" title="Flutter开发中使用WIFI真机调试">Flutter开发中使用WIFI真机调试</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">385k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">5:50</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/01/06/【Docker】Docker安装Jenkins/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

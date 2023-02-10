@@ -1,0 +1,707 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2022/12/27/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/">
+
+
+
+  <title>
+ZGC学习笔记：ZGC简介和JDK17对ZGC的优化 |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">ZGC学习笔记：ZGC简介和JDK17对ZGC的优化
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>6.7k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>6 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipesng5oej20zk0m87d4.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclgi503lj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicli9lfebj20zk0m84qp.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>01 ZGC 简介<br>
+ ZGC 是一个可扩展的低延迟垃圾收集器，能够处理 8MB 到 16TB 大小的堆，最大暂停时间为亚毫秒。</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20220929120415958.png" alt="image-20220929120415958"></p>
+<p>OpenJDK 的官网只写到这里，然后让我们自己去看 Wiki（链接 2）…… 好偷懒……</p>
+<pre><code>    Wiki的介绍是更详细一些。
+
+    Z Garbage Collector，也称为 ZGC，是一种可扩展的低延迟垃圾收集器，旨在满足以下目标：
+</code></pre>
+<p>亚毫秒最大暂停时间</p>
+<p>暂停时间不会随着堆、live-set 或 root-set 的大小而增加</p>
+<p>处理大小从 8MB 到 16TB 的堆</p>
+<p>ZGC 最初是作为 JDK 11 中的一项实验性功能引入的，并在 JDK 15 中被宣布为 Production Ready。</p>
+<p>ZGC 的几个特征：</p>
+<p>并发</p>
+<p>基于区域</p>
+<p>基于压缩</p>
+<p>NUMA 感知</p>
+<p>使用染色指针</p>
+<p>使用负载屏障（原文为 load barriers）</p>
+<p>ZGC 的核心是一个并发垃圾收集器，这意味着所有繁重的工作都在 Java 线程继续执行的同时完成。这极大地减少了垃圾收集对应用程序响应时间的影响。</p>
+<p>ZGC 项目由 HotSpot Group 赞助。</p>
+<p>下图是截止目前为止（2020-04-17）的 ZGC 的发布时间表，可以看出 ZGC 总 JDK11 开始实验性推出，JDK15 开始正式发布。</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/07193612e6885c5946cf49cd8b796561.png" alt="img"></p>
+<pre><code>    ZGC的部分参数：
+</code></pre>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/5cd0e8857e5f10201c406b4b8c23a379.png" alt="img"></p>
+<p>ZGC 部分操作：</p>
+<p>使用下述命令选项启用 ZGC</p>
+<p>-XX:+UseZGC<br>
+ 启用 ZGC</p>
+<p>设置堆大小</p>
+<pre><code>ZGC 最重要的调优选项是设置最大堆大小（-Xmx&lt;size&gt;）。由于 ZGC 是一个并发收集器，因此必须选择最大堆大小，以便 
+</code></pre>
+<ol>
+<li>
+<p>堆可以容纳应用程序的实时集，</p>
+</li>
+<li>
+<p>堆中有足够的空间来允许在 GC 时处理处理分配。</p>
+</li>
+</ol>
+<p>需要多少空间取决于应用程序的分配率和 live-set 大小。一般而言，给 ZGC 的内存越多越好。但与此同时，浪费内存是不可取的，所以这一切都是为了在内存使用和 GC 需要运行的频率之间找到一个平衡点。</p>
+<p>3. 设置并发 GC 线程数</p>
+<pre><code>    第二个重要的选项是设置并发 GC 线程的数量 (-XX:ConcGCThreads=&lt;number&gt;)。ZGC 具有自动选择此数字的启发式方法。这种启发式通常效果很好，但根据应用程序的特性，这可能需要进行调整。这个选项本质上决定了应该给 GC 多少 CPU-time（ps：这个不知道咋翻译，就叫CPU时间？先不翻译）。给了ZGC太多运行时间，GC 将从应用程序中占用过多的 CPU-time。给它太少，应用程序分配垃圾的速度可能比 GC 收集它的速度快。
+
+    一般来说，如果低延迟（即低应用程序响应时间）是工业环境中的最大痛点，在配置相应操作时候就不需要太吝啬。理想情况下，系统的 CPU 利用率不应超过 70%。
+</code></pre>
+<p>4. 返回未使用内存给操作系统</p>
+<pre><code>    默认情况下，ZGC 取消提交未使用的内存，将其返回给操作系统。这对于注重内存占用的应用程序和环境很有用。可以使用 -XX:-ZUncommit 禁用此功能。此外，内存不会被取消提交，因此堆大小会缩小到最小堆大小 (-Xms) 以下。这意味着如果最小堆大小 (-Xms) 配置为等于最大堆大小 (-Xmx)，则此功能将被隐式禁用。
+
+    可以使用 -XX:ZUncommitDelay=&lt;seconds&gt; 配置取消提交延迟（默认为 300 秒）。此延迟指定内存在有资格取消提交之前应该未使用多长时间。
+
+注意事项：在 Linux 上，取消提交未使用的内存需要具有 FALLOC_FL_PUNCH_HOLE 支持的 fallocate(2)，此特性首先出现在内核版本 3.5（用于 tmpfs）和 4.3（用于 hugetlbfs）中。
+</code></pre>
+<p>5. 启用 Linux 的大页（large page）操作</p>
+<pre><code>    将 ZGC 配置为使用大页面通常会产生更好的性能（在吞吐量、延迟和启动时间方面）并且没有真正的缺点，只是设置起来稍微复杂一些。设置过程通常需要 root 权限，这就是默认情况下不启用它的原因。
+
+    在 Linux/x86 上，大页面（英文原文为large page和huge page）的大小为 2MB。
+
+    假设您需要一个 16G Java 堆。这意味着您需要 16G / 2M = 8192 个大页面。
+
+    首先为大页面池分配至少 16G（8192 页）的内存。“至少”部分很重要，因为在 JVM 中启用大页面意味着不仅 GC 会尝试将这些用于 Java 堆，而且 JVM 的其他部分也会尝试将它们用于各种 内部数据结构（代码堆、标记位图等）。因此，在本例中，我们将保留 9216 个页面 (18G) 以允许 2G 的非 Java 堆分配来使用大页面。
+</code></pre>
+<p>6. 启用 Linux 的透明大页（transparent large page）操作</p>
+<pre><code>    使用显式大页面（explicit large pages，就是5小节的大页面）的替代方法是使用透明大页面（ transparent huge pages）。通常不建议对延迟敏感的应用程序使用透明大页面（ latency sensitive，因为它往往会导致不必要的延迟峰值。但是，可能值得尝试看看系统的工作负载是否/如何受到它的影响。
+
+    注意事项：在 Linux 上，使用启用透明大页的 ZGC 需要kernel &gt;= 4.7。
+</code></pre>
+<p>7. 启用 NUMA 支持</p>
+<pre><code>    ZGC 支持 NUMA，这意味着它会尽量将 Java 堆分配指向 NUMA 本地内存。默认情况下启用此功能。但是，如果 JVM 检测到它只能使用单个 NUMA 节点上的内存，它将自动被禁用。通常，无需担心此设置，但如果您想显式覆盖 JVM 的决定，可以使用 -XX:+UseNUMA 或 -XX:-UseNUMA 选项来实现。
+
+    在 NUMA 机器（例如多插槽 x86 机器）上运行时，启用 NUMA 支持通常会显著提升性能。
+
+    注:
+
+   关于NUMA,即Non Uniform Memory Access，非统一内存管理技术。以下直接截图于百度百科：
+</code></pre>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/9fa912e0f93d4dd49a4eecd618d86951.png" alt="img"></p>
+<p>8. 启用 GC 日志</p>
+<p>打个日志而已，就截图了。</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0f12489b9377904e0ada4b5977cb3e19.png" alt="img"></p>
+<p>具体操作还是参考链接 2。</p>
+<p>02 ZGC 在 JDK17 中的最新优化<br>
+翻译自链接 4。</p>
+<pre><code>   JDK 17 于2021年 9 月 14 日发布。这是一个长期支持 (LTS) 版本，这意味着它将得到多年的支持和更新。这也是第一个包含 ZGC 生产就绪版本（production ready version）的 LTS 版本。 稍微回忆一下，JDK 11（以前的 LTS 版本）中包含了 ZGC 的实验版本，而 ZGC 的第一个生产就绪版本出现在 JDK 15（非 LTS 版本）中。
+
+    因此，可以说JDK17是第一个开始推出成熟的ZGC的长期支持的ZGC版本。
+
+    （本来还想把JDK15，JDK16啥的ZGC的翻译一下，不过既然JDK17中ZGC这么重要，就只搬运JDK17的优化好了。）
+</code></pre>
+<p>1. 动态 GC 线程数</p>
+<pre><code>    长期以来，JVM 都有一个名为
+
+    -XX:+UseDynamicNumberOfGCThreads 
+</code></pre>
+<p>的选项。它默认启用，并告诉 GC 智能地了解它用于各种操作的 GC 线程数。使用的线程数将不断重新评估，因此会随着时间而变化。这个选项很有用有几个原因。例如，很难确定给定工作负载的最佳 GC 线程数是多少。通常发生的情况是，运维人员尝试各种设置 -XX:ParallelGCThreads 和 / 或 -XX:ConcGCThreads （取决于使用的 GC），看看哪个似乎给出了最好的结果。更复杂的是，最佳 GC 线程数可能会随着应用程序经历不同阶段而随时间变化，因此设置固定数量的 GC 线程本质上可能不是最佳的。</p>
+<pre><code>    在 JDK 17 之前，ZGC 忽略 -XX:+UseDynamicNumberOfGCThreads 并始终使用固定数量的线程。在 JVM 启动期间，ZGC 使用启发式方法来决定该固定数字 (-XX:ConcGCThreads) 应该是什么。一旦设定了这个数字，它就再也不会改变了。从 JDK 17 开始，ZGC 现在支持 -XX:+UseDynamicNumberOfGCThreads 并尝试使用尽可能少、但是足够多的线程来保持以创建的速度收集垃圾。这有助于避免使用比需要更多的 CPU 时间，从而使 Java 线程可以使用更多的 CPU 时间。
+
+    另请注意，启用此功能后，-XX:ConcGCThreads 的含义从“使用这么多线程”变为“最多使用这么多线程”。除非有一个非常规的工作负载，否则你通常不需要摆弄 -XX:ConcGCThreads。ZGC 的启发式算法会根据运行的系统的大小为机器选择合适的最大线程数。
+
+    （注：就是说JDK17开始，ZGC的运行时线程数是动态的，-XX:ConcGCThreads 设置的是最大可用线程，但是如果更少的线程就能满足需求，ZGC就会使用更少的线程；如果运行中需要增加线程数，ZGC也会动态增加线程数）
+</code></pre>
+<p>为了说明此功能的实际作用，官方贴出了一下运行 SPECjbb2015 时的一些图表。</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/8d76e888d04e4ade98e9570cc2e6b6c2.png" alt="img"></p>
+<pre><code>    第一张图显示了整个运行过程中使用的 GC 线程数。SPECjbb2015 有一个初始加速阶段，随后是一个较长的阶段，其中负载（注入速率）逐渐增加。我们可以看到 ZGC 使用的线程数反映了它需要做的工作量来跟上。只有在少数情况下，它需要所有（在本例中为 5 个）线程。
+
+    JDK16和JDK17的打分比较图如下。
+</code></pre>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0ee86707c2957f6abf19e262612ec1db.png" alt="img"></p>
+<pre><code>    如果出于某种原因希望始终使用固定数量的 GC 线程（如在 JDK 16 和更早版本中），则可以使用 -XX:-UseDynamicNumberOfGCThreads 禁用此功能（注：应该没人会用吧？）。
+</code></pre>
+<p>2. 快速 JVM 终止</p>
+<pre><code>    在之前使用版本的Java程序中，如果使用的垃圾回收器是 ZGC ，终止正在运行的 Java 进程（例如，通过按 Ctrl+C 或通过让应用程序调用 System.exit()）， JVM 有时可能需要一段时间（在最坏的情况下为数秒）才能真正终止。这在一些需要快速宕机的场景下很烦人，如果某个场景需要快速终止程序，JVM的慢停止会导致一定问题。。
+
+    那么，为什么之前在使用 ZGC 时，JVM 有时会需要一些时间来终止呢？原因是 JVM 的关闭顺序需要与 GC 协调，让 GC 停止正在做的事情，进入“安全”状态。ZGC 仅在空闲时处于“安全”状态，即当前不收集垃圾。如果终止信号到达时正在进行一个非常长的 GC 周期，那么 JVM 关闭序列只需等待该 GC 周期完成，然后 ZGC 变为空闲并再次进入“安全”状态。
+
+    这已在 JDK 17 中得到解决。ZGC 现在能够中止正在进行的 GC 循环，以按需快速达到“安全”状态。终止运行 ZGC 的 JVM 现在或多或少是即时的。
+</code></pre>
+<p>3. 减少标记堆栈内存使用</p>
+<pre><code>    ZGC做条纹标记。这是指将堆划分为条带，并分配每个 GC 线程来标记其中一个条带（strip）中的对象。这有助于最小化 GC 线程之间的共享状态，并使标记过程对缓存更加友好，因为两个 GC 线程不会在堆的同一部分标记对象。这种方法还可以在 GC 线程之间实现自然的工作平衡，因为一个条带（strip）中的工作量往往大致相同。
+
+    下图是ZGC的基于多线程垃圾回收器对基于条带的Java堆内存的回收机制示意图。
+</code></pre>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3792f57ec3bd3c6ddb1b3f61b7f70b5c.png" alt="img"></p>
+<pre><code>    在 JDK 17 之前，ZGC 的标记严格遵守条带化。如果一个 GC 线程在跟踪对象图时遇到一个对象引用，该对象引用指向不属于其分配的条带的堆的一部分，则该对象引用被放置在与该其他对象关联的线程本地标记堆栈上条纹。一旦该堆栈已满（254 个条目），它就会被移交给分配给该条带处理标记的 GC 线程。将对象引用加载到尚未标记的对象的 Java 线程会做同样的事情，只是它总是将对象引用放在关联的线程本地标记堆栈上，并且不会自己做任何实际的标记工作。
+
+    这种方法适用于大多数工作负载，但也存在病态问题。如果您有一个具有一个或多个 N:1 关系的对象图，其中 N 是一个非常大的数字，那么您可能会为标记堆栈使用大量内存（如许多 GB）。我们一直都知道这可能是一个问题，您可以编写一个小型综合测试来引发它，但我们从未真正遇到过暴露它的真实工作负载。也就是说，直到来自腾讯的 OpenJDK 贡献者报告他们在野外遇到了这个问题（注：我去，鹅厂！）。
+
+    JDK 17 中对此的修复涉及通过以下方式放松严格条带化：
+</code></pre>
+<p>对于 GC 线程，无论对象引用指向哪个条带，首先尝试标记对象（即可能跳出 GC 线程分配的条带），如果尚未标记，则将对象引用推送到关联标记 堆。</p>
+<p>对于 Java 线程，首先检查对象是否已标记，如果尚未标记，则将对象引用推送到关联的标记堆栈。</p>
+<p>（注：这一块我其实看的不是很懂。要是有人有兴趣讨论的话欢迎交流）。</p>
+<pre><code>这些调整有助于阻止在病态 N:1 情况下过度使用标记堆栈内存，其中 GC 线程一遍又一遍地遇到相同的对象引用，将大量重复的对象引用推入标记堆栈。重复是没有用的，因为一个对象只需要标记一次。通过在推送之前进行标记，并且只推送以前未标记的对象，复制品的生产就会停止。
+
+我们最初有点不愿意这样做，因为 GC 线程现在正在执行原子比较和交换操作，以标记内存中属于分配给其他 GC 线程工作的条带的对象。这打破了严格的条带化，使其对缓存不太友好。Java 线程现在也在进行原子加载以查看对象是否被标记，这是他们以前没有做过的事情。同时，GC 线程完成的其他工作（扫描/跟踪对象字段和跟踪每个堆区域的活动对象/字节数）仍然遵守严格的条带化。最后，基准测试表明我们最初的担忧是没有根据的。GC 标记时间不受影响，对 Java 线程的影响也不明显。另一方面，我们现在有一个更健壮的标记方案，不会出现过多的内存使用。
+
+    （注：所以其实出现这个问题，是不是因为只是因为某厂的代码写的太烂了……）
+</code></pre>
+<p>支持 ARM 上的 macOS</p>
+<pre><code>    前段时间（注：苹果2020年的秋季发布会的消息），Apple 宣布了一项将其 Mac 计算机产品线从 x86 过渡到 ARM 的长期计划。不久之后，JEP 391: macOS/AArch64 Port 提出了 JDK 到这个新平台的移植。JVM 代码库是相当模块化的，特定于操作系统和 CPU 的代码与共享平台无关代码隔离。JDK 已经支持 macOS/x86 和 Linux/Aarch64，因此支持 macOS/Aarch64 所需的主要部分已经存在。当然，任何计划发布和支持 JDK 的 macOS/Aarch64 构建的人仍然需要做一些工作，比如投资新硬件，将这个新平台集成到 CI 管道中等。
+
+    ZGC的故事几乎相同。macOS/x86 和 Linux/Aarch64 都已经得到支持，因此主要是启用构建和测试这种新的 OS/CPU 组合的问题。从 JDK 17 开始，ZGC 在以下平台上运行：
+</code></pre>
+<p>Linux/x64</p>
+<p>Linux/AArch64</p>
+<p>macOS/x64</p>
+<p>macOS/AArch64</p>
+<p>Window/x64</p>
+<p>Windows/AArch64</p>
+<p>大多数 ZGC 代码库继续独立于平台。当前的代码分布如下所示：</p>
+<p>​        <img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d43c84500703a456f8a4ad7e2a2c686b.png" alt="img"></p>
+<p>用于循环和暂停的 GarbageCollectorMXBeans</p>
+<pre><code>    GarbageCollectorMXBean 提供有关 GC 的信息。通过这个 bean，应用程序可以提取摘要信息（到目前为止完成的 GC 次数、累计花费的 GC 时间等）并监听 GarbageCollectionNotificationInfo 通知以获取有关单个 GC 的更细粒度的信息（GC 原因、开始时间、结束时间， ETC）。
+
+    在 JDK 17 之前，ZGC 发布了一个名为 ZGC 的单个 bean。这个 bean 提供了有关 ZGC 周期的信息。一个循环包括从开始到结束的所有 GC 阶段。大多数阶段是并发的，但有些是 Stop-The-World 暂停。虽然有关周期的信息很有用，但您可能还想知道在执行 GC 上花费了多少时间在 Stop-The-World 暂停上。此信息不适用于单个 ZGC bean。为了解决这个问题，ZGC 现在发布了两个 bean，一个称为 ZGC Cycles，一个称为 ZGC Pauses。顾名思义，每个 bean 提供的信息分别映射到周期和暂停。
+</code></pre>
+<p>总结：</p>
+<pre><code>    作为第一个支持生产版本ZGC的LTS版本的JDK，JDK17中对ZGC做了下述优化：
+</code></pre>
+<p>支持 JVM 选项 -XX:+UseDynamicNumberOfGCThreads。此功能默认启用，并告诉 ZGC 对其使用的 GC 线程数保持智能，这通常会导致 Java 应用程序级别的更高吞吐量和更低延迟。</p>
+<p>使用了 ZGC 的 JVM 在停止运行时， 基本上是实时的，而之前版本花费的时间更多。</p>
+<p>标记算法现在通常使用更少的内存，并且不再容易出现过多的内存使用。</p>
+<p>ZGC 现在可以在 macOS/Aarch64 上运行。</p>
+<p>ZGC 现在发布了两个 GarbageCollectorMXBean，以提供有关 GC 周期和 GC 暂停的信息。</p>
+<p>03 一些很搞笑的事情</p>
+<pre><code>    据说有哥们在面试时候被面试官问到，ZGC的Z代表的是啥？
+
+    面试者老哥内心OS：我去葛格不讲武德啊，之前面经没有讲到这个啊。但是呆胶布，我现场编一个。
+
+    于是他说，“ZGC的Z是英文字母的最后一个字母，这说明Oracle公司想把ZGC作为Java的最终解决方案，是一个革命性的Java垃圾回收机制解决方案，blabla。”
+
+    面试官微微一笑贴出官网截屏：
+</code></pre>
+<p>​</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b5813b2129f9db814556823199eb2355.png" alt="img"></p>
+<p>翻译：ZGC 的 Z 毛线都不表示，莫得含义。</p>
+<pre><code>    面试者：不听不听王八念经。
+
+    笑死。</code></pre>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-09-29 12:05:33" itemprop="dateModified" datetime="2022-09-29T12:05:33+08:00">2022-09-29</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/12/27/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/" title="ZGC学习笔记：ZGC简介和JDK17对ZGC的优化">http://example.com/2022/12/27/【Java】ZGC学习笔记：ZGC简介和JDK17对ZGC的优化/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/12/27/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyhsblkj20zk0m81kx.jpg" title="Volatile关键字">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Volatile关键字</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/12/27/%E3%80%90Mysql%E3%80%91%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexoj0moj20zk0m8kgu.jpg" title="主从同步遇到 Got fatal error 1236 from master when reading data from binary log">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>主从同步遇到 Got fatal error 1236 from master when reading data from binary log</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">68</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2022/12/27/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2022/12/27/%E3%80%90Mysql%E3%80%91%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/" title="ThreadLocal">ThreadLocal</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" title="SpringBoot自动装配原理">SpringBoot自动装配原理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Git%E3%80%91SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="SVN&amp;Git使用手册">SVN&Git使用手册</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%20(2)/" title="ELASTICSEARCH7.X安全性之访问密码设置">ELASTICSEARCH7.X安全性之访问密码设置</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/" title="云服务器部署宝塔面板">云服务器部署宝塔面板</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计">SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Typora%E3%80%91typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="Typora使用gitee作为图库用picgo上传图片的教程~">Typora使用gitee作为图库用picgo上传图片的教程~</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CAS-ABA%E9%97%AE%E9%A2%98/" title="CAS-ABA问题">CAS-ABA问题</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">385k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">5:50</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/12/27/【Java】ZGC学习笔记：ZGC简介和JDK17对ZGC的优化/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

@@ -5,12 +5,189 @@
         <link>http://example.com</link>
         <description></description>
         <language>en</language>
-        <pubDate>Thu, 12 Jan 2023 19:29:57 +0800</pubDate>
-        <lastBuildDate>Thu, 12 Jan 2023 19:29:57 +0800</lastBuildDate>
+        <pubDate>Fri, 10 Feb 2023 14:12:58 +0800</pubDate>
+        <lastBuildDate>Fri, 10 Feb 2023 14:12:58 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/12/Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/</guid>
+            <guid isPermalink="true">http://example.com/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/</guid>
+            <title>【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</title>
+            <link>http://example.com/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/</link>
+            <pubDate>Fri, 10 Feb 2023 14:12:58 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;docker关于docker服务报错warning-ipv4-forwarding-is-disabled-networking-will-not-work&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#docker关于docker服务报错warning-ipv4-forwarding-is-disabled-networking-will-not-work&#34;&gt;#&lt;/a&gt; 【Docker】关于 docker 服务报错 WARNING IPv4 forwarding is disabled. Networking will not work&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;注意：在这里强调，强制进入或者进入镜像，进入后会引起 yum install 和 wget 等不能使用&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一docker-运行直接报错&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#一docker-运行直接报错&#34;&gt;#&lt;/a&gt; &lt;strong&gt;一，docker 运行直接报错&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;报错：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[root@localhost /]# docker run -it ubuntu /bin/bash&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;WARNING: IPv4 forwarding is disabled. Networking will not work.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/05472c924858164c6df96734a709fd3b.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;1. 解决方式：&lt;/p&gt;
+&lt;p&gt;第一步：在宿主机上执行 echo “net.&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1pcHY0JmFtcDtzcG09MTAwMS4yMTAxLjMwMDEuNzAyMA==&#34;&gt;ipv4&lt;/span&gt;.ip_forward=1” &amp;gt;&amp;gt;/usr/lib/sysctl.d/00-system.conf&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/56fe262e97ffdd8fb3992692af566dd2.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;2. 第二步：重启 network 和 docker 服务&lt;/p&gt;
+&lt;p&gt;[root@localhost /]# systemctl restart network &amp;amp;&amp;amp; systemctl restart docker&lt;/p&gt;
+&lt;p&gt;3. 第三步：验证是否成功&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/fe9d3a924773707b13542350b4f77b2e.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可见完美解决问题。&lt;/p&gt;
+&lt;h2 id=&#34;二如果你是docker容器运行镜像的时候也是报这种错误相对应得也是重启一下docker就可以完美解决了了&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#二如果你是docker容器运行镜像的时候也是报这种错误相对应得也是重启一下docker就可以完美解决了了&#34;&gt;#&lt;/a&gt; 二，如果你是 docker 容器运行镜像的时候也是报这种错误，相对应得也是重启一下 docker 就可以完美解决了了。&lt;/h2&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%20(2)/</guid>
+            <title>ELASTICSEARCH7.X安全性之访问密码设置</title>
+            <link>http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%20(2)/</link>
+            <pubDate>Wed, 08 Feb 2023 15:54:41 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;elasticsearch7x安全性之访问密码设置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#elasticsearch7x安全性之访问密码设置&#34;&gt;#&lt;/a&gt; ELASTICSEARCH7.X 安全性之访问密码设置&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;当我们安装完ElasticSearch的时候发现，访问过程中我们没有任何安全认证就可以直接访问并操作。如果是生产环境，端口向外暴露的话，那么对数据的安全性是无法得到保障的。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;一般解决方案有&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;开启 ElasticSearch 认证插件，访问的时候添加账密&lt;/li&gt;
+&lt;li&gt;当然也可以通过 nginx 作代理防护&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文主要讲解通过启用 X-Pack 来设置 ElasticSearch 的访问密码。&lt;/p&gt;
+&lt;p&gt;集群与单据环境都适合次方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;集群与单据环境配置的区别就是，集群需要在某一台生成证书然后拷贝到其它节点目录下。&lt;/li&gt;
+&lt;li&gt;集群环境重设置密码的时候需要整个集群节点都已启动，可在任一台处修改。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2x-pack简介&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2x-pack简介&#34;&gt;#&lt;/a&gt; 2.X-PACK 简介&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;X-Pack是Elastic Stack扩展功能，提供安全性，警报，监视，报告，机器学习和许多其他功能。 ES7.0+之后，默认情况下，当安装Elasticsearch时，会自动安装X-Pack，无需单独再安装。自6.8以及7.1+版本之后，基础级安全永久免费了。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;在使用的时候主要需要配置一下证书，以及修改配置文件（config/elasticsearch.yml ）&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;3证书配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3证书配置&#34;&gt;#&lt;/a&gt; 3. 证书配置&lt;/h2&gt;
+&lt;h3 id=&#34;31生成节点证书&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#31生成节点证书&#34;&gt;#&lt;/a&gt; 3.1 生成节点证书&lt;/h3&gt;
+&lt;p&gt;切换到 elasticsearch 安装文件目录 bin 下 ：示例：/usr/local/elasticsearch-7.4.0/bin&lt;br&gt;
+ 借助 elasticsearch-certutil 命令生成证书：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;./elasticsearch-certutil ca -out config/certs/elastic-certificates.p12 -pass&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里单独设置了一个 证书文件目录 config/certs&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/951/a3d0c1934c0ed0f8440f830d63e96dbf.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;生成后的证书&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/953/de92ac2cf73d1ed0da994f9d1066e8f1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;32修改配置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#32修改配置&#34;&gt;#&lt;/a&gt; 3.2 修改配置&lt;/h3&gt;
+&lt;p&gt;配置通信证书 &amp;gt; 需要在 config 目前下 elasticsearch.yml 配置&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 开启xpack&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xpack.security.enabled: true&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xpack.license.self_generated.type: basic&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xpack.security.transport.ssl.enabled: true&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 证书配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xpack.security.transport.ssl.verification_mode: certificate&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其它配置（可选）&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#跨域配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.enabled: true&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.allow-origin: &amp;quot;*&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.allow-headers: Authorization,X-Requested-With,Content-Length,Content-Type&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注：若是集群环境则需要将证书文件目录，以及配置文件，在所有集群环境下都修改一下。&lt;/p&gt;
+&lt;h3 id=&#34;33重启生效&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#33重启生效&#34;&gt;#&lt;/a&gt; 3.3. 重启生效&lt;/h3&gt;
+&lt;p&gt;需要重启 elasticsearch&lt;/p&gt;
+&lt;p&gt;注：若是集群环境下则需要启动所有集群节点，再统一设置密码&lt;/p&gt;
+&lt;p&gt;注：重启异常情况，若出现报错，类似 failed to load plugin class [org.elasticsearch.xpack.core.XPackPlugin]&lt;br&gt;
+ 请检查是否是使用 root 用户生成的证书，启动用户无权限导致。&lt;/p&gt;
+&lt;h2 id=&#34;4设置用户密码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#4设置用户密码&#34;&gt;#&lt;/a&gt; 4. 设置用户密码&lt;/h2&gt;
+&lt;p&gt;执行设置用户名和密码的命令，内置了部分用户&lt;br&gt;
+切换到 elasticsearch 安装文件目录 bin 下 ：示例：/usr/local/elasticsearch-7.4.0/bin/&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 手动配置每个用户密码模式（需要一个一个的输入）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;./elasticsearch-setup-passwords interactive&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;也可以先自动配置密码后续再修改&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#自动配置每个用户密码（随机生成并返回字符串密码,需要保存好）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;./elasticsearch-setup-passwords auto  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;下图 1 是自动生成密码情况（一定拷贝下来要牢记密码）&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/198/f383d0d38bab2a11f3293d44ffccf0ae.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下图 2 是自定义密码情况&lt;br&gt;
+分别为多个用户设置密码例如：elastic, kibana, logstash_system,beats_system,&lt;br&gt;
+ 设置密码的时候需要连续输入 2 遍。&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/458/363890f3fdffcc0b1bcfaae3c8295952.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;部分内置账号的角色权限解释如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;elastic 账号：拥有 superuser 角色，是内置的超级用户。&lt;/li&gt;
+&lt;li&gt;kibana 账号：拥有 kibana_system 角色，用户 kibana 用来连接 elasticsearch 并与之通信。Kibana 服务器以该用户身份提交请求以访问集群监视 API 和 .kibana 索引。不能访问 index。&lt;/li&gt;
+&lt;li&gt;logstash_system 账号：拥有 logstash_system 角色。用户 Logstash 在 Elasticsearch 中存储监控信息时使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;至此单节点安全配置完毕，重启 es 后访问 9200 会出现用户名和密码的提示窗口，我们就可以通过用户生成的密码过行访问了&lt;/p&gt;
+&lt;h2 id=&#34;5测试访问&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#5测试访问&#34;&gt;#&lt;/a&gt; 5. 测试访问&lt;/h2&gt;
+&lt;p&gt;通过查看证书方式，顺便测试一下密码是否生效了&lt;br&gt;
+浏览器输入 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2lwOjkyMDAvX2xpY2Vuc2U=&#34;&gt;http://IP:9200/_license&lt;/span&gt; 可以看到，弹窗出来，需要输入密码了&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/561/b7034fa6ab245e277567b01d40929119.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;br&gt;
+&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/9b1a95e8a4b361dd4f7e3012300d1115.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附录常见问题&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#附录常见问题&#34;&gt;#&lt;/a&gt; 附录：常见问题&lt;/h2&gt;
+&lt;h3 id=&#34;1如何修改账号密码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1如何修改账号密码&#34;&gt;#&lt;/a&gt; 1. 如何修改账号密码&lt;/h3&gt;
+&lt;p&gt;以 elastic 账号为例，注意需要在 elasticsearch 服务已启动的情况下进行&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;curl -H &amp;#x27;Content-Type: application/json&amp;#x27; -u elastic:123456 -XPUT &amp;#x27;http://localhost:9200/_xpack/security/user/elastic/_password&amp;#x27; -d &amp;#x27;&amp;#123; &amp;quot;password&amp;quot; : &amp;quot;1234567&amp;quot; &amp;#125;&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;2客户端es-head连接问题&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2客户端es-head连接问题&#34;&gt;#&lt;/a&gt; 2. 客户端 ES-HEAD 连接问题&lt;/h3&gt;
+&lt;p&gt;连接失败情况下先检查是否是跨域问题&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http.cors.enabled: true&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.allow-origin: &amp;quot;*&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.allow-headers: Authorization,X-Requested-With,Content-Length,Content-Type&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;例如下图连接的时候报错未授权&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/96/57fa25b106cf1cdee9f44a2f8577e620.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解决方案：在访问的 URL 中拼接授权账号信息&lt;br&gt;
+示例：?auth_user=elastic&amp;amp;auth_password=1234567&lt;/p&gt;
+&lt;p&gt;示例：指定服务端地址以及账户&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://IP:9100/?base_uri=http://IP:9200&amp;amp;auth_user=elastic&amp;amp;auth_password=1234567&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;3启动报xpack相关错&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3启动报xpack相关错&#34;&gt;#&lt;/a&gt; 3. 启动报 XPACK 相关错&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://www.freesion.com/images/947/90ff281ef660a79e49875391f87e474b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;DecoderException: javax.net.ssl.SSLHandshakeException: No available authentication scheme&lt;br&gt;
+&lt;img data-src=&#34;https://www.freesion.com/images/485/efd6d897ad8655121334fd050eecd445.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解决方案：请通过上文配置步骤，排查，检查证书是否已经配置好，以及配置是否填写正确&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch-head/</guid>
+            <title>Linux环境下安装并启动Elasticsearch-head</title>
+            <link>http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch-head/</link>
+            <pubDate>Wed, 08 Feb 2023 15:43:14 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;1-elasticsearch-head介绍&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-elasticsearch-head介绍&#34;&gt;#&lt;/a&gt; 1、&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1lbGFzdGljc2VhcmNoLWhlYWQmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;elasticsearch-head&lt;/span&gt; 介绍&lt;/h1&gt;
+&lt;p&gt;官方地址: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL21vYnovZWxhc3RpY3NlYXJjaC1oZWFk&#34;&gt;https://github.com/mobz/elasticsearch-head&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;elasticsearch-head 是一款用来管理 Elasticsearch 集群的第三方插件工具。 elasticsearch-Head 插件在 5.0 版本之前可以直接以插件的形式直接安装，但是 5.0 以后安装方式发生了改变，需要 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1ub2RlanMmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;nodejs&lt;/span&gt; 环境支持，或者直接使用别人封装好的 docker 镜像，更推荐的是谷歌浏览器的插件。&lt;/p&gt;
+&lt;h1 id=&#34;2-elasticsearch-head安装&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2-elasticsearch-head安装&#34;&gt;#&lt;/a&gt; 2、elasticsearch-head 安装&lt;/h1&gt;
+&lt;h2 id=&#34;npm安装elasticsearch-head&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#npm安装elasticsearch-head&#34;&gt;#&lt;/a&gt; npm 安装 elasticsearch-head&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#下载安装nodejs&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tar xf node-v12.13.0-linux-x64.tar.xz&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mv node-v12.13.0-linux-x64 node&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#修改环境变量&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo &amp;#x27;export PATH=$PATH:/opt/node/bin&amp;#x27; &amp;gt;&amp;gt; /etc/profile&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#配置生效&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;source /etc/profile&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;npm -v&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;node -v&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#下载elasticsearch-head&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;git clone git://github.com/mobz/elasticsearch-head.git&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#进入elasticsearch-head安装目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cd elasticsearch-head&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#配置国内镜像&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;npm install -g cnpm --registry=https://registry.npm.taobao.org&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#安装&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cnpm install&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#启动&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cnpm run start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;修改 Elasticsearch 配置文件，添加如下参数并重启:&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#准许es被跨域访问&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.enabled: true&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.cors.allow-origin: &amp;quot;*&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch7/</guid>
+            <title>Linux环境下安装并启动Elasticsearch7</title>
+            <link>http://example.com/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch7/</link>
+            <pubDate>Wed, 08 Feb 2023 15:29:50 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;elasticsearch&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#elasticsearch&#34;&gt;#&lt;/a&gt; Elasticsearch&lt;/h3&gt;
+&lt;p&gt;​        Elasticsearch (ES) 是一个基于 Lucene 构建的开源、分布式、RESTful 接口全文搜索引擎。Elasticsearch 还是一个分布式文档数据库，其中每个字段均是被索引的数据且可被搜索，它能够扩展至数以百计的服务器存储以及处理 PB 级的数据。它可以在很短的时间内在存储、搜索和分析大量的数据。它通常作为具有复杂搜索场景情况下的核心发动机。es 是由 java 语言编写的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Elasticsearch就是为高可用和可扩展而生的。可以通过购置性能更强的服务器来完成。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/cn/elasticsearch/&#34;&gt;Elasticsearch：官方分布式搜索和分析引擎 | Elastic&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/icon-default.png&#34; alt=&#34;img&#34;&gt;https://www.elastic.co/cn/elasticsearch/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#&#34;&gt;#&lt;/a&gt; &lt;/h2&gt;
+&lt;h2 id=&#34;linux里部署es&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux里部署es&#34;&gt;#&lt;/a&gt; Linux 里部署 ES&lt;/h2&gt;
+&lt;h3 id=&#34;下载地址&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载地址&#34;&gt;#&lt;/a&gt; 下载地址&lt;/h3&gt;
+&lt;p&gt;​        我下载的版本是 ES7.15.1&lt;/p&gt;
+&lt;p&gt;Elasticsearch 7.15.1 | Elastic&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/apple-icon-57x57.png&#34; alt=&#34;img&#34;&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuZWxhc3RpYy5jby9jbi9kb3dubG9hZHMvcGFzdC1yZWxlYXNlcy9lbGFzdGljc2VhcmNoLTctMTUtMQ==&#34;&gt;https://www.elastic.co/cn/downloads/past-releases/elasticsearch-7-15-1&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/74a3f6fc611945ebb8e492204fe4b51f.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/4490382f8fd54a48bbd8e2ffaf2ce6ea.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;上传到linux&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#上传到linux&#34;&gt;#&lt;/a&gt; 上传到 Linux&lt;/h3&gt;
+&lt;p&gt;​    压缩包下载完成后上传到服务器&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3732b77fcd15428e8397739b50f6b3b1.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;解压软件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#解压软件&#34;&gt;#&lt;/a&gt; 解压软件&lt;/h3&gt;
+&lt;p&gt;​     解压到上级目录，然后进行改名&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;# &lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;解压缩&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tar -zxvf elasticsearch-7.15.1-linux-x86_64.tar.gz -C ../&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;# &lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;改名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mv elasticsearch-7.15.1 es-7.15.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/e6ff579f0e6b4aa6994e17629bbaa96a.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/7678de3df173498e92409dc8300f09b5.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 /opt 目录下新建 module/es 目录，同时把 es-7.15.1 移到该目录&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mv es-7.15.1 /opt/module/es&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;创建用户&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#创建用户&#34;&gt;#&lt;/a&gt; 创建用户&lt;/h3&gt;
+&lt;p&gt;​    因为安全问题， Elasticsearch 不允许 root 用户直接运行，所以要创建新用户，在 root 用户中创建新用户。&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;useradd es #新增 es 用户&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;passwd es #为 es 用户设置密码&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;userdel -r es #如果错了，可以删除再加&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;chown -R es:es /opt/module/es/es-7.15.1 #文件夹所有者&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/cf9ac437254f47bfa9e26f4770fa9667.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3b5a89b6cdbb4a3bb6220423400e25d2.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;修改配置文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#修改配置文件&#34;&gt;#&lt;/a&gt; 修改配置文件&lt;/h3&gt;
+&lt;p&gt;修改 /root/es-7.15.1/config/elasticsearch.yml 文件。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d40fbb16c317400495682be93a2e07d7.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 加入如下配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cluster.name: elasticsearch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;node.name: node-1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;network.host: 0.0.0.0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;http.port: 9200&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cluster.initial_master_nodes: [&amp;quot;node-1&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/00e7d21c15c640ba949d3dda5e9ee885.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;修改etcsecuritylimitsconf&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#修改etcsecuritylimitsconf&#34;&gt;#&lt;/a&gt; 修改 /etc/security/limits.conf&lt;/h3&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 在文件末尾中增加下面内容&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 每个进程可以打开的文件数的限制&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;es soft nofile 65536&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;es hard nofile 65536&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/4d4441f8e29346a0bc5a0ac8959477d9.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;修改etcsysctlconf&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#修改etcsysctlconf&#34;&gt;#&lt;/a&gt; 修改 /etc/sysctl.conf&lt;/h3&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;# &lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;在文件中增加下面内容&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;# &lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;一个进程可以拥有的 VMA(虚拟内存区域)的数量,默认值为 65536&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;vm.max_map_count=655360&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;重新加载&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#重新加载&#34;&gt;#&lt;/a&gt; 重新加载&lt;/h3&gt;
+&lt;p&gt;sysctl -p&lt;/p&gt;
+&lt;h3 id=&#34;注意&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#注意&#34;&gt;#&lt;/a&gt; 注意：&lt;/h3&gt;
+&lt;p&gt;​    启动前需要先切换到 es 用户&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;su es&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;启动es&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#启动es&#34;&gt;#&lt;/a&gt; 启动 es&lt;/h3&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动 进入bin目录：&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;./elasticsearch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;后台启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;./elasticsearch -d  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;测试连接&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#测试连接&#34;&gt;#&lt;/a&gt; 测试连接&lt;/h3&gt;
+&lt;p&gt;​    浏览器中打开 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1pcC1mcjVjODZseDd6OjkyMDAv&#34;&gt;http:// 服务器 IP:9200/&lt;/span&gt;, 出现如下则说明安装成功&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0197dcff901f47279750939332674547.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/01/12/%E3%80%90Flutter%E3%80%91Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/</guid>
             <title>Flutter集成中国移动一键登录业务，亲测可行</title>
-            <link>http://example.com/2023/01/12/Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/</link>
+            <link>http://example.com/2023/01/12/%E3%80%90Flutter%E3%80%91Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/</link>
             <pubDate>Thu, 12 Jan 2023 19:29:57 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;flutter集成中国移动一键登录业务&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#flutter集成中国移动一键登录业务&#34;&gt;#&lt;/a&gt; Flutter 集成中国移动一键登录业务&lt;/h1&gt;
 &lt;p&gt;#本文适用于 Flutter 平台开发的小伙伴需要所谓一键登录的业务&lt;/p&gt;
@@ -84,9 +261,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</guid>
+            <guid isPermalink="true">http://example.com/2023/01/11/%E3%80%90Java%E3%80%91JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</guid>
             <title>JVM学习记录</title>
-            <link>http://example.com/2023/01/11/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</link>
+            <link>http://example.com/2023/01/11/%E3%80%90Java%E3%80%91JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</link>
             <pubDate>Wed, 11 Jan 2023 08:54:34 +0800</pubDate>
             <description><![CDATA[ &lt;h4 id=&#34;jvm位置在操作系统之上运行操作系统在硬件之上运行&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jvm位置在操作系统之上运行操作系统在硬件之上运行&#34;&gt;#&lt;/a&gt; JVM 位置：在操作系统之上运行，操作系统在硬件之上运行&lt;/h4&gt;
 &lt;p&gt;JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM&lt;/p&gt;
@@ -298,9 +475,9 @@ d. 查看 mysql 的进程 ps -ef | grep mysql&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/</guid>
+            <guid isPermalink="true">http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/</guid>
             <title>Java多线程学习（吐血超详细总结）</title>
-            <link>http://example.com/2023/01/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/</link>
+            <link>http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/</link>
             <pubDate>Fri, 06 Jan 2023 09:27:00 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;java多线程学习吐血超详细总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#java多线程学习吐血超详细总结&#34;&gt;#&lt;/a&gt; Java 多线程学习（吐血超详细总结）&lt;/h1&gt;
 &lt;p&gt;写在前面的话：此文只能说是 java&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTUlQTQlOUElRTclQkElQkYlRTclQTglOEImYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt; 多线程&lt;/span&gt;的一个入门，其实 Java 里头线程完全可以写一本书了，但是如果最基本的你都学掌握好，又怎么能更上一个台阶呢？如果你觉得此文很简单，那推荐你看看 Java 并发包的的线程池（&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzUxNDg5MzIy&#34;&gt;Java 并发编程与技术内幕：线程池深入理解&lt;/span&gt;），或者看这个专栏：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29sdW1uL2RldGFpbHMvamF2YWhoaWdoY29uY3VycmVuY2UuaHRtbA==&#34;&gt;Java 并发编程与技术内幕&lt;/span&gt;。你将会对 Java 里头的高并发场景下的线程有更加深刻的理解。&lt;/p&gt;
@@ -596,9 +773,9 @@ currentThread (): 得到当前线程。&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/06/Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/</guid>
+            <guid isPermalink="true">http://example.com/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/</guid>
             <title></title>
-            <link>http://example.com/2023/01/06/Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/</link>
+            <link>http://example.com/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/</link>
             <pubDate>Fri, 06 Jan 2023 09:22:50 +0800</pubDate>
             <description><![CDATA[ &lt;hr&gt;
 &lt;h2 id=&#34;titlego语言超全详解入门级&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#titlego语言超全详解入门级&#34;&gt;#&lt;/a&gt; title：Go 语言超全详解（入门级）&lt;/h2&gt;
@@ -1507,9 +1684,9 @@ goto 语句主要是无条件转移到过程中&lt;strong&gt;指定的行&lt;/st
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/</guid>
+            <guid isPermalink="true">http://example.com/2023/01/06/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/</guid>
             <title>Linux下使用war包部署Jenkins</title>
-            <link>http://example.com/2023/01/06/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/</link>
+            <link>http://example.com/2023/01/06/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/</link>
             <pubDate>Fri, 06 Jan 2023 09:06:38 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;linux下使用war包部署jenkins&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux下使用war包部署jenkins&#34;&gt;#&lt;/a&gt; Linux 下使用 war 包部署 Jenkins&lt;/h1&gt;
 &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
@@ -1528,9 +1705,9 @@ goto 语句主要是无条件转移到过程中&lt;strong&gt;指定的行&lt;/st
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/06/Docker%E5%AE%89%E8%A3%85Jenkins/</guid>
+            <guid isPermalink="true">http://example.com/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/</guid>
             <title>Docker安装Jenkins</title>
-            <link>http://example.com/2023/01/06/Docker%E5%AE%89%E8%A3%85Jenkins/</link>
+            <link>http://example.com/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/</link>
             <pubDate>Fri, 06 Jan 2023 08:37:50 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;docker安装jenkins&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#docker安装jenkins&#34;&gt;#&lt;/a&gt; Docker 安装 Jenkins&lt;/h1&gt;
 &lt;h1 id=&#34;一-前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#一-前言&#34;&gt;#&lt;/a&gt; 一、前言&lt;/h1&gt;
@@ -1602,26 +1779,26 @@ goto 语句主要是无条件转移到过程中&lt;strong&gt;指定的行&lt;/st
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/</guid>
+            <guid isPermalink="true">http://example.com/2023/01/04/%E3%80%90RocketMQ%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/</guid>
             <title>Docker环境下部署RocketMQ以及Console</title>
-            <link>http://example.com/2023/01/04/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/</link>
+            <link>http://example.com/2023/01/04/%E3%80%90RocketMQ%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/</link>
             <pubDate>Wed, 04 Jan 2023 08:25:41 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;docker环境下部署rocketmq以及console&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#docker环境下部署rocketmq以及console&#34;&gt;#&lt;/a&gt; Docker 环境下部署 RocketMQ 以及 Console&lt;/h1&gt;
 &lt;h2 id=&#34;1docker-安装rocketmq镜像&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1docker-安装rocketmq镜像&#34;&gt;#&lt;/a&gt; 1.docker 安装 rocketmq 镜像&lt;/h2&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#拉取镜像 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker pull foxiswho/rocketmq:server-4.7.0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker pull foxiswho/rocketmq:broker-4.7.0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;2创建server和broker目录并在目录opt下创建brokerconf&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2创建server和broker目录并在目录opt下创建brokerconf&#34;&gt;#&lt;/a&gt; 2. 创建 server 和 broker 目录，并在目录 /opt 下创建 broker.conf&lt;/h2&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;创建目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mkdir /opt/rocketmq-server&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mkdir /opt/rocketmq-broker/conf -p&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[root@localhost opt]# cat /opt/rocketmq-broker/conf/broker.conf &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;namesrvAddr=&amp;#123;YourNameIPAddr&amp;#125; eg：192.168.1.200:9876&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerClusterName = DefaultCluster&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerName = broker-a&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerId = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;deleteWhen = 04&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fileReservedTime = 48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerRole = ASYNC_MASTER&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;flushDiskType = ASYNC_FLUSH&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerIP1 = &amp;#123;YourBrokerIPAddr&amp;#125; eg：192.168.1.200&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;listenPort=10911&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;创建目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mkdir /opt/rocketmq-server&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mkdir /opt/rocketmq-broker/conf -p&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[root@localhost opt]# cat /opt/rocketmq-broker/conf/broker.conf &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;namesrvAddr=【你的IP地址】:9876&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerClusterName = DefaultCluster&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerName = broker-a&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerId = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;deleteWhen = 04&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fileReservedTime = 48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerRole = ASYNC_MASTER&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;flushDiskType = ASYNC_FLUSH&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerIP1 = 【你的IP地址】&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;listenPort=10911&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;3启动容器并在防火墙放行端口-9876-10911-11011&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3启动容器并在防火墙放行端口-9876-10911-11011&#34;&gt;#&lt;/a&gt; 3. 启动容器并在防火墙放行端口 9876 、10911 、11011&lt;/h2&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;RocketMQ默认使用3个端口：9876 、10911 、11011&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;如果防火墙没有关闭的话，那么防火墙就必须开放这些端口：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nameserver 默认使用 9876 端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;master 默认使用 10911 端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;slave 默认使用11011 端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动rocketmq-server&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -d \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqnamesrv \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 9876:9876 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /opt/rocketmq-server/logs:/root/logs \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /opt/rocketmq-server/store:/root/store \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;MAX_POSSIBLE_HEAP=100000000&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;foxiswho/rocketmq:4.7.0 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sh mqnamesrv&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动rocketmq-broker&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -d  \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqbroker \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--link rmqnamesrv:namesrv \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10911:10911 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10909:10909 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /opt/rocketmq-broker/logs:/root/logs \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /opt/rocketmq-broker/store:/root/store \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /opt/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.7.0/conf/broker.conf \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;NAMESRV_ADDR=namesrv:9876&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;MAX_POSSIBLE_HEAP=200000000&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;autoCreateTopicEnable=true&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;foxiswho/rocketmq:4.7.0 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sh mqbroker -c /opt/rocketmq-4.7.0/conf/broker.conf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动RocketMQ的管理工具rocketmq-console&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -itd -e &amp;quot;JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.1.200:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false&amp;quot; -p 9877:8080 -t styletang/rocketmq-console-ng:latest&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;RocketMQ默认使用3个端口：9876 、10911 、11011&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;如果防火墙没有关闭的话，那么防火墙就必须开放这些端口：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nameserver 默认使用 9876 端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;master 默认使用 10911 端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;slave 默认使用11011 端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动rocketmq-server&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -d \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqnamesrv \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 9876:9876 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /opt/rocketmq-server/logs:/root/logs \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /opt/rocketmq-server/store:/root/store \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;MAX_POSSIBLE_HEAP=100000000&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;foxiswho/rocketmq:4.7.0 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sh mqnamesrv&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动rocketmq-broker&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -d  \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqbroker \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--link rmqnamesrv:namesrv \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10911:10911 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10909:10909 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /opt/rocketmq-broker/logs:/root/logs \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /opt/rocketmq-broker/store:/root/store \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /opt/rocketmq-broker/conf/broker.conf:/opt/rocketmq-broker/conf/broker.conf \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;NAMESRV_ADDR=【你的IP地址】:9876&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;MAX_POSSIBLE_HEAP=200000000&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;autoCreateTopicEnable=true&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;foxiswho/rocketmq:4.7.0 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sh mqbroker -c /opt/rocketmq-broker/conf/broker.conf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;启动RocketMQ的管理工具rocketmq-console&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -itd -e &amp;quot;JAVA_OPTS=-Drocketmq.namesrv.addr=【你的IP地址】:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false&amp;quot; -p 9877:8080 -t styletang/rocketmq-console-ng:latest&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;4测试访问console控制台&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#4测试访问console控制台&#34;&gt;#&lt;/a&gt; 4. 测试访问 console 控制台&lt;/h2&gt;
 &lt;p&gt;浏览器输入：192.168.1.200:9877&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230104082814121.png&#34; alt=&#34;image-20230104082814121&#34;&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/29/TheadLocal/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/</guid>
             <title>ThreadLocal</title>
-            <link>http://example.com/2022/12/29/TheadLocal/</link>
+            <link>http://example.com/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/</link>
             <pubDate>Thu, 29 Dec 2022 17:20:11 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;threadlocal-详解&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#threadlocal-详解&#34;&gt;#&lt;/a&gt; ThreadLocal 详解&lt;/h1&gt;
 &lt;p&gt;ThreadLocal 概述&lt;br&gt;
@@ -1865,9 +2042,9 @@ private void set(ThreadLocal&amp;lt;?&amp;gt; key, Object value) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
             <title>阿里云OSS的CDN加速和OSS传输加速的区别</title>
-            <link>http://example.com/2022/12/27/%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#概述&#34;&gt;#&lt;/a&gt; 概述&lt;/h2&gt;
 &lt;p&gt;本文主要介绍阿里云对象存储 OSS 的传输加速功能和 CDN 加速 OSS 资源的区别，以便您根据实际业务进行选择。&lt;/p&gt;
@@ -1922,9 +2099,9 @@ private void set(ThreadLocal&amp;lt;?&amp;gt; key, Object value) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</guid>
             <title>设计模式（一）</title>
-            <link>http://example.com/2022/12/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;设计模式笔记-__brathli&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#设计模式笔记-__brathli&#34;&gt;#&lt;/a&gt; 设计模式笔记  &lt;strong&gt;__Brath.Li&lt;/strong&gt;&lt;/h3&gt;
 &lt;h3 id=&#34;gof2323种设计模式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gof2323种设计模式&#34;&gt;#&lt;/a&gt; GoF23：23 种设计模式&lt;/h3&gt;
@@ -2057,9 +2234,9 @@ private void set(ThreadLocal&amp;lt;?&amp;gt; key, Object value) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
             <title>腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</title>
-            <link>http://example.com/2022/12/27/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案&#34;&gt;#&lt;/a&gt; 腾讯云服务器 liux 系统下无法通过 springBoot 内置 mail 发送邮件的解决方案&lt;/h3&gt;
 &lt;p&gt;原因&lt;/p&gt;
@@ -2071,9 +2248,9 @@ private void set(ThreadLocal&amp;lt;?&amp;gt; key, Object value) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/</guid>
             <title>端口占用问题</title>
-            <link>http://example.com/2022/12/27/%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;安装好 Maven 之后配置环境变量：&lt;/p&gt;
 &lt;p&gt;netstat -ano：查询全部活动连接&lt;/p&gt;
@@ -2083,9 +2260,9 @@ private void set(ThreadLocal&amp;lt;?&amp;gt; key, Object value) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SpringCloud%E3%80%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/</guid>
             <title>微服务拆分细则</title>
-            <link>http://example.com/2022/12/27/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SpringCloud%E3%80%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;​	在微服务的设计过程中，微服务设计有多大，微服务粒度的把控，一直是设计人员需要考虑和设计的难点。&lt;/p&gt;
 &lt;p&gt;因为服务粒度设计过大，不能得到微服务架构带来的便利，例如：更加敏态的开发，更频繁的版本发布，由于服务功能划分的小，可以根据实际的业务场景，选择更加合适的技术进行代码重构等等。&lt;/p&gt;
@@ -2204,9 +2381,9 @@ private void set(ThreadLocal&amp;lt;?&amp;gt; key, Object value) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/</guid>
             <title>宝塔部署Docker—Mysql镜像</title>
-            <link>http://example.com/2022/12/27/%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;转自 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE2MzAyNTkvYXJ0aWNsZS9kZXRhaWxzLzEyNDQ5NzM0Mw==&#34;&gt;https://blog.csdn.net/u011630259/article/details/124497343&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;宝塔部署dockermysql镜像&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#宝塔部署dockermysql镜像&#34;&gt;#&lt;/a&gt; 宝塔部署 Docker—Mysql 镜像&lt;/h2&gt;
@@ -2239,9 +2416,9 @@ MySQL8.0.28&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Docker%E3%80%91%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/</guid>
             <title>使用docker搭建开发环境记录</title>
-            <link>http://example.com/2022/12/27/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Docker%E3%80%91%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;使用docker搭建开发环境记录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#使用docker搭建开发环境记录&#34;&gt;#&lt;/a&gt; 使用 docker 搭建开发环境记录&lt;/h1&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker start 容器名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker stop 容器名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker restart 容器名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run = docker create + docker start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -2256,9 +2433,9 @@ MySQL8.0.28&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/</guid>
             <title>云服务器部署宝塔面板</title>
-            <link>http://example.com/2022/12/27/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;购买好服务器后，进入 Xshell：&lt;/p&gt;
 &lt;p&gt;1. 安装宝塔面板&lt;/p&gt;
@@ -2269,9 +2446,9 @@ MySQL8.0.28&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Mysql%E3%80%91%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/</guid>
             <title>主从同步遇到 Got fatal error 1236 from master when reading data from binary log</title>
-            <link>http://example.com/2022/12/27/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Mysql%E3%80%91%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#&#34;&gt;#&lt;/a&gt; &lt;/h1&gt;
 &lt;p&gt;首先遇到这个是因为 binlog 位置索引处的问题，不要&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1yZXNldCZhbXA7c3BtPTEwMDEuMjEwMS4zMDAxLjcwMjA=&#34;&gt; reset&lt;/span&gt; slave；&lt;/p&gt;
@@ -2291,9 +2468,9 @@ MySQL8.0.28&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/</guid>
             <title>ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</title>
-            <link>http://example.com/2022/12/27/ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;01 ZGC 简介&lt;br&gt;
  ZGC 是一个可扩展的低延迟垃圾收集器，能够处理 8MB 到 16TB 大小的堆，最大暂停时间为亚毫秒。&lt;/p&gt;
@@ -2478,9 +2655,9 @@ MySQL8.0.28&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</guid>
             <title>Volatile关键字</title>
-            <link>http://example.com/2022/12/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;volatile关键字&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#volatile关键字&#34;&gt;#&lt;/a&gt; Volatile 关键字&lt;/h1&gt;
 &lt;p&gt;Volatile 关键字的作用主要有如下两个：&lt;/p&gt;
@@ -2536,9 +2713,9 @@ JMM 内存屏障插入策略如下：&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Typora%E3%80%91typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/</guid>
             <title>Typora使用gitee作为图库用picgo上传图片的教程~</title>
-            <link>http://example.com/2022/12/27/typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Typora%E3%80%91typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;ul&gt;
@@ -2606,9 +2783,9 @@ JMM 内存屏障插入策略如下：&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/SVN&amp;Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Git%E3%80%91SVN&amp;Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</guid>
             <title>SVN&amp;Git使用手册</title>
-            <link>http://example.com/2022/12/27/SVN&amp;Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Git%E3%80%91SVN&amp;Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;切记 代码是先更新再提交.&lt;br&gt;
 （一）SVN 和 GIt 区别&lt;br&gt;
@@ -2769,9 +2946,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SQl%E3%80%91SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
             <title>Squirrel SQL客户端安装与使用</title>
-            <link>http://example.com/2022/12/27/SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SQl%E3%80%91SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;一-squirrel简介&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#一-squirrel简介&#34;&gt;#&lt;/a&gt; 一、Squirrel 简介&lt;/h1&gt;
 &lt;p&gt;Squirrel 是一个连接数据库的客户端工具，一般支持 JDBC 的数据库都可以用它来简介，如连接 MySQL。&lt;/p&gt;
@@ -2827,9 +3004,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</guid>
             <title>SpringBoot自动装配原理</title>
-            <link>http://example.com/2022/12/27/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;自动装配原理：&lt;/p&gt;
 &lt;p&gt;要学会 SpringBoot 自动装配原理，首先要来看装配了什么？或者说是装配有什么用？&lt;/p&gt;
@@ -3139,9 +3316,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/</guid>
             <title>SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</title>
-            <link>http://example.com/2022/12/27/SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;springbootredis实现高性能强支持的点赞流程设计&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#springbootredis实现高性能强支持的点赞流程设计&#34;&gt;#&lt;/a&gt; SpringBoot+Redis 实现高性能，强支持的点赞流程设计&lt;/h1&gt;
 &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
@@ -3289,9 +3466,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Seatav%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/</guid>
             <title>Linux以及Windows部署Seata服务</title>
-            <link>http://example.com/2022/12/27/Seatav%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;1. 确保 linux 有 Nacos 正常启动，并知晓正确的端口 用户名 密码&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
@@ -3315,9 +3492,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/RocketMQ%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/</guid>
             <title>RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用</title>
-            <link>http://example.com/2022/12/27/RocketMQ%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;rocketmq-440-下载&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rocketmq-440-下载&#34;&gt;#&lt;/a&gt; RocketMQ 4.4.0 下载&lt;/h2&gt;
 &lt;p&gt;作者已经在自己的服务器挂载了 RocketMQ 4.4.0 的安装包和控制台，点击链接下载&lt;/p&gt;
@@ -3352,9 +3529,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/RocketMQ/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/</guid>
             <title>RocketMQ</title>
-            <link>http://example.com/2022/12/27/RocketMQ/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;rocketmq&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rocketmq&#34;&gt;#&lt;/a&gt; RocketMQ&lt;/h1&gt;
 &lt;h2 id=&#34;应用场景&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#应用场景&#34;&gt;#&lt;/a&gt; 应用场景&lt;/h2&gt;
@@ -3512,9 +3689,9 @@ Go to Preferences &amp;gt; Version Control &amp;gt; SubVersion &amp;gt; Enable I
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
             <title>RequestParam 和 PathVariable的区别</title>
-            <link>http://example.com/2022/12/27/RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;RequestParam 和 PathVariable 注解是用于从 request 中接收请求的，两个都可以接收参数，关键点不同的是 RequestParam 是从 request 里面拿取值，而 PathVariable 是从一个 URI 模板里面来填充&lt;/p&gt;
 &lt;p&gt;PathVariable&lt;br&gt;
@@ -3560,9 +3737,9 @@ PathVariable有value，name，required这三个参数，而RequestParam也有这
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
             <title>Redis持久化</title>
-            <link>http://example.com/2022/12/27/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;一-持久化简介&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#一-持久化简介&#34;&gt;#&lt;/a&gt; &lt;strong&gt;一、持久化简介&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Redis&lt;/strong&gt; 的数据 &lt;strong&gt;全部存储&lt;/strong&gt; 在 &lt;strong&gt;内存&lt;/strong&gt; 中，如果 &lt;strong&gt;突然宕机&lt;/strong&gt;，数据就会全部丢失，因此必须有一套机制来保证 Redis 的数据不会因为故障而丢失，这种机制就是 Redis 的 &lt;strong&gt;持久化机制&lt;/strong&gt;，它会将内存中的数据库状态保存到磁盘 中。&lt;/p&gt;
@@ -3630,9 +3807,9 @@ PathVariable有value，name，required这三个参数，而RequestParam也有这
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/</guid>
             <title>redis主从集群-哨兵模式搭建文档</title>
-            <link>http://example.com/2022/12/27/Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;准备工作&lt;/p&gt;
 &lt;ul&gt;
@@ -3716,9 +3893,9 @@ PathVariable有value，name，required这三个参数，而RequestParam也有这
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/</guid>
             <title>Redis与Mysql | Master与Slave同步：canal教学</title>
-            <link>http://example.com/2022/12/27/Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言：&lt;/h2&gt;
 &lt;p&gt;​		作者最近在做自己的项目，使用到 Redis，需要热更新，修改 Mysql 后同步 Redis 缓存，出于对圈子的贡献，也较于当前的 canal 的博客大多数不是很详细，所以写下这篇文章，时间是 2022 年 6 月 29 日。目的是帮助更多的人，希望能为在祖国的经济发展作出小小的贡献。&lt;/p&gt;
@@ -3792,9 +3969,9 @@ mixed：混合模式复制（mixed-based replication，MBR）&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/node&amp;npm&amp;cnpm&amp;webpack&amp;yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Node%E3%80%91node&amp;npm&amp;cnpm&amp;webpack&amp;yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid>
             <title>node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程</title>
-            <link>http://example.com/2022/12/27/node&amp;npm&amp;cnpm&amp;webpack&amp;yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Node%E3%80%91node&amp;npm&amp;cnpm&amp;webpack&amp;yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;nodejs&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nodejs&#34;&gt;#&lt;/a&gt; Node.js&lt;/h3&gt;
 &lt;p&gt;​		nodejs 是一个让 JavaScript 运行在服务端的开发平台，它让 JavaScript 成为与 PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言&lt;/p&gt;
@@ -3848,9 +4025,9 @@ mixed：混合模式复制（mixed-based replication，MBR）&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Nginx%E3%80%91Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/</guid>
             <title>Nginx以及Keepalived安装以及部署</title>
-            <link>http://example.com/2022/12/27/Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Nginx%E3%80%91Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;​		反向代理：指的是用户要访问 youtube, 但是 youtube 悄悄地把这个请求交给后台 N 台服务器中的其中一台来做，这种方式就是反向代理了。&lt;/p&gt;
 &lt;p&gt;​		负载均衡：&lt;/p&gt;
@@ -3873,9 +4050,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/</guid>
             <title>mysql查询技巧</title>
-            <link>http://example.com/2022/12/27/Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;mysql-查询当天-昨天-本周-上周-本月-上月-今年-去年数据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql-查询当天-昨天-本周-上周-本月-上月-今年-去年数据&#34;&gt;#&lt;/a&gt; mysql 查询当天、昨天、本周、上周、本月、上月、今年、去年数据&lt;/h1&gt;
 &lt;h2 id=&#34;mysql查询今天-昨天-7天-近30天-本月-上一月-数据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql查询今天-昨天-7天-近30天-本月-上一月-数据&#34;&gt;#&lt;/a&gt; mysql 查询今天、昨天、7 天、近 30 天、本月、上一月 数据&lt;/h2&gt;
@@ -3896,9 +4073,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
             <title>MySQL安装 starting the server失败的解决办法</title>
-            <link>http://example.com/2022/12/27/MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;mysql安装-starting-the-server失败的解决办法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql安装-starting-the-server失败的解决办法&#34;&gt;#&lt;/a&gt; MySQL 安装 starting the server 失败的解决办法&lt;/h3&gt;
 &lt;p&gt;​		如果电脑是第一次安装 MySQL，一般不会出现这样的报错。如下图所示。starting the server 失败，通常是因为上次安装的该软件未清除干净。&lt;/p&gt;
@@ -3917,9 +4094,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4/</guid>
             <title>Mysql主从集群搭建文档，实现读写分离</title>
-            <link>http://example.com/2022/12/27/Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;mysql主从集群搭建文档实现读写分离&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql主从集群搭建文档实现读写分离&#34;&gt;#&lt;/a&gt; Mysql 主从集群搭建文档，实现读写分离&lt;/h2&gt;
 &lt;p&gt;​		最近在自己写的项目中需要应对大量的用户查询读写操作，一台服务器当然是不够的，所以在边学边敲的背景下，记录这篇笔记，从 0 开始搭建主从集群。&lt;/p&gt;
@@ -3969,9 +4146,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid>
             <title>MySQL8下载与安装教程</title>
-            <link>http://example.com/2022/12/27/Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;mysql下载与安装8020版教程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql下载与安装8020版教程&#34;&gt;#&lt;/a&gt; MySQL 下载与安装（8.0.20 版）教程&lt;/h1&gt;
 &lt;p&gt;MySQL 官网：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9kZXYubXlzcWwuY29tL2Rvd25sb2Fkcy9teXNxbC8=&#34;&gt;链接&lt;/span&gt;&lt;/p&gt;
@@ -4033,9 +4210,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Maven%E3%80%91MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/</guid>
             <title>Maven通过命令提示符引入jar包的流程</title>
-            <link>http://example.com/2022/12/27/MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Maven%E3%80%91MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;安装好 Maven 之后配置环境变量：&lt;/p&gt;
 &lt;p&gt;​		在系统变量新建 “MAVEN_HOME” 值为：Maven 的安装路径：&lt;strong&gt;E:\Maven\apache-maven-3.5.3&lt;/strong&gt;，接着在 Path 变量中，添加：% MAVEN_HOME%\bin，指定 maven 的 bin 路径。&lt;/p&gt;
@@ -4060,9 +4237,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</guid>
             <title>Maven加强版 — mvnd的使用测试</title>
-            <link>http://example.com/2022/12/27/Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;maven加强版-mvnd的使用测试&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#maven加强版-mvnd的使用测试&#34;&gt;#&lt;/a&gt; Maven 加强版 — mvnd 的使用测试&lt;/h1&gt;
 &lt;p&gt;Maven、gradle 作为主流的构建工具，几乎所有的 Java 项目都使用，但是 Maven 相对 gradle 来说，构建还是太慢了。特别是构建十几个子项目的程序。&lt;/p&gt;
@@ -4128,9 +4305,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/</guid>
             <title>Linux服务器下部署vue 2.0项目</title>
-            <link>http://example.com/2022/12/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;一-安装vue环境&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#一-安装vue环境&#34;&gt;#&lt;/a&gt; 一、安装 VUE 环境&lt;/h3&gt;
 &lt;p&gt;1.wget 指定进行下载，下载后文件默认存在根目录下的 root 包下面；&lt;/p&gt;
@@ -4206,9 +4383,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/</guid>
             <title>Linux下docer部署mysql</title>
-            <link>http://example.com/2022/12/27/Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;linux下docer部署mysql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux下docer部署mysql&#34;&gt;#&lt;/a&gt; Linux 下 docer 部署 mysql&lt;/h2&gt;
 &lt;p&gt;部署方法：&lt;/p&gt;
@@ -4216,9 +4393,9 @@ Keepalived 以 VRRP 协议为实现基础，使用 VRRP 协议来实现高可用
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</guid>
             <title>Knife4J接口文档</title>
-            <link>http://example.com/2022/12/27/Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;Swagger2 及 knife4j 使用&lt;/p&gt;
 &lt;p&gt;最近项目中用到了 Swagger2 和 knife4j 作为接口文档。所以自己简单搭建了一套环境学习下，总体体验下来，这个框架很方便也很简单易用。&lt;/p&gt;
@@ -4366,9 +4543,9 @@ public Boolean save(
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
             <title>JUC并发多线程笔记</title>
-            <link>http://example.com/2022/12/27/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;什么是juc&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#什么是juc&#34;&gt;#&lt;/a&gt; 什么是 JUC&lt;/h3&gt;
 &lt;h4 id=&#34;进程与线程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#进程与线程&#34;&gt;#&lt;/a&gt; 进程与线程&lt;/h4&gt;
@@ -4629,9 +4806,9 @@ public Boolean save(
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Hexo/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/</guid>
             <title>Hexo搭建</title>
-            <link>http://example.com/2022/12/27/Hexo/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;hexo框架个人博客搭建&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hexo框架个人博客搭建&#34;&gt;#&lt;/a&gt; hexo 框架个人博客搭建&lt;/h1&gt;
 &lt;h2 id=&#34;1-环境准备&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-环境准备&#34;&gt;#&lt;/a&gt; 1 环境准备&lt;/h2&gt;
@@ -4697,9 +4874,9 @@ public Boolean save(
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Hbase%E5%AD%A6%E4%B9%A0/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/</guid>
             <title>Hbase</title>
-            <link>http://example.com/2022/12/27/Hbase%E5%AD%A6%E4%B9%A0/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;介绍&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#介绍&#34;&gt;#&lt;/a&gt; 介绍：&lt;/h2&gt;
 &lt;p&gt;​		Hbase 是 bigtable 的开源山寨版本。是建立在 HDFS 之上，提供高可靠性、高性能、列存储、可伸缩、实时读写的数据库系统。它介于 nosql 和 RDBMS 之间，仅能通过主键 (row key) 和主键的 range 来检索数据，仅支持单行事务 (可通过 hive 支持来实现多表 join 等复杂操作)。主要用来存储非结构化和半结构化的松散数据。与 hadoop 一样，Hbase 目标主要依靠横向扩展，通过不断增加廉价的商用服务器，来增加计算和存储能力。&lt;/p&gt;
@@ -4892,9 +5069,9 @@ public Boolean save(
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/</guid>
             <title>Hbase整合SpringBoot的问题</title>
-            <link>http://example.com/2022/12/27/Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;在一个 Demo 中，springboot 整合 Hbase 出了一个难解决的问题：&lt;/p&gt;
 &lt;p&gt;tried to access method com.google.common.base.Stopwatch.&lt;init&gt;()V from class org.apache.hadoop.hbase.zookeeper.MetaTableLocator&lt;/p&gt;
@@ -4902,9 +5079,9 @@ public Boolean save(
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/</guid>
             <title>Github访问加速方法</title>
-            <link>http://example.com/2022/12/27/Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;1-获取延迟最小ip地址&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-获取延迟最小ip地址&#34;&gt;#&lt;/a&gt; 1. 获取延迟最小 IP 地址&lt;/h2&gt;
 &lt;p&gt;首先，打开&lt;/p&gt;
@@ -4929,9 +5106,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/</guid>
             <title>Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</title>
-            <link>http://example.com/2022/12/27/Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;1. 问题：Flutter 加载 GIF 之后，只有第一次进入页面才会执行动画，接下来都不会执行了&lt;br&gt;
  2. 原因：因为 Flutter 的图片缓存机制，在第一次加载图片后，会将图片缓存下来，所以再次访问，你看见的还是上次的已经执行完毕的动画&lt;br&gt;
@@ -4940,9 +5117,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Flutter%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/</guid>
             <title>Flutter全网最全学习笔记！</title>
-            <link>http://example.com/2022/12/27/Flutter%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;flutter学习文档authorbrath&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#flutter学习文档authorbrath&#34;&gt;#&lt;/a&gt; Flutter 学习文档 —Author：Brath&lt;/h1&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://brath.cloud/blogImg/4d4dd7f20a6a494282214c730611df0e.webp&#34; alt=&#34;img&#34;&gt;&lt;img data-src=&#34;data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==&#34; alt=&#34;点击并拖拽以移动&#34;&gt;&lt;/p&gt;
@@ -5531,9 +5708,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/</guid>
             <title>Flutter开发中使用WIFI真机调试</title>
-            <link>http://example.com/2022/12/27/Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;flutter开发中使用wifi真机调试&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#flutter开发中使用wifi真机调试&#34;&gt;#&lt;/a&gt; Flutter 开发中使用 WIFI 真机调试&lt;/h1&gt;
 &lt;h4 id=&#34;使用vscode开发flutter用wifi-或者-手机热点进行-无线调试过程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#使用vscode开发flutter用wifi-或者-手机热点进行-无线调试过程&#34;&gt;#&lt;/a&gt; 使用 vscode 开发 flutter，用 wifi 或者 手机热点进行 无线调试过程&lt;/h4&gt;
@@ -5544,9 +5721,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Flutter_GetX%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/</guid>
             <title>Flutter GETX框架</title>
-            <link>http://example.com/2022/12/27/Flutter_GetX%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;​		GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理。&lt;/p&gt;
 &lt;p&gt;​		与其说是一个状态管理库，倒不如是是一个简化 Flutter 开发的百宝箱。它提供了很多工具来简化我们的开发，本篇我们先对 GetX 有一个大概的认识，然后接下来的篇章再将 GetX 的具体应用。&lt;/p&gt;
@@ -5673,9 +5850,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/</guid>
             <title>Flutter 流畅度优化组件 Keframe</title>
-            <link>http://example.com/2022/12/27/Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;最近在开发一款 APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82OTc5NzgxOTk3NTY4ODg0NzY2&#34;&gt;https://juejin.cn/post/6979781997568884766&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Nayuta 的 Keframe 组件正好可以满足帧率优化的问题&lt;/p&gt;
@@ -5837,15 +6014,15 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/</guid>
             <title>ELASTICSEARCH7.X安全性之访问密码设置</title>
-            <link>http://example.com/2022/12/27/Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;elasticsearch7x安全性之访问密码设置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#elasticsearch7x安全性之访问密码设置&#34;&gt;#&lt;/a&gt; ELASTICSEARCH7.X 安全性之访问密码设置&lt;/h2&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;当我们安装完ElasticSearch的时候发现，访问过程中我们没有任何安全认证就可以直接访问并操作。如果是生产环境，端口向外暴露的话，那么对数据的安全性是无法得到保障的。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;一般解决方案有&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;开启 ElasticSearch 认证插件，访问的时候添加账密不就好了&lt;/li&gt;
+&lt;li&gt;开启 ElasticSearch 认证插件，访问的时候添加账密&lt;/li&gt;
 &lt;li&gt;当然也可以通过 nginx 作代理防护&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;本文主要讲解通过启用 X-Pack 来设置 ElasticSearch 的访问密码。&lt;/p&gt;
@@ -5921,9 +6098,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Elasticsearch/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch/</guid>
             <title>Elasticsearch学习</title>
-            <link>http://example.com/2022/12/27/Elasticsearch/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;elasticsearch&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#elasticsearch&#34;&gt;#&lt;/a&gt; Elasticsearch&lt;/h1&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://images-jsh.oss-cn-beijing.aliyuncs.com/img/elasticsearch.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
@@ -6106,9 +6283,9 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90RocketMQ%E3%80%91docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/</guid>
             <title>docker简单部署rocketMQ</title>
-            <link>http://example.com/2022/12/27/docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90RocketMQ%E3%80%91docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;docker简单部署rocketmq&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#docker简单部署rocketmq&#34;&gt;#&lt;/a&gt; docker 简单部署 rocketMQ&lt;/h1&gt;
 &lt;p&gt;1. 创建 namesrv 服务&lt;br&gt;
@@ -6124,12 +6301,12 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
 &lt;h2 id=&#34;创建配置文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#创建配置文件&#34;&gt;#&lt;/a&gt; 创建配置文件&lt;/h2&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vi /docker/rocketmq/conf/broker.conf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 所属集群名称，如果节点较多可以配置多个&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerClusterName = DefaultCluster&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#broker名称，master和slave使用相同的名称，表明他们的主从关系&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerName = broker-a&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#0表示Master，大于0表示不同的slave&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerId = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#表示几点做消息删除动作，默认是凌晨4点&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;deleteWhen = 04&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#在磁盘上保留消息的时长，单位是小时&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fileReservedTime = 48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#有三个值：SYNC_MASTER，ASYNC_MASTER，SLAVE；同步和异步表示Master和Slave之间同步数据的机制；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerRole = ASYNC_MASTER&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#刷盘策略，取值为：ASYNC_FLUSH，SYNC_FLUSH表示同步刷盘和异步刷盘；SYNC_FLUSH消息写入磁盘后才返回成功状态，ASYNC_FLUSH不需要；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;flushDiskType = ASYNC_FLUSH&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 磁盘使用达到95%之后,生产者再写入消息会报错 CODE: 14 DESC: service not available now, maybe disk full&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;diskMaxUsedSpaceRatio=95&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;namesrvAddr=【IP】:9876&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;brokerIP1 = 【IP】&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;构建broker容器&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#构建broker容器&#34;&gt;#&lt;/a&gt; 构建 broker 容器&lt;/h2&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker run -d  \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqbroker \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--link rmqnamesrv:namesrv \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10911:10911 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10912:10912 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10909:10909 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /docker/rocketmq/data/broker/logs:/root/logs \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /docker/rocketmq/data/broker/store:/root/store \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /docker/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;NAMESRV_ADDR= 43.143.40.221:9876&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;MAX_POSSIBLE_HEAP=200000000&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rocketmqinc/rocketmq \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker run -d  \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqbroker \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--link rmqnamesrv:namesrv \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10911:10911 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10912:10912 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 10909:10909 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /docker/rocketmq/data/broker/logs:/root/logs \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v  /docker/rocketmq/data/broker/store:/root/store \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v /docker/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;NAMESRV_ADDR= 【你的IP地址】:9876&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;MAX_POSSIBLE_HEAP=200000000&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rocketmqinc/rocketmq \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h1 id=&#34;3创建rockermq-console服务&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3创建rockermq-console服务&#34;&gt;#&lt;/a&gt; 3. 创建 rockermq-console 服务&lt;/h1&gt;
 &lt;h2 id=&#34;拉取镜像&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#拉取镜像&#34;&gt;#&lt;/a&gt; 拉取镜像&lt;/h2&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker pull pangliang/rocketmq-console-ng&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;构建rockermq-console容器&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#构建rockermq-console容器&#34;&gt;#&lt;/a&gt; 构建 rockermq-console 容器&lt;/h2&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker run -d \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqadmin \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;JAVA_OPTS=-Drocketmq.namesrv.addr=43.143.40.221:9876 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-Dcom.rocketmq.sendMessageWithVIPChannel=false&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 9877:8080 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pangliang/rocketmq-console-ng&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker run -d \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--restart=always \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--name rmqadmin \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e &amp;quot;JAVA_OPTS=-Drocketmq.namesrv.addr=【你的IP地址】:9876 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-Dcom.rocketmq.sendMessageWithVIPChannel=false&amp;quot; \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p 9877:8080 \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pangliang/rocketmq-console-ng&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;关闭防火墙&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关闭防火墙&#34;&gt;#&lt;/a&gt; 关闭防火墙&lt;/h3&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;systemctl stop firewalld.service&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;开放指定端口&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#开放指定端口&#34;&gt;#&lt;/a&gt; 开放指定端口&lt;/h3&gt;
@@ -6140,17 +6317,17 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效&lt;/p
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Docker%E3%80%91Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/</guid>
             <title>Docker环境部署Reids镜像作为从节点</title>
-            <link>http://example.com/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Docker%E3%80%91Docker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2Reids%E9%95%9C%E5%83%8F%E4%BD%9C%E4%B8%BA%E4%BB%8E%E8%8A%82%E7%82%B9/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;docker环境部署reids镜像作为从节点&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#docker环境部署reids镜像作为从节点&#34;&gt;#&lt;/a&gt; Docker 环境部署 Reids 镜像作为从节点&lt;/h2&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 拉取镜像&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker pull redis&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 配置文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;本地：/mydata/redis/data/redis.conf 提前准备好&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;主要配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;bind 127.0.0.1 #注释掉这部分，使redis可以外部访问&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;daemonize no#用守护线程的方式启动&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;requirepass 你的密码#给redis设置密码&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;appendonly yes#redis持久化　　默认是no&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp-keepalive 300 #防止出现远程主机强迫关闭了一个现有的连接的错误 默认是300&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 创建实例并启动&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;docker run -p 6380:6379 --name redis -v /mydata/redis/data/redis.conf:/etc/redis/redis.conf  -v /mydata/redis/data:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85vim/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Docker%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85vim/</guid>
             <title>Docker环境下安装vim</title>
-            <link>http://example.com/2022/12/27/Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85vim/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Docker%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85vim/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;docker环境下安装vim&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#docker环境下安装vim&#34;&gt;#&lt;/a&gt; Docker 环境下安装 vim&lt;/h2&gt;
 &lt;p&gt;在使用 docker 容器时，容器一般没有安装 vim，就需要安装 vim&lt;br&gt;
@@ -6165,9 +6342,9 @@ apt-get install vim 命令用于安装 vim，但是下载过慢。&lt;br&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;apt-get install vim&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</guid>
             <title>CompletableFuture使用文档</title>
-            <link>http://example.com/2022/12/27/CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;背景：&lt;br&gt;
 CompletableFuture 字面翻译过来，就是 “可完成的 Future”。同传统的 Future 相比较，CompletableFuture 能够主动设置计算的结果值（主动终结计算过程，即 completable），从而在某些场景下主动结束阻塞等待。而 Future 由于不能主动设置计算结果值，一旦调用 get () 进行阻塞等待，要么当计算结果产生，要么超时，才会返回。&lt;/p&gt;
@@ -6238,9 +6415,9 @@ allOf-allOf 方法用来实现多 CompletableFuture 的同时返回。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/CAS%E6%9C%BA%E5%88%B6/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91CAS%E6%9C%BA%E5%88%B6/</guid>
             <title>CAS机制</title>
-            <link>http://example.com/2022/12/27/CAS%E6%9C%BA%E5%88%B6/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91CAS%E6%9C%BA%E5%88%B6/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;cas机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cas机制&#34;&gt;#&lt;/a&gt; CAS 机制&lt;/h1&gt;
 &lt;h3 id=&#34;我们先看一段代码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#我们先看一段代码&#34;&gt;#&lt;/a&gt; 我们先看一段代码：&lt;/h3&gt;
@@ -6353,9 +6530,9 @@ allOf-allOf 方法用来实现多 CompletableFuture 的同时返回。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/CAS-ABA%E9%97%AE%E9%A2%98/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91CAS-ABA%E9%97%AE%E9%A2%98/</guid>
             <title>CAS-ABA问题</title>
-            <link>http://example.com/2022/12/27/CAS-ABA%E9%97%AE%E9%A2%98/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91CAS-ABA%E9%97%AE%E9%A2%98/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;cas-aba问题&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cas-aba问题&#34;&gt;#&lt;/a&gt; CAS-ABA 问题&lt;/h1&gt;
 &lt;h2 id=&#34;一概述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#一概述&#34;&gt;#&lt;/a&gt; 一。概述：&lt;/h2&gt;
@@ -6380,9 +6557,9 @@ allOf-allOf 方法用来实现多 CompletableFuture 的同时返回。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/</guid>
+            <guid isPermalink="true">http://example.com/2022/12/27/%E3%80%90Java%E3%80%91Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/</guid>
             <title>阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</title>
-            <link>http://example.com/2022/12/27/Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/</link>
+            <link>http://example.com/2022/12/27/%E3%80%90Java%E3%80%91Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/</link>
             <pubDate>Tue, 27 Dec 2022 16:18:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;分层领域模型规约：&lt;/p&gt;
 &lt;p&gt;DO（ Data Object）：与数据库表结构一一对应，通过 DAO 层向上传输数据源对象。&lt;br&gt;
@@ -6400,30 +6577,9 @@ POJO 是 DO/DTO/BO/VO 的统称，禁止命名成 xxxPOJO。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/12/27/hello-world/</guid>
-            <title>Hello World</title>
-            <link>http://example.com/2022/12/27/hello-world/</link>
-            <pubDate>Tue, 27 Dec 2022 14:56:58 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv&#34;&gt;documentation&lt;/span&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=&#34;&gt;troubleshooting&lt;/span&gt; or you can ask me on &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==&#34;&gt;GitHub&lt;/span&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
-&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo new &lt;span class=&#34;string&#34;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s&#34;&gt;Writing&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=&#34;&gt;Server&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s&#34;&gt;Generating&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s&#34;&gt;Deployment&lt;/span&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://example.com/2022/11/24/Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</guid>
+            <guid isPermalink="true">http://example.com/2022/11/24/%E3%80%90Docker%E3%80%91Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</guid>
             <title>Docker的基础用法</title>
-            <link>http://example.com/2022/11/24/Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</link>
+            <link>http://example.com/2022/11/24/%E3%80%90Docker%E3%80%91Docker%E7%94%A8%E6%B3%95%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</link>
             <pubDate>Thu, 24 Nov 2022 13:13:10 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;1-docker架构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-docker架构&#34;&gt;#&lt;/a&gt; 1 Docker 架构&lt;/h1&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/60e8fc2bc92e48d0b96c0eaf079483c6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
@@ -6511,9 +6667,9 @@ POJO 是 DO/DTO/BO/VO 的统称，禁止命名成 xxxPOJO。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</guid>
+            <guid isPermalink="true">http://example.com/2022/11/22/%E3%80%90Jenkins%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</guid>
             <title>Linux环境下安装jenkins</title>
-            <link>http://example.com/2022/11/22/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</link>
+            <link>http://example.com/2022/11/22/%E3%80%90Jenkins%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</link>
             <pubDate>Tue, 22 Nov 2022 10:19:35 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;linux环境下安装jenkins&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#linux环境下安装jenkins&#34;&gt;#&lt;/a&gt; Linux 环境下安装 jenkins&lt;/h1&gt;
 &lt;h3 id=&#34;1-添加存储库&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-添加存储库&#34;&gt;#&lt;/a&gt; 1、添加存储库&lt;/h3&gt;
