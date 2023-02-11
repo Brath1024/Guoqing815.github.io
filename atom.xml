@@ -3,7 +3,39 @@
     <id>http://example.com</id>
     <title>BrathBlog</title>
     <link href="http://example.com" />
-    <updated>2023-02-10T06:12:58.594Z</updated>
+    <updated>2023-02-11T02:19:46.158Z</updated>
+    <entry>
+        <id>http://example.com/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/</id>
+        <title>腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</title>
+        <link rel="alternate" href="http://example.com/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/"/>
+        <content type="html">&lt;h3 id=&#34;腾讯云申请的免费证书部署到阿里云cdn和云盾证书中心&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#腾讯云申请的免费证书部署到阿里云cdn和云盾证书中心&#34;&gt;#&lt;/a&gt; 腾讯云申请的免费证书部署到阿里云 CDN 和云盾证书中心&lt;/h3&gt;
+&lt;p&gt;tips：以下内容仅支持有域名的小伙伴配置，没有域名请先申请域名&lt;/p&gt;
+&lt;p&gt;小伙伴们在有了自己的不知道如何部署 HTTPS？请看下面的操作&lt;/p&gt;
+&lt;p&gt;​	为什么不在阿里云申请 SSL 证书&lt;/p&gt;
+&lt;p&gt;​	答：阿里云免费证书很慢，而且付费的超级贵&lt;/p&gt;
+&lt;p&gt;所以本教程让大家在腾讯云官方申请 SSL 证书，注意：有效期只能为 1 年，过期不续费，只能重新申请和配置&lt;/p&gt;
+&lt;p&gt;1. 进入腾讯云证书官网： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jb25zb2xlLmNsb3VkLnRlbmNlbnQuY29tL3NzbA==&#34;&gt;https://console.cloud.tencent.com/ssl&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;2. 点击申请免费证书&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101221781.png&#34; alt=&#34;image-20230211101221781&#34;&gt;&lt;/p&gt;
+&lt;p&gt;3. 输入绑定的域名、校验方式选择自动 DNS 验证、邮箱填写常用邮箱&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101232921.png&#34; alt=&#34;image-20230211101232921&#34;&gt;&lt;/p&gt;
+&lt;p&gt;点击提交申请，等待校验通过&lt;/p&gt;
+&lt;p&gt;4. 申请通过后会颁发证书&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101359187.png&#34; alt=&#34;image-20230211101359187&#34;&gt;&lt;/p&gt;
+&lt;p&gt;5. 点击右侧下载，选择 Nginx 证书压缩包&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101422722.png&#34; alt=&#34;image-20230211101422722&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解压缩后可以看见如下文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101454344.png&#34; alt=&#34;image-20230211101454344&#34;&gt;&lt;/p&gt;
+&lt;p&gt;6. 进入阿里云 云盾证书管理 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly95dW5kdW5uZXh0LmNvbnNvbGUuYWxpeXVuLmNvbS8/c3BtPTUxNzYuMTE3ODUwMDMuZG9tYWluRGV0YWlsLjE0LjQyNTExNDJmUHFyVm5VJmFtcDtwPWNhcyMvY2VydEV4dGVuZC91cGxvYWQ=&#34;&gt;https://yundunnext.console.aliyun.com/?spm=5176.11785003.domainDetail.14.4251142fPqrVnU&amp;amp;p=cas#/certExtend/upload&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;点击上传证书&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101539890.png&#34; alt=&#34;image-20230211101539890&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101638094.png&#34; alt=&#34;image-20230211101638094&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101727709.png&#34; alt=&#34;image-20230211101727709&#34;&gt;&lt;/p&gt;
+&lt;p&gt;点击确定后上传成功。&lt;/p&gt;
+&lt;p&gt;接下来就可以在阿里云使用你在腾讯云申请的证书来支持你的 CDN HTTPS 服务拉！&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230211101919544.png&#34; alt=&#34;image-20230211101919544&#34;&gt;&lt;/p&gt;
+</content>
+        <updated>2023-02-11T02:19:46.158Z</updated>
+    </entry>
     <entry>
         <id>http://example.com/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/</id>
         <title>【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</title>
