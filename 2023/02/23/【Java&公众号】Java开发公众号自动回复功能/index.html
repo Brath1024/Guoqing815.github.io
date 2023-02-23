@@ -1,0 +1,586 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,git,springcloud" />
+
+
+<link rel="canonical" href="http://example.com/2023/02/23/%E3%80%90Java&%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/">
+
+
+
+  <title>
+ |
+Brath = BrathBlog</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-02-23 13:03:35">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-02-23T13:03:35+08:00">2023-02-23</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>9.8k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>9 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Brath</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeudstjqj20zk0m8k3r.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclhtuo6nj20zk0m8ttm.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/23/%E3%80%90Java&%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Brath">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="BrathBlog">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: Java开发公众号自动回复功能</span><br></pre></td></tr></table></figure>
+<h5 id="本文最先发表于我的个人博客-csdn为同步发布如有需要请访问-brath的个人博客-获取更多内容"><a class="markdownIt-Anchor" href="#本文最先发表于我的个人博客-csdn为同步发布如有需要请访问-brath的个人博客-获取更多内容">#</a> 本文最先发表于我的个人博客 ，CSDN 为同步发布，如有需要，请访问 <span class="exturl" data-url="aHR0cHM6Ly9icmF0aC50b3Av">Brath 的个人博客</span> 获取更多内容</h5>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景">#</a> 背景</h2>
+<p>最近准备搭建自己的<span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTUlOEQlOUElRTUlQUUlQTIlRTclQjMlQkIlRTclQkIlOUYmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw">博客系统</span>，有些软件或资料的下载链接放在网盘中，为了方便下载，同时可以将用户导流到公众号上，因此准备用 Java 实现微信公众号业务支持公众号自动回复的功能</p>
+<h2 id="准备工作"><a class="markdownIt-Anchor" href="#准备工作">#</a> 准备工作</h2>
+<ul>
+<li>微信公众号业务支持公众号</li>
+</ul>
+<p>首先当然是需要注册一个<span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTUlQkUlQUUlRTQlQkYlQTElRTUlODUlQUMlRTQlQkMlOTclRTUlOEYlQjclRTQlQjglOUElRTUlOEElQTElRTYlOTQlQUYlRTYlOEMlODElRTUlODUlQUMlRTQlQkMlOTclRTUlOEYlQjcmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw">微信公众号业务支持公众号</span>，具体步骤就不在这里赘述了，注册地址：<span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tLw==">微信公众号业务支持公众平台</span></p>
+<p>注册完毕后需要完成认证操作</p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码">#</a> 代码</h2>
+<p>依赖引入，<strong>主要为 xml 相关依赖</strong>， 因为微信公众号业务支持公众号采用的 xml 消息格式进行交互</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>dom4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dom4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.thoughtworks.xstream<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>xstream<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4.19<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">12345678910</span><br></pre></td></tr></table></figure>
+<p>自动回复内容一共需要两个接口（两个接口路由完全一致，一个为 GET 请求，一个为 POST 请求）</p>
+<ul>
+<li>微信公众号业务支持公众号认证接口</li>
+</ul>
+<blockquote>
+<p>此接口用于微信公众号业务支持公众号后台服务器认证使用，GET 请求</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 微信公众号业务支持校验</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> signature</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> timestamp</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> nonce</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> echostr</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> response</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;callback&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">callback</span><span class="params">(String signature, String timestamp, String nonce, String echostr, HttpServletResponse response)</span> &#123;</span><br><span class="line">    <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    log.info(<span class="string">&quot;微信公众号业务支持校验消息，signature:&#123;&#125;，timestamp:&#123;&#125;，nonce:&#123;&#125;，echostr:&#123;&#125;&quot;</span>, signature, timestamp, nonce, echostr);</span><br><span class="line">    List&lt;WechatConfigPO&gt; configPOList = wechatConfigDao.selectAll();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        out = response.getWriter();</span><br><span class="line">        out.write(echostr);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;微信公众号业务支持校验失败&quot;</span>, e);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (out != <span class="literal">null</span>) &#123;</span><br><span class="line">            out.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>消息接收接口</li>
+</ul>
+<blockquote>
+<p>此接口用于接收公众号消息回调，POST 请求</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 微信公众号业务支持消息回调</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> response</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;callback&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">callback</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;</span><br><span class="line">    <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">respMessage</span> <span class="operator">=</span> wechatService.callback(request);</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(respMessage)) &#123;</span><br><span class="line">            log.info(<span class="string">&quot;不回复消息&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        response.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        out = response.getWriter();</span><br><span class="line">        out.write(respMessage);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;微信公众号业务支持发送消息失败&quot;</span>, e);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (out != <span class="literal">null</span>) &#123;</span><br><span class="line">            out.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>消息回复 service</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2023/2/23</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@desc</span> 微信公众号业务支持</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WechatService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TextReplyService textReplyService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 微信公众号业务支持回复</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> UnsupportedEncodingException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">callback</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">        request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Map&lt;String, String&gt; requestMap = WechatMessageUtils.parseXml(request);</span><br><span class="line">            log.info(<span class="string">&quot;微信公众号业务支持接收到消息:&#123;&#125;&quot;</span>, GsonUtils.toJson(requestMap));</span><br><span class="line">            <span class="comment">// 消息类型</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">msgType</span> <span class="operator">=</span> requestMap.get(<span class="string">&quot;MsgType&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理其他消息，暂时不做回复</span></span><br><span class="line">            <span class="keyword">switch</span> (msgType) &#123;</span><br><span class="line">                <span class="keyword">case</span> WechatMsgTypeConstant.MESSAGE_TYPE_TEXT:</span><br><span class="line">                    <span class="comment">// 文本消息处理</span></span><br><span class="line">                    <span class="keyword">return</span> textReplyService.reply(requestMap);</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">return</span> textReplyService.reply(requestMap);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;回复消息错误&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 不做回复</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>文本回复 service</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022/5/18 9:57</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@desc</span> 文本回复</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TextReplyService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">FROM_USER_NAME</span> <span class="operator">=</span> <span class="string">&quot;FromUserName&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TO_USER_NAME</span> <span class="operator">=</span> <span class="string">&quot;ToUserName&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">CONTENT</span> <span class="operator">=</span> <span class="string">&quot;Content&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WechatKeywordDao wechatKeywordDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WechatMsgRecordDao wechatMsgRecordDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 自动回复文本内容</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> requestMap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reply</span><span class="params">(Map&lt;String, String&gt; requestMap)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">wechatId</span> <span class="operator">=</span> requestMap.get(FROM_USER_NAME);</span><br><span class="line">        <span class="type">String</span> <span class="variable">gongzhonghaoId</span> <span class="operator">=</span> requestMap.get(TO_USER_NAME);</span><br><span class="line"></span><br><span class="line">        <span class="type">TextMessage</span> <span class="variable">textMessage</span> <span class="operator">=</span> WechatMessageUtils.getDefaultTextMessage(wechatId, gongzhonghaoId);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">content</span> <span class="operator">=</span> requestMap.get(CONTENT);</span><br><span class="line">        <span class="keyword">if</span> (content == <span class="literal">null</span>) &#123;</span><br><span class="line">            textMessage.setContent(WechatConstants.DEFAULT_MSG);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">Example</span> <span class="variable">example</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Example</span>(WechatKeywordPO.class);</span><br><span class="line">            example.createCriteria().andEqualTo(<span class="string">&quot;wechatId&quot;</span>, gongzhonghaoId).andEqualTo(<span class="string">&quot;keyword&quot;</span>, content);</span><br><span class="line">            List&lt;WechatKeywordPO&gt; keywordPOList = wechatKeywordDao.selectByExample(example);</span><br><span class="line">            <span class="keyword">if</span> (CollectionUtils.isEmpty(keywordPOList)) &#123;</span><br><span class="line">                textMessage.setContent(WechatConstants.DEFAULT_MSG);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                textMessage.setContent(keywordPOList.get(<span class="number">0</span>).getReplyContent());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 记录消息记录</span></span><br><span class="line">        wechatMsgRecordDao.insertSelective(WechatMsgRecordPO.builder()</span><br><span class="line">                .fromUser(wechatId)</span><br><span class="line">                .wechatId(gongzhonghaoId)</span><br><span class="line">                .content(content)</span><br><span class="line">                .replyContent(textMessage.getContent())</span><br><span class="line">                .build()</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> WechatMessageUtils.textMessageToXml(textMessage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>文本消息 model</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/11/26 22:21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 文本消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TextMessage</span> <span class="keyword">extends</span> <span class="title class_">BaseMessage</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 回复的消息内容</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String Content;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314</span></span><br></pre></td></tr></table></figure>
+<p><strong>基础消息 model</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/11/26 22:20</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 基础消息响应</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BaseMessage</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收方帐号（收到的OpenID）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String ToUserName;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 开发者微信公众号业务支持号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String FromUserName;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 消息创建时间 （整型）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">long</span> CreateTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 消息类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String MsgType;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 位0x0001被标志时，星标刚收到的消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> FuncFlag;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>消息工具</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022/5/18 7:55</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@desc</span> 微信公众号业务支持消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WechatMessageUtils</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析微信公众号业务支持发来的请求（XML）</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, String&gt; <span class="title function_">parseXml</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 将解析结果存储在HashMap中</span></span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 从request中取得输入流</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> request.getInputStream();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 读取输入流</span></span><br><span class="line">            <span class="type">SAXReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SAXReader</span>();</span><br><span class="line">            <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> reader.read(inputStream);</span><br><span class="line">            <span class="comment">// 得到xml根元素</span></span><br><span class="line">            <span class="type">Element</span> <span class="variable">root</span> <span class="operator">=</span> document.getRootElement();</span><br><span class="line">            <span class="comment">// 得到根元素的所有子节点</span></span><br><span class="line"></span><br><span class="line">            List&lt;Element&gt; elementList = root.elements();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 遍历所有子节点</span></span><br><span class="line">            <span class="keyword">for</span> (Element e : elementList) &#123;</span><br><span class="line">                map.put(e.getName(), e.getText());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 释放资源</span></span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="literal">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文本消息对象转换成xml</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> textMessage 文本消息对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> xml</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">textMessageToXml</span><span class="params">(TextMessage textMessage)</span> &#123;</span><br><span class="line">        XSTREAM.alias(<span class="string">&quot;xml&quot;</span>, textMessage.getClass());</span><br><span class="line">        <span class="keyword">return</span> XSTREAM.toXML(textMessage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 音乐消息对象转换成xml</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> musicMessage 音乐消息对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> xml</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">musicMessageToXml</span><span class="params">(MusicMessage musicMessage)</span> &#123;</span><br><span class="line">        XSTREAM.alias(<span class="string">&quot;xml&quot;</span>, musicMessage.getClass());</span><br><span class="line">        <span class="keyword">return</span> XSTREAM.toXML(musicMessage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 图文消息对象转换成xml</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> newsMessage 图文消息对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> xml</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">newsMessageToXml</span><span class="params">(NewsMessage newsMessage)</span> &#123;</span><br><span class="line">        XSTREAM.alias(<span class="string">&quot;xml&quot;</span>, newsMessage.getClass());</span><br><span class="line">        XSTREAM.alias(<span class="string">&quot;item&quot;</span>, Article.class);</span><br><span class="line">        <span class="keyword">return</span> XSTREAM.toXML(newsMessage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 扩展xstream，使其支持CDATA块</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">XStream</span> <span class="variable">XSTREAM</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XStream</span>(<span class="keyword">new</span> <span class="title class_">XppDriver</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> HierarchicalStreamWriter <span class="title function_">createWriter</span><span class="params">(Writer out)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PrettyPrintWriter</span>(out) &#123;</span><br><span class="line">                <span class="comment">// 对所有xml节点的转换都增加CDATA标记</span></span><br><span class="line">                <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">cdata</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">writeText</span><span class="params">(QuickWriter writer, String text)</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (cdata) &#123;</span><br><span class="line">                        writer.write(<span class="string">&quot;&lt;![CDATA[&quot;</span>);</span><br><span class="line">                        writer.write(text);</span><br><span class="line">                        writer.write(<span class="string">&quot;]]&gt;&quot;</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        writer.write(text);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取默认文本消息</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> receiver     接收人</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> officialWxid 官方微信公众号业务支持id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 文本消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> TextMessage <span class="title function_">getDefaultTextMessage</span><span class="params">(String receiver, String officialWxid)</span> &#123;</span><br><span class="line">        <span class="type">TextMessage</span> <span class="variable">textMessage</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TextMessage</span>();</span><br><span class="line">        textMessage.setToUserName(receiver);</span><br><span class="line">        textMessage.setFromUserName(officialWxid);</span><br><span class="line">        textMessage.setCreateTime(System.currentTimeMillis());</span><br><span class="line">        textMessage.setMsgType(WechatMsgTypeConstant.MESSAGE_TYPE_TEXT);</span><br><span class="line">        textMessage.setFuncFlag(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> textMessage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>消息类型枚举</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022/5/18 8:00</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@desc</span> 微信公众号业务支持消息类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WechatMsgTypeConstant</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文本消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">MESSAGE_TYPE_TEXT</span> <span class="operator">=</span> <span class="string">&quot;text&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其他内容为一些数据库相关操作，此处不再列出，仅为：<strong>查询关键词及其回复内容</strong>，<strong>存储消息记录</strong></p>
+</blockquote>
+<h2 id="公众号配置"><a class="markdownIt-Anchor" href="#公众号配置">#</a> 公众号配置</h2>
+<ul>
+<li>服务器配置</li>
+</ul>
+<p>公众号后台 -&gt; 设置与开发 -&gt; 基本配置 -&gt; 服务器配置</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20230223130939844.png" alt="image-20230223130939844"></p>
+<ul>
+<li>填写服务器地址</li>
+</ul>
+<p>填写你的服务器回调接口地址 (<strong>需要为公网地址，否则微信公众号业务支持无法调通</strong>)</p>
+<ul>
+<li>生成或者自定义你的令牌 Token，后台需要配置这个 Token，一定要记住</li>
+</ul>
+<blockquote>
+<p>Token 需要记住，<strong>一般在微信公众号业务支持验证接口处会校验相关信息是否是自己的公众号</strong></p>
+</blockquote>
+<p><strong>验证方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Brath</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/11/26 21:59</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 微信公众号业务支持工具</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WechatUtils</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">char</span>[] HEX_DIGITS = &#123;<span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;5&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;9&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">checkSignature</span><span class="params">(String signature, String timestamp, String nonce, String token)</span> &#123;</span><br><span class="line">        String[] str = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;token, timestamp, nonce&#125;;</span><br><span class="line">        <span class="comment">//排序</span></span><br><span class="line">        Arrays.sort(str);</span><br><span class="line">        <span class="comment">//拼接字符串</span></span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">            buffer.append(str[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//进</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> encode(buffer.toString());</span><br><span class="line">        <span class="comment">//与微信公众号业务支持提供的signature进行匹对</span></span><br><span class="line">        <span class="keyword">return</span> signature.equals(temp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">getFormattedText</span><span class="params">(<span class="type">byte</span>[] bytes)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> bytes.length;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">buf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(len * <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">            buf.append(HEX_DIGITS[(bytes[j] &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0f</span>]);</span><br><span class="line">            buf.append(HEX_DIGITS[bytes[j] &amp; <span class="number">0x0f</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> buf.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">encode</span><span class="params">(String str)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (str == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">MessageDigest</span> <span class="variable">messageDigest</span> <span class="operator">=</span> MessageDigest.getInstance(<span class="string">&quot;SHA1&quot;</span>);</span><br><span class="line">            messageDigest.update(str.getBytes());</span><br><span class="line">            <span class="keyword">return</span> getFormattedText(messageDigest.digest());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>验证公众号自动回复是否正确</li>
+</ul>
+<blockquote>
+<p>可以搜索公众号 InterviewCoder) 或扫码关注公众号回复关键词《chatGPT》查看效果</p>
+<p><img data-src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/%E4%BA%8C%E7%BB%B4%E7%A0%81mini.png" alt="二维码mini"></p>
+</blockquote>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2023-02-23 13:11:45" itemprop="dateModified" datetime="2023-02-23T13:11:45+08:00">2023-02-23</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Brath WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Brath Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Brath PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2023/02/23/%E3%80%90Java&%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/" title="">http://example.com/2023/02/23/【Java&公众号】Java开发公众号自动回复功能/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/02/23/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewf5l51j20zk0m8b29.jpg" title="Untitled">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Untitled</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E6%9C%80%E5%85%88%E5%8F%91%E8%A1%A8%E4%BA%8E%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-csdn%E4%B8%BA%E5%90%8C%E6%AD%A5%E5%8F%91%E5%B8%83%E5%A6%82%E6%9C%89%E9%9C%80%E8%A6%81%E8%AF%B7%E8%AE%BF%E9%97%AE-brath%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A4%9A%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text"> 本文最先发表于我的个人博客 ，CSDN 为同步发布，如有需要，请访问 Brath 的个人博客 获取更多内容</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number"></span> <span class="toc-text"> 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number"></span> <span class="toc-text"> 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text"> 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7%E9%85%8D%E7%BD%AE"><span class="toc-number"></span> <span class="toc-text"> 公众号配置</span></a>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Brath"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Brath</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">71</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" title="Linux下docer部署mysql">Linux下docer部署mysql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SQl%E3%80%91SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Squirrel SQL客户端安装与使用">Squirrel SQL客户端安装与使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/01/04/%E3%80%90RocketMQ%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2RocketMQ%E4%BB%A5%E5%8F%8AConsole/" title="Docker环境下部署RocketMQ以及Console">Docker环境下部署RocketMQ以及Console</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/" title="宝塔部署Docker—Mysql镜像">宝塔部署Docker—Mysql镜像</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/" title="云服务器部署宝塔面板">云服务器部署宝塔面板</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" title="RequestParam 和 PathVariable的区别">RequestParam 和 PathVariable的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="Maven加强版 — mvnd的使用测试">Maven加强版 — mvnd的使用测试</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="MySQL安装 starting the server失败的解决办法">MySQL安装 starting the server失败的解决办法</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2030 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">422k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">6:23</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/02/23/【Java&公众号】Java开发公众号自动回复功能/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
