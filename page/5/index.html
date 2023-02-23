@@ -90,12 +90,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeun65urj20zk0m81ii.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></li>
         </ul>
       </div>
     </header>
@@ -121,7 +121,91 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4/" itemprop="url" title="Mysql主从集群搭建文档，实现读写分离"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclwrdwyaj20zk0m8are.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" itemprop="url" title="mysql查询技巧"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>1.2k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" itemprop="url" title="mysql查询技巧">mysql查询技巧</a></h3>
+    <div class="excerpt">
+        # mysql 查询当天、昨天、本周、上周、本月、上月、今年、去年数据
+# mysql 查询今天、昨天、7 天、近 30 天、本月、上一月 数据
+今天	select * from 表名 where to_days (时间字段名) = to_days (now ());
+昨天	SELECT * FROM 表名 WHERE TO_DAYS (NOW () ) - TO_DAYS ( 时间字段名) = 1
+近 7 天	SELECT * FROM 表名 where DATE_SUB (CURDATE (), INTERVAL 7 DAY) &amp;lt;= date...
+    </div>
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" itemprop="url" title="mysql查询技巧" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="url" title="MySQL安装 starting the server失败的解决办法"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2022-12-27 16:18:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>508</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="url" title="MySQL安装 starting the server失败的解决办法">MySQL安装 starting the server失败的解决办法</a></h3>
+    <div class="excerpt">
+        # MySQL 安装 starting the server 失败的解决办法
+​		如果电脑是第一次安装 MySQL，一般不会出现这样的报错。如下图所示。starting the server 失败，通常是因为上次安装的该软件未清除干净。
+
+完全卸载该软件的办法：
+第一步，进入… 控制面板 \ 程序 \ 程序和功能，卸载下图中的 MySQL 两个软件。
+
+第二步，删除上次安装目录的 MySQL 残留文件，更不要忘了删除 ProgramData 下的 MySQL 文件夹，如下图所示。注意：这里的文件夹与上次安装目录里的残留文件不同，C:\ProgramData...
+    </div>
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="url" title="MySQL安装 starting the server失败的解决办法" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4/" itemprop="url" title="Mysql主从集群搭建文档，实现读写分离"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipesng5oej20zk0m87d4.jpg"></a>
   </div>
   <div class="info">
     
@@ -164,7 +248,7 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" itemprop="url" title="MySQL8下载与安装教程"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" itemprop="url" title="MySQL8下载与安装教程"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclgi503lj20zk0m8hdt.jpg"></a>
   </div>
   <div class="info">
     
@@ -212,7 +296,7 @@ MySQL 官网：链接
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Maven%E3%80%91MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" itemprop="url" title="Maven通过命令提示符引入jar包的流程"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclffsa1cj20zk0m811l.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90Maven%E3%80%91MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" itemprop="url" title="Maven通过命令提示符引入jar包的流程"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></a>
   </div>
   <div class="info">
     
@@ -256,7 +340,7 @@ MySQL 官网：链接
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" itemprop="url" title="Maven加强版 — mvnd的使用测试"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclx6phq6j20zk0m8e36.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" itemprop="url" title="Maven加强版 — mvnd的使用测试"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipexe4oykj20zk0m87ji.jpg"></a>
   </div>
   <div class="info">
     
@@ -299,7 +383,7 @@ github...
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" itemprop="url" title="Linux服务器下部署vue 2.0项目"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" itemprop="url" title="Linux服务器下部署vue 2.0项目"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></a>
   </div>
   <div class="info">
     
@@ -344,7 +428,7 @@ github...
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" itemprop="url" title="Linux下docer部署mysql"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclj9410cj20zk0m8h12.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" itemprop="url" title="Linux下docer部署mysql"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giph4fomxoj20zk0m8axp.jpg"></a>
   </div>
   <div class="info">
     
@@ -383,7 +467,7 @@ github...
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" itemprop="url" title="Knife4J接口文档"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipetlbztpj20zk0m84qp.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" itemprop="url" title="Knife4J接口文档"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipevgoki5j20zk0m84qp.jpg"></a>
   </div>
   <div class="info">
     
@@ -437,7 +521,7 @@ public...
         
 <article class="item">
   <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" title="JUC并发多线程笔记"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></a>
+    <a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" title="JUC并发多线程笔记"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></a>
   </div>
   <div class="info">
     
@@ -489,101 +573,6 @@ public...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" title="Hexo搭建"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>1.2k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" title="Hexo搭建">Hexo搭建</a></h3>
-    <div class="excerpt">
-        # hexo 框架个人博客搭建
-# 1 环境准备
-# 1.1 Node.js 和 npm 安装
-1NoedJS自行百度安装
-# 1.2 (选) npm 淘宝镜像
-1npm install -g cnpm --registry.npm.taobao.org
-# 1.3 hexo 框架安装
-1cnpm install -g hexo-cli
-# 1.4git 安装配置
-
-git 官网 下载对应系统安装包
-
-运行安装包 一路下一步
-
-开始菜单运行 Git Bash (运行成功表示 git 安装成功)
-
-git 安装好去 GitHub 上注册一个账号
-
-设置 git：在 Git Bush...
-    </div>
-    <a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" title="Hexo搭建" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" itemprop="url" title="Hbase"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicm07ih54j20zk0m84qp.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>6.9k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>6 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" itemprop="url" title="Hbase">Hbase</a></h3>
-    <div class="excerpt">
-        # 介绍：
-​		Hbase 是 bigtable 的开源山寨版本。是建立在 HDFS 之上，提供高可靠性、高性能、列存储、可伸缩、实时读写的数据库系统。它介于 nosql 和 RDBMS 之间，仅能通过主键 (row key) 和主键的 range 来检索数据，仅支持单行事务 (可通过 hive 支持来实现多表 join 等复杂操作)。主要用来存储非结构化和半结构化的松散数据。与 hadoop 一样，Hbase 目标主要依靠横向扩展，通过不断增加廉价的商用服务器，来增加计算和存储能力。
-# 特点：
-​		HBase...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" itemprop="url" title="Hbase" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -619,7 +608,7 @@ git 安装好去 GitHub 上注册一个账号
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">68</span>
+        <span class="count">70</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -707,7 +696,7 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/" title="RocketMQ">RocketMQ</a></span>
+    <span><a href="/2023/02/23/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/" title="Untitled">Untitled</a></span>
   </li>
 
       
@@ -716,25 +705,7 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CAS%E6%9C%BA%E5%88%B6/" title="CAS机制">CAS机制</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/11/22/%E3%80%90Jenkins%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/" title="Linux环境下安装jenkins">Linux环境下安装jenkins</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="MySQL8下载与安装教程">MySQL8下载与安装教程</a></span>
+    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CompletableFuture%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="CompletableFuture使用文档">CompletableFuture使用文档</a></span>
   </li>
 
       
@@ -752,7 +723,7 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a></span>
+    <span><a href="/2023/01/12/%E3%80%90Flutter%E3%80%91Flutter%E9%9B%86%E6%88%90%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B8%9A%E5%8A%A1%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E8%A1%8C/" title="Flutter集成中国移动一键登录业务，亲测可行">Flutter集成中国移动一键登录业务，亲测可行</a></span>
   </li>
 
       
@@ -761,7 +732,7 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/02/08/%E3%80%90Elasticsearch%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8Elasticsearch7/" title="Linux环境下安装并启动Elasticsearch7">Linux环境下安装并启动Elasticsearch7</a></span>
+    <span><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" title="Hbase整合SpringBoot的问题">Hbase整合SpringBoot的问题</a></span>
   </li>
 
       
@@ -770,7 +741,7 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/" title="docker简单部署rocketMQ">docker简单部署rocketMQ</a></span>
+    <span><a href="/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/" title="【MySQL】MySQL主从开关机顺序">【MySQL】MySQL主从开关机顺序</a></span>
   </li>
 
       
@@ -779,7 +750,7 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/" title="端口占用问题">端口占用问题</a></span>
+    <span><a href="/2022/12/27/%E3%80%90Typora%E3%80%91typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="Typora使用gitee作为图库用picgo上传图片的教程~">Typora使用gitee作为图库用picgo上传图片的教程~</a></span>
   </li>
 
       
@@ -788,7 +759,25 @@ git 安装好去 GitHub 上注册一个账号
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/" title="ThreadLocal">ThreadLocal</a></span>
+    <span><a href="/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch/" title="Elasticsearch学习">Elasticsearch学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/" title="腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/12/27/%E3%80%90Docker%E3%80%91Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85vim/" title="Docker环境下安装vim">Docker环境下安装vim</a></span>
   </li>
 
   </ul>
@@ -813,13 +802,13 @@ git 安装好去 GitHub 上注册一个账号
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">382k words</span>
+    <span title="Symbols count total">412k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">5:47</span>
+    <span title="Reading time total">6:14</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
