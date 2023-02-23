@@ -1,326 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>BrathBlog</title><meta name="author" content="Brath"><meta name="copyright" content="Brath"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="BrathBlog">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="BrathBlog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="Brath">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BrathBlog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-02-23 13:41:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#FFF">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
-<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="/css/app.css?v=0.2.5">
-
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="keywords" content="java,git,springcloud" />
-
-
-<link rel="canonical" href="http://example.com/page/4/">
-
-
-
-  <title>Brath = BrathBlog</title>
-<meta name="generator" content="Hexo 6.3.0"></head>
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div id="loading">
-    <div class="cat">
-      <div class="body"></div>
-      <div class="head">
-        <div class="face"></div>
-      </div>
-      <div class="foot">
-        <div class="tummy-end"></div>
-        <div class="bottom"></div>
-        <div class="legs left"></div>
-        <div class="legs right"></div>
-      </div>
-      <div class="paw">
-        <div class="hands left"></div>
-        <div class="hands right"></div>
-      </div>
-    </div>
-  </div>
-  <div id="container">
-    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="inner">
-        <div id="brand">
-          <div class="pjax">
-          
-            <a href="/" class="logo" rel="start"><p class="artboard">Brath</p>
-              <h1 itemprop="name headline" class="title">BrathBlog</h1>
-            </a>
-          
-          </div>
-        </div>
-        <nav id="nav">
-  <div class="inner">
-    <div class="toggle">
-      <div class="lines" aria-label="切换导航栏">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <ul class="menu">
-      <li class="item title"><a href="/" rel="start">Brath</a></li>
-    </ul>
-    <ul class="right">
-      <li class="item theme">
-        <i class="ic i-sun"></i>
-      </li>
-      <li class="item search">
-        <i class="ic i-search"></i>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-      </div>
-      <div id="imgs" class="pjax">
-        <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewf5l51j20zk0m8b29.jpg"></li>
-        </ul>
-      </div>
-    </header>
-    <div id="waves">
-      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" />
-          <use xlink:href="#gentle-wave" x="48" y="3" />
-          <use xlink:href="#gentle-wave" x="48" y="5" />
-          <use xlink:href="#gentle-wave" x="48" y="7" />
-        </g>
-      </svg>
-    </div>
-    <main>
-      <div class="inner">
-        <div id="main" class="pjax">
-          
-  <div class="index wrap">
-    <div class="segments posts">
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" itemprop="url" title="SpringBoot自动装配原理"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></a>
-  </div>
-  <div class="info">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>24k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>22 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" itemprop="url" title="SpringBoot自动装配原理">SpringBoot自动装配原理</a></h3>
-    <div class="excerpt">
-        自动装配原理：
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">BrathBlog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" title="SpringBoot自动装配原理">SpringBoot自动装配原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.624Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">自动装配原理：
 要学会 SpringBoot 自动装配原理，首先要来看装配了什么？或者说是装配有什么用？
 1 . 自动装配了什么？
 ​		Pom 文件：SpringBoot 帮我们配置好了所有 web 开发常见场景、组件、比如 tomcat、mutipart 文件上传。
 ​		配置文件：SpringBoot 帮我们装配好了所有组件或者类需要的配置，这些类都有默认的配置，可以通过 application.ymal 或者 application.properties 来修改：比如 server.port=80 修改端口号，默认为 80
 2 . 自动装配有什么用？
-​		简化 SpringMVC...
-    </div>
-    <a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" itemprop="url" title="SpringBoot自动装配原理" class="btn">more...</a>
-  </div>
-</article>
+​		简化 SpringMVC 复杂的配置流程、复杂的依赖引入。SpringBoot 旨在：简化开发，约定大于配置。
+总结：
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicivghyooj20zk0m8dir.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>17k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>15 分钟</span>
-  </span>
-</div>
 
-    <h3><a href="/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计">SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</a></h3>
-    <div class="excerpt">
-        # SpringBoot+Redis 实现高性能，强支持的点赞流程设计
+SpringBoot 先加载所有的自动配置类  xxxAutoConfiguration
+
+
+每个自动配置类按照条件进行生效，默认都会绑定配置文件指定的值。xxxProperties 里面拿。xxxProperties 和配置文件进行了绑定
+
+
+生效的配置类就会给容器中装配很多组件
+
+
+只要容器中有这些 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计">SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.622Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># SpringBoot+Redis 实现高性能，强支持的点赞流程设计
 # 前言
 本文基于 SpringCloudAlibaba, 用户发起点赞、取消点赞，后先存入 Redis 中，再每隔两小时从 Redis 读取点赞数据写入数据库中做持久化存储。
 点赞功能在很多系统中都有，但别看功能小，想要做好需要考虑的东西还挺多的。
 点赞、取消点赞是高频次的操作，若每次都读写数据库，大量的操作会影响数据库性能，所以需要做缓存。
-至于多久从 Redis...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Redis%E3%80%91SpringBoot+Redis%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%EF%BC%8C%E5%BC%BA%E6%94%AF%E6%8C%81%E7%9A%84%E7%82%B9%E8%B5%9E-%E6%9F%A5%E7%9C%8B%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" title="SpringBoot+Redis实现高性能，强支持的点赞-查看收藏流程设计" class="btn">more...</a>
-  </div>
-</article>
+至于多久从 Redis 取一次数据存到数据库中，根据项目的实际情况定吧，我是暂时设了两个小时。
+项目需求需要查看都谁点赞了，所以要存储每个点赞的点赞人、被点赞人，不能简单的做计数。
+# 文章分四部分介绍：
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" itemprop="url" title="Linux以及Windows部署Seata服务"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclhtuo6nj20zk0m8ttm.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>2.4k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>2 分钟</span>
-  </span>
-</div>
 
-    <h3><a href="/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" itemprop="url" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a></h3>
-    <div class="excerpt">
-        1. 确保 linux 有 Nacos 正常启动，并知晓正确的端口 用户名 密码
+Redis 缓存设计及实现
+
+
+数据库设计
+
+
+数据库操作
+
+
+开启定时任务持久化存储到数据库
+
+
+# 一、Redis 缓存设计及实现
+# 1.1 Redis 安装及运行
+Redis 安装请自行查阅相关教程。
+说下 Docker 安装运行 Redis
+1docker run -d -p 6379:6379 redis:4.0.8
+如果已经安装了 Redis，打开命令行 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" title="Linux以及Windows部署Seata服务">Linux以及Windows部署Seata服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.619Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">1. 确保 linux 有 Nacos 正常启动，并知晓正确的端口 用户名 密码
 
 https://github.com/seata/seata.git 克隆 seata 项目到本地
 在 Github 下载对应你项目 SpringCloudAlibaba 建议版本的 Seata，我的版本是 2.5.5，建议 Seata 版本 1.3.0
 下载好后进入 seata/conf 配置目录，修改 file.conf
 
-123456789101112131415161718192021222324252627282930313233343536373839404142## transaction log...
-    </div>
-    <a href="/2022/12/27/%E3%80%90SpringCloudAlibaba%E3%80%91Seata%E9%83%A8%E7%BD%B2Linux%E6%96%87%E6%A1%A3/" itemprop="url" title="Linux以及Windows部署Seata服务" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/" itemprop="url" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclh3brzpj20zk0m8ann.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>6.3k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>6 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/" itemprop="url" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用">RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&SpringBoot简单应用</a></h3>
-    <div class="excerpt">
-        # RocketMQ 4.4.0 下载
+123456789101112131415161718192021222324252627282930313233343536373839404142## transaction log store, only used in seata-serverstore &#123;  ## store mode: file、db、redis  mode = &quot;db&quot; #如果单机：file 如果是集群：db  并在下方配置你的Mysql数据源  ## file store property  file &#123;    ## store location dir   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用">RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.617Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># RocketMQ 4.4.0 下载
 作者已经在自己的服务器挂载了 RocketMQ 4.4.0 的安装包和控制台，点击链接下载
 rocketMQ 4.4.0 安装包 http://124.222.229.230:8080/rocketmq-all-4.4.0-bin-release.zip
 rocketMQ 控制台 安装包 http://124.222.229.230:8080/rocketmq-externals-rocketmq-console-1.0.0.zip
 在使用前如果整合微服务，请注意 SpringCloudAliabba 与各组件之间的版本对应关系
 
-作者使用...
-    </div>
-    <a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ%E6%96%87%E6%A1%A3/" itemprop="url" title="RocketMQ - 十年双十一并发神器，最好的消息队列 Linux下安装与部署&amp;SpringBoot简单应用" class="btn">more...</a>
-  </div>
-</article>
+作者使用 SpringCloudAlibaba 2.2.5 RELEASE 版本，所以对应使用 RocketMQ 4.4.0 版本
+将下载好的安装包上传至 Linux 服务器
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/" itemprop="url" title="RocketMQ"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclxfdlttj20zk0m8npd.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>6k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>5 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/" itemprop="url" title="RocketMQ">RocketMQ</a></h3>
-    <div class="excerpt">
-        # RocketMQ
+将压缩包解压至创建好的 rocketMQ 文件夹下
+1unzip rocketmq-all-4.4.0-bin-release.zip rocketMQ
+按照官网流程，启动 nameServer，brokerServer 服务
+# 启动 nam ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/" title="RocketMQ">RocketMQ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.615Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># RocketMQ
 # 应用场景
 
 异步解藕
@@ -329,199 +229,100 @@ rocketMQ 控制台 安装包 http://124.222.229.230:8080/rocketmq-externals-rock
 
 # 环境搭建
 
+
 上传 rocketmq-all-4.4.0-bin-release.zip 到家目录
+
 
 使用解压命令进行解压
 1unzip /usr/local/rocketmq-all-4.4.0-bin-release.zip
 
+
 软件重命名
 1mv /usr/local/rocketmq-all-4.4.0-bin-release/ /usr/local/rocketmq-4.4/
 
+
 修改启动参数配置
 
-JAVA_OPT=”${JAVA_OPT} -server -Xms1g -Xmx1g...
-    </div>
-    <a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/" itemprop="url" title="RocketMQ" class="btn">more...</a>
-  </div>
-</article>
+JAVA_OPT=”${JAVA_OPT} -server -Xms1g -Xmx1g -Xmn1g“
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url" title="RequestParam 和 PathVariable的区别"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipevarprfj20zk0m8npd.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>1.5k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 分钟</span>
-  </span>
-</div>
+两个文件
+123vi /usr/local/rocketmq-4.4/bin/runbroker.shvi /usr/local/rocketmq-4.4/bin/runserver.sh
 
-    <h3><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url" title="RequestParam 和 PathVariable的区别">RequestParam 和 PathVariable的区别</a></h3>
-    <div class="excerpt">
-        RequestParam 和 PathVariable 注解是用于从 request 中接收请求的，两个都可以接收参数，关键点不同的是 RequestParam 是从 request 里面拿取值，而 PathVariable 是从一个 URI 模板里面来填充
+
+启动名字服务和代理服务
+12345nohup sh /usr/local/rocketmq-4.4/bin/mqnamesrv &amp;# -n localhost:9876 指定名称服务的地址, 类似于zk ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" title="RequestParam 和 PathVariable的区别">RequestParam 和 PathVariable的区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.613Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">RequestParam 和 PathVariable 注解是用于从 request 中接收请求的，两个都可以接收参数，关键点不同的是 RequestParam 是从 request 里面拿取值，而 PathVariable 是从一个 URI 模板里面来填充
 PathVariable
-主要用于接收 http://host:port/path/{参数值} 数据:
+ 主要用于接收 http://host:port/path/{参数值} 数据:
 http://localhost:8887/test1/id1/name1
-根据上面的这个...
-    </div>
-    <a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url" title="RequestParam 和 PathVariable的区别" class="btn">more...</a>
-  </div>
-</article>
+根据上面的这个 url，你可以用这样的方式来进行获取:
+RequestMapping(&quot;test1/&#123;id&#125;/&#123;name&#125;&quot;)
+public String testPathVariable(PathVariable String id, PathVariable String name) &#123;
+    return &quot;id=&quot; + id + &quot;, name=&quot; + name;
+&#125;
+PathVariable 支持下面三种参数：
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" title="Redis持久化"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>3.9k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>4 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" title="Redis持久化">Redis持久化</a></h3>
-    <div class="excerpt">
-        # 一、持久化简介
+name ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/" title="Redis持久化">Redis持久化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.611Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 一、持久化简介
 Redis 的数据 全部存储 在 内存 中，如果 突然宕机，数据就会全部丢失，因此必须有一套机制来保证 Redis 的数据不会因为故障而丢失，这种机制就是 Redis 的 持久化机制，它会将内存中的数据库状态保存到磁盘 中。
 持久化发生了什么？ | 从内存到磁盘：
 我们来稍微考虑一下 Redis 作为一个内存数据库 要做的关于持久化的事情。通常来说，从客户端发
 起请求开始，到服务器真实地写入磁盘，需要发生如下几件事情：
 详细版 的文字描述大概就是下面这样：
 \1. 客户端向数据库 发送写命令 (数据在客户端的内存中)
-\2. 数据库 接收 到客户端的 写请求...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" title="Redis持久化" class="btn">more...</a>
-  </div>
-</article>
+\2. 数据库 接收 到客户端的 写请求 (数据在服务器的内存中)
+\3. 数据库 调用系统 API 将数据写入磁盘 (数据在内核缓冲区中)
+\4. 操作系统将 写缓冲区 传输到 磁盘控控制器 (数据在磁盘缓存中)
+\5. 操作系统的磁盘控制器将数据 写入实际的物理媒介 中 (数据在磁盘中)
+** 注意、上面的过程其实是 ** 极度精简 的，在实际的操作系统中，缓存 和 缓冲区 会比这 多得多…
+# 如何尽可能保证持久化的安全
+如果我们故障仅仅涉及到  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" title="redis主从集群-哨兵模式搭建文档">redis主从集群-哨兵模式搭建文档</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.609Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">准备工作
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" itemprop="url" title="redis主从集群-哨兵模式搭建文档"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giciundwu5j20zk0m8n9e.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>3k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>3 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" itemprop="url" title="redis主从集群-哨兵模式搭建文档">redis主从集群-哨兵模式搭建文档</a></h3>
-    <div class="excerpt">
-        准备工作
 
 # 三台服务器
+
+
+
+
 
 服务器 ip
 角色
 
+
+
+
 192.168.20.1
 主
+
 
 192.168.20.2
 从
 
+
 192.168.20.3
 从
 
+
+
+
+
 # docker 安装 redis
+
 
 docker pull redis
 
+
 # 运行
 
+
 分别从三台服务器运行 redis 镜像，注意映射不同外端口
-1docker run -p 6380:6379 --name redis -v /mydata/redis/data/redis.conf:/etc/redis/redis.conf -v /mydata/redis/data:/data -d redis redis-server...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" itemprop="url" title="redis主从集群-哨兵模式搭建文档" class="btn">more...</a>
-  </div>
-</article>
+1docker run -p 6380:6379 --name redis -v /mydata/redis/data/redis.conf:/etc/redis/redis.conf  -v /mydata/redis/data:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes --daemonize no --masterauth #如果主节点设置了密码，请输入主服务密码
+docker exec -it redis_master /bin/bash
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" itemprop="url" title="Redis与Mysql | Master与Slave同步：canal教学"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giciusoyjnj219g0u0x56.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>7.1k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>6 分钟</span>
-  </span>
-</div>
 
-    <h3><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" itemprop="url" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a></h3>
-    <div class="excerpt">
-        # 前言：
+# 查看角色
+
+
+# 主：
+12345678910111213141516127.0.0.1:6379&gt; auth # ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.606Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 前言：
 ​		作者最近在做自己的项目，使用到 Redis，需要热更新，修改 Mysql 后同步 Redis 缓存，出于对圈子的贡献，也较于当前的 canal 的博客大多数不是很详细，所以写下这篇文章，时间是 2022 年 6 月 29 日。目的是帮助更多的人，希望能为在祖国的经济发展作出小小的贡献。
 ​		end
 # 学习 Canal 基本需要：
@@ -530,331 +331,13 @@ docker pull redis
 ​	Mysql，Redis 基础
 # 俗话说，要了解一个东西，先了解他的由来：
 # 一、Canal 起源
-​		阿里巴巴因为业务特性，买家集中在国外，衍生出了杭州美国异地数据同步需求，从...
-    </div>
-    <a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" itemprop="url" title="Redis与Mysql | Master与Slave同步：canal教学" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Node%E3%80%91node&npm&cnpm&webpack&yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" itemprop="url" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>2.9k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>3 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Node%E3%80%91node&npm&cnpm&webpack&yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" itemprop="url" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程">node&npm&cnpm&webpack&yarn安装教程</a></h3>
-    <div class="excerpt">
-        # Node.js
+​		阿里巴巴因为业务特性，买家集中在国外，衍生出了杭州美国异地数据同步需求，从 2010 年开始，阿里巴巴开始开发 canal，canal 是基于 Java 开发的数据库增量日志解析，提供增量数据订阅 &amp; 消费的中间件。Canal 主要支持了 Mysql 和 Bilog 解析，解析完成后利用 canal Client 来处理获取相关数据。
+了解完 canal 的起源，再来看看 canal 的核心业务依赖，也就是 mysql 的二进制日志：binary_log 简称：B ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Node%E3%80%91node&amp;npm&amp;cnpm&amp;webpack&amp;yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程">node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.604Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># Node.js
 ​		nodejs 是一个让 JavaScript 运行在服务端的开发平台，它让 JavaScript 成为与 PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言
 ​		nodejs 能做 web 开发，REST 开发，小程序开发等等，它就是使用 JavaScript 进行开发的，也就是说，基本上每个 web 开发的人员都可以比较轻松的转到 nodejs 平台，nodejs 就像是 JavaScript 抛弃 window,document 等这些 dom 对象后的东西的一个封装
 nodejs 下载地址：https://nodejs.org/en/
-#...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Node%E3%80%91node&npm&cnpm&webpack&yarn%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" itemprop="url" title="node&amp;npm&amp;cnpm&amp;webpack&amp;yarn安装教程" class="btn">more...</a>
-  </div>
-</article>
-
-    </div>
-
-  </div>
-
-  
-  <nav class="pagination">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="ic i-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
-    </div>
-  </nav>
-
-
-
-        </div>
-        <div id="sidebar">
-          
-<div class="inner">
-
-  <div class="panels">
-    <div class="inner">
-      <div class="contents panel pjax" data-title="文章目录">
-      </div>
-      <div class="related panel pjax" data-title="系列文章">
-      </div>
-      <div class="overview panel" data-title="站点概览">
-        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="Brath"
-      data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">Brath</p>
-  <div class="description" itemprop="description"></div>
-</div>
-
-<nav class="state">
-    <div class="item posts">
-      <a href="/archives/">
-        <span class="count">71</span>
-        <span class="name">文章</span>
-      </a>
-    </div>
-</nav>
-
-<div class="social">
-      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
-      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
-      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
-      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
-</div>
-
-<ul class="menu">
-  
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
-  </li>
-
-        
-  <li class="item dropdown">
-      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
-    <ul class="submenu">
-
-        
-  <li class="item">
-    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
-  </li>
-
-        
-  <li class="item">
-    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
-  </li>
-
-        
-  <li class="item">
-    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
-  </li>
-
-  </ul>
-
-</ul>
-
-      </div>
-    </div>
-  </div>
-
-  <ul id="quick">
-    <li class="prev pjax">
-        <a href="/page/3/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
-    </li>
-    <li class="up"><i class="ic i-arrow-up"></i></li>
-    <li class="down"><i class="ic i-arrow-down"></i></li>
-    <li class="next pjax">
-        <a href="/page/5/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
-    </li>
-    <li class="percent"></li>
-  </ul>
-</div>
-
-        </div>
-        <div class="dimmer"></div>
-      </div>
-    </main>
-    <footer id="footer">
-      <div class="inner">
-        <div class="widgets">
-          
-<div class="rpost pjax">
-  <h2>随机文章</h2>
-  <ul>
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/" title="宝塔部署Docker—Mysql镜像">宝塔部署Docker—Mysql镜像</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/" title="Linux下docer部署mysql">Linux下docer部署mysql</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91Alibaba%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6/" title="阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义">阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/" title="【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work">【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" title="Hbase">Hbase</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/" title="ELASTICSEARCH7.X安全性之访问密码设置">ELASTICSEARCH7.X安全性之访问密码设置</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" title="Knife4J接口文档">Knife4J接口文档</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91docker%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2rocketMQ/" title="docker简单部署rocketMQ">docker简单部署rocketMQ</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="MySQL8下载与安装教程">MySQL8下载与安装教程</a></span>
-  </li>
-
-  </ul>
-</div>
-<div>
-  <h2>最新评论</h2>
-  <ul class="leancloud-recent-comment"></ul>
-</div>
-
-        </div>
-        <div class="status">
-  <div class="copyright">
-    
-    &copy; 2030 – 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="ic i-sakura rotate"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
-  </div>
-  <div class="count">
-    <span class="post-meta-item-icon">
-      <i class="ic i-chart-area"></i>
-    </span>
-    <span title="站点总字数">421k 字</span>
-
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="ic i-coffee"></i>
-    </span>
-    <span title="站点阅读时长">6:23</span>
-  </div>
-  <div class="powered-by">
-    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
-  </div>
-</div>
-
-      </div>
-    </footer>
-  </div>
-<script data-config type="text/javascript">
-  var LOCAL = {
-    path: 'page/4/',
-    favicon: {
-      show: "（●´3｀●）やれやれだぜ",
-      hide: "(´Д｀)大変だ！"
-    },
-    search : {
-      placeholder: "文章搜索",
-      empty: "关于 「 ${query} 」，什么也没搜到",
-      stats: "${time} ms 内找到 ${hits} 条结果"
-    },
-    valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
-    ignores : [
-      function(uri) {
-        return uri.includes('#');
-      },
-      function(uri) {
-        return new RegExp(LOCAL.path+"$").test(uri);
-      }
-    ]
-  };
-</script>
-
-<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
-
-<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
-
-<script src="/js/app.js?v=0.2.5"></script>
-
-
-
-
-</body>
-</html>
+# Node.js 安装：
+​		1 . 首先要查看本机是否已安装 nodeJs，打开命令提示符，输入 node&amp;node -v 查看。
+​		2 . 打开 Node.js Setup 文件执行安装    选择安装路径，全部下一步。
+​		3 . 安装完毕之后，重新打开一个命令提示符窗口，出入 node -v
+现在，我们来 Hello World 一下，开启命令行窗口，输入 node，进入  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90Java&amp;%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/" title="Java开发公众号自动回复功能">Java开发公众号自动回复功能</a><time datetime="2023-02-23T05:03:35.956Z" title="发表于 2023-02-23 13:03:35">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/" title="JetBrains全系列激活码">JetBrains全系列激活码</a><time datetime="2023-02-23T00:43:39.084Z" title="发表于 2023-02-23 08:43:39">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/14/%E3%80%90Flutter%E3%80%91Flutter%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="【Flutter】Flutter生命周期">【Flutter】Flutter生命周期</a><time datetime="2023-02-14T07:07:15.677Z" title="发表于 2023-02-14 15:07:15">2023-02-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/" title="腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a><time datetime="2023-02-11T02:19:46.158Z" title="发表于 2023-02-11 10:19:46">2023-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/" title="【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work">【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</a><time datetime="2023-02-10T06:12:58.594Z" title="发表于 2023-02-10 14:12:58">2023-02-10</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">71</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-02-23T05:41:18.444Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

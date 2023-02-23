@@ -1,190 +1,184 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Java多线程学习（吐血超详细总结） | BrathBlog</title><meta name="author" content="Brath"><meta name="copyright" content="Brath"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="# Java 多线程学习（吐血超详细总结） 写在前面的话：此文只能说是 java 多线程的一个入门，其实 Java 里头线程完全可以写一本书了，但是如果最基本的你都学掌握好，又怎么能更上一个台阶呢？如果你觉得此文很简单，那推荐你看看 Java 并发包的的线程池（Java 并发编程与技术内幕：线程池深入理解），或者看这个专栏：Java 并发编程与技术内幕。你将会对 Java 里头的高并发场景下的线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java多线程学习（吐血超详细总结）">
+<meta property="og:url" content="http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/index.html">
+<meta property="og:site_name" content="BrathBlog">
+<meta property="og:description" content="# Java 多线程学习（吐血超详细总结） 写在前面的话：此文只能说是 java 多线程的一个入门，其实 Java 里头线程完全可以写一本书了，但是如果最基本的你都学掌握好，又怎么能更上一个台阶呢？如果你觉得此文很简单，那推荐你看看 Java 并发包的的线程池（Java 并发编程与技术内幕：线程池深入理解），或者看这个专栏：Java 并发编程与技术内幕。你将会对 Java 里头的高并发场景下的线程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-01-06T01:27:00.332Z">
+<meta property="article:modified_time" content="2023-01-06T01:27:56.322Z">
+<meta property="article:author" content="Brath">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java多线程学习（吐血超详细总结）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-06 09:27:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#FFF">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
-<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="/css/app.css?v=0.2.5">
-
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="keywords" content="java,git,springcloud" />
-
-
-<link rel="canonical" href="http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/">
-
-
-
-  <title>
-Java多线程学习（吐血超详细总结） |
-Brath = BrathBlog</title>
-<meta name="generator" content="Hexo 6.3.0"></head>
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div id="loading">
-    <div class="cat">
-      <div class="body"></div>
-      <div class="head">
-        <div class="face"></div>
-      </div>
-      <div class="foot">
-        <div class="tummy-end"></div>
-        <div class="bottom"></div>
-        <div class="legs left"></div>
-        <div class="legs right"></div>
-      </div>
-      <div class="paw">
-        <div class="hands left"></div>
-        <div class="hands right"></div>
-      </div>
-    </div>
-  </div>
-  <div id="container">
-    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="inner">
-        <div id="brand">
-          <div class="pjax">
-          
-  <h1 itemprop="name headline">Java多线程学习（吐血超详细总结）
-  </h1>
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-<div class="meta">
-  <span class="item" title="创建时间：2023-01-06 09:27:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <span class="text">发表于</span>
-    <time itemprop="dateCreated datePublished" datetime="2023-01-06T09:27:00+08:00">2023-01-06</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span class="text">本文字数</span>
-    <span>22k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span class="text">阅读时长</span>
-    <span>20 分钟</span>
-  </span>
-</div>
-
-
-          </div>
-        </div>
-        <nav id="nav">
-  <div class="inner">
-    <div class="toggle">
-      <div class="lines" aria-label="切换导航栏">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <ul class="menu">
-      <li class="item title"><a href="/" rel="start">Brath</a></li>
-    </ul>
-    <ul class="right">
-      <li class="item theme">
-        <i class="ic i-sun"></i>
-      </li>
-      <li class="item search">
-        <i class="ic i-search"></i>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-      </div>
-      <div id="imgs" class="pjax">
-        <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxfdlttj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
-        </ul>
-      </div>
-    </header>
-    <div id="waves">
-      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" />
-          <use xlink:href="#gentle-wave" x="48" y="3" />
-          <use xlink:href="#gentle-wave" x="48" y="5" />
-          <use xlink:href="#gentle-wave" x="48" y="7" />
-        </g>
-      </svg>
-    </div>
-    <main>
-      <div class="inner">
-        <div id="main" class="pjax">
-          
-  <div class="article wrap">
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-<i class="ic i-home"></i>
-<span><a href="/">首页</a></span>
-</div>
-
-    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/">
-
-  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="image" content="/images/avatar.jpg">
-    <meta itemprop="name" content="Brath">
-    <meta itemprop="description" content=", ">
-  </span>
-
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="BrathBlog">
-  </span>
-
-  <div class="body md" itemprop="articleBody">
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-
-    <h1 id="java多线程学习吐血超详细总结"><a class="markdownIt-Anchor" href="#java多线程学习吐血超详细总结">#</a> Java 多线程学习（吐血超详细总结）</h1>
-<p>写在前面的话：此文只能说是 java<span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTUlQTQlOUElRTclQkElQkYlRTclQTglOEImYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw"> 多线程</span>的一个入门，其实 Java 里头线程完全可以写一本书了，但是如果最基本的你都学掌握好，又怎么能更上一个台阶呢？如果你觉得此文很简单，那推荐你看看 Java 并发包的的线程池（<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzUxNDg5MzIy">Java 并发编程与技术内幕：线程池深入理解</span>），或者看这个专栏：<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29sdW1uL2RldGFpbHMvamF2YWhoaWdoY29uY3VycmVuY2UuaHRtbA==">Java 并发编程与技术内幕</span>。你将会对 Java 里头的高并发场景下的线程有更加深刻的理解。</p>
-<p>目录<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5Iw=="> (?)</span>[<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5Iw==">-]</span></p>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java多线程学习（吐血超详细总结）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-06T01:27:00.332Z" title="发表于 2023-01-06 09:27:00">2023-01-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-06T01:27:56.322Z" title="更新于 2023-01-06 09:27:56">2023-01-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java多线程学习（吐血超详细总结）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="java多线程学习吐血超详细总结"><a class="markdownIt-Anchor" href="#java多线程学习吐血超详细总结">#</a> Java 多线程学习（吐血超详细总结）</h1>
+<p>写在前面的话：此文只能说是 java<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%A4%9A%E7%BA%BF%E7%A8%8B&amp;spm=1001.2101.3001.7020"> 多线程</a>的一个入门，其实 Java 里头线程完全可以写一本书了，但是如果最基本的你都学掌握好，又怎么能更上一个台阶呢？如果你觉得此文很简单，那推荐你看看 Java 并发包的的线程池（<a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/51489322">Java 并发编程与技术内幕：线程池深入理解</a>），或者看这个专栏：<a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/javahhighconcurrence.html">Java 并发编程与技术内幕</a>。你将会对 Java 里头的高并发场景下的线程有更加深刻的理解。</p>
+<p>目录<a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#"> (?)</a>[<a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#">-]</a></p>
 <ol>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Qw">一扩展 javalangThread 类</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Qx">二实现 javalangRunnable 接口</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Qy">三 Thread 和 Runnable 的区别</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Qz">四线程状态转换</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Q0">五线程调度</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Q1">六常用函数说明</span></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t0">一扩展 javalangThread 类</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t1">二实现 javalangRunnable 接口</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t2">三 Thread 和 Runnable 的区别</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t3">四线程状态转换</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t4">五线程调度</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t5">六常用函数说明</a></li>
 <li>
 <ol>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Q2">使用方式</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Q3">为什么要用 join 方法</span></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t6">使用方式</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t7">为什么要用 join 方法</a></li>
 </ol>
 </li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Q4">七常见线程名词解释</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3Q5">八线程同步</span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzQ0MTUzNzA5I3QxMA==">九线程数据传递</span></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t8">七常见线程名词解释</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t9">八线程同步</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/44153709#t10">九线程数据传递</a></li>
 </ol>
 <p>​    本文主要讲了 java 中多线程的使用方法、线程同步、线程数据传递、线程状态及相应的一些线程函数用法、概述等。在这之前，首先让我们来了解下在操作系统中进程和线程的区别：</p>
 <p><strong>进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含 1–n 个线程。（进程是资源分配的最小单位）</strong></p>
@@ -192,7 +186,7 @@ Brath = BrathBlog</title>
 <p>线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。</p>
 <p>多进程是指操作系统能同时运行多个任务（程序）。</p>
 <p>多线程是指在同一程序中有多个顺序流在执行。</p>
-<p>在<em> java</em> 中要想实现多线程，有两种手段，一种是继续<em> Thread</em> 类，另外一种是实现<em> Runable</em> 接口.(<strong>其实准确来讲，应该有三种，还有一种是实现 Callable 接口</strong>，并与 Future、线程池结合使用，此文这里不讲这个，有兴趣看这里<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZXZhbmtha2EvYXJ0aWNsZS9kZXRhaWxzLzUxNjEwNjM1"> Java 并发编程与技术内幕：Callable、Future、FutureTask、CompletionService</span> )</p>
+<p>在<em> java</em> 中要想实现多线程，有两种手段，一种是继续<em> Thread</em> 类，另外一种是实现<em> Runable</em> 接口.(<strong>其实准确来讲，应该有三种，还有一种是实现 Callable 接口</strong>，并与 Future、线程池结合使用，此文这里不讲这个，有兴趣看这里<a target="_blank" rel="noopener" href="http://blog.csdn.net/evankaka/article/details/51610635"> Java 并发编程与技术内幕：Callable、Future、FutureTask、CompletionService</a> )</p>
 <h1 id="一-扩展javalangthread类"><a class="markdownIt-Anchor" href="#一-扩展javalangthread类">#</a> 一、扩展 java.lang.Thread 类</h1>
 <p>这里继承 Thread 类的方法是比较常用的一种，如果说你只是想起一条线程。没有什么其它特殊的要求，那么可以使用 Thread.（<strong>笔者推荐使用 Runable，后头会说明为什么</strong>）。下面来看一个简单的实例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.multithread.learning;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Thread1</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Thread1</span><span class="params">(String name)</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">this</span>.name=name;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            System.out.println(name + <span class="string">&quot;运行  :  &quot;</span> + i);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                sleep((<span class="type">int</span>) Math.random() * <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                e.printStackTrace();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		Thread1 mTh1=<span class="keyword">new</span> <span class="title class_">Thread1</span>(<span class="string">&quot;A&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		Thread1 mTh2=<span class="keyword">new</span> <span class="title class_">Thread1</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		mTh1.start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		mTh2.start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -266,7 +260,7 @@ C 运行 : 4</p>
 <p><strong>在<strong><strong> java</strong></strong> 中，每次程序运行至少启动<strong><strong> 2</strong></strong> 个线程。一个是<strong><strong> main</strong></strong> 线程，一个是垃圾收集线程。因为每当使用<strong><strong> java</strong></strong> 命令执行一个类的时候，实际上都会启动一个ＪＶＭ，每一个ｊＶＭ实习在就是在操作系统中启动了一个进程。</strong></p>
 <h1 id="四-线程状态转换"><a class="markdownIt-Anchor" href="#四-线程状态转换">#</a> 四、线程状态转换</h1>
 <p>下面的这个图非常重要！你如果看懂了这个图，那么对于多线程的理解将会更加深刻！</p>
-<p><img data-src="https://img-blog.csdn.net/20150309140927553" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20150309140927553" alt="img"></p>
 <p>1、新建状态（New）：新创建了一个线程对象。</p>
 <p>2、就绪状态（Runnable）：线程对象创建后，其他线程调用了该对象的 start () 方法。该状态的线程位于可运行线程池中，变得可运行，等待获取 CPU 的使用权。</p>
 <p>3、运行状态（Running）：就绪状态的线程获取了 CPU，执行程序代码。</p>
@@ -457,363 +451,4 @@ currentThread (): 得到当前线程。<br>
 <p>上面讨论的两种向线程中传递数据的方法是最常用的。但这两种方法都是 main 方法中主动将数据传入线程类的。这对于线程来说，是被动接收这些数据的。然而，在有些应用中需要在线程运行的过程中动态地获取数据，如在下面代码的 run 方法中产生了 3 个随机数，然后通过 Work 类的 process 方法求这三个随机数的和，并通过 Data 类的 value 将结果返回。从这个例子可以看出，在返回 value 之前，必须要得到三个随机数。也就是说，这个 value 是无法事先就传入线程类的。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mythread; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Data</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> <span class="number">0</span>; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Work</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Data data, Integer numbers)</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> n : numbers) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data.value += n; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyThread3</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Work work; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">MyThread3</span><span class="params">(Work work)</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">this</span>.work = work; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">java.util.<span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">java</span>.util.Random(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">Data</span> <span class="variable">data</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Data</span>(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> random.nextInt(<span class="number">1000</span>); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n2</span> <span class="operator">=</span> random.nextInt(<span class="number">2000</span>); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n3</span> <span class="operator">=</span> random.nextInt(<span class="number">3000</span>); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">work.process(data, n1, n2, n3); <span class="comment">// 使用回调函数 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">System.out.println(String.valueOf(n1) + <span class="string">&quot;+&quot;</span> + String.valueOf(n2) + <span class="string">&quot;+&quot;</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+ String.valueOf(n3) + <span class="string">&quot;=&quot;</span> + data.value); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread3</span>(<span class="keyword">new</span> <span class="title class_">Work</span>()); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">thread.start(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <p>好了，Java 多线程的基础知识就讲到这里了，有兴趣研究多线程的推荐直接看 java 的源码，你将会得到很大的提升！</p>
-
-  </div>
-
-   <footer>
-
-    <div class="meta">
-  <span class="item">
-    <span class="icon">
-      <i class="ic i-calendar-check"></i>
-    </span>
-    <span class="text">更新于</span>
-    <time title="修改时间：2023-01-06 09:27:56" itemprop="dateModified" datetime="2023-01-06T09:27:56+08:00">2023-01-06</time>
-  </span>
-</div>
-
-      
-<div class="reward">
-  <button><i class="ic i-heartbeat"></i> 赞赏</button>
-  <p>请我喝[茶]~(￣▽￣)~*</p>
-  <div id="qr">
-      
-      <div>
-        <img data-src="/images/wechatpay.png" alt="Brath 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div>
-        <img data-src="/images/alipay.png" alt="Brath 支付宝">
-        <p>支付宝</p>
-      </div>
-      
-      <div>
-        <img data-src="/images/paypal.png" alt="Brath 贝宝">
-        <p>贝宝</p>
-      </div>
-  </div>
-</div>
-
-      
-
-<div id="copyright">
-<ul>
-  <li class="author">
-    <strong>本文作者： </strong>Brath <i class="ic i-at"><em>@</em></i>BrathBlog
-  </li>
-  <li class="link">
-    <strong>本文链接：</strong>
-    <a href="http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/" title="Java多线程学习（吐血超详细总结）">http://example.com/2023/01/06/【Java】Java多线程学习(吐血超详细总结)/</a>
-  </li>
-  <li class="license">
-    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-  </footer>
-
-</article>
-
-  </div>
-  
-
-<div class="post-nav">
-    <div class="item left">
-      
-
-  <a href="/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclwrdwyaj20zk0m8are.jpg" title="未命名">
-  <span class="type">上一篇</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>未命名</h3>
-  </a>
-
-    </div>
-    <div class="item right">
-      
-
-  <a href="/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxfdlttj20zk0m8npd.jpg" title="【MySQL】MySQL主从开关机顺序">
-  <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>【MySQL】MySQL主从开关机顺序</h3>
-  </a>
-
-    </div>
-</div>
-
-  
-  <div class="wrap" id="comments"></div>
-
-
-        </div>
-        <div id="sidebar">
-          
-
-<div class="inner">
-
-  <div class="panels">
-    <div class="inner">
-      <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> Java 多线程学习（吐血超详细总结）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E6%89%A9%E5%B1%95javalangthread%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text"> 一、扩展 java.lang.Thread 类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E5%AE%9E%E7%8E%B0javalangrunnable%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text"> 二、实现 java.lang.Runnable 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-thread%E5%92%8Crunnable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text"> 三、Thread 和 Runnable 的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B-%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text"> 四、线程状态转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-number">6.</span> <span class="toc-text"> 五、线程调度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">7.</span> <span class="toc-text"> 六、常用函数说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">7.0.1.</span> <span class="toc-text"> 使用方式。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8join%E6%96%B9%E6%B3%95"><span class="toc-number">7.0.2.</span> <span class="toc-text"> 为什么要用 join () 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83-%E5%B8%B8%E8%A7%81%E7%BA%BF%E7%A8%8B%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-number">8.</span> <span class="toc-text"> 七、常见线程名词解释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">9.</span> <span class="toc-text"> 八、线程同步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D-%E7%BA%BF%E7%A8%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92"><span class="toc-number">10.</span> <span class="toc-text"> 九、线程数据传递</span></a></li></ol>
-      </div>
-      <div class="related panel pjax" data-title="系列文章">
-      </div>
-      <div class="overview panel" data-title="站点概览">
-        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="Brath"
-      data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">Brath</p>
-  <div class="description" itemprop="description"></div>
-</div>
-
-<nav class="state">
-    <div class="item posts">
-      <a href="/archives/">
-        <span class="count">71</span>
-        <span class="name">文章</span>
-      </a>
-    </div>
-</nav>
-
-<div class="social">
-      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
-      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
-      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
-      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
-</div>
-
-<ul class="menu">
-  
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
-  </li>
-
-        
-  <li class="item dropdown">
-      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
-    <ul class="submenu">
-
-        
-  <li class="item">
-    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
-  </li>
-
-        
-  <li class="item">
-    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
-  </li>
-
-        
-  <li class="item">
-    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
-  </li>
-
-  </ul>
-
-</ul>
-
-      </div>
-    </div>
-  </div>
-
-  <ul id="quick">
-    <li class="prev pjax">
-        <a href="/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
-    </li>
-    <li class="up"><i class="ic i-arrow-up"></i></li>
-    <li class="down"><i class="ic i-arrow-down"></i></li>
-    <li class="next pjax">
-        <a href="/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
-    </li>
-    <li class="percent"></li>
-  </ul>
-</div>
-
-
-        </div>
-        <div class="dimmer"></div>
-      </div>
-    </main>
-    <footer id="footer">
-      <div class="inner">
-        <div class="widgets">
-          
-<div class="rpost pjax">
-  <h2>随机文章</h2>
-  <ul>
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/" title="阿里云OSS的CDN加速和OSS传输加速的区别">阿里云OSS的CDN加速和OSS传输加速的区别</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/" title="Redis持久化">Redis持久化</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90SQl%E3%80%91SQuirreL%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Squirrel SQL客户端安装与使用">Squirrel SQL客户端安装与使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/" title="宝塔部署Docker—Mysql镜像">宝塔部署Docker—Mysql镜像</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/" title="【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work">【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Java%E3%80%91CAS-ABA%E9%97%AE%E9%A2%98/" title="CAS-ABA问题">CAS-ABA问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" title="mysql查询技巧">mysql查询技巧</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/" title="ThreadLocal">ThreadLocal</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="MySQL安装 starting the server失败的解决办法">MySQL安装 starting the server失败的解决办法</a></span>
-  </li>
-
-  </ul>
-</div>
-<div>
-  <h2>最新评论</h2>
-  <ul class="leancloud-recent-comment"></ul>
-</div>
-
-        </div>
-        <div class="status">
-  <div class="copyright">
-    
-    &copy; 2030 – 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="ic i-sakura rotate"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
-  </div>
-  <div class="count">
-    <span class="post-meta-item-icon">
-      <i class="ic i-chart-area"></i>
-    </span>
-    <span title="站点总字数">421k 字</span>
-
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="ic i-coffee"></i>
-    </span>
-    <span title="站点阅读时长">6:23</span>
-  </div>
-  <div class="powered-by">
-    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
-  </div>
-</div>
-
-      </div>
-    </footer>
-  </div>
-<script data-config type="text/javascript">
-  var LOCAL = {
-    path: '2023/01/06/【Java】Java多线程学习(吐血超详细总结)/',
-    favicon: {
-      show: "（●´3｀●）やれやれだぜ",
-      hide: "(´Д｀)大変だ！"
-    },
-    search : {
-      placeholder: "文章搜索",
-      empty: "关于 「 ${query} 」，什么也没搜到",
-      stats: "${time} ms 内找到 ${hits} 条结果"
-    },
-    valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
-    ignores : [
-      function(uri) {
-        return uri.includes('#');
-      },
-      function(uri) {
-        return new RegExp(LOCAL.path+"$").test(uri);
-      }
-    ]
-  };
-</script>
-
-<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
-
-<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
-
-<script src="/js/app.js?v=0.2.5"></script>
-
-
-
-
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Brath</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/">http://example.com/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">BrathBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/11/%E3%80%90MySQL%E3%80%91MySQL%E4%B8%BB%E4%BB%8E%E5%BC%80%E5%85%B3%E6%9C%BA%E9%A1%BA%E5%BA%8F/" title="【MySQL】MySQL主从开关机顺序"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【MySQL】MySQL主从开关机顺序</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> Java 多线程学习（吐血超详细总结）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E6%89%A9%E5%B1%95javalangthread%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text"> 一、扩展 java.lang.Thread 类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E5%AE%9E%E7%8E%B0javalangrunnable%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text"> 二、实现 java.lang.Runnable 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-thread%E5%92%8Crunnable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text"> 三、Thread 和 Runnable 的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B-%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text"> 四、线程状态转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-number">6.</span> <span class="toc-text"> 五、线程调度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">7.</span> <span class="toc-text"> 六、常用函数说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">7.0.1.</span> <span class="toc-text"> 使用方式。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8join%E6%96%B9%E6%B3%95"><span class="toc-number">7.0.2.</span> <span class="toc-text"> 为什么要用 join () 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83-%E5%B8%B8%E8%A7%81%E7%BA%BF%E7%A8%8B%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-number">8.</span> <span class="toc-text"> 七、常见线程名词解释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">9.</span> <span class="toc-text"> 八、线程同步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D-%E7%BA%BF%E7%A8%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92"><span class="toc-number">10.</span> <span class="toc-text"> 九、线程数据传递</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90Java&amp;%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/" title="Java开发公众号自动回复功能">Java开发公众号自动回复功能</a><time datetime="2023-02-23T05:03:35.956Z" title="发表于 2023-02-23 13:03:35">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/" title="JetBrains全系列激活码">JetBrains全系列激活码</a><time datetime="2023-02-23T00:43:39.084Z" title="发表于 2023-02-23 08:43:39">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/14/%E3%80%90Flutter%E3%80%91Flutter%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="【Flutter】Flutter生命周期">【Flutter】Flutter生命周期</a><time datetime="2023-02-14T07:07:15.677Z" title="发表于 2023-02-14 15:07:15">2023-02-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/" title="腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a><time datetime="2023-02-11T02:19:46.158Z" title="发表于 2023-02-11 10:19:46">2023-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/" title="【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work">【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</a><time datetime="2023-02-10T06:12:58.594Z" title="发表于 2023-02-10 14:12:58">2023-02-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

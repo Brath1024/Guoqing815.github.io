@@ -1,155 +1,162 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>BrathBlog</title><meta name="author" content="Brath"><meta name="copyright" content="Brath"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="BrathBlog">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="BrathBlog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="Brath">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BrathBlog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-02-23 13:41:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#FFF">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-<link rel="alternate" type="application/rss+xml" title="BrathBlog" href="http://example.com/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="BrathBlog" href="http://example.com/atom.xml" />
-<link rel="alternate" type="application/json" title="BrathBlog" href="http://example.com/feed.json" />
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="/css/app.css?v=0.2.5">
-
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="keywords" content="java,git,springcloud" />
-
-
-<link rel="canonical" href="http://example.com/page/6/">
-
-
-
-  <title>Brath = BrathBlog</title>
-<meta name="generator" content="Hexo 6.3.0"></head>
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div id="loading">
-    <div class="cat">
-      <div class="body"></div>
-      <div class="head">
-        <div class="face"></div>
-      </div>
-      <div class="foot">
-        <div class="tummy-end"></div>
-        <div class="bottom"></div>
-        <div class="legs left"></div>
-        <div class="legs right"></div>
-      </div>
-      <div class="paw">
-        <div class="hands left"></div>
-        <div class="hands right"></div>
-      </div>
-    </div>
-  </div>
-  <div id="container">
-    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="inner">
-        <div id="brand">
-          <div class="pjax">
-          
-            <a href="/" class="logo" rel="start"><p class="artboard">Brath</p>
-              <h1 itemprop="name headline" class="title">BrathBlog</h1>
-            </a>
-          
-          </div>
-        </div>
-        <nav id="nav">
-  <div class="inner">
-    <div class="toggle">
-      <div class="lines" aria-label="切换导航栏">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <ul class="menu">
-      <li class="item title"><a href="/" rel="start">Brath</a></li>
-    </ul>
-    <ul class="right">
-      <li class="item theme">
-        <i class="ic i-sun"></i>
-      </li>
-      <li class="item search">
-        <i class="ic i-search"></i>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-      </div>
-      <div id="imgs" class="pjax">
-        <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclx29mstj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-        </ul>
-      </div>
-    </header>
-    <div id="waves">
-      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" />
-          <use xlink:href="#gentle-wave" x="48" y="3" />
-          <use xlink:href="#gentle-wave" x="48" y="5" />
-          <use xlink:href="#gentle-wave" x="48" y="7" />
-        </g>
-      </svg>
-    </div>
-    <main>
-      <div class="inner">
-        <div id="main" class="pjax">
-          
-  <div class="index wrap">
-    <div class="segments posts">
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" title="JUC并发多线程笔记"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giph4baakhj20zk0m8h5q.jpg"></a>
-  </div>
-  <div class="info">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>19k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>17 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" title="JUC并发多线程笔记">JUC并发多线程笔记</a></h3>
-    <div class="excerpt">
-        # 什么是 JUC
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">BrathBlog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="JUC并发多线程笔记">JUC并发多线程笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.578Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 什么是 JUC
 # 进程与线程
 进程：计算机进行资源调度的基本单元（打开一个软件）。
 线程：系统分配时间调度的基本单元。
@@ -167,44 +174,21 @@
 (2) sleep 不会释放锁，它也不需要占用锁。wait 会释放锁，但调用它的前提 是当前线程占有锁 (即代码要在 synchronized 中)。
 (3) 它们都可以被 interrupted 方法中断。
 # 并发和并行
-** 并发:**...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" title="JUC并发多线程笔记" class="btn">more...</a>
-  </div>
-</article>
+** 并发:** 同一时刻多个线程在访问同一个资源，多个线程对一个点
+** 并行:** 多项工作一起执行，之后再汇总
+# 管程 MONITOR
+就是说的锁
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" title="Hexo搭建"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>1.2k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 分钟</span>
-  </span>
-</div>
+# 用户线程和守护线程
+用户线程：平时用到的普通线程，自定义线程
+守护线程：运行在后台，是一种特殊的线程，比如垃圾回收
+当主线程结束后，用户线程还在运行，JVM 存活
+如果没有用户线程，都是守护线程，JVM 结束
+# LOCK 接口
+# 多线程编程步骤
 
-    <h3><a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" title="Hexo搭建">Hexo搭建</a></h3>
-    <div class="excerpt">
-        # hexo 框架个人博客搭建
+# SYNCHRONIZED
+s ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" title="Hexo搭建">Hexo搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.576Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># hexo 框架个人博客搭建
 # 1 环境准备
 # 1.1 Node.js 和 npm 安装
 1NoedJS自行百度安装
@@ -214,636 +198,91 @@
 1cnpm install -g hexo-cli
 # 1.4git 安装配置
 
+
 git 官网 下载对应系统安装包
+
 
 运行安装包 一路下一步
 
+
 开始菜单运行 Git Bash (运行成功表示 git 安装成功)
+
 
 git 安装好去 GitHub 上注册一个账号
 
-设置 git：在 Git Bush...
-    </div>
-    <a href="/2022/12/27/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91Hexo/" itemprop="url" title="Hexo搭建" class="btn">more...</a>
-  </div>
-</article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" itemprop="url" title="Hbase"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipeun65urj20zk0m81ii.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>6.9k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>6 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" itemprop="url" title="Hbase">Hbase</a></h3>
-    <div class="excerpt">
-        # 介绍：
+设置 git：在 Git Bush 命令行中输入
+1234# 配置用户名git config --global user.name &quot;username&quot;    //（ &quot;username&quot;是自己的账户名）# 配置邮箱git config --global user.email &quot;username@email.com&quot;     //(&quot;username@email.c ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" title="Hbase">Hbase</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.574Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 介绍：
 ​		Hbase 是 bigtable 的开源山寨版本。是建立在 HDFS 之上，提供高可靠性、高性能、列存储、可伸缩、实时读写的数据库系统。它介于 nosql 和 RDBMS 之间，仅能通过主键 (row key) 和主键的 range 来检索数据，仅支持单行事务 (可通过 hive 支持来实现多表 join 等复杂操作)。主要用来存储非结构化和半结构化的松散数据。与 hadoop 一样，Hbase 目标主要依靠横向扩展，通过不断增加廉价的商用服务器，来增加计算和存储能力。
 # 特点：
-​		HBase...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E5%AD%A6%E4%B9%A0/" itemprop="url" title="Hbase" class="btn">more...</a>
-  </div>
-</article>
+​		HBase 中的表一般有这样的特点：
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" itemprop="url" title="Hbase整合SpringBoot的问题"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicivghyooj20zk0m8dir.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>230</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 分钟</span>
-  </span>
-</div>
 
-    <h3><a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" itemprop="url" title="Hbase整合SpringBoot的问题">Hbase整合SpringBoot的问题</a></h3>
-    <div class="excerpt">
-        在一个 Demo 中，springboot 整合 Hbase 出了一个难解决的问题：
+大：一个表可以有上亿行，上百万列
+
+
+面向列：面向列 (族) 的存储和权限控制，列 (族) 独立检索。
+
+
+稀疏：对于为空 (null) 的列，并不占用存储空间，因此，表可以设计的非常稀疏。
+
+
+下面一幅图是 Hbase 在 Hadoop Ecosystem 中的位置。
+
+# 二、 逻辑视图
+HBase 以表的形式存储数据。表有行和列组成。列划分为若干个列族 (row family)
+
+Row Key
+与 nosql 数据库们一样，row k ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" title="Hbase整合SpringBoot的问题">Hbase整合SpringBoot的问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.571Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">在一个 Demo 中，springboot 整合 Hbase 出了一个难解决的问题：
 tried to access method com.google.common.base.Stopwatch.()V from class org.apache.hadoop.hbase.zookeeper.MetaTableLocator
 调用 hbase 就会报错，这是因为 swagger 和 guava 依赖冲突导致的，整合 habse 的 1.0 版本，依赖中不能有 swagger，guava 的版本要低于 17.
-    </div>
-    <a href="/2022/12/27/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/" itemprop="url" title="Hbase整合SpringBoot的问题" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" itemprop="url" title="Github访问加速方法"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>1.1k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" itemprop="url" title="Github访问加速方法">Github访问加速方法</a></h3>
-    <div class="excerpt">
-        # 1. 获取延迟最小 IP 地址
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" title="Github访问加速方法">Github访问加速方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.569Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 1. 获取延迟最小 IP 地址
 首先，打开
-http://tool.chinaz.com/dns?type=1&amp;amp;host=github.com&amp;amp;ip=
+http://tool.chinaz.com/dns?type=1&amp;host=github.com&amp;ip=
 查询 Github 的地址，选择延迟最小的
 
 # 2. 修改系统 Hosts 文件
 接着，打开系统 hosts 文件 (需管理员权限)。
 路径：C:\Windows\System32\drivers\etc
 
-mac 或者其他 linux 系统的话，是 /etc 下的 hosts 文件，需要切入到 root...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Git%E3%80%91Github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F/" itemprop="url" title="Github访问加速方法" class="btn">more...</a>
-  </div>
-</article>
+mac 或者其他 linux 系统的话，是 /etc 下的 hosts 文件，需要切入到 root 用户修改
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" itemprop="url" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>727</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" itemprop="url" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</a></h3>
-    <div class="excerpt">
-        1. 问题：Flutter 加载 GIF 之后，只有第一次进入页面才会执行动画，接下来都不会执行了
-2. 原因：因为 Flutter 的图片缓存机制，在第一次加载图片后，会将图片缓存下来，所以再次访问，你看见的还是上次的已经执行完毕的动画
-3. 解决：在 dispose 中把 imageCache 用 clear 方法清理掉
-1234567891011121314151617181920212223242526String asset = &amp;quot;images/401.gif&amp;quot;;Widget img =...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" itemprop="url" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/" itemprop="url" title="Flutter全网最全学习笔记！"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giph4baakhj20zk0m8h5q.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>66k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1:01</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/" itemprop="url" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a></h3>
-    <div class="excerpt">
-        # Flutter 学习文档 —Author：Brath
+123456789101112131415161718192021222324252627# Copyright (c) 1993-2009 Microsoft Corp. # # This is a sample HOSTS file used by Microsoft TCP/IP for Windows. # # This file contains the mappings of IP addresses to host names. Each # entry should be kept o ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E9%87%8D%E5%A4%8D%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2GIF%E4%B8%8D%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/" title="Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？">Flutter下加载本地资源GIF，怎么做到每次进入页面都会出现动画效果？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.567Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">1. 问题：Flutter 加载 GIF 之后，只有第一次进入页面才会执行动画，接下来都不会执行了
+ 2. 原因：因为 Flutter 的图片缓存机制，在第一次加载图片后，会将图片缓存下来，所以再次访问，你看见的还是上次的已经执行完毕的动画
+ 3. 解决：在 dispose 中把 imageCache 用 clear 方法清理掉
+1234567891011121314151617181920212223242526String asset = &quot;images/401.gif&quot;;Widget img = Image.asset(&quot;images/401.gif&quot;,key: UniqueKey(),); @override void initState() &#123;   super.initState();     //初始化   toast(); &#125; @override void dispose() &#123;   super.dispose();     //清理缓存	imageCache!.clear(); &#125; void ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/" title="Flutter全网最全学习笔记！">Flutter全网最全学习笔记！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.564Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># Flutter 学习文档 —Author：Brath
 
 # 欢迎来到 brath 的 CSDN 博客，你也可访问 brath.top 到我的个人博客来进行观看
 演示 demo-APK 地址: http://124.222.106.122:8080/app-release.zip
 # 前言：如果你要学习 flutter，那么你一定要会 dart 语言，因为 flutter 是基于 dart 来封装的一个 UI 组件包
 # 本文使用 Typort 书写，禁止转载。
-​		本文仅限有后端有语言基础（C/C++/C#/Java/python/Golang/PHP 都可以），前端...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E6%96%87%E6%A1%A3/" itemprop="url" title="Flutter全网最全学习笔记！" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" itemprop="url" title="Flutter开发中使用WIFI真机调试"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>218</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" itemprop="url" title="Flutter开发中使用WIFI真机调试">Flutter开发中使用WIFI真机调试</a></h3>
-    <div class="excerpt">
-        # Flutter 开发中使用 WIFI 真机调试
+​		本文仅限有后端有语言基础（C/C++/C#/Java/python/Golang/PHP 都可以），前端 (JavaScript，Html，CSS) 的人来学习。如果 0 基础，请先学习任意一门后端语言并熟练掌握！
+# Dart 语言学习：
+​	安装 Dart：https://github.com/GeKorm/dart-windows/releases/download/v1.6.0/Dart_x64.stable.setup.exe
+​	安装好后配置环境变量：DART_HOME  E:\dart\bin  安装路径 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" title="Flutter开发中使用WIFI真机调试">Flutter开发中使用WIFI真机调试</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.562Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># Flutter 开发中使用 WIFI 真机调试
 # 使用 vscode 开发 flutter，用 wifi 或者 手机热点进行 无线调试过程
 # 1. 手机连接 wifi 后在设置中找到 ip 和端口
 # 2. 在 vscode 终端输入 adb connect 手机 IP: 手机端口
 # 3. 作者在 CSDN 这个烂环境中没找到有用的信息，全是粘贴的，所以希望这篇文章帮助到你，你可以把我的地址列出来，粘贴可以，抄袭可耻！
 # 4. 完成以上步骤，手机端应有开启无线调试的提示，记得提前打开开发者模式。
-    </div>
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BD%BF%E7%94%A8WIFI%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" itemprop="url" title="Flutter开发中使用WIFI真机调试" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/" itemprop="url" title="Flutter GETX框架"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclhnx9glj20zk0m8npd.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>6.5k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>6 分钟</span>
-  </span>
-</div>
-
-    <h3><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/" itemprop="url" title="Flutter GETX框架">Flutter GETX框架</a></h3>
-    <div class="excerpt">
-        ​		GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/" title="Flutter GETX框架">Flutter GETX框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.559Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">​		GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理。
 ​		与其说是一个状态管理库，倒不如是是一个简化 Flutter 开发的百宝箱。它提供了很多工具来简化我们的开发，本篇我们先对 GetX 有一个大概的认识，然后接下来的篇章再将 GetX 的具体应用。
 # GetX 工具介绍
 官方文档给出关于 GetX 的介绍如下：
 
-GetX is an extra-light and powerful solution for Flutter. It combines high-performance state management,...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/" itemprop="url" title="Flutter GETX框架" class="btn">more...</a>
-  </div>
-</article>
+GetX is an extra-light and powerful solution for Flutter. It combines high-performance state management, intelligent dependency injection, and route management quickly and practically. GetX 是一个超轻量且强大的 Flutter 应用解决方案。它组合了高性能的状态管理、智能的依赖注入以及快速可用的路由管理。
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" itemprop="url" title="Flutter 流畅度优化组件 Keframe"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2022-12-27 16:18:48">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2022-12-27T16:18:48+08:00">2022-12-27</time>
-  </span>
-  <span class="item" title="本文字数">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>2.9k</span>
-    <span class="text">字</span>
-  </span>
-  <span class="item" title="阅读时长">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>3 分钟</span>
-  </span>
-</div>
+而实际上，GetX 还有更多的小工具，示例如下：
+# 状态管理
 
-    <h3><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" itemprop="url" title="Flutter 流畅度优化组件 Keframe">Flutter 流畅度优化组件 Keframe</a></h3>
-    <div class="excerpt">
-        最近在开发一款 APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： https://juejin.cn/post/6979781997568884766
+Obx 是配合 Rx 响应式变量使用、GetB ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" title="Flutter 流畅度优化组件 Keframe">Flutter 流畅度优化组件 Keframe</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.558Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">最近在开发一款 APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： https://juejin.cn/post/6979781997568884766
 Nayuta 的 Keframe 组件正好可以满足帧率优化的问题
 # 项目依赖：
-在 pubspec.yaml 中添加 keframe 依赖
-12dependencies: keframe: version
+在  pubspec.yaml  中添加  keframe  依赖
+12dependencies:  keframe: version
 组件仅区分非空安全与空安全版本
-非空安全使用： 1.0.2
-空安全版本使用： 2.0.2
+非空安全使用：  1.0.2
+空安全版本使用：  2.0.2
 github 地址：github.com/LianjiaTech…
-pub...
-    </div>
-    <a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/" itemprop="url" title="Flutter 流畅度优化组件 Keframe" class="btn">more...</a>
-  </div>
-</article>
-
-    </div>
-
-  </div>
-
-  
-  <nav class="pagination">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="ic i-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
-    </div>
-  </nav>
-
-
-
-        </div>
-        <div id="sidebar">
-          
-<div class="inner">
-
-  <div class="panels">
-    <div class="inner">
-      <div class="contents panel pjax" data-title="文章目录">
-      </div>
-      <div class="related panel pjax" data-title="系列文章">
-      </div>
-      <div class="overview panel" data-title="站点概览">
-        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="Brath"
-      data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">Brath</p>
-  <div class="description" itemprop="description"></div>
-</div>
-
-<nav class="state">
-    <div class="item posts">
-      <a href="/archives/">
-        <span class="count">71</span>
-        <span class="name">文章</span>
-      </a>
-    </div>
-</nav>
-
-<div class="social">
-      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0d1b3Fpbmc4MTU=" title="https:&#x2F;&#x2F;github.com&#x2F;Guoqing815"><i class="ic i-github"></i></span>
-      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95aS1zaGVuZy1iaWUtY2hpLXhpYW8tNTg=" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yi-sheng-bie-chi-xiao-58"><i class="ic i-zhihu"></i></span>
-      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEyMTU2MDcxMg==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;121560712"><i class="ic i-cloud-music"></i></span>
-      <span class="exturl item weibo" data-url="aHR0cHM6Ly9wYXNzcG9ydC53ZWliby5jb20=" title="https:&#x2F;&#x2F;passport.weibo.com"><i class="ic i-weibo"></i></span>
-</div>
-
-<ul class="menu">
-  
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
-  </li>
-
-        
-  <li class="item dropdown">
-      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
-    <ul class="submenu">
-
-        
-  <li class="item">
-    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
-  </li>
-
-        
-  <li class="item">
-    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
-  </li>
-
-        
-  <li class="item">
-    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
-  </li>
-
-  </ul>
-
-</ul>
-
-      </div>
-    </div>
-  </div>
-
-  <ul id="quick">
-    <li class="prev pjax">
-        <a href="/page/5/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
-    </li>
-    <li class="up"><i class="ic i-arrow-up"></i></li>
-    <li class="down"><i class="ic i-arrow-down"></i></li>
-    <li class="next pjax">
-        <a href="/page/7/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
-    </li>
-    <li class="percent"></li>
-  </ul>
-</div>
-
-        </div>
-        <div class="dimmer"></div>
-      </div>
-    </main>
-    <footer id="footer">
-      <div class="inner">
-        <div class="widgets">
-          
-<div class="rpost pjax">
-  <h2>随机文章</h2>
-  <ul>
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4/" title="Mysql主从集群搭建文档，实现读写分离">Mysql主从集群搭建文档，实现读写分离</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/" title="Flutter GETX框架">Flutter GETX框架</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Mysql%E3%80%91%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E8%AE%B0%E5%BD%95/" title="主从同步遇到 Got fatal error 1236 from master when reading data from binary log">主从同步遇到 Got fatal error 1236 from master when reading data from binary log</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/" title="腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Git%E3%80%91SVN&Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="SVN&amp;Git使用手册">SVN&Git使用手册</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Nginx%E3%80%91Nginx%E4%BB%A5%E5%8F%8Akeepalived%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" title="Nginx以及Keepalived安装以及部署">Nginx以及Keepalived安装以及部署</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90Elasticsearch%E3%80%91Elasticsearch7%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/" title="ELASTICSEARCH7.X安全性之访问密码设置">ELASTICSEARCH7.X安全性之访问密码设置</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></span>
-  </li>
-
-  </ul>
-</div>
-<div>
-  <h2>最新评论</h2>
-  <ul class="leancloud-recent-comment"></ul>
-</div>
-
-        </div>
-        <div class="status">
-  <div class="copyright">
-    
-    &copy; 2030 – 
-    <span itemprop="copyrightYear">2023</span>
-    <span class="with-love">
-      <i class="ic i-sakura rotate"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">Brath @ Brath</span>
-  </div>
-  <div class="count">
-    <span class="post-meta-item-icon">
-      <i class="ic i-chart-area"></i>
-    </span>
-    <span title="站点总字数">421k 字</span>
-
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="ic i-coffee"></i>
-    </span>
-    <span title="站点阅读时长">6:23</span>
-  </div>
-  <div class="powered-by">
-    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
-  </div>
-</div>
-
-      </div>
-    </footer>
-  </div>
-<script data-config type="text/javascript">
-  var LOCAL = {
-    path: 'page/6/',
-    favicon: {
-      show: "（●´3｀●）やれやれだぜ",
-      hide: "(´Д｀)大変だ！"
-    },
-    search : {
-      placeholder: "文章搜索",
-      empty: "关于 「 ${query} 」，什么也没搜到",
-      stats: "${time} ms 内找到 ${hits} 条结果"
-    },
-    valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
-    ignores : [
-      function(uri) {
-        return uri.includes('#');
-      },
-      function(uri) {
-        return new RegExp(LOCAL.path+"$").test(uri);
-      }
-    ]
-  };
-</script>
-
-<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
-
-<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
-
-<script src="/js/app.js?v=0.2.5"></script>
-
-
-
-
-</body>
-</html>
+pub 查看：pub.dev/packages/ke…
+1234567891011121314151617#SizeCacheWidget用来包裹最外层的list#FrameSeparateWidget用来包裹list的子集即可    example:SizeCacheWidget(	child：ListView || CustomScrollView(    	slivers[            Slive ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#content-inner">7</a><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/7/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90Java&amp;%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/" title="Java开发公众号自动回复功能">Java开发公众号自动回复功能</a><time datetime="2023-02-23T05:03:35.956Z" title="发表于 2023-02-23 13:03:35">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/" title="JetBrains全系列激活码">JetBrains全系列激活码</a><time datetime="2023-02-23T00:43:39.084Z" title="发表于 2023-02-23 08:43:39">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/14/%E3%80%90Flutter%E3%80%91Flutter%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="【Flutter】Flutter生命周期">【Flutter】Flutter生命周期</a><time datetime="2023-02-14T07:07:15.677Z" title="发表于 2023-02-14 15:07:15">2023-02-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/11/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/" title="腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a><time datetime="2023-02-11T02:19:46.158Z" title="发表于 2023-02-11 10:19:46">2023-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/10/%E3%80%90Docker%E3%80%91%E5%85%B3%E4%BA%8Edocker%E6%9C%8D%E5%8A%A1%E6%8A%A5%E9%94%99WARNING%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work/" title="【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work">【Docker】关于docker服务报错WARNING IPv4 forwarding is disabled. Networking will not work</a><time datetime="2023-02-10T06:12:58.594Z" title="发表于 2023-02-10 14:12:58">2023-02-10</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">71</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-02-23T05:41:18.444Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
