@@ -52,7 +52,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-03-02 11:45:16'
+  postUpdate: '2023-03-02 17:07:44'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -156,7 +156,109 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">BrathBlog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.606Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 前言：
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">77</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">BrathBlog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90RocketMQ%E3%80%91RocketMQ/" title="RocketMQ">RocketMQ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.615Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># RocketMQ
+# 应用场景
+
+异步解藕
+削峰填谷
+消息分发
+
+# 环境搭建
+
+
+上传 rocketmq-all-4.4.0-bin-release.zip 到家目录
+
+
+使用解压命令进行解压
+1unzip /usr/local/rocketmq-all-4.4.0-bin-release.zip
+
+
+软件重命名
+1mv /usr/local/rocketmq-all-4.4.0-bin-release/ /usr/local/rocketmq-4.4/
+
+
+修改启动参数配置
+
+JAVA_OPT=”${JAVA_OPT} -server -Xms1g -Xmx1g -Xmn1g“
+
+两个文件
+123vi /usr/local/rocketmq-4.4/bin/runbroker.shvi /usr/local/rocketmq-4.4/bin/runserver.sh
+
+
+启动名字服务和代理服务
+12345nohup sh /usr/local/rocketmq-4.4/bin/mqnamesrv &amp;# -n localhost:9876 指定名称服务的地址, 类似于zk ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91RequestParam%20%E5%92%8C%20PathVariable%E7%9A%84%E5%8C%BA%E5%88%AB/" title="RequestParam 和 PathVariable的区别">RequestParam 和 PathVariable的区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.613Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">RequestParam 和 PathVariable 注解是用于从 request 中接收请求的，两个都可以接收参数，关键点不同的是 RequestParam 是从 request 里面拿取值，而 PathVariable 是从一个 URI 模板里面来填充
+PathVariable
+ 主要用于接收 http://host:port/path/{参数值} 数据:
+http://localhost:8887/test1/id1/name1
+根据上面的这个 url，你可以用这样的方式来进行获取:
+RequestMapping(&quot;test1/&#123;id&#125;/&#123;name&#125;&quot;)
+public String testPathVariable(PathVariable String id, PathVariable String name) &#123;
+    return &quot;id=&quot; + id + &quot;, name=&quot; + name;
+&#125;
+PathVariable 支持下面三种参数：
+
+name ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/" title="Redis持久化">Redis持久化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.611Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 一、持久化简介
+Redis 的数据 全部存储 在 内存 中，如果 突然宕机，数据就会全部丢失，因此必须有一套机制来保证 Redis 的数据不会因为故障而丢失，这种机制就是 Redis 的 持久化机制，它会将内存中的数据库状态保存到磁盘 中。
+持久化发生了什么？ | 从内存到磁盘：
+我们来稍微考虑一下 Redis 作为一个内存数据库 要做的关于持久化的事情。通常来说，从客户端发
+起请求开始，到服务器真实地写入磁盘，需要发生如下几件事情：
+详细版 的文字描述大概就是下面这样：
+\1. 客户端向数据库 发送写命令 (数据在客户端的内存中)
+\2. 数据库 接收 到客户端的 写请求 (数据在服务器的内存中)
+\3. 数据库 调用系统 API 将数据写入磁盘 (数据在内核缓冲区中)
+\4. 操作系统将 写缓冲区 传输到 磁盘控控制器 (数据在磁盘缓存中)
+\5. 操作系统的磁盘控制器将数据 写入实际的物理媒介 中 (数据在磁盘中)
+** 注意、上面的过程其实是 ** 极度精简 的，在实际的操作系统中，缓存 和 缓冲区 会比这 多得多…
+# 如何尽可能保证持久化的安全
+如果我们故障仅仅涉及到  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Redis%E3%80%91Redis%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%96%87%E6%A1%A3/" title="redis主从集群-哨兵模式搭建文档">redis主从集群-哨兵模式搭建文档</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.609Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">准备工作
+
+
+# 三台服务器
+
+
+
+
+
+服务器 ip
+角色
+
+
+
+
+192.168.20.1
+主
+
+
+192.168.20.2
+从
+
+
+192.168.20.3
+从
+
+
+
+
+
+# docker 安装 redis
+
+
+docker pull redis
+
+
+# 运行
+
+
+分别从三台服务器运行 redis 镜像，注意映射不同外端口
+1docker run -p 6380:6379 --name redis -v /mydata/redis/data/redis.conf:/etc/redis/redis.conf  -v /mydata/redis/data:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes --daemonize no --masterauth #如果主节点设置了密码，请输入主服务密码
+docker exec -it redis_master /bin/bash
+
+
+# 查看角色
+
+
+# 主：
+12345678910111213141516127.0.0.1:6379&gt; auth # ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E3%80%90Redis%E3%80%91Redis%E4%B8%8EMysql%20Master%E4%B8%8ESlave%E5%90%8C%E6%AD%A5%EF%BC%9Acanal%E6%95%99%E5%AD%A6/" title="Redis与Mysql | Master与Slave同步：canal教学">Redis与Mysql | Master与Slave同步：canal教学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.606Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 前言：
 ​		作者最近在做自己的项目，使用到 Redis，需要热更新，修改 Mysql 后同步 Redis 缓存，出于对圈子的贡献，也较于当前的 canal 的博客大多数不是很详细，所以写下这篇文章，时间是 2022 年 6 月 29 日。目的是帮助更多的人，希望能为在祖国的经济发展作出小小的贡献。
 ​		end
 # 学习 Canal 基本需要：
@@ -207,63 +309,4 @@ nodejs 下载地址：https://nodejs.org/en/
 1. 分别在两台服务器搭建 mysql 服务
 ​		两台服务器的 IP 地址分别为主服务器（192.168.20.1）和从服务器（192.168.20.2）。
 2. 配置文件 my.cnf 的修改
-1234567891011121314#根据上一篇文章，编辑my.cnf文件[root@localhost mysql]# vim /etc/my.cnf #在[mysqld]中添加：server-id=1log_bin=master-binlog_bin_index=master-bin.indexbinlog_do_db=test#备注：#server-id 服务器唯一标识。#log_bin 启动MySQL二进制日志，即数据同步语句，从数据库会一条一条的执行这些语句。#binlog_do_db 指定记录二进制日志的数据库，即需要复制的数据库名，如果复制多个数据库，重复设置 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="MySQL8下载与安装教程">MySQL8下载与安装教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.593Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># MySQL 下载与安装（8.0.20 版）教程
-MySQL 官网：链接
-直接点击链接也可以下载：mysql 8.0.20
-登录官网后如下图下载 MySQL 软件：
-
-点击 1 和 2 后进入下图页面：
-
-再点击 MySQL Community Server 进入下图下载页面：
-
-根据上图选择好 1 处后点击 2 处进入 Windows 安装包的下载页面 (如下图):
-
-上图中有两个下载包，一个是安装引导包，一个是压缩安装包，我们选择第二个。点击 Download 进入下图页面。
-
-我们不登陆下载，所以直接点击红框按钮进行下载。这样我们就把软件下载下来了。
-安装：
-双击上面下载的软件，打开下图页面。
-
-点击 Next, 转到下图页面。
-
-如果大红框上面有些没有安装的软件会出现这里，可以点击 Next 左边的 Excute 按钮安装，安装完成之后点击 Next 按钮，会出现个弹框，如下图。
-
-点击 Yes。弹出下图页面。
-
-点击 Execute 进行安装。等待所有安装完成。
-
-至少保证红杠处的 3 项安装成功，假若有安装失败的可以卸载重新安装。安装成功后我们点击 Next。
-
-点击 N ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Maven%E3%80%91MVN%E5%BC%95%E5%85%A5Jar%E5%8C%85%E6%B5%81%E7%A8%8B/" title="Maven通过命令提示符引入jar包的流程">Maven通过命令提示符引入jar包的流程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.591Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">安装好 Maven 之后配置环境变量：
-​		在系统变量新建 “MAVEN_HOME” 值为：Maven 的安装路径：E:\Maven\apache-maven-3.5.3，接着在 Path 变量中，添加：% MAVEN_HOME%\bin，指定 maven 的 bin 路径。
-​		现在在 CMD 中就可以用 mvn -v 的命令查看是否安装成功：
-
-# 引入流程：
-​		接下来找到你要引入的 jar 包的根路径，指定路径 + jar 包名，指定 groupId、artifactId、version 名，就可以引入了。
-# 举例:
-​		mvn install:install-file -Dfile=D:\jar\WxQyhPrj\0.0.1-SNAPSHOT\WxQyhPrj-0.0.1-SNAPSHOT.jar -DgroupId=com.chis.wx -DartifactId=WxQyhPrj -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar
-​		mvn install:install-file -Dfile：Jar 包的绝对路径
-​		-D ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="Maven加强版 — mvnd的使用测试">Maven加强版 — mvnd的使用测试</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.588Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># Maven 加强版 — mvnd 的使用测试
-Maven、gradle 作为主流的构建工具，几乎所有的 Java 项目都使用，但是 Maven 相对 gradle 来说，构建还是太慢了。特别是构建十几个子项目的程序。
-如果要把项目从 Maven 转换成 gradle，成本也是巨大的。
-但是现在有了 maven-mvnd ，可以使构建变得更快。
-# 1、maven-mvnd 介绍
-maven-mvnd  是 Apache Maven团队 借鉴了 Gradle  和 Takari  的优点，衍生出来的更快的构建工具，是 maven 的 强化版 。
-github 地址：https://github.com/apache/maven-mvnd
-maven-mvnd 特性：
-
-嵌入 Maven (所以不需要单独安装 Maven)； maven 过渡到 maven-mvnd  的过程中实现  无缝切换 ！所以不需要再安装 maven 或进行复杂的配置更改。
-实际的构建发生在一个长期存在的后台进程中，也就是守护进程。如果没有为构建请求服务的空闲守护进程，则可以并行产生多个守护进程。
-一个守护进程 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Vue%E3%80%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2VUE%E9%A1%B9%E7%9B%AE/" title="Linux服务器下部署vue 2.0项目">Linux服务器下部署vue 2.0项目</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.586Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 一、安装 VUE 环境
-1.wget 指定进行下载，下载后文件默认存在根目录下的 root 包下面；
-1wget https://nodejs.org/dist/v16.14.0/node-v16.14.0-linux-x64.tar.xz
-解压缩
-123xz -d node-v16.14.0-linux-x64.tar.xz  #将xz格式解压为tartar -xvf node-v16.14.0-linux-x64.tar  #将tar解压为文件
-重命名文件夹
-12mv node-v16.14.0-linux-x64 nodeJS-V16.14.0
-配置 node.js 环境变量
-1vim /etc/profile
-进入编辑，在文件最下面加上如下字段
-12export NODEJS_HOME=/root/nodeJS-V16.14.0export PATH=$NODEJS_HOME/bin:$PATH
-个人比较喜欢用 Xftp 将 profile 文件传输到 windows 系统下进行配置后再覆盖回去
-配置完成后使用 source 命令重新执行刚修改的初始化文件，使之立即生效，而 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90MYSQL%E3%80%91%E6%B0%B4%E5%B9%B3%E5%88%86%E8%A1%A8%E3%80%81%E5%88%86%E5%BA%93%E5%92%8C%E5%9E%82%E7%9B%B4%E5%88%86%E8%A1%A8%E3%80%81%E5%88%86%E5%BA%93%E5%92%8C%E5%85%AC%E5%85%B1%E8%A1%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AE%B2%E8%A7%A3/" title="【MYSQL】水平分表、分库和垂直分表、分库和公共表的代码实现和讲解">【MYSQL】水平分表、分库和垂直分表、分库和公共表的代码实现和讲解</a><time datetime="2023-03-02T03:15:01.797Z" title="发表于 2023-03-02 11:15:01">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/24/%E3%80%90Flutter&amp;SpringBoot%E3%80%91%E5%A6%82%E4%BD%95%E7%94%A8Flutter%E5%92%8CJava%E6%9D%A5%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%8A%BD%E5%A5%96APP/" title="如何使用Flutter+SpringBoot+Mysql开发一个简易的抽奖APP（Android教学">如何使用Flutter+SpringBoot+Mysql开发一个简易的抽奖APP（Android教学</a><time datetime="2023-02-24T05:44:16.909Z" title="发表于 2023-02-24 13:44:16">2023-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90Java&amp;%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%91Java%E5%BC%80%E5%8F%91%E5%85%AC%E4%BC%97%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD/" title="Java开发公众号自动回复功能">Java开发公众号自动回复功能</a><time datetime="2023-02-23T05:03:35.956Z" title="发表于 2023-02-23 13:03:35">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/23/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/" title="JetBrains全系列激活码">JetBrains全系列激活码</a><time datetime="2023-02-23T00:43:39.084Z" title="发表于 2023-02-23 08:43:39">2023-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/14/%E3%80%90Flutter%E3%80%91Flutter%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="【Flutter】Flutter生命周期">【Flutter】Flutter生命周期</a><time datetime="2023-02-14T07:07:15.677Z" title="发表于 2023-02-14 15:07:15">2023-02-14</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">73</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-02T03:45:15.893Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+1234567891011121314#根据上一篇文章，编辑my.cnf文件[root@localhost mysql]# vim /etc/my.cnf #在[mysqld]中添加：server-id=1log_bin=master-binlog_bin_index=master-bin.indexbinlog_do_db=test#备注：#server-id 服务器唯一标识。#log_bin 启动MySQL二进制日志，即数据同步语句，从数据库会一条一条的执行这些语句。#binlog_do_db 指定记录二进制日志的数据库，即需要复制的数据库名，如果复制多个数据库，重复设置 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">77</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ELK%E3%80%91SpringBoot%E6%95%B4%E5%90%88ELK%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/" title="【ELK】SpringBoot整合ELK实现分布式日志搜索">【ELK】SpringBoot整合ELK实现分布式日志搜索</a><time datetime="2023-03-02T08:15:30.653Z" title="发表于 2023-03-02 16:15:30">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ElasticSearch%E3%80%91ElasticSearch%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="ElasticSearch 处理检索海量数据“神器”？">ElasticSearch 处理检索海量数据“神器”？</a><time datetime="2023-03-02T05:59:51.513Z" title="发表于 2023-03-02 13:59:51">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90Java%E3%80%91SpringBoot%E6%95%B4%E5%90%88knife4j%E6%A1%86%E6%9E%B6(%E5%8F%AF%E7%94%9F%E6%88%90%E7%A6%BB%E7%BA%BF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3)%EF%BC%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%A4%B4token%E9%BB%98%E8%AE%A4%E5%80%BC/" title="SpringBoot整合knife4j框架(可生成离线接口文档)，并设置接口请求头token默认值">SpringBoot整合knife4j框架(可生成离线接口文档)，并设置接口请求头token默认值</a><time datetime="2023-03-02T05:23:32.725Z" title="发表于 2023-03-02 13:23:32">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ELK%E3%80%91%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAELK/" title="【ELK】使用Docker搭建ELK">【ELK】使用Docker搭建ELK</a><time datetime="2023-03-02T04:45:17.527Z" title="发表于 2023-03-02 12:45:17">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90MYSQL%E3%80%91%E6%B0%B4%E5%B9%B3%E5%88%86%E8%A1%A8%E3%80%81%E5%88%86%E5%BA%93%E5%92%8C%E5%9E%82%E7%9B%B4%E5%88%86%E8%A1%A8%E3%80%81%E5%88%86%E5%BA%93%E5%92%8C%E5%85%AC%E5%85%B1%E8%A1%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AE%B2%E8%A7%A3/" title="【MYSQL】水平分表、分库和垂直分表、分库和公共表的代码实现和讲解">【MYSQL】水平分表、分库和垂直分表、分库和公共表的代码实现和讲解</a><time datetime="2023-03-02T03:15:01.797Z" title="发表于 2023-03-02 11:15:01">2023-03-02</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">77</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-02T09:07:44.088Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
