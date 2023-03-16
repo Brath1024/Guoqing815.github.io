@@ -52,7 +52,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-03-03 17:41:35'
+  postUpdate: '2023-03-16 13:15:10'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -156,7 +156,102 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">BrathBlog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/" title="Docker安装Jenkins">Docker安装Jenkins</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-06T00:37:50.763Z" title="发表于 2023-01-06 08:37:50">2023-01-06</time></span></div><div class="content"># Docker 安装 Jenkins
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">81</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="BrathBlog"><span class="site-name">BrathBlog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">BrathBlog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/06/%E3%80%90Java%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0(%E5%90%90%E8%A1%80%E8%B6%85%E8%AF%A6%E7%BB%86%E6%80%BB%E7%BB%93)/" title="Java多线程学习（吐血超详细总结）">Java多线程学习（吐血超详细总结）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-06T01:27:00.332Z" title="发表于 2023-01-06 09:27:00">2023-01-06</time></span></div><div class="content"># Java 多线程学习（吐血超详细总结）
+写在前面的话：此文只能说是 java 多线程的一个入门，其实 Java 里头线程完全可以写一本书了，但是如果最基本的你都学掌握好，又怎么能更上一个台阶呢？如果你觉得此文很简单，那推荐你看看 Java 并发包的的线程池（Java 并发编程与技术内幕：线程池深入理解），或者看这个专栏：Java 并发编程与技术内幕。你将会对 Java 里头的高并发场景下的线程有更加深刻的理解。
+目录 (?)[-]
+
+一扩展 javalangThread 类
+二实现 javalangRunnable 接口
+三 Thread 和 Runnable 的区别
+四线程状态转换
+五线程调度
+六常用函数说明
+
+
+使用方式
+为什么要用 join 方法
+
+
+七常见线程名词解释
+八线程同步
+九线程数据传递
+
+​    本文主要讲了 java 中多线程的使用方法、线程同步、线程数据传递、线程状态及相应的一些线程函数用法、概述等。在这之前，首先让我们来了解下在操作系统中进程和线程的区别：
+进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含 1– ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/06/%E3%80%90Go%E3%80%91Go%E8%AF%AD%E8%A8%80%E8%B6%85%E5%85%A8%E8%AF%A6%E8%A7%A3(%E5%85%A5%E9%97%A8%E7%BA%A7)/" title="Go语言超全详解（入门级）">Go语言超全详解（入门级）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-06T01:22:50.140Z" title="发表于 2023-01-06 09:22:50">2023-01-06</time></span></div><div class="content"># Go 语言超全详解（入门级）
+# 文章目录
+
+1. Go 语言的出现
+2. go 版本的 hello world
+3. 数据类型
+
+
+3.0 定义变量
+
+
+3.0.1 如果变量没有初始化
+3.0.2 如果变量没有指定类型
+3.0.3 := 符号
+3.0.4 多变量声明
+3.0.5 匿名变量
+3.0.6 变量作用域
+
+
+3.1 基本类型
+3.2 指针
+
+
+3.2.1 指针声明和初始化
+3.2.2 空指针
+
+
+3.3 数组
+
+
+3.3.1 声明数组
+3.3.2 初始化数组
+3.3.3 go 中的数组名意义
+3.3.4 数组指针
+
+
+3.4 结构体
+
+
+3.4.1 声明结构体
+3.4.2 访问结构体成员
+3.4.3 结构体指针
+
+
+3.5 字符串
+
+
+3.5.1 字符串定义和初始化
+3.5.2 字符串 UTF8 编码
+3.5.3 字符串的强制类型转换
+
+
+3.6 slice
+
+
+3.6.1 slice 定义
+3.6.2 添加元素
+3.6.3 删除元素
+
+
+3.7 函数
+
+
+3.7.1 函数分类
+3.7.2 函数声明和定义
+3.7.3 函数传参
+3.7.4 函数返回值
+3.7.5 递归调用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/06/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/" title="Linux下使用war包部署Jenkins">Linux下使用war包部署Jenkins</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-06T01:06:38.037Z" title="发表于 2023-01-06 09:06:38">2023-01-06</time></span></div><div class="content"># Linux 下使用 war 包部署 Jenkins
+# 前言
+jenkins 可以多种方式安装，可以 docker，也可以直接下载 war 包，然后 java -jar 方式启动。
+123456789101.创建安装目录	mkdir -p /jenkins2.切换目录	cd  /jenkins3.下载war包	wget -O /jenkins/jenkins.war http://mirrors.jenkins.io/war-stable/latest/jenkins.war4.启动	BUILD_ID=dontKillMe nohup java -DJENKINS_HOME=/jenkins (如果有历史home可以指定其他home：/root/.jenkins) -Xms1046m -Xmx2000m -jar jenkins.war --httpPort=9444  &gt;&gt;jenkinsLog.log 2&gt;&amp;1 &amp;5.访问	http://&#123;your ip&#125;:9444
+# 备注:
+
+–httpPort 自定义端口
+jenkins ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/06/%E3%80%90Docker%E3%80%91Docker%E5%AE%89%E8%A3%85Jenkins/" title="Docker安装Jenkins">Docker安装Jenkins</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-06T00:37:50.763Z" title="发表于 2023-01-06 08:37:50">2023-01-06</time></span></div><div class="content"># Docker 安装 Jenkins
 # 一、前言
 # 1、领头羊
 1作为领先的开源自动化服务器，Jenkins 提供了数百个插件来支持构建、部署和自动化任何项目。
@@ -249,75 +344,4 @@ netstat -ano：查询全部活动连接
 tasklist ：查询全部的进程和 PID
 tasklist | findstr “占用端口的进程 PID”
 taskkill /f/t /im 占用端口的进程名字.exe
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90SpringCloud%E3%80%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99/" title="微服务拆分细则">微服务拆分细则</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.649Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">​	在微服务的设计过程中，微服务设计有多大，微服务粒度的把控，一直是设计人员需要考虑和设计的难点。
-因为服务粒度设计过大，不能得到微服务架构带来的便利，例如：更加敏态的开发，更频繁的版本发布，由于服务功能划分的小，可以根据实际的业务场景，选择更加合适的技术进行代码重构等等。
-​		但同时我们也要注意，不是服务越” 微 “越好，因为服务的过度拆分会使架构的设计复杂度大大提升，同时也会大大提升运维和测试的复杂度等。
-​		所以对服务拆分粒度的把控，对设计人员来讲就至关重要了，甚至对项目的成败有非常重要的影响。
-这篇文档提供了一些主要的微服务拆分原则，供您参考，来帮助您进行更加合理粒度的微服务设计。
-# 微服务的拆分原则 - 通用
-
-
-
-编号
-原则
-说明
-
-
-
-
-原则 1
-基于业务分析拆分
-基于 TOGAF， ADA 等
-
-
-原则 2
-基于 DDD 领域驱动设计中的子域设计拆分
-基于领域驱动设计
-
-
-原则 3
-根据动作和用例拆分
-比如支付
-
-
-原则 4
-根据名词或者资源拆
-比如账号
-
-
-原则 5
-架构稳定
-拆分的结构稳定，不会经常修改
-
-
-原则 6
-服务是可测试的
-集成测试要可定义，测试可回 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/" title="宝塔部署Docker—Mysql镜像">宝塔部署Docker—Mysql镜像</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.646Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content">转自 https://blog.csdn.net/u011630259/article/details/124497343
-# 宝塔部署 Docker—Mysql 镜像
-如何在面板上使用 Docker 项目管理器快速创建多个版本的 MySQL？手把手的教你如何创建多个版本的 MySQL 服务
-环境介绍：
-宿主机：CentOS7.9
- 配置：2 核 4G（测试机器，生产环境建议配置高点）
-面板版本：7.9.26（测试版）
-Docker 项目管理器：3.9
-
-Docker 版本：Docker version 20.10.14, build a224086
- 测试 MySQL 版本：
-MySQL5.7.37
-MySQL8.0.28
-1、获取 MySQL 版本
-
-
-默认情况下，直接输入 mysql 名，会拉取 mysql:latest 镜像，就是最新版本的镜像，指定版本后拉取的是指定版本的 MySQL 镜像，如 mysql:5.7.37
-
-2、创建容器：
-指定容器中数据库的密码：
-
-MYSQL_ROOT_PASSWORD=dapaotest1
-
-3、容器创建成功后，进入终端命令行查看数据库
-
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/27/%E3%80%90Docker%E3%80%91%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/" title="使用docker搭建开发环境记录">使用docker搭建开发环境记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-27T08:18:48.644Z" title="发表于 2022-12-27 16:18:48">2022-12-27</time></span></div><div class="content"># 使用 docker 搭建开发环境记录
-12345docker start 容器名docker stop 容器名docker restart 容器名docker run = docker create + docker start
-# mysql
-123456789101112131415161718192021222324252627282930313233343536# 拉取镜像docker pull mysql:5.7# 创建实例并启动# -p 映射端口# --name 名称# -v 映射文件# -e MYSQL_ROOT_PASSWORD mysql密码# -d 后台运行并运行docker run -p 3306:3306 --name mysql -v /mydata/mysql/log:/var/log/mysql -v /mydata/mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7# 进入容器docker exec -i ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/03/%E3%80%90Java%E3%80%91SpringBoot%20%E6%95%B4%E5%90%88Redis%E5%AF%B9%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%81%9A%E7%BC%93%E5%AD%98%EF%BC%88%20%E5%88%A9%E7%94%A8Spring%E7%9A%84AOP%E6%8A%80%E6%9C%AF%EF%BC%89/" title="【Java】SpringBoot 整合Redis对查询数据做缓存（ 利用Spring的AOP技术）">【Java】SpringBoot 整合Redis对查询数据做缓存（ 利用Spring的AOP技术）</a><time datetime="2023-03-03T09:37:01.208Z" title="发表于 2023-03-03 17:37:01">2023-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ELK%E3%80%91SpringBoot%E6%95%B4%E5%90%88ELK%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/" title="【ELK】SpringBoot整合ELK实现分布式日志搜索">【ELK】SpringBoot整合ELK实现分布式日志搜索</a><time datetime="2023-03-02T08:15:30.653Z" title="发表于 2023-03-02 16:15:30">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ElasticSearch%E3%80%91ElasticSearch%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="ElasticSearch 处理检索海量数据“神器”？">ElasticSearch 处理检索海量数据“神器”？</a><time datetime="2023-03-02T05:59:51.513Z" title="发表于 2023-03-02 13:59:51">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90Java%E3%80%91SpringBoot%E6%95%B4%E5%90%88knife4j%E6%A1%86%E6%9E%B6(%E5%8F%AF%E7%94%9F%E6%88%90%E7%A6%BB%E7%BA%BF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3)%EF%BC%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%A4%B4token%E9%BB%98%E8%AE%A4%E5%80%BC/" title="SpringBoot整合knife4j框架(可生成离线接口文档)，并设置接口请求头token默认值">SpringBoot整合knife4j框架(可生成离线接口文档)，并设置接口请求头token默认值</a><time datetime="2023-03-02T05:23:32.725Z" title="发表于 2023-03-02 13:23:32">2023-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ELK%E3%80%91%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAELK/" title="【ELK】使用Docker搭建ELK">【ELK】使用Docker搭建ELK</a><time datetime="2023-03-02T04:45:17.527Z" title="发表于 2023-03-02 12:45:17">2023-03-02</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">78</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-03T09:41:34.931Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Brath</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">81</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/16/%E3%80%90Docker%E3%80%91Linux%E9%83%A8%E7%BD%B2Docker/" title="【Docker】Linux部署Docker">【Docker】Linux部署Docker</a><time datetime="2023-03-16T05:10:11.024Z" title="发表于 2023-03-16 13:10:11">2023-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/16/%E3%80%90Docker%E3%80%91Docker%E4%B8%8B%E5%AE%89%E8%A3%85Canal%E5%B9%B6%E6%95%B4%E5%90%88SpringBoot/" title="【Docker】Docker下安装Canal并整合SpringBoot">【Docker】Docker下安装Canal并整合SpringBoot</a><time datetime="2023-03-16T04:37:23.329Z" title="发表于 2023-03-16 12:37:23">2023-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/03/%E3%80%90Docker%E3%80%91docker%E4%B8%AD%E8%AE%BE%E7%BD%AEelasticsearch%E3%80%81kibana%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E3%80%81%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81/" title="docker中设置elasticsearch、kibana用户名密码、修改密码">docker中设置elasticsearch、kibana用户名密码、修改密码</a><time datetime="2023-03-03T11:24:09.423Z" title="发表于 2023-03-03 19:24:09">2023-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/03/%E3%80%90Java%E3%80%91SpringBoot%20%E6%95%B4%E5%90%88Redis%E5%AF%B9%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%81%9A%E7%BC%93%E5%AD%98%EF%BC%88%20%E5%88%A9%E7%94%A8Spring%E7%9A%84AOP%E6%8A%80%E6%9C%AF%EF%BC%89/" title="【Java】SpringBoot 整合Redis对查询数据做缓存（ 利用Spring的AOP技术）">【Java】SpringBoot 整合Redis对查询数据做缓存（ 利用Spring的AOP技术）</a><time datetime="2023-03-03T09:37:01.208Z" title="发表于 2023-03-03 17:37:01">2023-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/02/%E3%80%90ELK%E3%80%91SpringBoot%E6%95%B4%E5%90%88ELK%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/" title="【ELK】SpringBoot整合ELK实现分布式日志搜索">【ELK】SpringBoot整合ELK实现分布式日志搜索</a><time datetime="2023-03-02T08:15:30.653Z" title="发表于 2023-03-02 16:15:30">2023-03-02</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">81</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-16T05:15:09.760Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Brath</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
