@@ -29,7 +29,153 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.578Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2021-10-09T13:12:49.325Z" title="2021-10-9 21:12:49">2021-10-09</time>更新</span><span class="level-item">30 分钟读完 (大约4433个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/">JUC并发多线程笔记</a></p><div class="content"><h3 id="什么是juc"><a class="markdownIt-Anchor" href="#什么是juc">#</a> 什么是 JUC</h3>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.583Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-07-12T08:00:12.619Z" title="2022-7-12 16:00:12">2022-07-12</time>更新</span><span class="level-item">3 分钟读完 (大约399个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90MySQL%E3%80%91Linux%E4%B8%8Bdocer%E9%83%A8%E7%BD%B2mysql/">Linux下docer部署mysql</a></p><div class="content"><h2 id="linux下docer部署mysql"><a class="markdownIt-Anchor" href="#linux下docer部署mysql">#</a> Linux 下 docer 部署 mysql</h2>
+<p>部署方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1.首先在Linux系统中启动已经安装好的docker</span><br><span class="line">service docker start</span><br><span class="line"></span><br><span class="line">2.查看docker进程，确认docker启动成功</span><br><span class="line">ps -ef|grep docker</span><br><span class="line"></span><br><span class="line">3.在docker容器中查询MySQL</span><br><span class="line">docker search mysql</span><br><span class="line"></span><br><span class="line">4.在docker中安装MySQL</span><br><span class="line">docker pull mysql</span><br><span class="line"></span><br><span class="line">5.查看MySQL镜像</span><br><span class="line">docker images</span><br><span class="line"></span><br><span class="line">6.创建MySQL用户并且将root账户密码设置为你需要的密码</span><br><span class="line">docker run --name mysqlserver -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=『你的账户密码』 -d -i -p 外网端口:3306 mysql:latest</span><br><span class="line"></span><br><span class="line">docker run -p 33001:3306 --name mysqlSlave2 -v /mydata/mysql/log:/var/log/mysql -v /mydata/mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=Lgq081538 -d mysql:5.7</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">指定配置文件容器</span></span><br><span class="line">docker run -p 33001:3306 --name mysqlSlave2 \</span><br><span class="line">-v /usr/local/docker/mysql/logs:/var/log/mysql \</span><br><span class="line">-v /usr/local/docker/mysql/data:/var/lib/mysql \</span><br><span class="line">-v /usr/local/docker/mysql/conf/my.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=Lgq081538 \</span><br><span class="line">-d mysql:5.7</span><br><span class="line"></span><br><span class="line">7.在docker中启动MySQL</span><br><span class="line">docker exec -it mysqlSlave2 bash</span><br><span class="line"></span><br><span class="line">8.输入用户名和密码</span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line">9.开启MySQL远程访问权限</span><br><span class="line">use mysql;</span><br><span class="line">select host,user from user;</span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;Lgq081538&#x27;;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line">一些在docker的常用命令：</span><br><span class="line">1、列出正在运行的容器</span><br><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line">2、列出包括未运行的所有的容器</span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">3、查看某进程最近10条运行日志</span><br><span class="line">docker logs -f --tail 10 &quot;所查询的进程ID&quot;</span><br><span class="line"></span><br><span class="line">4、关闭docker中运行的进程，以MySQL为例</span><br><span class="line">docker stop mysql</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">docker stop &quot;要停止的进程ID&quot;</span><br><span class="line"></span><br><span class="line">5、重启docker中运行的进程</span><br><span class="line">docker restart &quot;要重启的进程ID&quot;</span><br><span class="line"></span><br><span class="line">6、重启docker</span><br><span class="line">systemctl restart docker</span><br><span class="line"></span><br><span class="line">7、停止docker</span><br><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.581Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-06-23T09:03:18.579Z" title="2022-6-23 17:03:18">2022-06-23</time>更新</span><span class="level-item">6 分钟读完 (大约875个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/">Knife4J接口文档</a></p><div class="content"><p>Swagger2 及 knife4j 使用</p>
+<p>最近项目中用到了 Swagger2 和 knife4j 作为接口文档。所以自己简单搭建了一套环境学习下，总体体验下来，这个框架很方便也很简单易用。</p>
+<p>Swagger2 和 Swagger-ui<br>
+springFox 官方推荐的是 Swagger2 和 Swagger-ui 配套使用</p>
+<p>maven 依赖<br>
+<dependencies><br>
+<dependency><br>
+<groupId>io.springfox</groupId><br>
+<artifactId>springfox-swagger2</artifactId><br>
+<version>2.9.2</version><br>
+</dependency><br>
+<!--生成UI界面--><br>
+<dependency><br>
+<groupId>io.springfox</groupId><br>
+<artifactId>springfox-swagger-ui</artifactId><br>
+<version>2.9.2</version><br>
+</dependency><br>
+</dependencies></p>
+<p>增加配置文件<br>
+ @Configuration<br>
+@EnableSwagger2<br>
+public class Swagger2 {</p>
+<pre><code>@Bean
+public Docket controllerApi() &#123;
+    return new Docket(DocumentationType.SWAGGER_2)
+            .apiInfo(new ApiInfoBuilder()
+                    .title(&quot;文档说明--API接口文档&quot;)
+                    .description(&quot;包括保存、查询等&quot;)
+                    .version(&quot;版本号:1.0&quot;)
+                    .build())
+            .select()
+            .apis(RequestHandlerSelectors.basePackage(&quot;com.example.myswagger.controller&quot;))
+            .paths(PathSelectors.any()) // 如果适配所有api，可以改为PathSelectors.any()
+            .build();
+&#125;
+</code></pre>
+<p>API 接口增加 swagger 注解<br>
+ @Controller<br>
+@RequestMapping<br>
+@Api (tags = “接口服务”)<br>
+public class HelloController {</p>
+<pre><code>@ApiOperation(&quot;根目录&quot;)
+@GetMapping(&quot;/&quot;)
+@ResponseBody
+public  String hello()&#123;
+    System.out.println(&quot;23123&quot;);
+    return &quot;hello&quot;;
+&#125;
+
+
+@ApiOperation(&quot;保存用户信息&quot;)
+@ApiImplicitParams(&#123;
+        @ApiImplicitParam(name = &quot;name&quot;, value = &quot;名字&quot;, required = true, paramType = &quot;path&quot;),
+        @ApiImplicitParam(name = &quot;age&quot;, dataType = &quot;int&quot;, value = &quot;年龄&quot;, required = true, paramType = &quot;query&quot;)
+&#125;)
+@PostMapping(&quot;/save&quot;)
+@ResponseBody
+public Boolean save(
+        @RequestParam(&quot;name&quot;) String name,
+        @RequestParam(&quot;age&quot;) Integer age
+) &#123;
+    return true;
+&#125;
+</code></pre>
+<p>效果展示<br>
+启动项目访问</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></p>
+<p>测试接口：</p>
+<p>项目地址<br>
+<a target="_blank" rel="noopener" href="https://gitee.com/LylYorick/myswagger"> https://gitee.com/LylYorick/myswagger</a></p>
+<p>swagger 注解详解<br>
+ @Api：用在请求的类上，表示对类的说明<br>
+ tags=“说明该类的作用，可以在 UI 界面上看到的注解”<br>
+value=“该参数没什么意义，在 UI 界面上也看到，所以不需要配置”</p>
+<p>@ApiOperation：用在请求的方法上，说明方法的用途、作用<br>
+ value=“说明方法的用途、作用”<br>
+notes=“方法的备注说明”</p>
+<p>@ApiImplicitParams：用在请求的方法上，表示一组参数说明<br>
+ @ApiImplicitParam：用在 @ApiImplicitParams 注解中，指定一个请求参数的各个方面<br>
+ name：参数名<br>
+ value：参数的汉字说明、解释<br>
+ required：参数是否必须传<br>
+ paramType：参数放在哪个地方<br>
+・header --&gt; 请求参数的获取：@RequestHeader<br>
+・query --&gt; 请求参数的获取：@RequestParam<br>
+・path（用于 restful 接口）–&gt; 请求参数的获取：@PathVariable<br>
+・body（不常用）<br>
+・form（不常用）<br>
+dataType：参数类型，默认 String，其它值 dataType=“Integer”<br>
+defaultValue：参数的默认值</p>
+<p>@ApiResponses：用在请求的方法上，表示一组响应<br>
+ @ApiResponse：用在 @ApiResponses 中，一般用于表达一个错误的响应信息<br>
+ code：数字，例如 400<br>
+message：信息，例如 &quot;请求参数没填好&quot;<br>
+response：抛出异常的类</p>
+<p>@ApiModel：用于响应类上，表示一个返回响应数据的信息<br>
+（这种一般用在 post 创建的时候，使用 @RequestBody 这样的场景，<br>
+请求参数无法使用 @ApiImplicitParam 注解进行描述的时候）<br>
+@ApiModelProperty：用在属性上，描述响应类的属性<br>
+ Swagger2 和 knife4j<br>
+ 虽然 Swagger-ui 很好，但是国人还是开发了一个 knife4j 的的 swaggerui，更加好看和方便使用</p>
+<p>maven 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.xiaoymin<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>knife4j-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.10.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>增加配置类<br>
+ @Configuration<br>
+@EnableSwagger2WebMvc<br>
+public class Knife4jConfiguration {</p>
+<pre><code>@Bean(value = &quot;defaultApi2&quot;)
+public Docket defaultApi2() &#123;
+    Docket docket=new Docket(DocumentationType.SWAGGER_2)
+            .apiInfo(new ApiInfoBuilder()
+                    //.title(&quot;swagger-bootstrap-ui-demo RESTful APIs&quot;)
+                    .description(&quot;# swagger-bootstrap-ui-demo RESTful APIs&quot;)
+                    .termsOfServiceUrl(&quot;http://www.xx.com/&quot;)
+                    .contact(&quot;xx@qq.com&quot;)
+                    .version(&quot;1.0&quot;)
+                    .build())
+            //分组名称
+            .groupName(&quot;2.X版本&quot;)
+            .select()
+            //这里指定Controller扫描包路径
+            .apis(RequestHandlerSelectors.basePackage(&quot;com.example.myswaggerknife4j.controller&quot;))
+            .paths(PathSelectors.any())
+            .build();
+    return docket;
+&#125;
+</code></pre>
+<p>API 接口增加 swagger 注解<br>
+ @Controller<br>
+public class HelloController {</p>
+<pre><code>@PostMapping(&quot;/save&quot;)
+@ResponseBody
+public Boolean save(
+        @RequestParam(&quot;name&quot;) String name,
+        @RequestParam(&quot;age&quot;) Integer age
+) &#123;
+    return true;
+&#125;
+</code></pre>
+<p>效果展示<br>
+访问 <a target="_blank" rel="noopener" href="http://localhost:8080/doc.html">http://localhost:8080/doc.html</a></p>
+<p>项目地址<br>
+<a target="_blank" rel="noopener" href="https://gitee.com/LylYorick/my-swagger-knife4j"> https://gitee.com/LylYorick/my-swagger-knife4j</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.578Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2021-10-09T13:12:49.325Z" title="2021-10-9 21:12:49">2021-10-09</time>更新</span><span class="level-item">30 分钟读完 (大约4433个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/">JUC并发多线程笔记</a></p><div class="content"><h3 id="什么是juc"><a class="markdownIt-Anchor" href="#什么是juc">#</a> 什么是 JUC</h3>
 <h4 id="进程与线程"><a class="markdownIt-Anchor" href="#进程与线程">#</a> 进程与线程</h4>
 <p>进程：计算机进行资源调度的基本单元（打开一个软件）。</p>
 <p>线程：系统分配时间调度的基本单元。</p>
@@ -1151,286 +1297,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 <h4 id="2在vscode终端输入-adb-connect-手机ip手机端口"><a class="markdownIt-Anchor" href="#2在vscode终端输入-adb-connect-手机ip手机端口">#</a> 2. 在 vscode 终端输入 adb connect 手机 IP: 手机端口</h4>
 <h4 id="3作者在csdn这个烂环境中没找到有用的信息全是粘贴的所以希望这篇文章帮助到你你可以把我的地址列出来粘贴可以抄袭可耻"><a class="markdownIt-Anchor" href="#3作者在csdn这个烂环境中没找到有用的信息全是粘贴的所以希望这篇文章帮助到你你可以把我的地址列出来粘贴可以抄袭可耻">#</a> 3. 作者在 CSDN 这个烂环境中没找到有用的信息，全是粘贴的，所以希望这篇文章帮助到你，你可以把我的地址列出来，粘贴可以，抄袭可耻！</h4>
 <h4 id="4完成以上步骤手机端应有开启无线调试的提示记得提前打开开发者模式"><a class="markdownIt-Anchor" href="#4完成以上步骤手机端应有开启无线调试的提示记得提前打开开发者模式">#</a> 4. 完成以上步骤，手机端应有开启无线调试的提示，记得提前打开开发者模式。</h4>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.559Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-05-23T04:53:15.592Z" title="2022-5-23 12:53:15">2022-05-23</time>更新</span><span class="level-item">18 分钟读完 (大约2628个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/">Flutter GETX框架</a></p><div class="content"><p>​		GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理。</p>
-<p>​		与其说是一个状态管理库，倒不如是是一个简化 Flutter 开发的百宝箱。它提供了很多工具来简化我们的开发，本篇我们先对 GetX 有一个大概的认识，然后接下来的篇章再将 GetX 的具体应用。</p>
-<h2 id="getx-工具介绍"><a class="markdownIt-Anchor" href="#getx-工具介绍">#</a> <strong>GetX 工具介绍</strong></h2>
-<p>官方文档给出关于 GetX 的介绍如下：</p>
-<blockquote>
-<p>GetX is an extra-light and powerful solution for Flutter. It combines high-performance state management, intelligent dependency injection, and route management quickly and practically. GetX 是一个超轻量且强大的 Flutter 应用解决方案。它组合了高性能的状态管理、智能的依赖注入以及快速可用的路由管理。</p>
-</blockquote>
-<p>而实际上，GetX 还有更多的小工具，示例如下：</p>
-<h4 id="状态管理"><a class="markdownIt-Anchor" href="#状态管理">#</a> 状态管理</h4>
-<ul>
-<li>Obx 是配合 Rx 响应式变量使用、GetBuilder 是配合 update 使用：请注意，这完全是俩套定点刷新控件的方案。<br>
-区别：前者响应式变量变化，Obx 自动刷新；后者需要使用 update 手动调用刷新</li>
-<li>每一个响应式变量，都需要生成对应的 GetStream，占用资源大于基本数据类型，会对内存造成一定压力</li>
-<li>GetBuilder 内部实际上是对 StatefulWidget 的封装，所以占用资源极小（推荐使用）</li>
-</ul>
-<h4 id="控制器的注入"><a class="markdownIt-Anchor" href="#控制器的注入">#</a> 控制器的注入</h4>
-<ul>
-<li>静态路由绑定</li>
-</ul>
-<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AsWorkStatisticsBinding</span> <span class="keyword">implements</span> <span class="title class_">Bindings</span> &#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">void</span> <span class="title function_">dependencies</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">Get</span>.<span class="property">lazyPut</span>&lt;<span class="title class_">AsWorkStatisticsController</span>&gt;(<span class="function">() =&gt;</span> <span class="title class_">AsWorkStatisticsController</span>());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> final <span class="title class_">List</span>&lt;<span class="title class_">GetPage</span>&gt; routes = [</span><br><span class="line">    <span class="title class_">GetPage</span>(</span><br><span class="line">      <span class="attr">name</span>: workStatisticsPage,</span><br><span class="line">      <span class="attr">page</span>: <span class="function">() =&gt;</span> <span class="keyword">const</span> <span class="title class_">AsWorkStatisticsPage</span>(),</span><br><span class="line">      <span class="attr">binding</span>: <span class="title class_">AsWorkStatisticsBinding</span>(),</span><br><span class="line">    ),</span><br><span class="line">];</span><br><span class="line"><span class="title class_">Get</span>.<span class="title function_">toNamed</span>(<span class="title class_">ASRouteConfig</span>.<span class="property">workPlanDetailPage</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>动态路由绑定</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get<span class="selector-class">.to</span>(AsWorkStatisticsPage(),binding: <span class="built_in">AsWorkStatisticsBinding</span>());</span><br></pre></td></tr></table></figure>
-<ul>
-<li>页面注入</li>
-</ul>
-<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Get</span>.<span class="property">lazyPut</span>&lt;<span class="title class_">AsWorkStatisticsController</span>&gt;(<span class="function">() =&gt;</span> <span class="title class_">AsWorkStatisticsController</span>());</span><br></pre></td></tr></table></figure>
-<h4 id="动态简单路由和静态命名路由"><a class="markdownIt-Anchor" href="#动态简单路由和静态命名路由">#</a> 动态 / 简单路由和静态 / 命名路由</h4>
-<p>请注意命名路由，只需要在 api 结尾加上 Named 即可，举例：</p>
-<ul>
-<li>默认：<a target="_blank" rel="noopener" href="http://Get.to">Get.to</a>(SomePage());</li>
-<li>命名路由：Get.toNamed (“/somePage”);</li>
-<li>导航到新的页面</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.to(NextScreen());</span><br><span class="line">Get.toNamed(<span class="string">&quot;/NextScreen&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>关闭 SnackBars、Dialogs、BottomSheets 或任何你通常会用 Navigator.pop (context) 关闭的东西</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get<span class="selector-class">.back</span>();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入下一个页面，但没有返回上一个页面的选项（用于 SplashScreens，登录页面等）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.off(NextScreen());</span><br><span class="line">Get.offNamed(<span class="string">&quot;/NextScreen&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入下一个界面并取消之前的所有路由（在购物车、投票和测试中很有用）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.offAll(NextScreen());</span><br><span class="line">Get.offAllNamed(<span class="string">&quot;/NextScreen&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>发送数据到其它页面</li>
-</ul>
-<p>只要发送你想要的参数即可。Get 在这里接受任何东西，无论是一个字符串，一个 Map，一个 List，甚至一个类的实例。</p>
-<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Get</span>.<span class="title function_">to</span>(<span class="title class_">NextScreen</span>(), <span class="attr">arguments</span>: <span class="string">&#x27;Get is the best&#x27;</span>);</span><br><span class="line"><span class="title class_">Get</span>.<span class="title function_">toNamed</span>(<span class="string">&quot;/NextScreen&quot;</span>, <span class="attr">arguments</span>: <span class="string">&#x27;Get is the best&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>在你的类或控制器上。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(Get.arguments);</span><br><span class="line"><span class="comment">//print out: Get is the best</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>要导航到下一条路由，并在返回后立即接收或更新数据</li>
-</ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">await</span> Get.to(Payment());</span><br><span class="line"><span class="keyword">var</span> data = <span class="keyword">await</span> Get.toNamed(<span class="string">&quot;/payment&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在另一个页面上，发送前一个路由的数据</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get.back(result: <span class="string">&#x27;success&#x27;</span>);</span><br><span class="line"><span class="comment">// 并使用它，例：</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">data</span> == <span class="string">&#x27;success&#x27;</span>) madeAnything();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>跳转重复页面，可以这样写</li>
-</ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get.to(XxxxPage(), preventDuplicates: <span class="literal">false</span>);</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">Get.toNamed(<span class="string">&#x27;xxx&#x27;</span>,  preventDuplicates: <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果你不想使用 GetX 语法，只要把 Navigator（大写）改成 navigator（小写），你就可以拥有标准导航的所有功能，而不需要使用 context，例如：</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认的Flutter导航</span></span><br><span class="line">Navigator.of(context).push(</span><br><span class="line">  context,</span><br><span class="line">  MaterialPageRoute(</span><br><span class="line">    builder: (BuildContext context) &#123;</span><br><span class="line">      <span class="keyword">return</span> HomePage();</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Flutter语法获得，而不需要context。</span></span><br><span class="line">navigator.push(</span><br><span class="line">  MaterialPageRoute(</span><br><span class="line">    builder: (_) &#123;</span><br><span class="line">      <span class="keyword">return</span> HomePage();</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get语法</span></span><br><span class="line">Get.to(HomePage());</span><br></pre></td></tr></table></figure>
-<h4 id="getview的使用"><a class="markdownIt-Anchor" href="#getview的使用">#</a> GetView 的使用</h4>
-<p>GetView 只是对已注册的 Controller 有一个名为 controller 的 getter 的 const Stateless 的 Widget，如果我们只有单个控制器作为依赖项，那我们就可以使用 GetView，而不是使用 StatelessWidget，并且避免了写 Get.Find ()。</p>
-<p>GetView 的使用方法非常简单，只是要将你的视图层继承自 GetView 并传入需要注册的控制器并 Get.put () 即可：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GetViewAndGetWidgetExample</span> <span class="keyword">extends</span> <span class="title class_">GetView</span>&lt;GetViewCountController&gt; &#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget <span class="title function_">build</span><span class="params">(BuildContext context)</span> &#123;</span><br><span class="line"></span><br><span class="line">    Get.put(GetViewCountController());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Container();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="路由"><a class="markdownIt-Anchor" href="#路由">#</a> <strong>路由</strong></h3>
-<p>路由支持命名路由和匿名路由：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Get.to(() =&gt; Home());</span><br><span class="line">Get.toNamed(&#x27;/home&#x27;);</span><br><span class="line">// 返回上一个页面</span><br><span class="line">Get.back();</span><br><span class="line">// 使用下一个页面替换</span><br><span class="line">Get.off(NextScreen());</span><br><span class="line">// 清空导航堆栈全部页面</span><br><span class="line">Get.offAll(NextScreen());</span><br><span class="line">// 获取命名路由参数</span><br><span class="line">print(Get.parameters[&#x27;id&#x27;]);</span><br><span class="line">print(Get.parameters[&#x27;name&#x27;]);</span><br></pre></td></tr></table></figure>
-<p>GetX 的路由好处是不依赖于  <code>context</code> ，十分简洁，更多路由介绍可以参考：<strong><a href="https://link.zhihu.com/?target=https%3A//github.com/jonataslaw/getx/blob/master/documentation/en_US/route_management.md">GetX 路由介绍官方文档</a></strong>。</p>
-<h2 id="snackbar"><a class="markdownIt-Anchor" href="#snackbar">#</a> <strong>SnackBar</strong></h2>
-<p>Flutter 自身携带的 SnackBar 有很多限制，而 GetX 的非常简单，当然也有更多的样式配置和位置配置参数。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get.snackbar(&#x27;SnackBar&#x27;, &#x27;这是GetX的SnackBar&#x27;);</span><br></pre></td></tr></table></figure>
-<h2 id="对话框"><a class="markdownIt-Anchor" href="#对话框">#</a> <strong>对话框</strong></h2>
-<p>对话框也一样，默认的对话框开箱即用。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Get.defaultDialog(</span><br><span class="line">  title: &#x27;对话框&#x27;,</span><br><span class="line">  content: Text(&#x27;对话框内容&#x27;),</span><br><span class="line">  onConfirm: () &#123;</span><br><span class="line">    print(&#x27;Confirm&#x27;);</span><br><span class="line">    Get.back();</span><br><span class="line">  &#125;,</span><br><span class="line">  onCancel: () &#123;</span><br><span class="line">    print(&#x27;Cancel&#x27;);</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h2 id="内存缓存"><a class="markdownIt-Anchor" href="#内存缓存">#</a> <strong>内存缓存</strong></h2>
-<p>GetX 可以缓存内容对象，以便在不同页面共享数据。使用的时候需要注意，需要先  <code>put</code>  操作再  <code>find</code>  操作，否则会抛异常。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.put(CacheData(name: &#x27;这是缓存数据&#x27;));</span><br><span class="line">CacheData cache = Get.find();</span><br></pre></td></tr></table></figure>
-<h2 id="离线存储"><a class="markdownIt-Anchor" href="#离线存储">#</a> <strong>离线存储</strong></h2>
-<p>GetX 提供了一个 <strong><a href="https://link.zhihu.com/?target=https%3A//pub.flutter-io.cn/packages/get_storage">get_storage</a></strong> 插件用于离线存储，与  <code>shared_preferences</code>  相比，其优点是纯 Dart 编写，不依赖于原生，因此可以在安卓、iOS、Web、Linux、Mac 等多个平台使用。 <code>GetStorage</code>  是基于内存和文件存储的，当内存容器中有数据时优先从内存读取。同时在构建 GetStorage 对象到时候指定存储的文件名以及存储数据的容器。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GetStorage storage = GetStorage();</span><br><span class="line">storage.write(&#x27;name&#x27;, &#x27;岛上码农&#x27;);</span><br><span class="line">storage.read(&#x27;name&#x27;);</span><br></pre></td></tr></table></figure>
-<h2 id="更改主题"><a class="markdownIt-Anchor" href="#更改主题">#</a> <strong>更改主题</strong></h2>
-<p>可以说是一行代码搞定深色和浅色模式，也可以更改为自定义主题 —— <strong>老板让你根据手机壳改主体颜色的需求</strong>已经搞定了一大半了！</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get.changeTheme(</span><br><span class="line">  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><img src="https://brath.cloud/blogImg/v2-196c01dbae06a8e68132fcd94e3983a6_b.jpg" alt="img"></p>
-<h2 id="多语言支持"><a class="markdownIt-Anchor" href="#多语言支持">#</a> <strong>多语言支持</strong></h2>
-<p>多语言支持使用数据字典完成，在  <code>GetMaterialApp</code>  指定字典对象（继承自  <code>Translations</code> ），使用字符串的时候假设 <code>.tr</code>  后缀，就可以在切换语言的时候自动切换字符串对应语言的翻译了。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class GetXDemo extends StatelessWidget &#123;</span><br><span class="line">  // 省略其他代码</span><br><span class="line">  TextButton(</span><br><span class="line">    onPressed: () &#123;</span><br><span class="line">      var locale = Locale(&#x27;en&#x27;, &#x27;US&#x27;);</span><br><span class="line">      Get.updateLocale(locale);</span><br><span class="line">    &#125;,</span><br><span class="line">    child: Text(&#x27;name&#x27;.tr),</span><br><span class="line">  ),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Messages extends Translations &#123;</span><br><span class="line">  @override</span><br><span class="line">  Map&lt;String, Map&lt;String, String&gt;&gt; get keys =&gt; &#123;</span><br><span class="line">        &#x27;en_US&#x27;: &#123;</span><br><span class="line">          &#x27;name&#x27;: &#x27;Island Coder&#x27;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x27;zh_CN&#x27;: &#123;</span><br><span class="line">          &#x27;name&#x27;: &#x27;岛上码农&#x27;,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyApp extends StatelessWidget &#123;</span><br><span class="line">  // This widget is the root of your application.</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return GetMaterialApp(</span><br><span class="line">      translations: Messages(),</span><br><span class="line">      locale: Locale(&#x27;zh&#x27;, &#x27;CN&#x27;),</span><br><span class="line">      color: Colors.white,</span><br><span class="line">      navigatorKey: Get.key,</span><br><span class="line">      title: &#x27;Flutter Demo&#x27;,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">        brightness: Brightness.light,</span><br><span class="line">      ),</span><br><span class="line">      home: GetXDemo(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="getx-的理念"><a class="markdownIt-Anchor" href="#getx-的理念">#</a> <strong>GetX 的理念</strong></h2>
-<p>GetX 有三个基本的理念，分别是性能、生产力和组织性（Organization）。</p>
-<ul>
-<li>性能（Performance）：GetX 关注性能并最小化资源消耗。GetX 不使用  <code>Stream</code>  或  <code>ChangeNotifier</code> 。</li>
-<li>生产力（Productivity）：GetX 使用简洁愉悦的语法。不管你要做什么，使用 GetX 都会觉得简便。这使得开发的时间大大节省，并且保证应用性能的最大化。通常来说，开发者需要关注从内存中移除控制器。而使用 GetX 的时候，则无需这么做。当控制器不被使用的时候，资源会自动从内存中释放。如果确实需要常住内存，那就需要在依赖中声明  <code>permanent:true</code> 。通过这种方式，可以降低内存中有过多不必要依赖对象的风险。同时，依赖默认也是懒加载。</li>
-<li>组织性（Organization）：GetX 可以将视图、展示逻辑、业务逻辑、依赖注入和导航完全解耦。路由之间跳转无需  <code>context</code> ，因此我们的导航不会依赖组件树。也不需要使用通过  <code>InheritedWidget</code>  的  <code>context</code>  访问控制器或 BLOC 对象，因此可以将展示逻辑和业务逻辑从虚拟的组件层分离。我们也不需要像 MultiProvider 那样往组件树中注入 Controller/Model/Bloc 等类对象。因此可以将依赖注入和视图分离。</li>
-</ul>
-<h2 id="getx-生态"><a class="markdownIt-Anchor" href="#getx-生态">#</a> <strong>GetX 生态</strong></h2>
-<p>GetX 有很多特性，使得编码变得容易。每个特性之间是相互独立的，并且只会在使用的时候才启动。例如，如果仅仅是使用状态管理，那么只有状态管理会被编译。而如果只使用路由，那么状态管理的部分就不会编译。</p>
-<p>GetX 有一个很大的生态，包括了大型的社区维护，大量的协作者（GitHub 上看有 132 位），并且承诺只要 Flutter 存在就会继续维护下去。而且 GetX 兼容 Android, iOS, Web, Mac, Linux, Windows 多个平台。GetX 甚至还有服务端版本 <strong><a href="https://link.zhihu.com/?target=https%3A//github.com/jonataslaw/get_server">Get_Server</a></strong>（感觉 Flutter 要一统程序员界啊，啥时候支持鸿蒙？）。</p>
-<p>为了简化开发，GetX 还提供了脚手架工具 **<a href="https://link.zhihu.com/?target=https%3A//pub.flutter-io.cn/packages/get_cli">GET_CLI</a>** 和 VSCode 插件 <code>GetX Snippets</code> （也有 Android Studio 和 Intellij 插件）。提供了如下快速代码模板：</p>
-<ul>
-<li>
-<p>getmain：GetX 的 main.dart 代码；</p>
-</li>
-<li>
-<p>getmodel：Model 类代码，包括了 fromJson 和 toJson 方法</p>
-</li>
-<li>
-<p>其他，输入 getxxxx 根据提示生成即可，具体参考：<strong><a href="https://link.zhihu.com/?target=https%3A//marketplace.visualstudio.com/items%3FitemName%3Dget-snippets.get-snippets">GetX Snippets 介绍</a></strong>。</p>
-</li>
-</ul>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> <strong>总结</strong></h2>
-<p>本篇对 GetX 插件做了简单的介绍，可以看到 GetX 的生态确实很丰富，感觉是一个集大成者，GetX 基本上涵盖了 Flutter 应用开发的很大一部分，如路由、主题、多语言、弹层、状态管理、依赖注入、网络请求封装等等。GetX 看着像一个框架， 但实际上它的各个模块是独立的，其实是一个工具箱。对于开发的时候，可以用它的全家桶，也可以从中任取所需的模块到我们的应用中使用。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.558Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-07-29T03:03:21.670Z" title="2022-7-29 11:03:21">2022-07-29</time>更新</span><span class="level-item">14 分钟读完 (大约2083个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/">Flutter 流畅度优化组件 Keframe</a></p><div class="content"><p>最近在开发一款 APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6979781997568884766">https://juejin.cn/post/6979781997568884766</a></p>
-<p>Nayuta 的 Keframe 组件正好可以满足帧率优化的问题</p>
-<h3 id="项目依赖"><a class="markdownIt-Anchor" href="#项目依赖">#</a> 项目依赖：</h3>
-<p>在  <code>pubspec.yaml</code>  中添加  <code>keframe</code>  依赖</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">keframe:</span> <span class="string">version</span></span><br></pre></td></tr></table></figure>
-<p>组件仅区分非空安全与空安全版本</p>
-<p>非空安全使用：  <code>1.0.2</code></p>
-<p>空安全版本使用：  <code>2.0.2</code></p>
-<p>github 地址：<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FLianjiaTech%2Fkeframe">github.com/LianjiaTech…</a></p>
-<p>pub 查看：<a href="https://link.juejin.cn?target=https%3A%2F%2Fpub.dev%2Fpackages%2Fkeframe">pub.dev/packages/ke…</a></p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#SizeCacheWidget用来包裹最外层的list</span><br><span class="line">#FrameSeparateWidget用来包裹list的子集即可    </span><br><span class="line">example:</span><br><span class="line">SizeCacheWidget(</span><br><span class="line">	child：ListView || CustomScrollView(</span><br><span class="line">    	slivers[</span><br><span class="line">            SliverList(</span><br><span class="line">            	delegate: SliverChildBuilderDelegate</span><br><span class="line">                (BuildContext context, <span class="built_in">int</span> index)&#123;</span><br><span class="line">                    <span class="keyword">return</span> FrameSeparateWidget(</span><br><span class="line">                    	child: ···</span><br><span class="line">                    )</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="快速上手"><a class="markdownIt-Anchor" href="#快速上手">#</a> 快速上手：</h3>
-<p>如下图所示</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83d16f3b2a3e45b79fc73d7a52774696~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<p>假如现在页面由 A、B、C、D 四部分组成，每部分耗时 10ms，在页面时构建为 40ms。使用分帧组件   <code>FrameSeparateWidget</code>  嵌套每一个部分。页面构建时会在第一帧渲染简单的占位，在后续四帧内分别渲染 A、B、C、D。</p>
-<p>对于列表，在每一个 item 中嵌套  <code>FrameSeparateWidget</code> ，并将  <code>ListView</code>  嵌套在  <code>SizeCacheWidget</code>  内即可。</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ffecd49bf9ba4379984a22ef79663104~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<hr>
-<h2 id="构造函数说明"><a class="markdownIt-Anchor" href="#构造函数说明">#</a> 构造函数说明</h2>
-<p>FrameSeparateWidget ：分帧组件，将嵌套的 widget 单独一帧渲染</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>参数名</th>
-<th>是否必填</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Key</td>
-<td>key</td>
-<td>否</td>
-<td></td>
-</tr>
-<tr>
-<td>int</td>
-<td>index</td>
-<td>否</td>
-<td>分帧组件 id，<strong>使用 SizeCacheWidget 的场景必传</strong>，SizeCacheWidget 中维护了 index 对应的 Size 信息</td>
-</tr>
-<tr>
-<td>Widget</td>
-<td>child</td>
-<td>是</td>
-<td>实际需要渲染的 widget</td>
-</tr>
-<tr>
-<td>Widget</td>
-<td>placeHolder</td>
-<td>否</td>
-<td>占位 widget，尽量设置简单的占位，不传默认是 Container ()</td>
-</tr>
-</tbody>
-</table>
-<p>SizeCacheWidget：缓存子节点中，分帧组件嵌套的<strong>实际 widget 的尺寸信息</strong></p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>参数名</th>
-<th>是否必填</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Key</td>
-<td>key</td>
-<td>否</td>
-<td></td>
-</tr>
-<tr>
-<td>Widget</td>
-<td>child</td>
-<td>是</td>
-<td>子节点中如果包含分帧组件，则缓存<strong>实际的 widget 尺寸</strong></td>
-</tr>
-<tr>
-<td>int</td>
-<td>estimateCount</td>
-<td>否</td>
-<td>预估屏幕上子节点的数量，提高快速滚动时的响应速度</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="方案设计与分析"><a class="markdownIt-Anchor" href="#方案设计与分析">#</a> 方案设计与分析：</h2>
-<p>卡顿的本质，就是 <strong>单帧的绘制时间过长</strong>。基于此自然衍生出两种思路解决：</p>
-<p>1、减少一帧的绘制耗时，因为导致耗时过长的原因有很多，比如不合理的刷新，或者绘制时间过长，都有可能，需要具体问题具体分析，后面我会分享一些我的优化经验。</p>
-<p><strong>2、在不对耗时优化下，将一帧的任务拆分到多帧内，保证每一帧都不超时。这也是本组件的设计思路，分帧渲染。</strong></p>
-<p>如下图所示:</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb09c9aadc5d45c9b966661c8d73e4c1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<p>原理并不复杂，问题在于如何在 Flutter 中实践这一机制。</p>
-<p>因为涉及到帧与系统的调度，自然联想到看  <code>SchedulerBinding</code>  中有无现成的 API。</p>
-<p>发现了  <code>scheduleTask</code>  方法，这是系统提供的一个执行任务的方法，但这个方法存在两个问题：</p>
-<ul>
-<li>1、其中的渲染任务是优先级进行堆排序，而堆排序是<strong>不稳定</strong>排序，这会导致任务的执行顺序并非 FIFO。从效果上来看，就是列表不会按照顺序渲染，而是会出现跳动渲染的情况</li>
-<li>2、这个方法本身存在调度问题，我已经提交 issue 与 pr，不过一直卡在单元测试上，如果感兴趣可以以在这里交流谈论。</li>
-</ul>
-<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fflutter%2Fflutter%2Fpull%2F82781">fix: Tasks scheduled through ‘SchedulerBinding.instance.scheduleTask’… #82781 </a></p>
-<p>最终，参考这个设计结合  <code>endOfFrame</code>  方法的使用，完成了分帧队列。整个渲染流程变为下图所示：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cb9d177b4b0847339eaf952a7ef67cca~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<p>对于列表构建场景来说，假设屏幕上能显示五个 item。首先在第一帧的时候，列表会渲染 5 个占位的 Widget，同时添加 5 个高优先级任务到队列中，这里的任务可以是简单的将占位 Widget 和实际 item 进行替换，也可通过渐变等动画提升体验。在后续的五帧中占位 Widget 依次被替换成实际的列表 item。</p>
-<p>在  <a target="_blank" rel="noopener" href="https://juejin.cn/post/6940134891606507534">ListView 流畅度翻倍！！Flutter 卡顿分析和通用优化方案</a>  这篇文章中有更加详细的分析。</p>
-<h2 id="一些展示效果example-说明请查看-github"><a class="markdownIt-Anchor" href="#一些展示效果example-说明请查看-github">#</a> 一些展示效果（Example 说明请查看 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FLianjiaTech%2Fkeframe%2Fblob%2Fmaster%2FREADME-ZH.md">Github</a>）</h2>
-<p>卡顿的页面往往都是由多个复杂 widget 同时渲染导致。通过为复杂的 widget 嵌套分帧组件  <code>FrameSeparateWidget</code> 。渲染时，分帧组件会在第一帧同时渲染多个  <code>palceHolder</code> ，之后连续的多帧内依次渲染复杂子项，以此提升页面流畅度。</p>
-<p>例如 example 中的优化前示例：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ListView.builder(</span><br><span class="line">              itemCount: childCount,</span><br><span class="line">              itemBuilder: (c, i) =&gt; CellWidget(</span><br><span class="line">                color: i % <span class="number">2</span> == <span class="number">0</span> ? Colors.red : Colors.blue,</span><br><span class="line">                index: i,</span><br><span class="line">              ),</span><br><span class="line">            )</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-<p>其中  <code>CellWidget</code>  高度为 60，内部嵌套了三个  <code>TextField</code>  的组件（整体构建耗时在 9ms 左右）。</p>
-<p>优化仅需为每一个 item 嵌套分帧组件，并为其设置  <code>placeHolder</code> （placeHolder 尽量简单，样式与实际 item 接近即可）。</p>
-<p>在列表情况下，给 ListView 嵌套  <code>SizeCacheWidget</code> ，同时建议将预加载范围  <code>cacheExtent</code>  设置大一点，例如 500（该属性默认为 250），提升慢速滑动时候的体验。</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f33ddd7d9de4e369b0e457f84171cc8~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210611_194905.gif"> (占位与实际列表项不一致时，首次渲染抖动，二次渲染正常)</p>
-<p>此外，也可以给 item 嵌套透明度 / 位移等动画，优化视觉上的效果。</p>
-<p>效果如下图：</p>
-<table>
-<thead>
-<tr>
-<th><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb7d1361ae7842df954bb1c559e2ec54~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210315_133310.gif"></th>
-<th><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ee6827f7eed4463a1a8a5b00a58fd6e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210315_133848.gif"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="分帧的成本"><a class="markdownIt-Anchor" href="#分帧的成本">#</a> 分帧的成本</h2>
-<p>当然分帧方案也非十全十美，在我看来主要有两点成本：</p>
-<p>1、额外的构建开销：整个构建过程的构建消耗由「n * widget 消耗 」变成了「n *（ widget + 占位）消耗 + 系统调度 n 帧消耗」。可以看出，额外的开销主要由占位的复杂度决定。如果占位只是简单的 Container，测试后发现整体构建耗时大概提升在 15 % 左右。这种额外开销对于当下的移动设备而言，成本几乎可以不计。</p>
-<p>2、视觉上的变化：如同上面的演示，组件会将 item 分帧渲染，页面在视觉上出现占位变成实际 widget 的过程。但其实由于列表存在缓存区域（建议将缓存区调大），在高端机或正常滑动情况下用户并无感知。而在中低端设备上快速滑动能感觉到切换的过程，但比严重顿挫要好。</p>
-<hr>
-<h2 id="优化前后对比演示"><a class="markdownIt-Anchor" href="#优化前后对比演示">#</a> 优化前后对比演示</h2>
-<p>注：gif 帧率只有 20</p>
-<table>
-<thead>
-<tr>
-<th>优化前</th>
-<th>优化后</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f20f593cc144b72a1df4bdae57a165c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="优化前"></td>
-<td><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05aea6de421545b9bbf868c344a9afe9~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="优化后"></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="最后一点点思考"><a class="markdownIt-Anchor" href="#最后一点点思考">#</a> 最后：一点点思考</h2>
-<p>列表优化篇到此告一段落，在整个开源实践过程中，有两点感触较深：</p>
-<p>作者：Nayuta<br>
- 链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6979781997568884766">https://juejin.cn/post/6979781997568884766</a></p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/6/">上一页</a></div><div class="pagination-next"><a href="/page/8/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><a class="pagination-link is-current" href="/page/7/">7</a></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><a class="pagination-link" href="/page/9/">9</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-16T05:10:11.024Z">2023-03-16</time></p><p class="title"><a href="/2023/03/16/%E3%80%90Docker%E3%80%91Linux%E9%83%A8%E7%BD%B2Docker/">【Docker】Linux部署Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-16T04:37:23.329Z">2023-03-16</time></p><p class="title"><a href="/2023/03/16/%E3%80%90Docker%E3%80%91Docker%E4%B8%8B%E5%AE%89%E8%A3%85Canal%E5%B9%B6%E6%95%B4%E5%90%88SpringBoot/">【Docker】Docker下安装Canal并整合SpringBoot</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-03T11:24:09.423Z">2023-03-03</time></p><p class="title"><a href="/2023/03/03/%E3%80%90Docker%E3%80%91docker%E4%B8%AD%E8%AE%BE%E7%BD%AEelasticsearch%E3%80%81kibana%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E3%80%81%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81/">docker中设置elasticsearch、kibana用户名密码、修改密码</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-03T09:37:01.208Z">2023-03-03</time></p><p class="title"><a href="/2023/03/03/%E3%80%90Java%E3%80%91SpringBoot%20%E6%95%B4%E5%90%88Redis%E5%AF%B9%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%81%9A%E7%BC%93%E5%AD%98%EF%BC%88%20%E5%88%A9%E7%94%A8Spring%E7%9A%84AOP%E6%8A%80%E6%9C%AF%EF%BC%89/">【Java】SpringBoot 整合Redis对查询数据做缓存（ 利用Spring的AOP技术）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-02T08:15:30.653Z">2023-03-02</time></p><p class="title"><a href="/2023/03/02/%E3%80%90ELK%E3%80%91SpringBoot%E6%95%B4%E5%90%88ELK%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2/">【ELK】SpringBoot整合ELK实现分布式日志搜索</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.oss-cn-shanghai.aliyuncs.com/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">81</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/6/">上一页</a></div><div class="pagination-next"><a href="/page/8/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><a class="pagination-link is-current" href="/page/7/">7</a></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><a class="pagination-link" href="/page/9/">9</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-19T03:13:28.214Z">2023-03-19</time></p><p class="title"><a href="/2023/03/19/%E3%80%90SpringBoot%E3%80%91SpringBoot%E5%90%AF%E5%8A%A8Banner%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/">【SpringBoot】SpringBoot启动Banner如何修改</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-19T03:11:04.235Z">2023-03-19</time></p><p class="title"><a href="/2023/03/19/%E3%80%90Java%E3%80%91Canal%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%EF%BC%8C%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%88%B0Rowdata%E7%B1%BB%E5%9E%8B/">Canal数据同步，接收不到Rowdata类型</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-16T05:10:11.024Z">2023-03-16</time></p><p class="title"><a href="/2023/03/16/%E3%80%90Docker%E3%80%91Linux%E9%83%A8%E7%BD%B2Docker/">【Docker】Linux部署Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-16T04:37:23.329Z">2023-03-16</time></p><p class="title"><a href="/2023/03/16/%E3%80%90Docker%E3%80%91Docker%E4%B8%8B%E5%AE%89%E8%A3%85Canal%E5%B9%B6%E6%95%B4%E5%90%88SpringBoot/">【Docker】Docker下安装Canal并整合SpringBoot</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-03T11:24:09.423Z">2023-03-03</time></p><p class="title"><a href="/2023/03/03/%E3%80%90Docker%E3%80%91docker%E4%B8%AD%E8%AE%BE%E7%BD%AEelasticsearch%E3%80%81kibana%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E3%80%81%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81/">docker中设置elasticsearch、kibana用户名密码、修改密码</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">27</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.oss-cn-shanghai.aliyuncs.com/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">83</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
