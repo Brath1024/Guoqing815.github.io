@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>【MySQL】MySql相关优化分享 - Brath-Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Brath-Blog"><meta name="msapplication-TileImage" content="https://brath.cloud/me.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Brath-Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="# 【MySQL】MySql 相关优化分享 # 文章目录  前言 一、数据库优化       1. 选择合适存储引擎 2. 选择合适的连接池 3. 分库分表 4. 主从同步       二、表优化       1. 表中的字段选择合适的数据类型 2. 适当添加索引 3. 表中适当保留冗余数据 4. 增加中间表 5. 字段很多的表分解成多个表 6. 添加适当存储过程       三、SQL 语句优化"><meta property="og:type" content="blog"><meta property="og:title" content="【MySQL】MySql相关优化分享"><meta property="og:url" content="http://example.com/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/"><meta property="og:site_name" content="Brath-Blog"><meta property="og:description" content="# 【MySQL】MySql 相关优化分享 # 文章目录  前言 一、数据库优化       1. 选择合适存储引擎 2. 选择合适的连接池 3. 分库分表 4. 主从同步       二、表优化       1. 表中的字段选择合适的数据类型 2. 适当添加索引 3. 表中适当保留冗余数据 4. 增加中间表 5. 字段很多的表分解成多个表 6. 添加适当存储过程       三、SQL 语句优化"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/3e82ac92263241049d3cfdd7aedc9d24.png"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/4ab2afe500d946c888ae0fd45882041a.png"><meta property="article:published_time" content="2023-04-11T07:25:27.293Z"><meta property="article:modified_time" content="2023-04-11T07:26:47.674Z"><meta property="article:author" content="Brath"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/3e82ac92263241049d3cfdd7aedc9d24.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/"},"headline":"【MySQL】MySql相关优化分享","image":["https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/3e82ac92263241049d3cfdd7aedc9d24.png","https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/4ab2afe500d946c888ae0fd45882041a.png"],"datePublished":"2023-04-11T07:25:27.293Z","dateModified":"2023-04-11T07:26:47.674Z","author":{"@type":"Person","name":"Brath"},"publisher":{"@type":"Organization","name":"Brath-Blog","logo":{"@type":"ImageObject","url":"https://brath.cloud/me.png"}},"description":"# 【MySQL】MySql 相关优化分享 # 文章目录  前言 一、数据库优化       1. 选择合适存储引擎 2. 选择合适的连接池 3. 分库分表 4. 主从同步       二、表优化       1. 表中的字段选择合适的数据类型 2. 适当添加索引 3. 表中适当保留冗余数据 4. 增加中间表 5. 字段很多的表分解成多个表 6. 添加适当存储过程       三、SQL 语句优化"}</script><link rel="canonical" href="http://example.com/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/"><link rel="icon" href="https://brath.cloud/me.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-11T07:25:27.293Z" title="2023-4-11 15:25:27">2023-04-11</time>发表</span><span class="level-item"><time dateTime="2023-04-11T07:26:47.674Z" title="2023-4-11 15:26:47">2023-04-11</time>更新</span><span class="level-item">23 分钟读完 (大约3439个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">【MySQL】MySql相关优化分享</h1><div class="content"><h1 id="mysqlmysql相关优化分享"><a class="markdownIt-Anchor" href="#mysqlmysql相关优化分享">#</a> 【MySQL】MySql 相关优化分享</h1>
+<h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录">#</a> 文章目录</h3>
+<ul>
+<li><a href="#_5">前言</a></li>
+<li><a href="#_12">一、数据库优化</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1_13">1. 选择合适存储引擎</a></li>
+<li><a href="#2_22">2. 选择合适的连接池</a></li>
+<li><a href="#3_31">3. 分库分表</a></li>
+<li><a href="#4_39">4. 主从同步</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_47">二、表优化</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1_49">1. 表中的字段选择合适的数据类型</a></li>
+<li><a href="#2_59">2. 适当添加索引</a></li>
+<li><a href="#3_66">3. 表中适当保留冗余数据</a></li>
+<li><a href="#4_75">4. 增加中间表</a></li>
+<li><a href="#5_78">5. 字段很多的表分解成多个表</a></li>
+<li><a href="#6_82">6. 添加适当存储过程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#SQL_95">三、SQL 语句优化</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1_96">1. 尽量使用表的别名，减少解析</a></li>
+<li><a href="#2select_100">2.select 子句中避免使用 * 号</a></li>
+<li><a href="#3where_109">3. 将 where 中用的比较频繁的字段建立索引，避免全表扫描</a></li>
+<li><a href="#4_123">4. 避免索引失效情况</a></li>
+<li><a href="#5limit_1_136">5. 当只需要一条数据的时候可以使用 limit 1</a></li>
+<li><a href="#6Where_140">6. 调整 Where 字句中的连接顺序</a></li>
+<li><a href="#7_144">7. 小表驱动大表</a></li>
+<li><a href="#8_EXPLAIN_SQL_160">8. 善用 EXPLAIN 查看 SQL 执行计划</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h1>
+<p><strong>现在在网上搜索，有很多类似文章，mysql 优化大全，mysql 最强总结等等，部分文章存在一些错误。在这里个人总结整理的一些点，希望对大家有所帮助。</strong></p>
+<p>本篇从数据库、表、sql 语句几个维度来说优化，如果文章有误之处欢迎指正～</p>
+<hr>
+<h1 id="一-数据库优化"><a class="markdownIt-Anchor" href="#一-数据库优化">#</a> 一、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96&amp;spm=1001.2101.3001.7020">数据库优化</a></h1>
+<h4 id="1选择合适存储引擎"><a class="markdownIt-Anchor" href="#1选择合适存储引擎">#</a> 1. 选择合适<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E&amp;spm=1001.2101.3001.7020">存储引擎</a></h4>
+<blockquote>
+<p>MySQL5.5 版本开始，InnoDB 已经成为 Mysql 的默认引擎 (之前是 MyISAM)，说明其优势是有目共睹的。如果你不知道用什么存储引擎，那就用 InnoDB，至少不会差。</p>
+</blockquote>
+<p>如何选择呢：</p>
+<ol>
+<li>是否要支持事务，如果要请选择 InnoDB，如果不需要可以考虑 MyISAM；</li>
+<li>如果表中绝大多数都只是读查询，可以考虑 MyISAM，如果既有读，写也挺频繁，请使用 InnoDB。</li>
+<li>系统奔溃后，MyISAM 恢复起来更困难，能否接受，不能接受就选 InnoDB；</li>
+</ol>
+<h4 id="2选择合适的连接池"><a class="markdownIt-Anchor" href="#2选择合适的连接池">#</a> 2. 选择合适的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%BF%9E%E6%8E%A5%E6%B1%A0&amp;spm=1001.2101.3001.7020">连接池</a></h4>
+<blockquote>
+<p>1：性能方面 hikariCP&gt;druid&gt;tomcat-jdbc&gt;dbcp&gt;c3p0 。hikariCP 的高性能得益于最大限度的避免锁竞争。<br>
+2：druid 功能最为全面，sql 拦截等功能，统计数据较为全面，具有良好的扩展性。<br>
+3：HikariCP 因为细节方面优化力度较大，性能方面强于 Druid<br>
+4：综合性能，扩展性等方面，可考虑使用 druid 或者 hikariCP 连接池。</p>
+</blockquote>
+<p>注：SpringBoot 2.0 以后默认连接池是 hikariCP。</p>
+<h4 id="3分库分表"><a class="markdownIt-Anchor" href="#3分库分表">#</a> 3. 分库分表</h4>
+<blockquote>
+<p>在数据量增长和增长速度越来越高的情况下，单库可能在容量、IO、并发性能上都无法支撑，这个时候就要对业务进行切分或数据库进行扩展，数据库的扩展也就是分库分表。</p>
+</blockquote>
+<p>分库分表的方式有垂直拆分和水平拆分。<br>
+垂直拆分是根据业务进行拆分，这种拆分不能解决单业务点数据量大的问题。<br>
+水平拆分是根据某一列进行拆分（如 id，userId），拆分后的每个库结构一致。</p>
+<h4 id="4主从同步"><a class="markdownIt-Anchor" href="#4主从同步">#</a> 4. 主从同步</h4>
+<blockquote>
+<p>一般部署架构为一台 Master 和 n 台 Slave，Master 的主责为写，并将数据同步至 Slave，Slave 主要提供查询功能。</p>
+</blockquote>
+<p>可以使用数据库中间件，例如 MyCat 来实现。MyCat 的读写分离是建立在 MySQL 主从复制基础之上实现的，Mycat 读写分离和自动切换机制，需要 mysql 的主从复制机制配合。</p>
+<hr>
+<h1 id="二-表优化"><a class="markdownIt-Anchor" href="#二-表优化">#</a> 二、表优化</h1>
+<h4 id="1表中的字段选择合适的数据类型"><a class="markdownIt-Anchor" href="#1表中的字段选择合适的数据类型">#</a> 1. 表中的字段选择合适的数据类型</h4>
+<blockquote>
+<ul>
+<li>能用数字类型，就不用字符串，因为字符的处理往往比数字要慢。</li>
+<li>尽可能使用小的类型，比如：用 bit 存布尔值，用 tinyint 存枚举值等。</li>
+<li>长度固定的字符串字段，用 char 类型，该类型的字段存储空间的固定的。</li>
+<li>长度可变的字符串字段，用 varchar 类型，该类型的字段存储空间会根据实际数据的长度调整，不会浪费存储空间。</li>
+<li>金额字段用 decimal，避免精度丢失问题。</li>
+</ul>
+</blockquote>
+<p>1、当一个列可以选择多种数据类型时，应该优先考虑数字类型，其次是日期和二进制类型，最后是字符类型。<br>
+2、对于相同级别的数据类型，应该优先选择占用空间小的数据类型。</p>
+<h4 id="2适当添加索引"><a class="markdownIt-Anchor" href="#2适当添加索引">#</a> 2. 适当添加索引</h4>
+<blockquote>
+<ul>
+<li>MySQL 里同一个数据表里的索引总数限制为 16 个。</li>
+<li>索引尽量的扩展索引，不要新建索引。</li>
+<li>在表中建立索引，优先考虑 where、order by 使用到的字段。</li>
+<li>阿里巴巴的开发者手册中规定，单表的索引数量应该尽量控制在 5 个以内，并且单个索引中的字段数不超过 5 个。</li>
+</ul>
+</blockquote>
+<h4 id="3表中适当保留冗余数据"><a class="markdownIt-Anchor" href="#3表中适当保留冗余数据">#</a> 3. 表中适当保留冗余数据</h4>
+<blockquote>
+<ul>
+<li>没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，提高读性能，就必须降低范式标准，适当保留冗余数据。</li>
+<li>虽然三大范式是为了解决数据库冗余的问题，但是阿里开发手册中提到可以适当的违反范式，允许少量的冗余，以便提高查询效率，也就是使用空间换时间。</li>
+</ul>
+</blockquote>
+<p>具体做法是： 在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加字段，减少了查询时的关联，提高查询效率。</p>
+<h4 id="4增加中间表"><a class="markdownIt-Anchor" href="#4增加中间表">#</a> 4. 增加中间表</h4>
+<blockquote>
+<p>对于需要经常联合查询的表，可以建立中间表以提高查询效率。通过建立中间表，把需要经常联合查询的数据插入到中间表中，然后将原来的联合查询改为对中间表的查询，以此来提高查询效率。</p>
+</blockquote>
+<h4 id="5字段很多的表分解成多个表"><a class="markdownIt-Anchor" href="#5字段很多的表分解成多个表">#</a> 5. 字段很多的表分解成多个表</h4>
+<blockquote>
+<p>对于字段比较多的表，如果有些字段的使用频率很低，可以将这些字段分离出来形成新表。因为当一个表的数据量很大时，会由于使用频率低的字段的存在而变慢。</p>
+</blockquote>
+<h4 id="6添加适当存储过程"><a class="markdownIt-Anchor" href="#6添加适当存储过程">#</a> 6. 添加适当存储过程</h4>
+<blockquote>
+<p>一个存储过程是一个可编程的函数，它在数据库中创建并保存，一般由 SQL 语句和一些特殊的控制结构组成。当希望在不同的应用程序或平台上执行相同的特定功能时，存储过程尤为合适。</p>
+</blockquote>
+<p><strong>存储过程与 SQL 语句如何抉择：</strong></p>
+<p>架构设计没有绝对，只有在当前的场景下最合适的。<br>
+普通的项目开发中，不建议大量使用存储过程，对比 SQL 语句，存储过程适用于业务逻辑复杂，比较耗时，同时请求量较少的操作，例如后台大批量查询、定期更新等。<br>
+（1）当一个事务涉及到多个 SQL 语句时或者涉及到对多个表的操作时可以考虑应用存储过程<br>
+（2）在一个事务的完成需要很复杂的商业逻辑时可以考虑应用存储过程<br>
+（3）比较复杂的统计和汇总可以考虑应用后台存储过程</p>
+<hr>
+<h1 id="三-sql语句优化"><a class="markdownIt-Anchor" href="#三-sql语句优化">#</a> 三、SQL 语句优化</h1>
+<h4 id="1尽量使用表的别名减少解析"><a class="markdownIt-Anchor" href="#1尽量使用表的别名减少解析">#</a> 1. 尽量使用表的别名，减少解析</h4>
+<blockquote>
+<p>当在 SQL 语句中连接多个表时，使用表的别名并把别名前缀于每个 Column 上，这样一来，就可以减少解析的时间并减少那些由 Column 歧义引起的语法错误。</p>
+</blockquote>
+<h4 id="2select子句中避免使用号"><a class="markdownIt-Anchor" href="#2select子句中避免使用号">#</a> 2.select 子句中避免使用 * 号</h4>
+<blockquote>
+<ul>
+<li>使用具体的列名，可以有效增加查询速度。</li>
+<li>避免回表查询。<br>
+比如你创建了 name， age 索引 name_age_index，查询数据时使用了：<br>
+select * from table where name =‘陈哈哈’ and age = 26;<br>
+ 由于附加索引中只有 name 和 age，因此命中索引后，数据库还必须回去聚集索引中查找其他数据，这就是回表。</li>
+<li>失去 MySQL 优化器 “覆盖索引” 策略优化的可能性。</li>
+</ul>
+</blockquote>
+<h4 id="3将where中用的比较频繁的字段建立索引避免全表扫描"><a class="markdownIt-Anchor" href="#3将where中用的比较频繁的字段建立索引避免全表扫描">#</a> 3. 将 where 中用的比较频繁的字段建立索引，避免全表扫描</h4>
+<blockquote>
+<p>1. 普通索引：这是最基本的索引类型，而且它没有唯一性之类的限制。<br>
+2. 唯一索引：和普通索引基本相同，只是索引列的所有值都只能出现一次，即必须唯一。<br>
+3. 主键索引：就是 唯一 且 不能为空。主键索引是一种特殊的唯一索引。必须指定为 “PRIMARY KEY”。<br>
+4. 联合索引：多列值组成一个索引，专门用于组合搜索。<br>
+5. 全文索引：用于在一篇文章中，检索文本信息的，适合在进行模糊查询的时候使用。</p>
+</blockquote>
+<p>提示点：</p>
+<ul>
+<li>唯一索引和普通索引使用的结构都是 B+Tree, 执行时间复杂度都是 O。</li>
+<li>如果在一个列上同时建唯一索引和普通索引的话，mysql 会自动选择唯一索引。</li>
+<li>MySQL 建立联合索引时会遵守最左前缀匹配原则，即最左优先，在检索数据时从联合索引的最左边开始匹配。同时遇到范围查询 (&gt;、&lt;、between、like) 就会停止匹配。</li>
+<li>索引区分度低的字段不要加索引，比如性别，如果添加了索引每次查询会先走索引树，再回表查询，增加了额外的 io 消耗。</li>
+</ul>
+<h4 id="4避免索引失效情况"><a class="markdownIt-Anchor" href="#4避免索引失效情况">#</a> 4. 避免索引失效情况</h4>
+<p>索引失效情况</p>
+<blockquote>
+<p>1、like 查询以 “%” 开头；(这个范围非常大，所以没有使用索引的必要了)<br>
+ 2、or 查询左右都没有使用索引；(or 可以使用 unint)<br>
+ 3、联合索引中没有使用第一列索引；(为遵循最左匹配原则)<br>
+ 4、在 where 中索引列上使用 “not”，“&lt;&gt;”，“!=”；(不等于操作符可能不会用到索引的，产生全表扫描)<br>
+ 5、在 where 中索引列上使用函数或进行计算操作，索引失效。(更改字段导致失效)<br>
+ 6、如果 mysql 觉得全表扫描更快时（数据少时）<br>
+7、在索引列上使用 “IS NULL” 或 “IS NOT NULL” 操作，索引可能失效（如果列上全部数据不为空，索引会失效，但是如果有空值，索引不会失效）<br>
+…</p>
+</blockquote>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/3e82ac92263241049d3cfdd7aedc9d24.png" alt="在这里插入图片描述"></p>
+<h4 id="5当只需要一条数据的时候可以使用limit-1"><a class="markdownIt-Anchor" href="#5当只需要一条数据的时候可以使用limit-1">#</a> 5. 当只需要一条数据的时候可以使用 limit 1</h4>
+<blockquote>
+<p>这是为了使 EXPLAIN 中 type 列达到 const 类型</p>
+</blockquote>
+<h4 id="6调整where字句中的连接顺序"><a class="markdownIt-Anchor" href="#6调整where字句中的连接顺序">#</a> 6. 调整 Where 字句中的连接顺序</h4>
+<blockquote>
+<p>采用自下而上的顺序解析 where 字句，根据这个原理表连接最好写在其他 where 条件之前，那些可以过滤掉最大数量记录。</p>
+</blockquote>
+<h4 id="7小表驱动大表"><a class="markdownIt-Anchor" href="#7小表驱动大表">#</a> 7. 小表驱动大表</h4>
+<blockquote>
+<p>SQL 中使用 in：<br>
+如果 sql 语句中包含了 in 关键字，则它会优先执行 in 里面的子查询语句，然后再执行 in 外面的语句。所以假如 in 里面的数据量很少，作为条件查询速度更快。</p>
+</blockquote>
+<blockquote>
+<p>SQL 中使用 exists：<br>
+如果 sql 语句中包含了 exists 关键字，它会优先执行 exists 左边的语句（即主查询语句）。然后把它作为条件，去跟右边的语句匹配。<br>
+如果匹配上，则可以查询出数据。如果匹配不上，数据就被过滤掉了。</p>
+</blockquote>
+<p>这个需求中，如果 order 表有 10000 条数据，而 user 表有 100 条数据。order 表是大表，user 表是小表。如果 order 表在左边，则用 in 关键字性能更好。</p>
+<p>总结一下：</p>
+<blockquote>
+<p>in 适用于左边大表，右边小表。<br>
+exists 适用于左边小表，右边大表。</p>
+</blockquote>
+<h4 id="8善用-explain-查看sql执行计划"><a class="markdownIt-Anchor" href="#8善用-explain-查看sql执行计划">#</a> 8. 善用 EXPLAIN 查看 SQL 执行计划</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">select</span>  column_name <span class="keyword">from</span> table_name;</span><br></pre></td></tr></table></figure>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/4ab2afe500d946c888ae0fd45882041a.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<ol>
+<li>type 列，访问类型。一个好的 sql 语句至少要达到 range (范围) 级别。杜绝出现 all 级别。<br>
+ALL、index、range、 ref、eq_ref、const、system、NULL（从左到右，性能从差到好）</li>
+<li>key 列，使用到的索引名。如果没有选择索引，值是 NULL。可以采取强制索引方式。</li>
+<li>key_len 列，索引长度。</li>
+<li>rows 列，扫描行数。该值是个预估值 。</li>
+<li>extra 列，详细说明。注意常见的不太友好的值有：Using filesort, Using temporary。</li>
+</ol>
+</blockquote>
+<p><strong>具体的优化步骤：</strong><br>
+1、首先要避免全表扫描，检查是否有索引。<br>
+2、查看索引是否生效。<br>
+3、sql 结构的优化。<br>
+4、数据库表设计的优化。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>【MySQL】MySql相关优化分享</p><p><a href="http://example.com/2023/04/11/【MySQL】MySql相关优化分享/">http://example.com/2023/04/11/【MySQL】MySql相关优化分享/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Brath</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-04-11</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-04-11</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="sharethis-inline-share-buttons"></div><script src="https://brath.cn" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://brath.cloud/zfb.jpg" alt="支付宝"></span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://brath.cloud/wx.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/04/11/%E3%80%90Npm%E3%80%91npm%20install%E6%97%B6%E5%8D%A1%E4%BD%8F%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/"><span class="level-item">【Npm】npm install时卡住怎么办？</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="SOHUCS" sid="2023/04/11/【MySQL】MySql相关优化分享/"></div><script charset="utf-8" src="https://changyan.sohu.com/upload/changyan.js"></script><script>window.changyan.api.config({appid: 'cywzQRCbe',conf: '485cd826ef6d780dcea71d0f3b37304a'});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:43:21.561Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Npm%E3%80%91npm%20install%E6%97%B6%E5%8D%A1%E4%BD%8F%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/">【Npm】npm install时卡住怎么办？</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:41:41.029Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Vue%E3%80%91Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:21:58.399Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90GOSN%E3%80%91Gosn%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%EF%BC%9F/">【GOSN】Gosn是什么？怎么使用？</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-30T02:16:55.622Z">2023-03-30</time></p><p class="title"><a href="/2023/03/30/%E3%80%90Vue%E3%80%91%E4%BF%AE%E5%A4%8Delement%E5%8F%AF%E6%90%9C%E7%B4%A2%E4%B8%8B%E6%8B%89%E6%A1%86%E9%80%89%E4%B8%AD%E9%80%89%E9%A1%B9%EF%BC%8C%E5%88%87%E5%B1%8F%E5%90%8E%EF%BC%8C%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9%EF%BC%8C%E8%8F%9C%E5%8D%95%E8%87%AA%E5%8A%A8%E5%BC%B9%E5%87%BA/">【Vue】修复element可搜索下拉框选中选项，切屏后，会自动获取焦点，菜单自动弹出</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.oss-cn-shanghai.aliyuncs.com/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">100</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别嘉宾)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
