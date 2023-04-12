@@ -29,7 +29,150 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.578Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2021-10-09T13:12:49.325Z" title="2021-10-9 21:12:49">2021-10-09</time>更新</span><span class="level-item">30 分钟读完 (大约4433个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/">JUC并发多线程笔记</a></p><div class="content"><h3 id="什么是juc"><a class="markdownIt-Anchor" href="#什么是juc">#</a> 什么是 JUC</h3>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.581Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-06-23T09:03:18.579Z" title="2022-6-23 17:03:18">2022-06-23</time>更新</span><span class="level-item">6 分钟读完 (大约875个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91Knife4J%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/">Knife4J接口文档</a></p><div class="content"><p>Swagger2 及 knife4j 使用</p>
+<p>最近项目中用到了 Swagger2 和 knife4j 作为接口文档。所以自己简单搭建了一套环境学习下，总体体验下来，这个框架很方便也很简单易用。</p>
+<p>Swagger2 和 Swagger-ui<br>
+springFox 官方推荐的是 Swagger2 和 Swagger-ui 配套使用</p>
+<p>maven 依赖<br>
+<dependencies><br>
+<dependency><br>
+<groupId>io.springfox</groupId><br>
+<artifactId>springfox-swagger2</artifactId><br>
+<version>2.9.2</version><br>
+</dependency><br>
+<!--生成UI界面--><br>
+<dependency><br>
+<groupId>io.springfox</groupId><br>
+<artifactId>springfox-swagger-ui</artifactId><br>
+<version>2.9.2</version><br>
+</dependency><br>
+</dependencies></p>
+<p>增加配置文件<br>
+ @Configuration<br>
+@EnableSwagger2<br>
+public class Swagger2 {</p>
+<pre><code>@Bean
+public Docket controllerApi() &#123;
+    return new Docket(DocumentationType.SWAGGER_2)
+            .apiInfo(new ApiInfoBuilder()
+                    .title(&quot;文档说明--API接口文档&quot;)
+                    .description(&quot;包括保存、查询等&quot;)
+                    .version(&quot;版本号:1.0&quot;)
+                    .build())
+            .select()
+            .apis(RequestHandlerSelectors.basePackage(&quot;com.example.myswagger.controller&quot;))
+            .paths(PathSelectors.any()) // 如果适配所有api，可以改为PathSelectors.any()
+            .build();
+&#125;
+</code></pre>
+<p>API 接口增加 swagger 注解<br>
+ @Controller<br>
+@RequestMapping<br>
+@Api (tags = “接口服务”)<br>
+public class HelloController {</p>
+<pre><code>@ApiOperation(&quot;根目录&quot;)
+@GetMapping(&quot;/&quot;)
+@ResponseBody
+public  String hello()&#123;
+    System.out.println(&quot;23123&quot;);
+    return &quot;hello&quot;;
+&#125;
+
+
+@ApiOperation(&quot;保存用户信息&quot;)
+@ApiImplicitParams(&#123;
+        @ApiImplicitParam(name = &quot;name&quot;, value = &quot;名字&quot;, required = true, paramType = &quot;path&quot;),
+        @ApiImplicitParam(name = &quot;age&quot;, dataType = &quot;int&quot;, value = &quot;年龄&quot;, required = true, paramType = &quot;query&quot;)
+&#125;)
+@PostMapping(&quot;/save&quot;)
+@ResponseBody
+public Boolean save(
+        @RequestParam(&quot;name&quot;) String name,
+        @RequestParam(&quot;age&quot;) Integer age
+) &#123;
+    return true;
+&#125;
+</code></pre>
+<p>效果展示<br>
+启动项目访问</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></p>
+<p>测试接口：</p>
+<p>项目地址<br>
+<a target="_blank" rel="noopener" href="https://gitee.com/LylYorick/myswagger"> https://gitee.com/LylYorick/myswagger</a></p>
+<p>swagger 注解详解<br>
+ @Api：用在请求的类上，表示对类的说明<br>
+ tags=“说明该类的作用，可以在 UI 界面上看到的注解”<br>
+value=“该参数没什么意义，在 UI 界面上也看到，所以不需要配置”</p>
+<p>@ApiOperation：用在请求的方法上，说明方法的用途、作用<br>
+ value=“说明方法的用途、作用”<br>
+notes=“方法的备注说明”</p>
+<p>@ApiImplicitParams：用在请求的方法上，表示一组参数说明<br>
+ @ApiImplicitParam：用在 @ApiImplicitParams 注解中，指定一个请求参数的各个方面<br>
+ name：参数名<br>
+ value：参数的汉字说明、解释<br>
+ required：参数是否必须传<br>
+ paramType：参数放在哪个地方<br>
+・header --&gt; 请求参数的获取：@RequestHeader<br>
+・query --&gt; 请求参数的获取：@RequestParam<br>
+・path（用于 restful 接口）–&gt; 请求参数的获取：@PathVariable<br>
+・body（不常用）<br>
+・form（不常用）<br>
+dataType：参数类型，默认 String，其它值 dataType=“Integer”<br>
+defaultValue：参数的默认值</p>
+<p>@ApiResponses：用在请求的方法上，表示一组响应<br>
+ @ApiResponse：用在 @ApiResponses 中，一般用于表达一个错误的响应信息<br>
+ code：数字，例如 400<br>
+message：信息，例如 &quot;请求参数没填好&quot;<br>
+response：抛出异常的类</p>
+<p>@ApiModel：用于响应类上，表示一个返回响应数据的信息<br>
+（这种一般用在 post 创建的时候，使用 @RequestBody 这样的场景，<br>
+请求参数无法使用 @ApiImplicitParam 注解进行描述的时候）<br>
+@ApiModelProperty：用在属性上，描述响应类的属性<br>
+ Swagger2 和 knife4j<br>
+ 虽然 Swagger-ui 很好，但是国人还是开发了一个 knife4j 的的 swaggerui，更加好看和方便使用</p>
+<p>maven 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.xiaoymin<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>knife4j-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.10.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>增加配置类<br>
+ @Configuration<br>
+@EnableSwagger2WebMvc<br>
+public class Knife4jConfiguration {</p>
+<pre><code>@Bean(value = &quot;defaultApi2&quot;)
+public Docket defaultApi2() &#123;
+    Docket docket=new Docket(DocumentationType.SWAGGER_2)
+            .apiInfo(new ApiInfoBuilder()
+                    //.title(&quot;swagger-bootstrap-ui-demo RESTful APIs&quot;)
+                    .description(&quot;# swagger-bootstrap-ui-demo RESTful APIs&quot;)
+                    .termsOfServiceUrl(&quot;http://www.xx.com/&quot;)
+                    .contact(&quot;xx@qq.com&quot;)
+                    .version(&quot;1.0&quot;)
+                    .build())
+            //分组名称
+            .groupName(&quot;2.X版本&quot;)
+            .select()
+            //这里指定Controller扫描包路径
+            .apis(RequestHandlerSelectors.basePackage(&quot;com.example.myswaggerknife4j.controller&quot;))
+            .paths(PathSelectors.any())
+            .build();
+    return docket;
+&#125;
+</code></pre>
+<p>API 接口增加 swagger 注解<br>
+ @Controller<br>
+public class HelloController {</p>
+<pre><code>@PostMapping(&quot;/save&quot;)
+@ResponseBody
+public Boolean save(
+        @RequestParam(&quot;name&quot;) String name,
+        @RequestParam(&quot;age&quot;) Integer age
+) &#123;
+    return true;
+&#125;
+</code></pre>
+<p>效果展示<br>
+访问 <a target="_blank" rel="noopener" href="http://localhost:8080/doc.html">http://localhost:8080/doc.html</a></p>
+<p>项目地址<br>
+<a target="_blank" rel="noopener" href="https://gitee.com/LylYorick/my-swagger-knife4j"> https://gitee.com/LylYorick/my-swagger-knife4j</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.578Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2021-10-09T13:12:49.325Z" title="2021-10-9 21:12:49">2021-10-09</time>更新</span><span class="level-item">30 分钟读完 (大约4433个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Java%E3%80%91JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%94%E8%AE%B0/">JUC并发多线程笔记</a></p><div class="content"><h3 id="什么是juc"><a class="markdownIt-Anchor" href="#什么是juc">#</a> 什么是 JUC</h3>
 <h4 id="进程与线程"><a class="markdownIt-Anchor" href="#进程与线程">#</a> 进程与线程</h4>
 <p>进程：计算机进行资源调度的基本单元（打开一个软件）。</p>
 <p>线程：系统分配时间调度的基本单元。</p>
@@ -1273,164 +1416,7 @@ centos 系统执行 /etc/init.d/network restart 命令 使得 hosts 生效</p>
 </ul>
 <h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> <strong>总结</strong></h2>
 <p>本篇对 GetX 插件做了简单的介绍，可以看到 GetX 的生态确实很丰富，感觉是一个集大成者，GetX 基本上涵盖了 Flutter 应用开发的很大一部分，如路由、主题、多语言、弹层、状态管理、依赖注入、网络请求封装等等。GetX 看着像一个框架， 但实际上它的各个模块是独立的，其实是一个工具箱。对于开发的时候，可以用它的全家桶，也可以从中任取所需的模块到我们的应用中使用。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.558Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-07-29T03:03:21.670Z" title="2022-7-29 11:03:21">2022-07-29</time>更新</span><span class="level-item">14 分钟读完 (大约2083个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Flutter%E3%80%91Flutter%20%E6%B5%81%E7%95%85%E5%BA%A6%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%20Keframe/">Flutter 流畅度优化组件 Keframe</a></p><div class="content"><p>最近在开发一款 APP，核心场景类似于帖子这类的，所以下拉加载页面的流畅度成为最棘手的问题，在掘金上看见了这篇文章： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6979781997568884766">https://juejin.cn/post/6979781997568884766</a></p>
-<p>Nayuta 的 Keframe 组件正好可以满足帧率优化的问题</p>
-<h3 id="项目依赖"><a class="markdownIt-Anchor" href="#项目依赖">#</a> 项目依赖：</h3>
-<p>在  <code>pubspec.yaml</code>  中添加  <code>keframe</code>  依赖</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">keframe:</span> <span class="string">version</span></span><br></pre></td></tr></table></figure>
-<p>组件仅区分非空安全与空安全版本</p>
-<p>非空安全使用：  <code>1.0.2</code></p>
-<p>空安全版本使用：  <code>2.0.2</code></p>
-<p>github 地址：<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FLianjiaTech%2Fkeframe">github.com/LianjiaTech…</a></p>
-<p>pub 查看：<a href="https://link.juejin.cn?target=https%3A%2F%2Fpub.dev%2Fpackages%2Fkeframe">pub.dev/packages/ke…</a></p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#SizeCacheWidget用来包裹最外层的list</span><br><span class="line">#FrameSeparateWidget用来包裹list的子集即可    </span><br><span class="line">example:</span><br><span class="line">SizeCacheWidget(</span><br><span class="line">	child：ListView || CustomScrollView(</span><br><span class="line">    	slivers[</span><br><span class="line">            SliverList(</span><br><span class="line">            	delegate: SliverChildBuilderDelegate</span><br><span class="line">                (BuildContext context, <span class="built_in">int</span> index)&#123;</span><br><span class="line">                    <span class="keyword">return</span> FrameSeparateWidget(</span><br><span class="line">                    	child: ···</span><br><span class="line">                    )</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="快速上手"><a class="markdownIt-Anchor" href="#快速上手">#</a> 快速上手：</h3>
-<p>如下图所示</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83d16f3b2a3e45b79fc73d7a52774696~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<p>假如现在页面由 A、B、C、D 四部分组成，每部分耗时 10ms，在页面时构建为 40ms。使用分帧组件   <code>FrameSeparateWidget</code>  嵌套每一个部分。页面构建时会在第一帧渲染简单的占位，在后续四帧内分别渲染 A、B、C、D。</p>
-<p>对于列表，在每一个 item 中嵌套  <code>FrameSeparateWidget</code> ，并将  <code>ListView</code>  嵌套在  <code>SizeCacheWidget</code>  内即可。</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ffecd49bf9ba4379984a22ef79663104~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<hr>
-<h2 id="构造函数说明"><a class="markdownIt-Anchor" href="#构造函数说明">#</a> 构造函数说明</h2>
-<p>FrameSeparateWidget ：分帧组件，将嵌套的 widget 单独一帧渲染</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>参数名</th>
-<th>是否必填</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Key</td>
-<td>key</td>
-<td>否</td>
-<td></td>
-</tr>
-<tr>
-<td>int</td>
-<td>index</td>
-<td>否</td>
-<td>分帧组件 id，<strong>使用 SizeCacheWidget 的场景必传</strong>，SizeCacheWidget 中维护了 index 对应的 Size 信息</td>
-</tr>
-<tr>
-<td>Widget</td>
-<td>child</td>
-<td>是</td>
-<td>实际需要渲染的 widget</td>
-</tr>
-<tr>
-<td>Widget</td>
-<td>placeHolder</td>
-<td>否</td>
-<td>占位 widget，尽量设置简单的占位，不传默认是 Container ()</td>
-</tr>
-</tbody>
-</table>
-<p>SizeCacheWidget：缓存子节点中，分帧组件嵌套的<strong>实际 widget 的尺寸信息</strong></p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>参数名</th>
-<th>是否必填</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Key</td>
-<td>key</td>
-<td>否</td>
-<td></td>
-</tr>
-<tr>
-<td>Widget</td>
-<td>child</td>
-<td>是</td>
-<td>子节点中如果包含分帧组件，则缓存<strong>实际的 widget 尺寸</strong></td>
-</tr>
-<tr>
-<td>int</td>
-<td>estimateCount</td>
-<td>否</td>
-<td>预估屏幕上子节点的数量，提高快速滚动时的响应速度</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="方案设计与分析"><a class="markdownIt-Anchor" href="#方案设计与分析">#</a> 方案设计与分析：</h2>
-<p>卡顿的本质，就是 <strong>单帧的绘制时间过长</strong>。基于此自然衍生出两种思路解决：</p>
-<p>1、减少一帧的绘制耗时，因为导致耗时过长的原因有很多，比如不合理的刷新，或者绘制时间过长，都有可能，需要具体问题具体分析，后面我会分享一些我的优化经验。</p>
-<p><strong>2、在不对耗时优化下，将一帧的任务拆分到多帧内，保证每一帧都不超时。这也是本组件的设计思路，分帧渲染。</strong></p>
-<p>如下图所示:</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb09c9aadc5d45c9b966661c8d73e4c1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<p>原理并不复杂，问题在于如何在 Flutter 中实践这一机制。</p>
-<p>因为涉及到帧与系统的调度，自然联想到看  <code>SchedulerBinding</code>  中有无现成的 API。</p>
-<p>发现了  <code>scheduleTask</code>  方法，这是系统提供的一个执行任务的方法，但这个方法存在两个问题：</p>
-<ul>
-<li>1、其中的渲染任务是优先级进行堆排序，而堆排序是<strong>不稳定</strong>排序，这会导致任务的执行顺序并非 FIFO。从效果上来看，就是列表不会按照顺序渲染，而是会出现跳动渲染的情况</li>
-<li>2、这个方法本身存在调度问题，我已经提交 issue 与 pr，不过一直卡在单元测试上，如果感兴趣可以以在这里交流谈论。</li>
-</ul>
-<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fflutter%2Fflutter%2Fpull%2F82781">fix: Tasks scheduled through ‘SchedulerBinding.instance.scheduleTask’… #82781 </a></p>
-<p>最终，参考这个设计结合  <code>endOfFrame</code>  方法的使用，完成了分帧队列。整个渲染流程变为下图所示：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cb9d177b4b0847339eaf952a7ef67cca~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="image.png"></p>
-<p>对于列表构建场景来说，假设屏幕上能显示五个 item。首先在第一帧的时候，列表会渲染 5 个占位的 Widget，同时添加 5 个高优先级任务到队列中，这里的任务可以是简单的将占位 Widget 和实际 item 进行替换，也可通过渐变等动画提升体验。在后续的五帧中占位 Widget 依次被替换成实际的列表 item。</p>
-<p>在  <a target="_blank" rel="noopener" href="https://juejin.cn/post/6940134891606507534">ListView 流畅度翻倍！！Flutter 卡顿分析和通用优化方案</a>  这篇文章中有更加详细的分析。</p>
-<h2 id="一些展示效果example-说明请查看-github"><a class="markdownIt-Anchor" href="#一些展示效果example-说明请查看-github">#</a> 一些展示效果（Example 说明请查看 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FLianjiaTech%2Fkeframe%2Fblob%2Fmaster%2FREADME-ZH.md">Github</a>）</h2>
-<p>卡顿的页面往往都是由多个复杂 widget 同时渲染导致。通过为复杂的 widget 嵌套分帧组件  <code>FrameSeparateWidget</code> 。渲染时，分帧组件会在第一帧同时渲染多个  <code>palceHolder</code> ，之后连续的多帧内依次渲染复杂子项，以此提升页面流畅度。</p>
-<p>例如 example 中的优化前示例：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ListView.builder(</span><br><span class="line">              itemCount: childCount,</span><br><span class="line">              itemBuilder: (c, i) =&gt; CellWidget(</span><br><span class="line">                color: i % <span class="number">2</span> == <span class="number">0</span> ? Colors.red : Colors.blue,</span><br><span class="line">                index: i,</span><br><span class="line">              ),</span><br><span class="line">            )</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-<p>其中  <code>CellWidget</code>  高度为 60，内部嵌套了三个  <code>TextField</code>  的组件（整体构建耗时在 9ms 左右）。</p>
-<p>优化仅需为每一个 item 嵌套分帧组件，并为其设置  <code>placeHolder</code> （placeHolder 尽量简单，样式与实际 item 接近即可）。</p>
-<p>在列表情况下，给 ListView 嵌套  <code>SizeCacheWidget</code> ，同时建议将预加载范围  <code>cacheExtent</code>  设置大一点，例如 500（该属性默认为 250），提升慢速滑动时候的体验。</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f33ddd7d9de4e369b0e457f84171cc8~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210611_194905.gif"> (占位与实际列表项不一致时，首次渲染抖动，二次渲染正常)</p>
-<p>此外，也可以给 item 嵌套透明度 / 位移等动画，优化视觉上的效果。</p>
-<p>效果如下图：</p>
-<table>
-<thead>
-<tr>
-<th><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb7d1361ae7842df954bb1c559e2ec54~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210315_133310.gif"></th>
-<th><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ee6827f7eed4463a1a8a5b00a58fd6e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="Screenrecording_20210315_133848.gif"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="分帧的成本"><a class="markdownIt-Anchor" href="#分帧的成本">#</a> 分帧的成本</h2>
-<p>当然分帧方案也非十全十美，在我看来主要有两点成本：</p>
-<p>1、额外的构建开销：整个构建过程的构建消耗由「n * widget 消耗 」变成了「n *（ widget + 占位）消耗 + 系统调度 n 帧消耗」。可以看出，额外的开销主要由占位的复杂度决定。如果占位只是简单的 Container，测试后发现整体构建耗时大概提升在 15 % 左右。这种额外开销对于当下的移动设备而言，成本几乎可以不计。</p>
-<p>2、视觉上的变化：如同上面的演示，组件会将 item 分帧渲染，页面在视觉上出现占位变成实际 widget 的过程。但其实由于列表存在缓存区域（建议将缓存区调大），在高端机或正常滑动情况下用户并无感知。而在中低端设备上快速滑动能感觉到切换的过程，但比严重顿挫要好。</p>
-<hr>
-<h2 id="优化前后对比演示"><a class="markdownIt-Anchor" href="#优化前后对比演示">#</a> 优化前后对比演示</h2>
-<p>注：gif 帧率只有 20</p>
-<table>
-<thead>
-<tr>
-<th>优化前</th>
-<th>优化后</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f20f593cc144b72a1df4bdae57a165c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="优化前"></td>
-<td><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05aea6de421545b9bbf868c344a9afe9~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="优化后"></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="最后一点点思考"><a class="markdownIt-Anchor" href="#最后一点点思考">#</a> 最后：一点点思考</h2>
-<p>列表优化篇到此告一段落，在整个开源实践过程中，有两点感触较深：</p>
-<p>作者：Nayuta<br>
- 链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6979781997568884766">https://juejin.cn/post/6979781997568884766</a></p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/8/">上一页</a></div><div class="pagination-next"><a href="/page/10/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><a class="pagination-link is-current" href="/page/9/">9</a></li><li><a class="pagination-link" href="/page/10/">10</a></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:43:21.561Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Npm%E3%80%91npm%20install%E6%97%B6%E5%8D%A1%E4%BD%8F%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/">【Npm】npm install时卡住怎么办？</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:41:41.029Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Vue%E3%80%91Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:21:58.399Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90GOSN%E3%80%91Gosn%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%EF%BC%9F/">【GOSN】Gosn是什么？怎么使用？</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">45</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">101</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/8/">上一页</a></div><div class="pagination-next"><a href="/page/10/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><a class="pagination-link is-current" href="/page/9/">9</a></li><li><a class="pagination-link" href="/page/10/">10</a></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:43:21.561Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Npm%E3%80%91npm%20install%E6%97%B6%E5%8D%A1%E4%BD%8F%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/">【Npm】npm install时卡住怎么办？</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:41:41.029Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Vue%E3%80%91Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">46</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">102</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
