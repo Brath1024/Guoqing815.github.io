@@ -29,7 +29,185 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-03-19T03:13:28.214Z" title="2023-3-19 11:13:28">2023-03-19</time>发表</span><span class="level-item"><time dateTime="2023-03-19T03:14:35.354Z" title="2023-3-19 11:14:35">2023-03-19</time>更新</span><span class="level-item">1 分钟读完 (大约148个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/03/19/%E3%80%90SpringBoot%E3%80%91SpringBoot%E5%90%AF%E5%8A%A8Banner%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/">【SpringBoot】SpringBoot启动Banner如何修改</a></p><div class="content"><h1 id="springbootspringboot启动banner如何修改"><a class="markdownIt-Anchor" href="#springbootspringboot启动banner如何修改">#</a> 【SpringBoot】SpringBoot 启动 Banner 如何修改</h1>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-03-21T07:46:57.369Z" title="2023-3-21 15:46:57">2023-03-21</time>发表</span><span class="level-item"><time dateTime="2023-03-21T07:17:30.528Z" title="2023-3-21 15:17:30">2023-03-21</time>更新</span><span class="level-item">7 分钟读完 (大约1023个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/03/21/%E3%80%90Vue%E3%80%91JSON%E7%BC%96%E8%BE%91%E5%99%A8Bin-Coder/">【Vue】JSON编辑器Bin-Coder</a></p><div class="content"><h1 id="vuejson编辑器bin-coder"><a class="markdownIt-Anchor" href="#vuejson编辑器bin-coder">#</a> 【Vue】JSON 编辑器 Bin-Coder</h1>
+<p><a target="_blank" rel="noopener" href="https://wangbin3162.gitee.io/bin-code-editor/#/guide">Bin Code Editor</a></p>
+<h1 id="1-安装"><a class="markdownIt-Anchor" href="#1-安装">#</a> 1 安装</h1>
+<h2 id="11-cdn-安装"><a class="markdownIt-Anchor" href="#11-cdn-安装">#</a> 1.1 CDN 安装</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- <span class="keyword">import</span> <span class="title class_">Vue</span>.<span class="property">js</span> --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;!-- <span class="keyword">import</span> stylesheet --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://unpkg.com/bin-code-editor@0.1.0/lib/styles/index.css&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- import bin-code-editor --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/bin-code-editor@0.1.0/lib/bin-code-editor.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>@0.1.0 表示版本号，我们建议锁定版本号来保证代码的稳定性</p>
+<h2 id="12-npm-安装"><a class="markdownIt-Anchor" href="#12-npm-安装">#</a> 1.2 npm 安装</h2>
+<p>推荐使用 npm 安装，它能更好地和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=webpack%E6%89%93%E5%8C%85&amp;spm=1001.2101.3001.7020"> webpack 打包</a>工具配合使用。而且可以更好的和 es6 配合使用。并且支持按需引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i bin-code-editor -S</span><br><span class="line"># or </span><br><span class="line">yarn add bin-code-editor</span><br></pre></td></tr></table></figure>
+<h1 id="2-引入"><a class="markdownIt-Anchor" href="#2-引入">#</a> 2 引入</h1>
+<p>在 main.js 中写入以下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CodeEditor</span> <span class="keyword">from</span> <span class="string">&#x27;bin-code-editor&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;bin-code-editor/lib/style/index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">CodeEditor</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="3-用法"><a class="markdownIt-Anchor" href="#3-用法">#</a> 3 用法</h1>
+<p>注意，初始化如果有数据，则会默认格式化一次，格式化快捷键默认为 F7, 使用时可以进行格式化结构！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(JSON.parse(jsonData),null,2)`可以将默认json进行预格式化,也可以手动触发formatCode()来格式化</span><br><span class="line">`JSON.stringify(value[, replacer[, space]])</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li>value: 必需， 要转换的 JavaScript 值（通常为对象或数组）。</li>
+<li>replacer: 可选。用于转换结果的函数或数组。如果 replacer 为函数，则 JSON.stringify 将调用该函数，并传入每个成员的键和值。使用返回值而不是原始值。如果此函数返回 undefined，则排除成员。根对象的键是一个空字符串：“”。如果 replacer 是一个数组，则仅转换该数组中具有键值的成员。成员的转换顺序与键在数组中的顺序一样。</li>
+<li>space: 可选，文本添加缩进、空格和换行符，如果 space 是一个数字，则返回值文本在每个级别缩进指定数目的空格，如果 space 大于 10，则文本缩进 10 个空格。space 也可以使用非数字，如：\t。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/ba155f2c67e14cc0b063a92a683220ff.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">b-code-editor</span> <span class="attr">v-model</span>=<span class="string">&quot;jsonStr&quot;</span> <span class="attr">:indent-unit</span>=<span class="string">&quot;4&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> jsonData = <span class="string">`&#123;&quot;title&quot;:&quot;测试json数据&quot;,&quot;children&quot;:[&#123;&quot;name&quot;:&quot;子项名称&quot;, &quot;desc&quot;:&quot;子项说明&quot; &#125;,&#123;&quot;name&quot;:&quot;子项名称1&quot;, &quot;desc&quot;:&quot;子项说明1&quot; &#125;]&#125;`</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">jsonStr</span>: jsonData</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="4-其他配置项"><a class="markdownIt-Anchor" href="#4-其他配置项">#</a> 4 其他配置项</h1>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>绑定数据，可用 v-model</td>
+<td>String</td>
+<td>—</td>
+<td>0</td>
+</tr>
+<tr>
+<td>show-number</td>
+<td>显示行号</td>
+<td>Boolean</td>
+<td>—</td>
+<td>true</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>模式</td>
+<td>String</td>
+<td>‘application/json’,‘text/javascript’</td>
+<td>‘application/json’</td>
+</tr>
+<tr>
+<td>theme</td>
+<td>提供若干个默认比较好看的皮肤</td>
+<td>String</td>
+<td>可选值参考其他配置项中列出</td>
+<td>idea</td>
+</tr>
+<tr>
+<td>lint</td>
+<td>是否进行 lint 检查</td>
+<td>Boolean</td>
+<td>暂时只支持 json</td>
+<td>true</td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>只读模式</td>
+<td>Boolean</td>
+<td>-</td>
+<td>false</td>
+</tr>
+<tr>
+<td>auto-format</td>
+<td>是否自动格式化</td>
+<td>Boolean</td>
+<td>-</td>
+<td>true</td>
+</tr>
+<tr>
+<td>indent-unit</td>
+<td>缩进字符</td>
+<td>Number</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr>
+<td>smart-indent</td>
+<td>是否自动缩进</td>
+<td>Boolean</td>
+<td>-</td>
+<td>true</td>
+</tr>
+<tr>
+<td>line-wrap</td>
+<td>代码换行</td>
+<td>Boolean</td>
+<td>-</td>
+<td>true</td>
+</tr>
+<tr>
+<td>gutter</td>
+<td>代码折叠</td>
+<td>Boolean</td>
+<td>-</td>
+<td>true</td>
+</tr>
+<tr>
+<td>height</td>
+<td>默认编辑器高度</td>
+<td>String</td>
+<td>—</td>
+<td>300px</td>
+</tr>
+</tbody>
+</table>
+<h1 id="5-events-事件"><a class="markdownIt-Anchor" href="#5-events-事件">#</a> 5 Events 事件</h1>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	  <span class="tag">&lt;<span class="name">b-code-editor</span> <span class="attr">v-model</span>=<span class="string">&quot;jsonStr&quot;</span> <span class="attr">:indent-unit</span>=<span class="string">&quot;4&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">	  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">b-button</span> @<span class="attr">click</span>=<span class="string">&quot;$refs[&#x27;editor&#x27;].formatCode()&quot;</span>&gt;</span>手动触发格式化<span class="tag">&lt;/<span class="name">b-button</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>事件名</th>
+<th>说明</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>on-change</td>
+<td>输入项改变事件</td>
+<td>value</td>
+</tr>
+<tr>
+<td>formatCode</td>
+<td>手动触发格式化方法</td>
+<td>-</td>
+</tr>
+<tr>
+<td>refresh</td>
+<td>手动刷新方法</td>
+<td>-</td>
+</tr>
+<tr>
+<td>getValue</td>
+<td>自行获取值</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h1 id="6-theme-皮肤属性"><a class="markdownIt-Anchor" href="#6-theme-皮肤属性">#</a> 6 theme 皮肤属性</h1>
+<p><code>theme</code>  属性可选值</p>
+<ul>
+<li>idea<br>
+<img src="https://img-blog.csdnimg.cn/774c7c41e1fd4dad81c4a8c4d56fb608.png" alt="在这里插入图片描述"></li>
+<li>eclipse<br>
+<img src="https://img-blog.csdnimg.cn/97d00490aa2c452e96cc64717798c9d5.png" alt="在这里插入图片描述"></li>
+<li>duotone-light<br>
+<img src="https://img-blog.csdnimg.cn/a9a97cd2eff84e60b687ddf8368c6e50.png" alt="在这里插入图片描述"></li>
+<li>mdn-like<br>
+<img src="https://img-blog.csdnimg.cn/68288d52b01d41fab7653d9c3dcfb10a.png" alt="在这里插入图片描述"></li>
+<li>xq-light<br>
+<img src="https://img-blog.csdnimg.cn/988f7ebe12ff42ef80f6b1a527bed1c7.png" alt="在这里插入图片描述"></li>
+<li>dracula<br>
+<img src="https://img-blog.csdnimg.cn/2aa62e024dbd41158a8bc66db799ef82.png" alt="在这里插入图片描述"></li>
+<li>rubyblue<br>
+<img src="https://img-blog.csdnimg.cn/04b909ae46234a0c871daa0545215526.png" alt="在这里插入图片描述"></li>
+<li>monokai<br>
+<img src="https://img-blog.csdnimg.cn/7baa723e068747a885ae2fa3b80048d2.png" alt="在这里插入图片描述"></li>
+<li>material<br>
+<img src="https://img-blog.csdnimg.cn/f949cc3c5f7344dc98c38751bd8db085.png" alt="在这里插入图片描述"></li>
+<li>material-darker<br>
+<img src="https://img-blog.csdnimg.cn/48f9a957450641e4b0ebb269f09aba7d.png" alt="在这里插入图片描述"></li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-03-19T03:13:28.214Z" title="2023-3-19 11:13:28">2023-03-19</time>发表</span><span class="level-item"><time dateTime="2023-03-19T03:14:35.354Z" title="2023-3-19 11:14:35">2023-03-19</time>更新</span><span class="level-item">1 分钟读完 (大约148个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/03/19/%E3%80%90SpringBoot%E3%80%91SpringBoot%E5%90%AF%E5%8A%A8Banner%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/">【SpringBoot】SpringBoot启动Banner如何修改</a></p><div class="content"><h1 id="springbootspringboot启动banner如何修改"><a class="markdownIt-Anchor" href="#springbootspringboot启动banner如何修改">#</a> 【SpringBoot】SpringBoot 启动 Banner 如何修改</h1>
 <h2 id="1登录网站"><a class="markdownIt-Anchor" href="#1登录网站">#</a> 1. 登录网站</h2>
 <p><a href="https://link.zhihu.com/?target=http%3A//patorjk.com/software/taag/">http://patorjk.com/software/taag/</a></p>
 <h5 id="输入自己要制作的banner文字"><a class="markdownIt-Anchor" href="#输入自己要制作的banner文字">#</a> 输入自己要制作的 banner 文字。</h5>
@@ -514,94 +692,7 @@ Elasticsearch 提供了很多内置的分词器，可以用来构建 custom anal
 <p>浏览器访问</p>
 <p>使用 dev 环境 启动项目后 浏览器打开 http://localhost:8081/doc.html#/  我这里用的端口是 8081</p>
 <p>整合 swagger 框架参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pxblog/p/12942825.html">https://www.cnblogs.com/pxblog/p/12942825.html</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-03-02T04:45:17.527Z" title="2023-3-2 12:45:17">2023-03-02</time>发表</span><span class="level-item"><time dateTime="2023-03-02T04:44:42.278Z" title="2023-3-2 12:44:42">2023-03-02</time>更新</span><span class="level-item">8 分钟读完 (大约1185个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/03/02/%E3%80%90ELK%E3%80%91%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAELK/">【ELK】使用Docker搭建ELK</a></p><div class="content"><h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录">#</a> 文章目录</h3>
-<ul>
-<li>
-<ul>
-<li><a href="#_1">概念：</a></li>
-<li><a href="#elkdocker_7">安装 elk (这里通过 docker 进行安装)</a></li>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#es_8">安装 es</a></li>
-<li><a href="#kikana_35">安装 kikana</a></li>
-<li><a href="#logstash_59">安装 logstash</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="概念"><a class="markdownIt-Anchor" href="#概念">#</a> 概念：</h2>
-<blockquote>
-<p>那么，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ELK&amp;spm=1001.2101.3001.7020">ELK</a> 到底是什么呢？ “ELK” 是三个开源项目的首字母缩写，这三个项目分别是：Elasticsearch、Logstash 和 Kibana。Elasticsearch 是一个搜索和分析引擎。Logstash 是服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送到诸如 Elasticsearch 等 “存储库” 中。Kibana 则可以让用户在 Elasticsearch 中使用图形和图表对数据进行可视化</p>
-</blockquote>
-<ul>
-<li>工作流程<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/18dbff4e772c4bff918a06fc22562782.png" alt="在这里插入图片描述"></li>
-<li>在后续 elk 引入了 beats (数据采集器) 后被称为 Elastic Stack 或者 ELK</li>
-</ul>
-<h2 id="安装elk这里通过docker进行安装"><a class="markdownIt-Anchor" href="#安装elk这里通过docker进行安装">#</a> 安装 elk (这里通过 docker 进行安装)</h2>
-<h4 id="安装es"><a class="markdownIt-Anchor" href="#安装es">#</a> 安装 es</h4>
-<ul>
-<li>在 dockerhub 上搜索 es<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/6f76e4d9d5504501902ef113cc4bbc69.png" alt="在这里插入图片描述"></li>
-<li>找到需要的 es 版本<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/6d5331d1e29649c8b784fd82a01a078c.png" alt="在这里插入图片描述"></li>
-<li>拉取 es 镜像 <code>docker pull elasticsearch:tag</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/da59ef5b031243f094ef24340170bb99.png" alt="在这里插入图片描述"><br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/44544fc5864a4db7a11b4864768446f4.png" alt="在这里插入图片描述"></li>
-<li>在 dockerhub 官网上可以看到 es 的启动命令<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d0a24c581d37472b9f6b51e2946902c3.png" alt="在这里插入图片描述"></li>
-<li>先创建自定义 docker 网络 <code>docker network create elastic</code> ，默认是桥接模式<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/2e96d2e71e594a28bfbf5c14a7e50bbc.png" alt="在这里插入图片描述"></li>
-<li>查看创建的网络<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/1335acab2ae14d908a9c70249c11d1a8.png" alt="在这里插入图片描述"></li>
-<li>启动 es 镜像，这里我以单机的形式启动 <code>docker run -d --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; elasticsearch:tag</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/cab7b5b16f7444f98587b73977f5784f.png" alt="在这里插入图片描述"></li>
-<li>启动之后访问 <code>localhost:9200</code> ，有数据返回说明启动成功，如下图<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b007a9897a384d45b4f99719a8e80d2b.png" alt="在这里插入图片描述"></li>
-<li>修改 es 配置，进入容器 <code>docker exec -it a804 /bin/sh</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f3b2629fdf69469eb752ce1b23d60ab5.png" alt="在这里插入图片描述"></li>
-<li>在 <code>config</code>  目录下的 <code>elasticsearch.yml</code>  文件添加</li>
-</ul>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span> </span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改完配置之后，退出容器并重启<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/18e0f04b59144d16bf0c19f730cbfe72.png" alt="在这里插入图片描述"></li>
-</ul>
-<h4 id="安装kikana"><a class="markdownIt-Anchor" href="#安装kikana">#</a> 安装 kikana</h4>
-<ul>
-<li>从 dockerhub 拉取与 es 对应版本的 kibana  <code>docker pull kibana:tag</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/786540852f3848ef91b6dc9172c62e06.png" alt="在这里插入图片描述"></li>
-<li>启动 kibana  <code>docker run --name kib-7.6 --net elastic -d -p 5601:5601 kibana:tag</code></li>
-<li>启动之后访问<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/aed86ba45de34bbdb960c67a10eba2e1.png" alt="在这里插入图片描述"></li>
-<li>出现上图是由于 kibanakibana.yml，默认的地址是 http://elasticsearch:9200, 需要修改为 es 服务 ip</li>
-<li>进入到 es 容器里面 <code>docker -it 容器编号 /bin/sh</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/30cda118f3b344b6ac611f143d8cb941.png" alt="在这里插入图片描述"></li>
-<li>查看 es 的容器详情 <code>docker inspect a80402dbe9f5</code></li>
-<li>找到网络详情，找到 es 服务的 ip 地址<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/810fc12347fd4c4fbb02cb2ca219e4d6.png" alt="在这里插入图片描述"></li>
-<li>也可以通过 <code>docker inspect -f '&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;' a804</code>  获取 ip<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/61ff14db933c4b4889fa6d6eb5d6d17d.png" alt="在这里插入图片描述"></li>
-<li>进入到 kibana 容器，切换到 <code>/usr/share/kibana/config</code>  目录<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/41867b50de204c558b90c08d0fdd8e88.png" alt="在这里插入图片描述"></li>
-<li>修改 kibana.yml 文件<br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0941ebe9bb9445aa9e715440a490e0a2.png" alt="在这里插入图片描述"><br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3f1b21a66c2b48a8bc46e391f39a1fa6.png" alt="在这里插入图片描述"></li>
-<li>修改完 kibana.yml 之后重启 kibana 容器</li>
-<li>访问 kibana <code>localhost:5601</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b179a708ace346fca404be4c1ada73ef.png" alt="在这里插入图片描述"><br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d0756690b86f4f57be7919f08210b388.png" alt="在这里插入图片描述"></li>
-<li>到这里 kibana 就安装成功了</li>
-</ul>
-<h4 id="安装logstash"><a class="markdownIt-Anchor" href="#安装logstash">#</a> 安装<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=logstash&amp;spm=1001.2101.3001.7020"> logstash</a></h4>
-<ul>
-<li>从 dockerhub 拉取 logstash <code>docker pull logstash:7.6.2</code> <br>
-<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b1ec7cb4c13b48a188e45bcd0d125d58.png" alt="在这里插入图片描述"></li>
-</ul>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">上一页</a></div><div class="pagination-next"><a href="/page/4/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:51:29.975Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90SpringBoot%E3%80%91SpringBoot3.0%20%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E5%8D%B3%E5%B0%86%E6%9D%A5%E4%B8%B4%EF%BC%81/">【SpringBoot】SpringBoot3.0 云原生时代即将来临！</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:43:21.561Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Npm%E3%80%91npm%20install%E6%97%B6%E5%8D%A1%E4%BD%8F%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/">【Npm】npm install时卡住怎么办？</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">47</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">103</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">上一页</a></div><div class="pagination-next"><a href="/page/4/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:58:14.851Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91Graalvm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8Espringboot3.0%E5%B0%9D%E9%B2%9C/">【Java】Graalvm安装配置与springboot3.0尝鲜</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:51:29.975Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90SpringBoot%E3%80%91SpringBoot3.0%20%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E5%8D%B3%E5%B0%86%E6%9D%A5%E4%B8%B4%EF%BC%81/">【SpringBoot】SpringBoot3.0 云原生时代即将来临！</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">48</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">104</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,

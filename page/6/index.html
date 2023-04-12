@@ -29,7 +29,135 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.655Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-07-15T03:30:24.028Z" title="2022-7-15 11:30:24">2022-07-15</time>更新</span><span class="level-item">1 分钟读完 (大约155个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></p><div class="content"><h3 id="腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案"><a class="markdownIt-Anchor" href="#腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案">#</a> 腾讯云服务器 liux 系统下无法通过 springBoot 内置 mail 发送邮件的解决方案</h3>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.658Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-04-25T04:34:10.453Z" title="2022-4-25 12:34:10">2022-04-25</time>更新</span><span class="level-item">21 分钟读完 (大约3146个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Java%E3%80%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/">设计模式（一）</a></p><div class="content"><h3 id="设计模式笔记-__brathli"><a class="markdownIt-Anchor" href="#设计模式笔记-__brathli">#</a> 设计模式笔记  <strong>__Brath.Li</strong></h3>
+<h3 id="gof2323种设计模式"><a class="markdownIt-Anchor" href="#gof2323种设计模式">#</a> GoF23：23 种设计模式</h3>
+<p>​		<strong>设计模式的本质是面向对象设原则的实际运用，是对类的封装性，继承性，多态性以及类的关联关系和组合关系的充分理解。</strong></p>
+<p>​			<strong>正确使用设计模式具有以下优点：</strong></p>
+<p>​			<strong>1. 提高程序员思维能力，编程能力和设计能力</strong></p>
+<p>​			<strong>2. 使程序设计更加标准化，代码编制更加工程化，使软件开发效率大大提高，从而缩短软件的开的周期。</strong></p>
+<p>​			<strong>3. 使设计的代码可重用性高、可读性强、可靠性高、灵活性好、可维护性强。</strong></p>
+<h3 id="创建型模式"><a class="markdownIt-Anchor" href="#创建型模式">#</a> <strong>创建型模式：</strong></h3>
+<p>​			<strong>单例模式、工厂模式、抽象工厂模式、建造者模式、原型模式。</strong></p>
+<h3 id="结构型模式"><a class="markdownIt-Anchor" href="#结构型模式">#</a> <strong>结构型模式：</strong></h3>
+<p>​			<strong>适配器模式、桥接模式、装饰模式、组合模式、外欧冠模式、享元模式、代理模式。</strong></p>
+<h3 id="行为性模式"><a class="markdownIt-Anchor" href="#行为性模式">#</a> <strong>行为性模式：</strong></h3>
+<p>​			<strong>模板方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、责任链模式、访问者模式。</strong></p>
+<h4 id="oop面向对象七大原则"><a class="markdownIt-Anchor" href="#oop面向对象七大原则">#</a> OOP 面向对象七大原则：</h4>
+<p><strong>1.OCP 开闭原则：</strong></p>
+<p>​			<strong>软件实体（包括类、模块、功能等）应该对扩展开放，但是对修改关闭。</strong></p>
+<p><strong>2. 里氏替换原则：</strong></p>
+<p>​			<strong>继承必须确保超类锁拥有的性质在子类中仍然成立。</strong></p>
+<p><strong>3. 依赖倒置原则：</strong></p>
+<p>​			<strong>面向接口编程，不要面向实现编程。</strong></p>
+<p><strong>4. 单一职责原则：</strong></p>
+<p>​			<strong>控制类粒度大小、将对象解耦合、提高内聚性。</strong></p>
+<p><strong>5. 接口隔离原则：</strong></p>
+<p>​			<strong>要为各个类建立他们需要的专用接口。</strong></p>
+<p><strong>6. 迪米特法则：</strong></p>
+<p>​			** 只与你的直接朋友交谈、不跟 “陌生人” 说话。 **</p>
+<p><strong>7. 合成复用原则：</strong></p>
+<p>​			<strong>尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。</strong></p>
+<h2 id="单例设计模式"><a class="markdownIt-Anchor" href="#单例设计模式">#</a> 单例设计模式：</h2>
+<p>作用：让一个类只能创建一个实例（因为频繁的创建对象，回收对象会造成系统性能下降。）。解决对象的唯一性，保证了内存中一个对象是唯一的 。</p>
+<h4 id="饿汉式hunary"><a class="markdownIt-Anchor" href="#饿汉式hunary">#</a> 饿汉式：Hunary</h4>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C%E9%A5%BF%E6%B1%89%E5%BC%8F.png" alt="饿汉式"></p>
+<p><strong>步骤：1. 私有化构造器  2. 直接创建静态对象 3. 创建一个静态的方法，供外部调用实例</strong></p>
+<p>优点：类初始化的时候，会立即加载该对象，线程天生安全，调用效率高。</p>
+<p>缺点：无法避免被反射破解，不安全</p>
+<h4 id="懒汉式lazyman"><a class="markdownIt-Anchor" href="#懒汉式lazyman">#</a> 懒汉式：LazyMan</h4>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910151318667.png" alt="image-20210910151318667"></p>
+<p>步骤：1. 私有化构造器，不会直接创建对象  2. 向外暴露调用对象方法，在方法中先进行对象判空，为空才创建对象，这就是懒汉式</p>
+<p>优点：类初始化时，不会初始化该对象，真正需要使用的时候才会去创建该对象，具备懒加载功能。</p>
+<p>缺点：</p>
+<p>1. 判空浪费时间</p>
+<p>2. 不加 Synchronized 的懒汉式线程不安全，需要用到 volatile 关键字保持 new 对象的原子性一致</p>
+<p>懒汉式单线程下是 OK 的，但是多线程并发下不安全。</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153316119.png" alt="image-20210910153316119"> 开启十次线程测试</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153327761.png" alt="image-20210910153327761"></p>
+<p><strong>每次重启线程数都不一致</strong>，线程不安全。</p>
+<p>怎么解决：</p>
+<p>Tips：懒汉式也是可以实现线程安全的：只要加上 Synchronized 加锁即可：</p>
+<p>但是这样一来，会降低整个访问的速度，而且每次都要判断。那么有没有更好的方式来实现呢？</p>
+<p>解决方案：</p>
+<p><strong>double-check-lock 双重加锁</strong></p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910152638263.png" alt="image-20210910152638263"></p>
+<p>所谓双重加锁机制。指的是，并不是每次进入 getInstance 方法都需要同步，而是先不同步，进入方法之后先检查实例是否存在，如果不存在才进入下面 Synchronized 加锁，之后会再次检查实例是否存在，如果还不存在才创建实例。</p>
+<p>双重检测方式（因为 JVM 本身重排序的原因，可能会出现多次的初始化）</p>
+<p>这种模式下的懒汉式，称为<strong> DCL 懒汉式</strong>！</p>
+<p>你以为这样就没问题了？大错特错，注意：这里的 new 对象操作不是原子性的</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153630120.png" alt="image-20210910153630120"></p>
+<p>new 一个对象的执行顺序 ↓</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 1.分配内存空间</span></span><br><span class="line"><span class="comment">  * 2.执行构造方法初始化对象</span></span><br><span class="line"><span class="comment">  * 3.把这个对象指向内存空间</span></span><br><span class="line"><span class="comment">  * 这是创建对象的步骤 正确顺序为 123</span></span><br><span class="line"><span class="comment">  * 举例：</span></span><br><span class="line"><span class="comment">  * 线程A 创建对象 步骤为 123, 我们的代码没有问题</span></span><br><span class="line"><span class="comment">  * 线程B 创建对象 因为操作步骤不是原子性的，可能会走成 1 3 2，先指向了内存空间，再去构造对象</span></span><br><span class="line"><span class="comment">  * 这时会出现一个问题，指令重排：双重检测模式会失效，因为此时我们的类，不为空了，但是里面返回的对象是空的。</span></span><br><span class="line"><span class="comment">  * 所以就要用到一个关键字volatile，避免指令重排，保持操作原子性</span></span><br><span class="line"><span class="comment">  */</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153756918.png" alt="image-20210910153756918"></p>
+<h4 id="静态内部类模式"><a class="markdownIt-Anchor" href="#静态内部类模式">#</a> 静态内部类模式：</h4>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910155204370.png" alt="image-20210910155204370"></p>
+<p>步骤：1. 私有化构造器  2. 创建一个静态内部类，类中创建外部类的实例  3. 向外暴露一个方法获取静态内部类中创建的对象</p>
+<p>优点：结合了懒汉式和饿汉式各自的优点，真正需要对象的时候才会加载，加载类是线程安全的。</p>
+<p>缺点：每次调用都会创建多余的对象</p>
+<h3 id="以上单例设计模式都会被反射破解枚举不会"><a class="markdownIt-Anchor" href="#以上单例设计模式都会被反射破解枚举不会">#</a> 以上单例设计模式都会被反射破解，枚举不会！</h3>
+<p>枚举：枚举本身是一个类，继承了 Enum 的实例就成为了枚举类</p>
+<p>使用枚举实现单例模式，实现简单、调用效率高，枚举本身就是单例，由 JVM 从根本上提供保障，避免通过反射和反序列化的漏洞，缺点是没有延迟加载。</p>
+<p>在源码 Constructor 中<img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150042754.png" alt="image-20210910150042754"></p>
+<p>如果是对象是通过反射机制创建的会抛出一个异常</p>
+<p>IllegalArgumentException: Cannot reflectively create enum objects</p>
+<p>枚举类在 traget 输出的代码中，构造器是空的，隐藏起来了，用 javap -p 反编译也看不见构造器</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150706569.png" alt="image-20210910150706569"></p>
+<p>我们用反射机制获取空构造器会获取不到对象，这时候用 jad 反编译工具，得到的 java 文件中，</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150400927.png" alt="image-20210910150400927"></p>
+<p>可以看见构造器其实是有数据的，我们把数据放到反射中实现，就会得到这个异常 Cannot reflectively create enum objects</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150429958.png" alt="image-20210910150429958"></p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150418256.png" alt="image-20210910150418256"></p>
+<p>由此可见，反射不能破坏枚举的单例模式</p>
+<p>优点：实现简单，线程安全，防止反射攻击等。</p>
+<p>缺点： 在不需要的时候可能就加载了，造成内存浪费</p>
+<p>Tips：利用反射破解懒汉式。懒汉式不是安全的！</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910160648326.png" alt="image-20210910160648326"></p>
+<p>私有化构造器的时候判断外面的字段 guoqing 是否 ==false，等于的话就设置为 true，如果不等于的话就抛出运行异常，这样设计的话在我们用反射机制获取构造器的时候，就获取不到对象了</p>
+<p>但是有解决方法：利用反射强大的机制，假如我们反编译，知道要破解的字段是 guoqing，那我们直接用反射获取 guoqing 字段，然后设置解除私有化限制，在创建构造器实例的时候，把 guoqing 设置为 true，就可以破解 DCL 懒汉式了</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910160638735.png" alt="image-20210910160638735"></p>
+<h2 id="工厂设计模式-factory-model"><a class="markdownIt-Anchor" href="#工厂设计模式-factory-model">#</a> 工厂设计模式 Factory Model：</h2>
+<p>​		<strong>核心本质：</strong></p>
+<p>​			<strong>实例化对象不使用 new，用工厂方法代替</strong></p>
+<p>​			<strong>将选择实现类，创建对象统一管理和控制。从而将调用者跟我们的实现类解耦。</strong></p>
+<p>​		<strong>详细分类：</strong></p>
+<p>​			<strong>简单工厂模式</strong></p>
+<p>​						<strong>用来生产同一等级结构中的任意产品：扩展性差</strong></p>
+<p>​			<strong>工厂方法模式</strong></p>
+<p>​						<strong>用来生产同一等级结构中的固定产品：扩展性强</strong></p>
+<p>​			<strong>抽象工厂模式</strong></p>
+<p>​						<strong>围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。</strong></p>
+<p><strong>工厂设计模式应用场景：</strong></p>
+<p>​			<strong>JDK 中的 Calendar 的 getInstance 方法</strong></p>
+<p>​			<strong>JDBC 中的 Connection 对象的获取</strong></p>
+<p>​			<strong>Spring 的 IOC 容器创建管理 Bean 对象</strong></p>
+<p>​			<strong>反射 Class 对象的 newInsetance 方法</strong></p>
+<h2 id="建造者模式"><a class="markdownIt-Anchor" href="#建造者模式">#</a> 建造者模式：</h2>
+<p>​	<strong>建造者模式也属于创建型模式，它提供了一种创建对象的最佳方式。</strong></p>
+<p>​	<strong>定义：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示</strong></p>
+<p>​	<strong>主要作用：在用户不知道对象的建造过程和细节的情况下就可以直接创建复杂对象。</strong></p>
+<p>​	<strong>用户只需要给出指定复杂对象的类型和内容，建造者模式负责将按顺序创建复杂对象（把内部的建造过程和细节隐藏起来）</strong></p>
+<p>​	<strong>例子：</strong></p>
+<p>​			<strong>工厂（建造者模式）：负责制造汽车（组装过程和细节在工厂内）</strong></p>
+<p>​			<strong>汽车购买者（用户）：你只需要说你需要的型号（对象的类型和内容），然后直接购买就可以了（不需要知道汽车是怎么组装的（发动机、变速箱、轮毂、车门））</strong></p>
+<h2 id="原型模式"><a class="markdownIt-Anchor" href="#原型模式">#</a> 原型模式：</h2>
+<p>​		创建型模式之一。</p>
+<p>​</p>
+<h2 id="适配器模式"><a class="markdownIt-Anchor" href="#适配器模式">#</a> 适配器模式</h2>
+<p>​		将一个类的接口转换成客户希望的另外一个接口，Adapter 模式使得原本由于接口不兼容而不能一起工作的那些类可以在一起工作！</p>
+<p>​		角色分析：</p>
+<p>​				1 . 目标接口：客户所期待的接口，目标可以使具体或抽象的类，也可以是接口。</p>
+<p>​				2 . 需要适配的类：需要适配的类或者适配者类。</p>
+<p>​				3 . 适配器：通过包装一个需要适配的对象，将原接口转换成目标对象。</p>
+<p>​		对象适配器优点</p>
+<p>​				1 . 一个对象适配器可以把多个不同的适配者适配到同一个目标</p>
+<p>​				2 . 可以适配一个适配者的子类，由于适配器和适配者之间是关联关系，根据 “里氏代换原则” ，适配者的子类也可以通过该适配器进行适配。</p>
+<p>​		类适配器缺点：</p>
+<p>​				1 . 对于 Java、C# 等不支持多重类继承的语言，一次最多只能适配一个适配者类，不能同时适配多个适配者。</p>
+<p>​				2 . 在 Java、C# 等语言中，适配器模式中的目标抽象类只能为接口，不能为类，其使用有一定的局限性。</p>
+<p>​		适用场景：</p>
+<p>​				1 . 系统需要使用一些现有的类，而这些类的接口不符合系统的需要，甚至没有这些类的代码。</p>
+<p>​				2 . 想创建一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.655Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-07-15T03:30:24.028Z" title="2022-7-15 11:30:24">2022-07-15</time>更新</span><span class="level-item">1 分钟读完 (大约155个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90SpringBoot%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8liux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87springBoot%E5%86%85%E7%BD%AEmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">腾讯云服务器liux系统下无法通过springBoot内置mail发送邮件的解决方案</a></p><div class="content"><h3 id="腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案"><a class="markdownIt-Anchor" href="#腾讯云服务器liux系统下无法通过springboot内置mail发送邮件的解决方案">#</a> 腾讯云服务器 liux 系统下无法通过 springBoot 内置 mail 发送邮件的解决方案</h3>
 <p>原因</p>
 <p>原来是腾讯云基于安全考虑，禁用了端口 25。改成 465 或者解封 25 就可以发邮件了。</p>
 <p>原始配置  本地可发送</p>
@@ -445,70 +573,7 @@ JMM 内存屏障插入策略如下：<br>
 3.Volatile 对任意单个变量的读 / 写具有原子性，但是类似于 i++ 这种复合操作不具有原子性。而锁的互斥执行的特性可以确保对整个临界区代码执行具有原子性。<br>
 4. 多线程访问 volatile 不会发生阻塞，而 synchronized 会发生阻塞。<br>
 5.volatile 是变量在多线程之间的可见性，synchronize 是多线程之间访问资源的同步性。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.631Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-04-28T02:29:34.446Z" title="2022-4-28 10:29:34">2022-04-28</time>更新</span><span class="level-item">5 分钟读完 (大约698个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Typora%E3%80%91typora%E9%85%8D%E7%BD%AEAliCloudOss%E5%9B%BE%E5%BA%93%E4%BD%BF%E7%94%A8picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">Typora使用gitee作为图库用picgo上传图片的教程~</a></p><div class="content"><h2 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h2>
-<ul>
-<li>这一年，写的博客也多，总是需要<strong>插入图片</strong>的，图片存在本地的话上传到博客网站去就没法显示了，就算一个图一个图的复制粘贴上去，想移植到其他的博客网站，图就会失效，为了解决这个问题，这篇文章就诞生了！</li>
-<li>首先，还是一如既往的推荐别人是怎么搞的！</li>
-<li>参考文章如下：</li>
-<li><a href="https://link.zhihu.com/?target=https%3A//blog.csdn.net/make_11111111/article/details/104839492">《Typora 上传图片到 CSDN——PicGo + Gitee (码云) 实现 markdown 免费图床 —— 开局第一篇》</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//segmentfault.com/a/1190000022535154">《markdown 笔记神器 Typora 如何上传图片？（图床功能）</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//www.codenong.com/cs106528795/">《一文教你用 Typora + Gitee (码云) + PicGo 实现 云 markdown 笔记》</a></li>
-</ul>
-<h2 id="环境配置预览"><a class="markdownIt-Anchor" href="#环境配置预览">#</a> 环境配置预览</h2>
-<ul>
-<li>安装 nodejs：<a href="https://link.zhihu.com/?target=https%3A//nodejs.org/en/">https://nodejs.org/en/</a></li>
-<li>Gitee 账户：<a href="https://link.zhihu.com/?target=https%3A//gitee.com/">https://gitee.com/</a></li>
-<li>Typora 软件:<a href="https://link.zhihu.com/?target=https%3A//www.typora.io/%23windows">https://www.typora.io/#windows</a></li>
-<li>PicGo:<a href="https://link.zhihu.com/?target=https%3A//molunerfinn.com/PicGo/">https://molunerfinn.com/PicGo/</a></li>
-<li></li>
-</ul>
-<h2 id="01安装nodejs"><a class="markdownIt-Anchor" href="#01安装nodejs">#</a> 01. 安装 nodejs</h2>
-<p>请百度自行安装，不过多介绍</p>
-<p>node 和 npm 环境检测：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;node -v</span><br><span class="line">v14.16.0</span><br><span class="line"></span><br><span class="line">C:\&gt;npm -v</span><br><span class="line">6.14.11</span><br></pre></td></tr></table></figure>
-<h2 id="02gitee账户配置"><a class="markdownIt-Anchor" href="#02gitee账户配置">#</a> 02.Gitee 账户配置</h2>
-<h2 id="新建仓库"><a class="markdownIt-Anchor" href="#新建仓库">#</a> 新建仓库</h2>
-<p><img src="https://brath.cloud/blogImg/v2-2fe1a9ce620e81b91401ea878be94548_720w.jpg" alt="img"></p>
-<p><img src="https://brath.cloud/blogImg/v2-02b0a2c63381b110e5bdc4ac994bd274_720w.jpg" alt="img"></p>
-<h2 id="私人令牌token配置获取"><a class="markdownIt-Anchor" href="#私人令牌token配置获取">#</a> 私人令牌 token 配置获取</h2>
-<ul>
-<li>找到 <code>设置</code>  -&gt; <code>安全设置</code>  -&gt; <code>私人令牌</code> ，点击生成新令牌</li>
-</ul>
-<p><img src="https://brath.cloud/blogImg/v2-5493431b257b8313f420cd1c456d5550_720w.jpg" alt="img"></p>
-<ul>
-<li>选择下面的选项即可！</li>
-</ul>
-<p><img src="https://brath.cloud/blogImg/v2-06263bbbc624e2b9d5d3782cad1f68b3_720w.jpg" alt="img"></p>
-<ul>
-<li>点击提交，账户安全验证即可</li>
-</ul>
-<p><img src="https://brath.cloud/blogImg/v2-a9ab747329a35bc374101fe870a48084_720w.jpg" alt="img"></p>
-<ul>
-<li>保存后面生成的私人令牌</li>
-</ul>
-<p><img src="https://brath.cloud/blogImg/v2-cf484c849d232aaf07e91460899b0a0e_720w.jpg" alt="v2-cf484c849d232aaf07e91460899b0a0e_720w"></p>
-<ul>
-<li>gitee 配置到此完毕！</li>
-</ul>
-<h2 id="03picgo配置"><a class="markdownIt-Anchor" href="#03picgo配置">#</a> 03.PicGo 配置</h2>
-<h2 id="插件安装"><a class="markdownIt-Anchor" href="#插件安装">#</a> 插件安装</h2>
-<p><img src="https://brath.cloud/blogImg/v2-c6b94bdc27f8f0300673d02e4800c360_720w.jpg" alt="img"></p>
-<h2 id="插件配置"><a class="markdownIt-Anchor" href="#插件配置">#</a> 插件配置</h2>
-<p><img src="https://brath.cloud/blogImg/v2-599672d63434fc5cc4dff76104f21778_720w.jpg" alt="img"></p>
-<h2 id="上传尝试"><a class="markdownIt-Anchor" href="#上传尝试">#</a> 上传尝试</h2>
-<p><img src="https://brath.cloud/blogImg/v2-9cd264eef40166488ebdda103631689d_720w.jpg" alt="img"></p>
-<ul>
-<li>这里，您可以随便截图一张，剪贴板图片上传试试效果</li>
-<li>图片放大看看，本文的图片是不是就在下面这里！哈哈哈！</li>
-</ul>
-<p><img src="https://brath.cloud/blogImg/v2-05a45967b7af32a9f3299d93fdeab526_720w.jpg" alt="img"></p>
-<h2 id="04typora配置"><a class="markdownIt-Anchor" href="#04typora配置">#</a> 04.Typora 配置</h2>
-<ul>
-<li>说实话，写这篇文章，就是想用到 markdown 自动上传图片，自动同步图片到各个平台！</li>
-<li>废话不多说，建议直接和博主配置一样就行！</li>
-</ul>
-<p><img src="https://brath.cloud/blogImg/image-20220428093756533.png" alt="image-20220428093756533"></p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/5/">上一页</a></div><div class="pagination-next"><a href="/page/7/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link is-current" href="/page/6/">6</a></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:51:29.975Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90SpringBoot%E3%80%91SpringBoot3.0%20%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E5%8D%B3%E5%B0%86%E6%9D%A5%E4%B8%B4%EF%BC%81/">【SpringBoot】SpringBoot3.0 云原生时代即将来临！</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T01:43:21.561Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Npm%E3%80%91npm%20install%E6%97%B6%E5%8D%A1%E4%BD%8F%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/">【Npm】npm install时卡住怎么办？</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">47</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">103</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/5/">上一页</a></div><div class="pagination-next"><a href="/page/7/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link is-current" href="/page/6/">6</a></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:58:14.851Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91Graalvm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8Espringboot3.0%E5%B0%9D%E9%B2%9C/">【Java】Graalvm安装配置与springboot3.0尝鲜</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:51:29.975Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90SpringBoot%E3%80%91SpringBoot3.0%20%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E5%8D%B3%E5%B0%86%E6%9D%A5%E4%B8%B4%EF%BC%81/">【SpringBoot】SpringBoot3.0 云原生时代即将来临！</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T07:25:27.293Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">48</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">104</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
