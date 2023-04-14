@@ -29,7 +29,246 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.660Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-06-01T01:04:37.353Z" title="2022-6-1 9:04:37">2022-06-01</time>更新</span><span class="level-item">8 分钟读完 (大约1157个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/">阿里云OSS的CDN加速和OSS传输加速的区别</a></p><div class="content"><h2 id="概述"><a class="markdownIt-Anchor" href="#概述">#</a> 概述</h2>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-29T09:20:11.710Z" title="2022-12-29 17:20:11">2022-12-29</time>发表</span><span class="level-item"><time dateTime="2022-12-29T09:37:06.026Z" title="2022-12-29 17:37:06">2022-12-29</time>更新</span><span class="level-item">32 分钟读完 (大约4782个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/29/%E3%80%90Java%E3%80%91TheadLocal/">ThreadLocal</a></p><div class="content"><h1 id="threadlocal-详解"><a class="markdownIt-Anchor" href="#threadlocal-详解">#</a> ThreadLocal 详解</h1>
+<p>ThreadLocal 概述<br>
+ ThreadLocal 类用来提供线程内部的局部变量，不同的线程之间不会相互干扰<br>
+这种变量在多线程环境下访问（通过 get 和 set 方法访问）时能保证各个线程的变量相对独立于其他线程内的变量<br>
+在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间一些公共变量传递的复杂度<br>
+使用<br>
+常用方法</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法名</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ThreadLocal()</td>
+<td>创建 ThreadLocal 对象</td>
+</tr>
+<tr>
+<td>public void set( T value)</td>
+<td>设置当前线程绑定的局部变量</td>
+</tr>
+<tr>
+<td>public T get()</td>
+<td>获取当前线程绑定的局部变量</td>
+</tr>
+<tr>
+<td>public T remove()</td>
+<td>移除当前线程绑定的局部变量，该方法可以帮助 JVM 进行 GC</td>
+</tr>
+<tr>
+<td>protected T initialValue()</td>
+<td>返回当前线程局部变量的初始值</td>
+</tr>
+</tbody>
+</table>
+<p>案例<br>
+场景：让每个线程获取其设置的对应的共享变量值<br>
+共享变量访问问题案例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线程间访问共享变量之间问题</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoQuestion</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">DemoQuestion</span> <span class="variable">demoQuestion</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DemoQuestion</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// int j = i;</span></span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt;&#123;</span><br><span class="line">                <span class="comment">// demoQuestion.setAge(j);</span></span><br><span class="line">                demoQuestion.setName(Thread.currentThread().getName() + <span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;---&gt;&quot;</span> + demoQuestion.getName());</span><br><span class="line">                <span class="comment">// System.out.println(Thread.currentThread().getName() + &quot;---&gt;&quot; + demoQuestion.getAge());</span></span><br><span class="line">            &#125;,<span class="string">&quot;t&quot;</span> + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用关键字 Synchronized 关键字加锁解决方案</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用加锁的方式解决：线程间访问共享变量之间问题</span></span><br><span class="line"><span class="comment"> * 将对共享变量的操作进行加锁，保证其原子性</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SolveDemoQuestionBySynchronized</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SolveDemoQuestionBySynchronized</span> <span class="variable">demoQuestion</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SolveDemoQuestionBySynchronized</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// int j = i;</span></span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt;&#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (SolveDemoQuestionBySynchronized.class)&#123;</span><br><span class="line">                    demoQuestion.setName(Thread.currentThread().getName() + <span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                    System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">&quot;---&gt;&quot;</span> + demoQuestion.getName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,<span class="string">&quot;t&quot;</span> + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 ThreadLocal 方式解决</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SolveDemoQuestionByThreadLocal</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>  ThreadLocal&lt;String&gt; name = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SolveDemoQuestionByThreadLocal</span> <span class="variable">demoQuestion</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SolveDemoQuestionByThreadLocal</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt;&#123;</span><br><span class="line">                demoQuestion.setName(Thread.currentThread().getName() + <span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;---&gt;&quot;</span> + demoQuestion.getName());</span><br><span class="line">            &#125;,<span class="string">&quot;t&quot;</span> + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name.get();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String content)</span> &#123;</span><br><span class="line">        name.set(content);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="threadlocalmap-内部结果"><a class="markdownIt-Anchor" href="#threadlocalmap-内部结果">#</a> ThreadLocalMap 内部结果</h2>
+<blockquote>
+<p>JDK8 之前的设计<br>
+每个 ThreadLocal 都创建一个 ThreadLocalMap，用线程作为 ThreadLocalMap 的 key，要存储的局部变量作为 ThreadLocalMap 的 value，这样就能达到各个线程的局部变量隔离的效果</p>
+</blockquote>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/baa00cdb33a14aaeab7b453c1bb1469b.png" alt="在这里插入图片描述"></p>
+<p>JDK8 之后的设计<br>
+每个 Thread 维护一个 ThreadLocalMap，这个 ThreadLocalMap 的 key 是 ThreadLocal 实例本身，value 才是真正要存储的值 Object<br>
+ 每个 Thread 线程内部都有一个 ThreadLocalMap<br>
+Map 里面存储 ThreadLocal 对象（key）和线程的变量副本（value）<br>
+Thread 内部的 Map 是由 ThreadLocal 维护的，由 ThreadLocal 负责向 map 获取和设置线程的变量值<br>
+对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/5633b9ff01d84aaeb06b799d825e289e.png" alt="在这里插入图片描述"></p>
+<p>JDK 对 ThreadLocal 这样改造的好处<br>
+减少 ThreadLocalMap 存储的 Entry 数量：因为之前的存储数量由 Thread 的数量决定，现在是由 ThreadLocal 的数量决定。在实际运用当中，往往 ThreadLocal 的数量要少于 Thread 的数量<br>
+当 Thread 销毁之后，对应的 ThreadLocalMap 也会随之销毁，能减少内存的使用（但是不能避免内存泄漏问题，解决内存泄漏问题应该在使用完后及时调用 remove () 对 ThreadMap 里的 Entry 对象进行移除，由于 Entry 继承了弱引用类，会在下次 GC 时被 JVM 回收）</p>
+<h2 id="threadlocal相关方法源码解析"><a class="markdownIt-Anchor" href="#threadlocal相关方法源码解析">#</a> ThreadLocal 相关方法源码解析</h2>
+<h3 id="set方法"><a class="markdownIt-Anchor" href="#set方法">#</a> set 方法</h3>
+<ul>
+<li>源码及相关注释</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 设置当前线程对应的ThreadLocal的值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> value 将要保存在当前线程对应的ThreadLocal的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(T value)</span> &#123;</span><br><span class="line">       <span class="comment">// 获取当前线程对象</span></span><br><span class="line">       <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取此线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">       <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">       <span class="comment">// 判断map是否存在</span></span><br><span class="line">       <span class="keyword">if</span> (map != <span class="literal">null</span>)</span><br><span class="line">           <span class="comment">// 存在则调用map.set设置此实体entry,this这里指调用此方法的ThreadLocal对象</span></span><br><span class="line">           map.set(<span class="built_in">this</span>, value);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="comment">// 1）当前线程Thread 不存在ThreadLocalMap对象</span></span><br><span class="line">           <span class="comment">// 2）则调用createMap进行ThreadLocalMap对象的初始化</span></span><br><span class="line">           <span class="comment">// 3）并将 t(当前线程)和value(t对应的值)作为第一个entry存放至ThreadLocalMap中</span></span><br><span class="line">           createMap(t, value);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取当前线程Thread对应维护的ThreadLocalMap </span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span>  t the current thread 当前线程</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> the map 对应维护的ThreadLocalMap </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   ThreadLocalMap <span class="title function_">getMap</span><span class="params">(Thread t)</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    *创建当前线程Thread对应维护的ThreadLocalMap </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t 当前线程</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> firstValue 存放到map中第一个entry的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">createMap</span><span class="params">(Thread t, T firstValue)</span> &#123;</span><br><span class="line">       <span class="comment">//这里的this是调用此方法的threadLocal</span></span><br><span class="line">       t.threadLocals = <span class="keyword">new</span> <span class="title class_">ThreadLocalMap</span>(<span class="built_in">this</span>, firstValue);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>相关流程图</li>
+</ul>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/2430f09d315e40769a63720f84a8a06c.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>执行流程</li>
+</ul>
+<ol>
+<li>获取当前线程，并根据当前线程获取一个 Map</li>
+<li>如果获取的 Map 不为空，则将参数设置到 Map 中（当前 ThreadLocal 的引用作为 key）</li>
+<li>如果 Map 为空，则给该线程创建 Map，并设置初始值</li>
+</ol>
+<h3 id="get方法"><a class="markdownIt-Anchor" href="#get方法">#</a> get () 方法</h3>
+<ul>
+<li>源码及相关注释</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 返回当前线程中保存ThreadLocal的值</span></span><br><span class="line"><span class="comment">    * 如果当前线程没有此ThreadLocal变量，</span></span><br><span class="line"><span class="comment">    * 则它会通过调用&#123;<span class="doctag">@link</span> #initialValue&#125; 方法进行初始化值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> 返回当前线程对应此ThreadLocal的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">// 获取当前线程对象</span></span><br><span class="line">       <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取此线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">       <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">       <span class="comment">// 如果此map存在</span></span><br><span class="line">       <span class="keyword">if</span> (map != <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="comment">// 以当前的ThreadLocal 为 key，调用getEntry获取对应的存储实体e</span></span><br><span class="line">           ThreadLocalMap.<span class="type">Entry</span> <span class="variable">e</span> <span class="operator">=</span> map.getEntry(<span class="built_in">this</span>);</span><br><span class="line">           <span class="comment">// 对e进行判空 </span></span><br><span class="line">           <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123;</span><br><span class="line">               <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">               <span class="comment">// 获取存储实体 e 对应的 value值,即为我们想要的当前线程对应此ThreadLocal的值</span></span><br><span class="line">               <span class="type">T</span> <span class="variable">result</span> <span class="operator">=</span> (T)e.value;</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment">       	初始化 : 有两种情况有执行当前代码</span></span><br><span class="line"><span class="comment">       	第一种情况: map不存在，表示此线程没有维护的ThreadLocalMap对象</span></span><br><span class="line"><span class="comment">       	第二种情况: map存在, 但是没有与当前ThreadLocal关联的entry</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">return</span> setInitialValue();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始化</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> the initial value 初始化后的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> T <span class="title function_">setInitialValue</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">// 调用initialValue获取初始化的值</span></span><br><span class="line">       <span class="comment">// 此方法可以被子类重写, 如果不重写默认返回null</span></span><br><span class="line">       <span class="type">T</span> <span class="variable">value</span> <span class="operator">=</span> initialValue();</span><br><span class="line">       <span class="comment">// 获取当前线程对象</span></span><br><span class="line">       <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取此线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">       <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">       <span class="comment">// 判断map是否存在</span></span><br><span class="line">       <span class="keyword">if</span> (map != <span class="literal">null</span>)</span><br><span class="line">           <span class="comment">// 存在则调用map.set设置此实体entry</span></span><br><span class="line">           map.set(<span class="built_in">this</span>, value);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="comment">// 1）当前线程Thread 不存在ThreadLocalMap对象</span></span><br><span class="line">           <span class="comment">// 2）则调用createMap进行ThreadLocalMap对象的初始化</span></span><br><span class="line">           <span class="comment">// 3）并将 t(当前线程)和value(t对应的值)作为第一个entry存放至ThreadLocalMap中</span></span><br><span class="line">           createMap(t, value);</span><br><span class="line">       <span class="comment">// 返回设置的值value</span></span><br><span class="line">       <span class="keyword">return</span> value;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>流程图</li>
+</ul>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/a7e417b2719348729b4229071e4d3f4f.png" alt="在这里插入图片描述"></p>
+<p>执行流程<br>
+获取当前线程，根据当前线程获取一个 Map<br>
+ 如果获取的 Map 不为空，则在 Map 中以 ThreadLocal 的引用作为 key 来在 Map 中获取对应的 Entrye，否则转到 4<br>
+ 如果 e 不为 null，则返回 e.value，否则转到 4<br>
+Map 为空或者 e 为空，则通过 initialValue 函数获取初始值 value，然后用 ThreadLocal 的引用和 value 作为 firstKey 和 firstValue 创建一个新的 Map</p>
+<h2 id="remove方法"><a class="markdownIt-Anchor" href="#remove方法">#</a> remove 方法</h2>
+<ul>
+<li>源码及相关注释</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除当前线程中保存的ThreadLocal对应的实体entry</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取当前线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">         <span class="type">ThreadLocalMap</span> <span class="variable">m</span> <span class="operator">=</span> getMap(Thread.currentThread());</span><br><span class="line">        <span class="comment">// 如果此map存在</span></span><br><span class="line">         <span class="keyword">if</span> (m != <span class="literal">null</span>)</span><br><span class="line">            <span class="comment">// 存在则调用map.remove</span></span><br><span class="line">            <span class="comment">// 以当前ThreadLocal为key删除对应的实体entry</span></span><br><span class="line">             m.remove(<span class="built_in">this</span>);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行流程</li>
+</ul>
+<ol>
+<li>首先获取当前线程，并根据当前线程获取一个 Map</li>
+<li>如果获取的 Map 不为空，则移除当前 ThreadLocal 对象对应的 entry</li>
+</ol>
+<p>initialValue 方法<br>
+此方法的作用是返回该线程局部变量的初始值<br>
+这个方法是一个延迟调用方法，从上面的代码我们得知，在 set 方法还未调用而先调用了 get 方法时才执行，并且仅执行 1 次<br>
+这个方法缺省实现直接返回一个 null<br>
+ 如果想要一个除 null 之外的初始值，可以重写此方法。（备注： 该方法是一个 protected 的方法，显然是为了让子类覆盖而设计的）<br>
+源码及相关注释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 返回当前线程对应的ThreadLocal的初始值</span></span><br><span class="line"><span class="comment">  * 此方法的第一次调用发生在，当线程通过get方法访问此线程的ThreadLocal值时</span></span><br><span class="line"><span class="comment">  * 除非线程先调用了set方法，在这种情况下，initialValue 才不会被这个线程调用。</span></span><br><span class="line"><span class="comment">  * 通常情况下，每个线程最多调用一次这个方法。</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * &lt;p&gt;这个方法仅仅简单的返回null &#123;<span class="doctag">@code</span> null&#125;;</span></span><br><span class="line"><span class="comment">  * 如果想ThreadLocal线程局部变量有一个除null以外的初始值，</span></span><br><span class="line"><span class="comment">  * 必须通过子类继承&#123;<span class="doctag">@code</span> ThreadLocal&#125; 的方式去重写此方法</span></span><br><span class="line"><span class="comment">  * 通常, 可以通过匿名内部类的方式实现</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span> 当前ThreadLocal的初始值</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">protected</span> T <span class="title function_">initialValue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ThreadLocalMap 解析</p>
+<h2 id="内部结构"><a class="markdownIt-Anchor" href="#内部结构">#</a> 内部结构</h2>
+<p>ThreadLocalMap 是 ThreadLocal 的内部类，没有实现 Map 接口，用独立的方式实现了 Map 的功能，其内部的 Entry 也是独立实现的，而 Entry 又是 ThreadLocalMap 的内部类，且集成弱引用 (WeakReference) 类。</p>
+<h2 id="成员变量"><a class="markdownIt-Anchor" href="#成员变量">#</a> 成员变量</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">        * The entries in this hash map extend WeakReference, using</span></span><br><span class="line"><span class="comment">        * its main ref field as the key (which is always a</span></span><br><span class="line"><span class="comment">        * ThreadLocal object).  Note that null keys (i.e. entry.get()</span></span><br><span class="line"><span class="comment">        * == null) mean that the key is no longer referenced, so the</span></span><br><span class="line"><span class="comment">        * entry can be expunged from table.  Such entries are referred to</span></span><br><span class="line"><span class="comment">        * as &quot;stale entries&quot; in the code that follows.</span></span><br><span class="line"><span class="comment">        * </span></span><br><span class="line"><span class="comment">			* Entry继承WeakReference，并且用ThreadLocal作为key.</span></span><br><span class="line"><span class="comment">				* 如果key为null(entry.get() == null)，意味着key不再被引用，</span></span><br><span class="line"><span class="comment">				* 因此这时候entry也可以从table中清除。</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Entry</span> <span class="keyword">extends</span> <span class="title class_">WeakReference</span>&lt;ThreadLocal&lt;?&gt;&gt; &#123;</span><br><span class="line">           <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">           Object value;</span><br><span class="line"></span><br><span class="line">           Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">               <span class="built_in">super</span>(k);</span><br><span class="line">               value = v;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始容量 —— 必须是2的整次幂</span></span><br><span class="line"><span class="comment">    *  The initial capacity -- MUST be a power of two.  </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">INITIAL_CAPACITY</span> <span class="operator">=</span> <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 存放数据的table，Entry类的定义在下面分析</span></span><br><span class="line"><span class="comment">    * 同样，数组长度必须是2的整次幂。</span></span><br><span class="line"><span class="comment">    * The table, resized as necessary.</span></span><br><span class="line"><span class="comment">    * table.length MUST always be a power of two.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Entry[] table;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 数组里面entrys的个数，可以用于判断table当前使用量是否超过阈值。</span></span><br><span class="line"><span class="comment">    * The number of entries in the table</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 进行扩容的阈值，表使用量大于它的时候进行扩容。</span></span><br><span class="line"><span class="comment">    * The next size value at which to resize</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> threshold; <span class="comment">// Default to 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="弱引用和内存泄漏"><a class="markdownIt-Anchor" href="#弱引用和内存泄漏">#</a> 弱引用和内存泄漏</h2>
+<p>弱引用相关概念<br>
+强引用（“Strong” Reference），就是我们最常见的普通对象引用，只要还有强引用指向一个对象，就能表明对象还 “活着”，垃圾回收器就不会回收这种对象<br>
+弱引用（WeakReference），垃圾回收器一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存</p>
+<h2 id="内存泄漏相关概念"><a class="markdownIt-Anchor" href="#内存泄漏相关概念">#</a> 内存泄漏相关概念</h2>
+<p>Memory overflow: 内存溢出，没有足够的内存提供申请者使用<br>
+ Memory leak: 内存泄漏是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。内存泄漏的堆积终将导致内存溢出</p>
+<h2 id="内存泄漏与强弱引用关系"><a class="markdownIt-Anchor" href="#内存泄漏与强弱引用关系">#</a> 内存泄漏与强弱引用关系</h2>
+<p>ThreadLocal 内存结构</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/7476f5b3aec44f20b884e118880925b1.png" alt="在这里插入图片描述"></p>
+<p>如果 key 使用强引用，也就是上图中的红色背景框部分<br>
+业务代码中使用完 ThreadLocal ，threadLocal Ref 被回收了<br>
+因为 threadLocalMap 的 Entry 强引用了 threadLocal，造成 threadLocal 无法被回收<br>
+在没有手动删除这个 Entry 以及 CurrentThread 依然运行的前提下，始终有强引用链 threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry，Entry 就不会被回收（Entry 中包括了 ThreadLocal 实例和 value），导致 Entry 内存泄漏<br>
+如果 key 使用弱引用，也就是上图中的红色背景框部分<br>
+业务代码中使用完 ThreadLocal ，threadLocal Ref 被回收了<br>
+由于 ThreadLocalMap 只持有 ThreadLocal 的弱引用，没有任何强引用指向 threadlocal 实例，所以 threadlocal 就可以顺利被 gc 回收，此时 Entry 中的 key=null<br>
+ 但是在没有手动删除这个 Entry 以及 CurrentThread 依然运行的前提下，也存在有强引用链 threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry -&gt; value ，value 不会被回收， 而这块 value 永远不会被访问到了，导致 value 内存泄漏</p>
+<h2 id="出现内存泄漏的真实原因"><a class="markdownIt-Anchor" href="#出现内存泄漏的真实原因">#</a> 出现内存泄漏的真实原因</h2>
+<p>没有手动删除对应的 Entry 节点信息<br>
+ ThreadLocal 对象使用完后，对应线程仍然在运行</p>
+<h2 id="避免内存泄漏的的两种方式"><a class="markdownIt-Anchor" href="#避免内存泄漏的的两种方式">#</a> 避免内存泄漏的的两种方式</h2>
+<p>使用完 ThreadLocal，调用其 remove 方法删除对应的 Entry<br>
+ 使用完 ThreadLocal，当前 Thread 也随之运行结束<br>
+对于第一种方式很好控制，调用对应 remove () 方法即可，但是对于第二种方式，我们是很难控制的，正因为不好控制，这也是为什么 ThreadLocalMap 里对应的 Entry 对象继承弱引用的原因，因为使用了弱引用，当 ThreadLocal 使用完后，key 的引用就会为 null，而在调用 ThreadLocal 中的 get ()/set () 方法时，当判断 key 为 null 时会将 value 置为 null，这就就会在 jvm 下次 GC 时将对应的 Entry 对象回收，从而避免内存泄漏问题的出现。</p>
+<h2 id="hash冲突问题及解决方法"><a class="markdownIt-Anchor" href="#hash冲突问题及解决方法">#</a> hash 冲突问题及解决方法</h2>
+<p>首先从 ThreadLocal 的 set () 方法入手</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void set(T value) &#123;</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocal.ThreadLocalMap map = getMap(t);</span><br><span class="line">        if (map != null)</span><br><span class="line">            //调用了ThreadLocalMap的set方法</span><br><span class="line">            map.set(this, value);</span><br><span class="line">        else</span><br><span class="line">            createMap(t, value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ThreadLocal.ThreadLocalMap getMap(Thread t) &#123;</span><br><span class="line">        return t.threadLocals;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void createMap(Thread t, T firstValue) &#123;</span><br><span class="line">        	//调用了ThreadLocalMap的构造方法</span><br><span class="line">        t.threadLocals = new ThreadLocal.ThreadLocalMap(this, firstValue);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>构造方法 <code>ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue)</code></p>
+</li>
+<li>
+<pre><code> /*
+  * firstKey : 本ThreadLocal实例(this)
+  * firstValue ： 要保存的线程本地变量
+  */
+ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) &#123;
+        //初始化table
+        table = new ThreadLocal.ThreadLocalMap.Entry[INITIAL_CAPACITY];
+        //计算索引(重点代码）
+        int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1);
+        //设置值
+        table[i] = new ThreadLocal.ThreadLocalMap.Entry(firstKey, firstValue);
+        size = 1;
+        //设置阈值
+        setThreshold(INITIAL_CAPACITY);
+    &#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">构造函数首先创建一个长度为16的Entry数组，然后计算出firstKey对应的索引，然后存储到table中，并设置size和threshold</span><br><span class="line"></span><br><span class="line">分析：int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1)</span><br><span class="line">关于：firstKey.threadLocalHashCode</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+private final int threadLocalHashCode = nextHashCode();
+    
+    private static int nextHashCode() &#123;
+        return nextHashCode.getAndAdd(HASH_INCREMENT);
+    &#125;
+//AtomicInteger是一个提供原子操作的Integer类，通过线程安全的方式操作加减,适合高并发情况下的使用
+    private static AtomicInteger nextHashCode =  new AtomicInteger();
+     //特殊的hash值
+    private static final int HASH_INCREMENT = 0x61c88647;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里定义了一个AtomicInteger类型，每次获取当前值并加上HASH_INCREMENT，HASH_INCREMENT = 0x61c88647,这个值跟斐波那契数列（黄金分割数）有关，其主要目的就是为了让哈希码能均匀的分布在2的n次方的数组里, 也就是Entry[] table中，这样做可以尽量避免hash冲突</span><br><span class="line"></span><br><span class="line">关于：&amp; (INITIAL_CAPACITY - 1)</span><br><span class="line">计算hash的时候里面采用了hashCode &amp; (size - 1)的算法，这相当于取模运算hashCode % size的一个更高效的实现。正是因为这种算法，我们要求size必须是2的整次幂，这也能保证在索引不越界的前提下，使得hash发生冲突的次数减小</span><br><span class="line">ThreadLocalMap中的set方法</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+private void set(ThreadLocal&lt;?&gt; key, Object value) &#123;
+        ThreadLocal.ThreadLocalMap.Entry[] tab = table;
+        int len = tab.length;
+        //计算索引(重点代码，刚才分析过了）
+        int i = key.threadLocalHashCode &amp; (len-1);
+        /**
+         * 使用线性探测法查找元素（重点代码）
+         */
+        for (ThreadLocal.ThreadLocalMap.Entry e = tab[i];
+             e != null;
+             e = tab[i = nextIndex(i, len)]) &#123;
+            ThreadLocal&lt;?&gt; k = e.get();
+            //ThreadLocal 对应的 key 存在，直接覆盖之前的值
+            if (k == key) &#123;
+                e.value = value;
+                return;
+            &#125;
+            // key为 null，但是值不为 null，说明之前的 ThreadLocal 对象已经被回收了，
+           // 当前数组中的 Entry 是一个陈旧（stale）的元素
+            if (k == null) &#123;
+                //用新元素替换陈旧的元素，这个方法进行了不少的垃圾清理动作，防止内存泄漏
+                replaceStaleEntry(key, value, i);
+                return;
+            &#125;
+        &#125;
+    
+    	//ThreadLocal对应的key不存在并且没有找到陈旧的元素，则在空元素的位置创建一个新的Entry。
+            tab[i] = new Entry(key, value);
+            int sz = ++size;
+            /**
+             * cleanSomeSlots用于清除那些e.get()==null的元素，
+             * 这种数据key关联的对象已经被回收，所以这个Entry(table[index])可以被置null。
+             * 如果没有清除任何entry,并且当前使用量达到了负载因子所定义(长度的2/3)，那么进行				 * rehash（执行一次全表的扫描清理工作）
+             */
+            if (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;= threshold)
+                rehash();
+&#125;
+
+ /**
+     * 获取环形数组的下一个索引
+     */
+    private static int nextIndex(int i, int len) &#123;
+        return ((i + 1 &lt; len) ? i + 1 : 0);
+    &#125;
+</code></pre>
+<h2 id="代码执行流程"><a class="markdownIt-Anchor" href="#代码执行流程">#</a> 代码执行流程：</h2>
+<p>1. 首先还是根据 key 计算出索引 i，然后查找 i 位置上的 Entry</p>
+<p>2. 若是 Entry 已经存在并且 key 等于传入的 key，那么这时候直接给这个 Entry 赋新的 value 值</p>
+<p>3. 若是 Entry 存在，但是 key 为 null，则调用 replaceStaleEntry 来更换这个 key 为空的 Entry</p>
+<p>4. 不断循环检测，直到遇到为 null 的地方，这时候要是还没在循环过程中 return，那么就在这个 null 的位置新建一个 Entry，并且插入，同时 size 增加 1</p>
+<p>5. 最后调用 cleanSomeSlots，清理 key 为 null 的 Entry，最后返回是否清理了 Entry，接下来再判断 sz 是否 &gt;= thresgold 达到了 rehash 的条件，达到的话就会调用 rehash 函数执行一次全表的扫描清理</p>
+<ul>
+<li>分析 ： ThreadLocalMap 使用线性探测法来解决哈希冲突的</li>
+</ul>
+<p>1. 该方法一次探测下一个地址，直到有空的地址后插入，若整个空间都找不到空余的地址，则产生溢出<br>
+ 2. 假设当前 table 长度为 16，也就是说如果计算出来 key 的 hash 值为 14，如果 table [14] 上已经有值，并且其 key 与当前 key 不一致，那么就发生了 hash 冲突，这个时候将 14 加 1 得到 15，取 table [15] 进行判断，这个时候如果还是冲突会回到 0，取 table [0], 以此类推，直到可以插入</p>
+<p>3. 可以把 Entry [] table 看成一个环形数组</p>
+</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.660Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-06-01T01:04:37.353Z" title="2022-6-1 9:04:37">2022-06-01</time>更新</span><span class="level-item">8 分钟读完 (大约1157个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91OSS%E7%9A%84CDN%E5%8A%A0%E9%80%9F%E5%92%8COSS%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F%E7%9A%84%E5%8C%BA%E5%88%AB/">阿里云OSS的CDN加速和OSS传输加速的区别</a></p><div class="content"><h2 id="概述"><a class="markdownIt-Anchor" href="#概述">#</a> 概述</h2>
 <p>本文主要介绍阿里云对象存储 OSS 的传输加速功能和 CDN 加速 OSS 资源的区别，以便您根据实际业务进行选择。</p>
 <h2 id="详细信息"><a class="markdownIt-Anchor" href="#详细信息">#</a> 详细信息</h2>
 <p>阿里云对象存储 OSS 以海量、安全、低成本、高可靠等特点已经成为用户存储静态资源和文件的首要选择，实际使用中面向全球各地用户访问 OSS 资源时，访问速度会受到客户端网络、OSS 的下行带宽、Bucket 地域、访问链路长等限制出现访问慢的情况。以下主要介绍 CDN 加速 OSS 和 OSS 传输加速的加速方式：</p>
@@ -392,187 +631,7 @@ MySQL8.0.28<br>
 <p>7.start slave;// 这时候就应可以了</p>
 <p>8.show slave status \G;</p>
 <p><img src="https://brath.cloud/blogImg/1620811-20190720114247073-1479221471.png" alt="img"></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-27T08:18:48.635Z" title="2022-12-27 16:18:48">2022-12-27</time>发表</span><span class="level-item"><time dateTime="2022-09-29T04:05:33.582Z" title="2022-9-29 12:05:33">2022-09-29</time>更新</span><span class="level-item">35 分钟读完 (大约5262个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/27/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/">ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</a></p><div class="content"><p>01 ZGC 简介<br>
- ZGC 是一个可扩展的低延迟垃圾收集器，能够处理 8MB 到 16TB 大小的堆，最大暂停时间为亚毫秒。</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20220929120415958.png" alt="image-20220929120415958"></p>
-<p>OpenJDK 的官网只写到这里，然后让我们自己去看 Wiki（链接 2）…… 好偷懒……</p>
-<pre><code>    Wiki的介绍是更详细一些。
-
-    Z Garbage Collector，也称为 ZGC，是一种可扩展的低延迟垃圾收集器，旨在满足以下目标：
-</code></pre>
-<p>亚毫秒最大暂停时间</p>
-<p>暂停时间不会随着堆、live-set 或 root-set 的大小而增加</p>
-<p>处理大小从 8MB 到 16TB 的堆</p>
-<p>ZGC 最初是作为 JDK 11 中的一项实验性功能引入的，并在 JDK 15 中被宣布为 Production Ready。</p>
-<p>ZGC 的几个特征：</p>
-<p>并发</p>
-<p>基于区域</p>
-<p>基于压缩</p>
-<p>NUMA 感知</p>
-<p>使用染色指针</p>
-<p>使用负载屏障（原文为 load barriers）</p>
-<p>ZGC 的核心是一个并发垃圾收集器，这意味着所有繁重的工作都在 Java 线程继续执行的同时完成。这极大地减少了垃圾收集对应用程序响应时间的影响。</p>
-<p>ZGC 项目由 HotSpot Group 赞助。</p>
-<p>下图是截止目前为止（2020-04-17）的 ZGC 的发布时间表，可以看出 ZGC 总 JDK11 开始实验性推出，JDK15 开始正式发布。</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/07193612e6885c5946cf49cd8b796561.png" alt="img"></p>
-<pre><code>    ZGC的部分参数：
-</code></pre>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/5cd0e8857e5f10201c406b4b8c23a379.png" alt="img"></p>
-<p>ZGC 部分操作：</p>
-<p>使用下述命令选项启用 ZGC</p>
-<p>-XX:+UseZGC<br>
- 启用 ZGC</p>
-<p>设置堆大小</p>
-<pre><code>ZGC 最重要的调优选项是设置最大堆大小（-Xmx&lt;size&gt;）。由于 ZGC 是一个并发收集器，因此必须选择最大堆大小，以便 
-</code></pre>
-<ol>
-<li>
-<p>堆可以容纳应用程序的实时集，</p>
-</li>
-<li>
-<p>堆中有足够的空间来允许在 GC 时处理处理分配。</p>
-</li>
-</ol>
-<p>需要多少空间取决于应用程序的分配率和 live-set 大小。一般而言，给 ZGC 的内存越多越好。但与此同时，浪费内存是不可取的，所以这一切都是为了在内存使用和 GC 需要运行的频率之间找到一个平衡点。</p>
-<p>3. 设置并发 GC 线程数</p>
-<pre><code>    第二个重要的选项是设置并发 GC 线程的数量 (-XX:ConcGCThreads=&lt;number&gt;)。ZGC 具有自动选择此数字的启发式方法。这种启发式通常效果很好，但根据应用程序的特性，这可能需要进行调整。这个选项本质上决定了应该给 GC 多少 CPU-time（ps：这个不知道咋翻译，就叫CPU时间？先不翻译）。给了ZGC太多运行时间，GC 将从应用程序中占用过多的 CPU-time。给它太少，应用程序分配垃圾的速度可能比 GC 收集它的速度快。
-
-    一般来说，如果低延迟（即低应用程序响应时间）是工业环境中的最大痛点，在配置相应操作时候就不需要太吝啬。理想情况下，系统的 CPU 利用率不应超过 70%。
-</code></pre>
-<p>4. 返回未使用内存给操作系统</p>
-<pre><code>    默认情况下，ZGC 取消提交未使用的内存，将其返回给操作系统。这对于注重内存占用的应用程序和环境很有用。可以使用 -XX:-ZUncommit 禁用此功能。此外，内存不会被取消提交，因此堆大小会缩小到最小堆大小 (-Xms) 以下。这意味着如果最小堆大小 (-Xms) 配置为等于最大堆大小 (-Xmx)，则此功能将被隐式禁用。
-
-    可以使用 -XX:ZUncommitDelay=&lt;seconds&gt; 配置取消提交延迟（默认为 300 秒）。此延迟指定内存在有资格取消提交之前应该未使用多长时间。
-
-注意事项：在 Linux 上，取消提交未使用的内存需要具有 FALLOC_FL_PUNCH_HOLE 支持的 fallocate(2)，此特性首先出现在内核版本 3.5（用于 tmpfs）和 4.3（用于 hugetlbfs）中。
-</code></pre>
-<p>5. 启用 Linux 的大页（large page）操作</p>
-<pre><code>    将 ZGC 配置为使用大页面通常会产生更好的性能（在吞吐量、延迟和启动时间方面）并且没有真正的缺点，只是设置起来稍微复杂一些。设置过程通常需要 root 权限，这就是默认情况下不启用它的原因。
-
-    在 Linux/x86 上，大页面（英文原文为large page和huge page）的大小为 2MB。
-
-    假设您需要一个 16G Java 堆。这意味着您需要 16G / 2M = 8192 个大页面。
-
-    首先为大页面池分配至少 16G（8192 页）的内存。“至少”部分很重要，因为在 JVM 中启用大页面意味着不仅 GC 会尝试将这些用于 Java 堆，而且 JVM 的其他部分也会尝试将它们用于各种 内部数据结构（代码堆、标记位图等）。因此，在本例中，我们将保留 9216 个页面 (18G) 以允许 2G 的非 Java 堆分配来使用大页面。
-</code></pre>
-<p>6. 启用 Linux 的透明大页（transparent large page）操作</p>
-<pre><code>    使用显式大页面（explicit large pages，就是5小节的大页面）的替代方法是使用透明大页面（ transparent huge pages）。通常不建议对延迟敏感的应用程序使用透明大页面（ latency sensitive，因为它往往会导致不必要的延迟峰值。但是，可能值得尝试看看系统的工作负载是否/如何受到它的影响。
-
-    注意事项：在 Linux 上，使用启用透明大页的 ZGC 需要kernel &gt;= 4.7。
-</code></pre>
-<p>7. 启用 NUMA 支持</p>
-<pre><code>    ZGC 支持 NUMA，这意味着它会尽量将 Java 堆分配指向 NUMA 本地内存。默认情况下启用此功能。但是，如果 JVM 检测到它只能使用单个 NUMA 节点上的内存，它将自动被禁用。通常，无需担心此设置，但如果您想显式覆盖 JVM 的决定，可以使用 -XX:+UseNUMA 或 -XX:-UseNUMA 选项来实现。
-
-    在 NUMA 机器（例如多插槽 x86 机器）上运行时，启用 NUMA 支持通常会显著提升性能。
-
-    注:
-
-   关于NUMA,即Non Uniform Memory Access，非统一内存管理技术。以下直接截图于百度百科：
-</code></pre>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/9fa912e0f93d4dd49a4eecd618d86951.png" alt="img"></p>
-<p>8. 启用 GC 日志</p>
-<p>打个日志而已，就截图了。</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0f12489b9377904e0ada4b5977cb3e19.png" alt="img"></p>
-<p>具体操作还是参考链接 2。</p>
-<p>02 ZGC 在 JDK17 中的最新优化<br>
-翻译自链接 4。</p>
-<pre><code>   JDK 17 于2021年 9 月 14 日发布。这是一个长期支持 (LTS) 版本，这意味着它将得到多年的支持和更新。这也是第一个包含 ZGC 生产就绪版本（production ready version）的 LTS 版本。 稍微回忆一下，JDK 11（以前的 LTS 版本）中包含了 ZGC 的实验版本，而 ZGC 的第一个生产就绪版本出现在 JDK 15（非 LTS 版本）中。
-
-    因此，可以说JDK17是第一个开始推出成熟的ZGC的长期支持的ZGC版本。
-
-    （本来还想把JDK15，JDK16啥的ZGC的翻译一下，不过既然JDK17中ZGC这么重要，就只搬运JDK17的优化好了。）
-</code></pre>
-<p>1. 动态 GC 线程数</p>
-<pre><code>    长期以来，JVM 都有一个名为
-
-    -XX:+UseDynamicNumberOfGCThreads 
-</code></pre>
-<p>的选项。它默认启用，并告诉 GC 智能地了解它用于各种操作的 GC 线程数。使用的线程数将不断重新评估，因此会随着时间而变化。这个选项很有用有几个原因。例如，很难确定给定工作负载的最佳 GC 线程数是多少。通常发生的情况是，运维人员尝试各种设置 -XX:ParallelGCThreads 和 / 或 -XX:ConcGCThreads （取决于使用的 GC），看看哪个似乎给出了最好的结果。更复杂的是，最佳 GC 线程数可能会随着应用程序经历不同阶段而随时间变化，因此设置固定数量的 GC 线程本质上可能不是最佳的。</p>
-<pre><code>    在 JDK 17 之前，ZGC 忽略 -XX:+UseDynamicNumberOfGCThreads 并始终使用固定数量的线程。在 JVM 启动期间，ZGC 使用启发式方法来决定该固定数字 (-XX:ConcGCThreads) 应该是什么。一旦设定了这个数字，它就再也不会改变了。从 JDK 17 开始，ZGC 现在支持 -XX:+UseDynamicNumberOfGCThreads 并尝试使用尽可能少、但是足够多的线程来保持以创建的速度收集垃圾。这有助于避免使用比需要更多的 CPU 时间，从而使 Java 线程可以使用更多的 CPU 时间。
-
-    另请注意，启用此功能后，-XX:ConcGCThreads 的含义从“使用这么多线程”变为“最多使用这么多线程”。除非有一个非常规的工作负载，否则你通常不需要摆弄 -XX:ConcGCThreads。ZGC 的启发式算法会根据运行的系统的大小为机器选择合适的最大线程数。
-
-    （注：就是说JDK17开始，ZGC的运行时线程数是动态的，-XX:ConcGCThreads 设置的是最大可用线程，但是如果更少的线程就能满足需求，ZGC就会使用更少的线程；如果运行中需要增加线程数，ZGC也会动态增加线程数）
-</code></pre>
-<p>为了说明此功能的实际作用，官方贴出了一下运行 SPECjbb2015 时的一些图表。</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/8d76e888d04e4ade98e9570cc2e6b6c2.png" alt="img"></p>
-<pre><code>    第一张图显示了整个运行过程中使用的 GC 线程数。SPECjbb2015 有一个初始加速阶段，随后是一个较长的阶段，其中负载（注入速率）逐渐增加。我们可以看到 ZGC 使用的线程数反映了它需要做的工作量来跟上。只有在少数情况下，它需要所有（在本例中为 5 个）线程。
-
-    JDK16和JDK17的打分比较图如下。
-</code></pre>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0ee86707c2957f6abf19e262612ec1db.png" alt="img"></p>
-<pre><code>    如果出于某种原因希望始终使用固定数量的 GC 线程（如在 JDK 16 和更早版本中），则可以使用 -XX:-UseDynamicNumberOfGCThreads 禁用此功能（注：应该没人会用吧？）。
-</code></pre>
-<p>2. 快速 JVM 终止</p>
-<pre><code>    在之前使用版本的Java程序中，如果使用的垃圾回收器是 ZGC ，终止正在运行的 Java 进程（例如，通过按 Ctrl+C 或通过让应用程序调用 System.exit()）， JVM 有时可能需要一段时间（在最坏的情况下为数秒）才能真正终止。这在一些需要快速宕机的场景下很烦人，如果某个场景需要快速终止程序，JVM的慢停止会导致一定问题。。
-
-    那么，为什么之前在使用 ZGC 时，JVM 有时会需要一些时间来终止呢？原因是 JVM 的关闭顺序需要与 GC 协调，让 GC 停止正在做的事情，进入“安全”状态。ZGC 仅在空闲时处于“安全”状态，即当前不收集垃圾。如果终止信号到达时正在进行一个非常长的 GC 周期，那么 JVM 关闭序列只需等待该 GC 周期完成，然后 ZGC 变为空闲并再次进入“安全”状态。
-
-    这已在 JDK 17 中得到解决。ZGC 现在能够中止正在进行的 GC 循环，以按需快速达到“安全”状态。终止运行 ZGC 的 JVM 现在或多或少是即时的。
-</code></pre>
-<p>3. 减少标记堆栈内存使用</p>
-<pre><code>    ZGC做条纹标记。这是指将堆划分为条带，并分配每个 GC 线程来标记其中一个条带（strip）中的对象。这有助于最小化 GC 线程之间的共享状态，并使标记过程对缓存更加友好，因为两个 GC 线程不会在堆的同一部分标记对象。这种方法还可以在 GC 线程之间实现自然的工作平衡，因为一个条带（strip）中的工作量往往大致相同。
-
-    下图是ZGC的基于多线程垃圾回收器对基于条带的Java堆内存的回收机制示意图。
-</code></pre>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3792f57ec3bd3c6ddb1b3f61b7f70b5c.png" alt="img"></p>
-<pre><code>    在 JDK 17 之前，ZGC 的标记严格遵守条带化。如果一个 GC 线程在跟踪对象图时遇到一个对象引用，该对象引用指向不属于其分配的条带的堆的一部分，则该对象引用被放置在与该其他对象关联的线程本地标记堆栈上条纹。一旦该堆栈已满（254 个条目），它就会被移交给分配给该条带处理标记的 GC 线程。将对象引用加载到尚未标记的对象的 Java 线程会做同样的事情，只是它总是将对象引用放在关联的线程本地标记堆栈上，并且不会自己做任何实际的标记工作。
-
-    这种方法适用于大多数工作负载，但也存在病态问题。如果您有一个具有一个或多个 N:1 关系的对象图，其中 N 是一个非常大的数字，那么您可能会为标记堆栈使用大量内存（如许多 GB）。我们一直都知道这可能是一个问题，您可以编写一个小型综合测试来引发它，但我们从未真正遇到过暴露它的真实工作负载。也就是说，直到来自腾讯的 OpenJDK 贡献者报告他们在野外遇到了这个问题（注：我去，鹅厂！）。
-
-    JDK 17 中对此的修复涉及通过以下方式放松严格条带化：
-</code></pre>
-<p>对于 GC 线程，无论对象引用指向哪个条带，首先尝试标记对象（即可能跳出 GC 线程分配的条带），如果尚未标记，则将对象引用推送到关联标记 堆。</p>
-<p>对于 Java 线程，首先检查对象是否已标记，如果尚未标记，则将对象引用推送到关联的标记堆栈。</p>
-<p>（注：这一块我其实看的不是很懂。要是有人有兴趣讨论的话欢迎交流）。</p>
-<pre><code>这些调整有助于阻止在病态 N:1 情况下过度使用标记堆栈内存，其中 GC 线程一遍又一遍地遇到相同的对象引用，将大量重复的对象引用推入标记堆栈。重复是没有用的，因为一个对象只需要标记一次。通过在推送之前进行标记，并且只推送以前未标记的对象，复制品的生产就会停止。
-
-我们最初有点不愿意这样做，因为 GC 线程现在正在执行原子比较和交换操作，以标记内存中属于分配给其他 GC 线程工作的条带的对象。这打破了严格的条带化，使其对缓存不太友好。Java 线程现在也在进行原子加载以查看对象是否被标记，这是他们以前没有做过的事情。同时，GC 线程完成的其他工作（扫描/跟踪对象字段和跟踪每个堆区域的活动对象/字节数）仍然遵守严格的条带化。最后，基准测试表明我们最初的担忧是没有根据的。GC 标记时间不受影响，对 Java 线程的影响也不明显。另一方面，我们现在有一个更健壮的标记方案，不会出现过多的内存使用。
-
-    （注：所以其实出现这个问题，是不是因为只是因为某厂的代码写的太烂了……）
-</code></pre>
-<p>支持 ARM 上的 macOS</p>
-<pre><code>    前段时间（注：苹果2020年的秋季发布会的消息），Apple 宣布了一项将其 Mac 计算机产品线从 x86 过渡到 ARM 的长期计划。不久之后，JEP 391: macOS/AArch64 Port 提出了 JDK 到这个新平台的移植。JVM 代码库是相当模块化的，特定于操作系统和 CPU 的代码与共享平台无关代码隔离。JDK 已经支持 macOS/x86 和 Linux/Aarch64，因此支持 macOS/Aarch64 所需的主要部分已经存在。当然，任何计划发布和支持 JDK 的 macOS/Aarch64 构建的人仍然需要做一些工作，比如投资新硬件，将这个新平台集成到 CI 管道中等。
-
-    ZGC的故事几乎相同。macOS/x86 和 Linux/Aarch64 都已经得到支持，因此主要是启用构建和测试这种新的 OS/CPU 组合的问题。从 JDK 17 开始，ZGC 在以下平台上运行：
-</code></pre>
-<p>Linux/x64</p>
-<p>Linux/AArch64</p>
-<p>macOS/x64</p>
-<p>macOS/AArch64</p>
-<p>Window/x64</p>
-<p>Windows/AArch64</p>
-<p>大多数 ZGC 代码库继续独立于平台。当前的代码分布如下所示：</p>
-<p>​        <img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d43c84500703a456f8a4ad7e2a2c686b.png" alt="img"></p>
-<p>用于循环和暂停的 GarbageCollectorMXBeans</p>
-<pre><code>    GarbageCollectorMXBean 提供有关 GC 的信息。通过这个 bean，应用程序可以提取摘要信息（到目前为止完成的 GC 次数、累计花费的 GC 时间等）并监听 GarbageCollectionNotificationInfo 通知以获取有关单个 GC 的更细粒度的信息（GC 原因、开始时间、结束时间， ETC）。
-
-    在 JDK 17 之前，ZGC 发布了一个名为 ZGC 的单个 bean。这个 bean 提供了有关 ZGC 周期的信息。一个循环包括从开始到结束的所有 GC 阶段。大多数阶段是并发的，但有些是 Stop-The-World 暂停。虽然有关周期的信息很有用，但您可能还想知道在执行 GC 上花费了多少时间在 Stop-The-World 暂停上。此信息不适用于单个 ZGC bean。为了解决这个问题，ZGC 现在发布了两个 bean，一个称为 ZGC Cycles，一个称为 ZGC Pauses。顾名思义，每个 bean 提供的信息分别映射到周期和暂停。
-</code></pre>
-<p>总结：</p>
-<pre><code>    作为第一个支持生产版本ZGC的LTS版本的JDK，JDK17中对ZGC做了下述优化：
-</code></pre>
-<p>支持 JVM 选项 -XX:+UseDynamicNumberOfGCThreads。此功能默认启用，并告诉 ZGC 对其使用的 GC 线程数保持智能，这通常会导致 Java 应用程序级别的更高吞吐量和更低延迟。</p>
-<p>使用了 ZGC 的 JVM 在停止运行时， 基本上是实时的，而之前版本花费的时间更多。</p>
-<p>标记算法现在通常使用更少的内存，并且不再容易出现过多的内存使用。</p>
-<p>ZGC 现在可以在 macOS/Aarch64 上运行。</p>
-<p>ZGC 现在发布了两个 GarbageCollectorMXBean，以提供有关 GC 周期和 GC 暂停的信息。</p>
-<p>03 一些很搞笑的事情</p>
-<pre><code>    据说有哥们在面试时候被面试官问到，ZGC的Z代表的是啥？
-
-    面试者老哥内心OS：我去葛格不讲武德啊，之前面经没有讲到这个啊。但是呆胶布，我现场编一个。
-
-    于是他说，“ZGC的Z是英文字母的最后一个字母，这说明Oracle公司想把ZGC作为Java的最终解决方案，是一个革命性的Java垃圾回收机制解决方案，blabla。”
-
-    面试官微微一笑贴出官网截屏：
-</code></pre>
-<p>​</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b5813b2129f9db814556823199eb2355.png" alt="img"></p>
-<p>翻译：ZGC 的 Z 毛线都不表示，莫得含义。</p>
-<pre><code>    面试者：不听不听王八念经。
-
-    笑死。</code></pre>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/5/">上一页</a></div><div class="pagination-next"><a href="/page/7/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link is-current" href="/page/6/">6</a></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-13T07:10:58.045Z">2023-04-13</time></p><p class="title"><a href="/2023/04/13/%E3%80%90Flutter%E3%80%91Flutter%E4%BF%AE%E5%A4%8DAndroid%2012%E6%97%A0%E6%B3%95%E6%9E%84%E5%BB%BA%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E8%87%AA%E5%8A%A8%E9%80%82%E9%85%8D%20exported%20%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90%E9%81%BF%E5%9D%91/">【Flutter】Flutter修复Android 12无法构建的问题，自动适配 exported 深入解析避坑.md</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:58:14.851Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91Graalvm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8Espringboot3.0%E5%B0%9D%E9%B2%9C/">【Java】Graalvm安装配置与springboot3.0尝鲜</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:51:29.975Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90SpringBoot%E3%80%91SpringBoot3.0%20%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E5%8D%B3%E5%B0%86%E6%9D%A5%E4%B8%B4%EF%BC%81/">【SpringBoot】SpringBoot3.0 云原生时代即将来临！</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T09:18:33.616Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E3%80%90Redis%E3%80%91SpringBoot%E6%95%B4%E5%90%88Redis%EF%BC%8C%E7%BC%93%E5%AD%98%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%20%20redisTemplate.keys(pattern)%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E6%89%BE%E4%B8%8D%E5%88%B0keys%EF%BC%8C%E2%80%9C%20%20%E2%80%9C%20%E9%80%9A%E9%85%8D%E7%AC%A6%E6%97%A0%E6%95%88/">【Redis】SpringBoot整合Redis，缓存批量删除  redisTemplate.keys(pattern)模糊查询找不到keys，“  “ 通配符无效</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">49</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">105</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/5/">上一页</a></div><div class="pagination-next"><a href="/page/7/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link is-current" href="/page/6/">6</a></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-14T01:49:54.192Z">2023-04-14</time></p><p class="title"><a href="/2023/04/14/%E3%80%90Flutter%E3%80%91Flutter%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%EF%BC%9ABloc%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B/">【Flutter】Flutter状态管理框架：Bloc的计数器应用示例</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-13T07:10:58.045Z">2023-04-13</time></p><p class="title"><a href="/2023/04/13/%E3%80%90Flutter%E3%80%91Flutter%E4%BF%AE%E5%A4%8DAndroid%2012%E6%97%A0%E6%B3%95%E6%9E%84%E5%BB%BA%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E8%87%AA%E5%8A%A8%E9%80%82%E9%85%8D%20exported%20%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90%E9%81%BF%E5%9D%91/">【Flutter】Flutter修复Android 12无法构建的问题，自动适配 exported 深入解析避坑.md</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:58:14.851Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91Graalvm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8Espringboot3.0%E5%B0%9D%E9%B2%9C/">【Java】Graalvm安装配置与springboot3.0尝鲜</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T08:51:29.975Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90SpringBoot%E3%80%91SpringBoot3.0%20%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E5%8D%B3%E5%B0%86%E6%9D%A5%E4%B8%B4%EF%BC%81/">【SpringBoot】SpringBoot3.0 云原生时代即将来临！</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T06:27:52.331Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">50</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">56</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/7f71f67568cbf455bf7b2c32345f71e3.jpg" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">为了更好的你，也为了更好的世界。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">106</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
