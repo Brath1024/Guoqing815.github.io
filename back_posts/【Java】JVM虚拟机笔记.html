@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JVM学习记录 - Brath-Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Brath-Blog"><meta name="msapplication-TileImage" content="https://brath.cloud/me.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Brath-Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="# JVM 位置：在操作系统之上运行，操作系统在硬件之上运行 JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM # JVM 体系结构：  Java File &amp;#x3D;&amp;gt; Class File &amp;#x3D;&amp;gt; Class Loader SubSystem { 1 . Loading : [1 . ApplicationClassLoader   2 . ExtClassLo"><meta property="og:type" content="blog"><meta property="og:title" content="JVM学习记录"><meta property="og:url" content="http://example.com/back_posts/%E3%80%90Java%E3%80%91JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html"><meta property="og:site_name" content="Brath-Blog"><meta property="og:description" content="# JVM 位置：在操作系统之上运行，操作系统在硬件之上运行 JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM # JVM 体系结构：  Java File &amp;#x3D;&amp;gt; Class File &amp;#x3D;&amp;gt; Class Loader SubSystem { 1 . Loading : [1 . ApplicationClassLoader   2 . ExtClassLo"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png"><meta property="og:image" content="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/JVM%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E7%94%BB%E5%9B%BE%EF%BC%88%E7%B2%BE%E7%BB%86%EF%BC%89.jpg"><meta property="og:image" content="https://img-blog.csdnimg.cn/20201217213314510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvZGV5YW5iYW8=,size_16,color_FFFFFF,t_70"><meta property="og:image" content="https://img-blog.csdnimg.cn/20200312212803678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDkyNzQzNg==,size_16,color_FFFFFF,t_70"><meta property="og:image" content="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908225948384.png"><meta property="og:image" content="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908230652551.png"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png"><meta property="article:published_time" content="2023-04-20T01:23:36.220Z"><meta property="article:modified_time" content="2023-04-20T01:23:36.220Z"><meta property="article:author" content="Brath"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/back_posts/%E3%80%90Java%E3%80%91JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html"},"headline":"JVM学习记录","image":["https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png","https://brath.oss-cn-shanghai.aliyuncs.com/pigo/JVM%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E7%94%BB%E5%9B%BE%EF%BC%88%E7%B2%BE%E7%BB%86%EF%BC%89.jpg","https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908225948384.png","https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908230652551.png","https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png"],"datePublished":"2023-04-20T01:23:36.220Z","dateModified":"2023-04-20T01:23:36.220Z","author":{"@type":"Person","name":"Brath"},"publisher":{"@type":"Organization","name":"Brath-Blog","logo":{"@type":"ImageObject","url":"https://brath.cloud/me.png"}},"description":"# JVM 位置：在操作系统之上运行，操作系统在硬件之上运行 JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM # JVM 体系结构：  Java File &#x3D;&gt; Class File &#x3D;&gt; Class Loader SubSystem { 1 . Loading : [1 . ApplicationClassLoader   2 . ExtClassLo"}</script><link rel="canonical" href="http://example.com/back_posts/%E3%80%90Java%E3%80%91JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html"><link rel="icon" href="https://brath.cloud/me.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">JVM学习记录</h1><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="扫码_搜索联合传播样式-标准色版"></p>
+<h4 id="jvm位置在操作系统之上运行操作系统在硬件之上运行"><a class="markdownIt-Anchor" href="#jvm位置在操作系统之上运行操作系统在硬件之上运行">#</a> JVM 位置：在操作系统之上运行，操作系统在硬件之上运行</h4>
+<p>JDK（JRE（JVM））: JDK 包含了 JRE，JRE 包含了 JVM</p>
+<h4 id="jvm体系结构"><a class="markdownIt-Anchor" href="#jvm体系结构">#</a> JVM 体系结构：</h4>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/JVM%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E7%94%BB%E5%9B%BE%EF%BC%88%E7%B2%BE%E7%BB%86%EF%BC%89.jpg" alt="JVM底层结构画图（精细）"></p>
+<p>Java File</p>
+<p>=&gt; Class File</p>
+<p>=&gt; Class Loader SubSystem {</p>
+<p>1 . Loading : [1 . ApplicationClassLoader   2 . ExtClassLoader  3 . BootStrapClassLoader]</p>
+<p>2 . Linking : [1. Verify  2.Prepare  3. Resolve ]</p>
+<p>3 . Initialization</p>
+<p>}</p>
+<p>=&gt; RuntimeData Areas ：(1,2) : Memory sharing，(3,4,5) : Memory is not shared{</p>
+<p>1 . Method Area</p>
+<p>2 . Heap Area </p>
+<p>3 . Stack Area   {</p>
+<p>T1 [1. Thread  2. Stack Frame ]</p>
+<p>T2 [1. Thread  2. Stack Frame ]</p>
+<p>}</p>
+<p>4 . Native MethodStack Area    --&gt; JNI</p>
+<p>5 . Program Counter Register [PC Registers for Thread]</p>
+<p>}</p>
+<p>=&gt; Execution Engine {</p>
+<p>1 . interpreter</p>
+<p>2 . JIT Compiler  {</p>
+<p>Intermediate Code Generator</p>
+<p>=&gt; Code Optimizer</p>
+<p>=&gt; Target Code Generator</p>
+<p>}</p>
+<p>3 . Profiler</p>
+<p>4 . Garbage Collection</p>
+<p>}</p>
+<p>=&gt; Java Native Method Interface （JNI）</p>
+<p>=&gt; Native Method Library</p>
+<h4 id="类加载器-classloader-subsystem-类加载器子系统-运行时在堆中运行-不运行时是独立子系统"><a class="markdownIt-Anchor" href="#类加载器-classloader-subsystem-类加载器子系统-运行时在堆中运行-不运行时是独立子系统">#</a> 类加载器： ClassLoader SubSystem : 类加载器子系统 运行时在堆中运行 不运行时是独立子系统</h4>
+<p>application ClassLoader 应用程序加载器  主要负责加载应用程序的主函数类</p>
+<p>Ext ClassLoader 扩展加载器  主要负责加载 jre/lib/ext 目录下的一些扩展的 jar。</p>
+<p>BootStrap ClassLoader 根类加载器  主要负责加载核心的类库 (java.lang.* 等)</p>
+<p>加载过程：class File =&gt; Loading 加载 =&gt; Linking （验证，准备，解析） 链接 =&gt; Initialization 初始化</p>
+<h4 id="双亲委派机制"><a class="markdownIt-Anchor" href="#双亲委派机制">#</a> 双亲委派机制</h4>
+<p><img src="https://img-blog.csdnimg.cn/20201217213314510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvZGV5YW5iYW8=,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>从上图中我们就更容易理解了，当一个 Hello.class 这样的文件要被加载时。不考虑我们自定义类加载器，首先会在 AppClassLoader 中检查是否加载过，如果有那就无需再加载了。如果没有，那么会拿到父加载器，然后调用父加载器的 loadClass 方法。父类中同理也会先检查自己是否已经加载过，如果没有再往上。注意这个类似递归的过程，直到到达 Bootstrap classLoader 之前，都是在检查是否加载过，并不会选择自己去加载。直到 BootstrapClassLoader，已经没有父加载器了，这时候开始考虑自己是否能加载了，如果自己无法加载，会下沉到子加载器去加载，一直到最底层，如果没有任何加载器能加载，就会抛出 ClassNotFoundException。那么有人就有下面这种疑问了？</p>
+<p>为什么要设计这种机制<br>
+这种设计有个好处是，如果有人想替换系统级别的类：String.java。篡改它的实现，在这种机制下这些系统的类已经被 Bootstrap classLoader 加载过了（为什么？因为当一个类需要加载的时候，最先去尝试加载的就是 BootstrapClassLoader），所以其他类加载器并没有机会再去加载，从一定程度上防止了危险代码的植入。</p>
+<p>沙箱安全机制</p>
+<p>在 Java 中将执行程序分成本地代码和远程代码两种，本地代码默认视为可信任的，而远程代码则被看作是不受信的。对于授信的本地代码，可以访问一切本地资源。而对于非授信的远程代码在早期的 Java 实现中，安全依赖于沙箱 (Sandbox) 机制。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200312212803678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDkyNzQzNg==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>当前最新的安全机制实现，则引入了域 (Domain) 的概念。虚拟机会把所有代码加载到不同的系统域和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统域的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域 (Protected Domain)，对应不一样的权限 (Permission)。存在于不同域中的类文件就具有了当前域的全部权限，如下图所示</p>
+<h4 id="native"><a class="markdownIt-Anchor" href="#native">#</a> Native</h4>
+<p><strong>native 即 JNI,Java Native Interface</strong></p>
+<p>Native 关键字是  JNI，也就是 java 本地方法接口，用来调用本地方法库，可以调用本地方法中的 C 语言代码</p>
+<h4 id="pc寄存器"><a class="markdownIt-Anchor" href="#pc寄存器">#</a> PC 寄存器</h4>
+<p>每次线程启动的时候会创建一个 PC 寄存器，保存正在执行的 JVM 指令地址，每个线程都有自己的 PC 寄存器，是一个比较小的内存空间，是为一个一个不会出现 OutOfMemoryError 的内存区域，它的生命周期随着线程的创建而创建，随着线程的结束而死亡。</p>
+<h4 id="方法区"><a class="markdownIt-Anchor" href="#方法区">#</a> 方法区</h4>
+<p>Hotspot 虚拟机，方法区别称：non-heap（非堆），其实就是存储堆类型的数据，而不占据堆内存的空间</p>
+<p>方法区和堆区线程共享，方法区大小和堆一样，可以选择固定大小或者拓展</p>
+<p>方法区大小决定了系统可以保存多少个类，如果系统定义了太多的类，导致方法区溢出，虚拟机同样会抛出内存溢出错误。</p>
+<p>关闭 JVM 就会释放这个区域的内存</p>
+<p>设置方法区的内存大小：</p>
+<h4 id="jdk17-之前"><a class="markdownIt-Anchor" href="#jdk17-之前">#</a> JDK1.7 之前：</h4>
+<p><strong>-XX：PermSize 设置永久代初始分配空间  默认是 20.75m</strong></p>
+<p><strong>-XX：MaxPermSize 设置最大永久代分配空间，32 位机器默认 64m，64 位机器默认 82m</strong></p>
+<h4 id="jdk18-及以后永久代被元空间代替metaspace"><a class="markdownIt-Anchor" href="#jdk18-及以后永久代被元空间代替metaspace">#</a> JDK1.8 及以后：永久代被元空间代替（MetaSpace）</h4>
+<p>元空间大小可以用参数：-XX:MetaspaceSzie 和 -XX:MaxMetaspaceSize 指定</p>
+<p>-XX:MetaspaceSzie 默认 21.75m -XX:MaxMetaspaceSize 默认 - 1 没有限制</p>
+<p>默认情况下，虚拟机会耗尽所有可用的系统内存，如果元空间发生溢出，虚拟机照样会抛出 OOM</p>
+<p>如果初始高位线设置过低，通过垃圾回收器日志可以观察到 Full GC 多次调用，为了避免频繁 GC，</p>
+<p>建议将 - XX:MetaspaceSize 设置为一个相对较高的值。</p>
+<h4 id="栈数据结构"><a class="markdownIt-Anchor" href="#栈数据结构">#</a> 栈：数据结构</h4>
+<p>程序 = 数据结构 + 算法</p>
+<p>先进后出，后进先出</p>
+<p>栈是桶的概念：先进去的后出来，后进去的先出来</p>
+<p>栈有压栈、弹栈</p>
+<p>队列是管道概念：先进先出 (F I F O) ，后进后出 First Input First Out</p>
+<p>喝多了吐就是栈，吃多了拉就是队列</p>
+<p>栈：主管程序运行，生命周期和线程同步；</p>
+<p>main 主线程结束，栈内存也就释放了，对于栈来说，不存在垃圾回收问题，一旦线程结束，栈就 Over 了。</p>
+<p>栈存什么东西：</p>
+<p>八大基本数据类型 + 对象的引用地址 + 实例方法</p>
+<p>栈运行原理：栈帧：方法索引，输入输出参数，本地变量，类引用，父帧，子帧</p>
+<p>栈满了就会抛出错误 Error：StackOverflowError 栈溢出</p>
+<h3 id="堆heap"><a class="markdownIt-Anchor" href="#堆heap">#</a> 堆：Heap</h3>
+<p>​		一个 JVM 只有一个堆内存，堆内存大小是可以调节的。</p>
+<p>​		类加载器读取的类文件后，一般会把：类，方法，常量，变量，引用类型的真实对象放到堆中。</p>
+<p>​		堆内存还要细分为三个区域：{</p>
+<p>新生代：Eden Space：</p>
+<p>Survior0 区和 Survior1 区：幸存者 0/1 区</p>
+<p>经过新生代的轻 GC 15 次的考验进入老年代。</p>
+<p>老年代：重量级 Full GC 垃圾回收</p>
+<p>永久代：（1.8 移除）</p>
+<p>GC 垃圾回收集中在新生代和老年代执行。</p>
+<p>假设内存满了，爆出 OOM，堆内存溢出。</p>
+<p>内存溢出代码怎么写：</p>
+<p>利用 while 循环一个字符串无限 += 随机数</p>
+<p>JDK8 以后，永久代被移除，更名为元空间：MetaSpace</p>
+<p>}</p>
+<h4 id="详解"><a class="markdownIt-Anchor" href="#详解">#</a> 详解：</h4>
+<h5 id="新生代"><a class="markdownIt-Anchor" href="#新生代">#</a> 新生代：</h5>
+<p>​	类：诞生成长的地方，也可能类死亡的地方</p>
+<p>​	Eden 区、幸存者 0 和 1 区，</p>
+<p>​	所有对象都是在 Eden 区 new 出来的</p>
+<p>​	Eden 区没死亡的对象在幸存者区存活</p>
+<p>​	如果 Eden 区存储触发了轻 GC 回收机制，就会对 Eden 区进行清除，存活下来对象在幸存区，清除的对象会消失。当 Eden 区和幸存者区都满了之后会执行一次 Full GC，再次存活下来的对象会进入老年代。</p>
+<p>Tips：新生代 99% 都是临时对象！，能进入老年代的对象并不多。所以平时很少见到 OOM 的错误</p>
+<h5 id="老年代"><a class="markdownIt-Anchor" href="#老年代">#</a> 老年代：</h5>
+<p>每次发生轻 GC 会对新生代进行对象清理，当新生代和幸存区的对象在轻 GC 清除下存活 15 次之后，进入老年代</p>
+<p>永久代：用来存放 jdk 自身携带的 calss 对象，interface 元数据，存储的是运行的一些时环境，永久代不存在垃圾回收，关闭 JJVM 虚拟机就会释放永久代内存。</p>
+<p>假设一个启动类，加载了大量的第三方 jar 包，或者一个 tomcat 部署了太多应用，或者大量动态生成的反射类，如果不断的加载，可能会导致永久代内存溢出。</p>
+<p>jdk1.6 之前：永久代，常量池存在于方法区中</p>
+<p>jdk1.7：去永久代，常量池在堆中</p>
+<p>jdk1.8：无永久代，常量池在元空间中</p>
+<p><strong>元空间：</strong></p>
+<p>（方法区）：非堆</p>
+<p>非堆指的是空间上，不属于堆空间；但是由于存储的内容，特性上又被称为堆</p>
+<p>默认情况下：虚拟机被分配到的总内存是电脑内存的 1/4 ，而初始化的内存只有 1/64</p>
+<p>因为与堆共享内存，逻辑上存在，物理上不存在</p>
+<p><img src="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908225948384.png" alt="image-20210908225948384"></p>
+<p><img src="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/image-20210908230652551.png" alt="image-20210908230652551"></p>
+<p>dump 文件～Jprofiler 插件</p>
+<p>-Xms : 初始化内存</p>
+<p>-Xmx : 最大内存</p>
+<p>-XX:+PrintGCDetails  打印 GC 回收的详细信息</p>
+<p>-XX:+HeapDumpOnOutOfMemoryError 发生 OOM 异常打印 dump 内存快照</p>
+<p>-XX:MaxTenuringReshlod 设置最大存活时间，默认是 15 次</p>
+<p>GC：垃圾回收</p>
+<p>JVM 在进行 GC 时：大部分回收都在新生代，并不是三个区都回收</p>
+<p>新生代</p>
+<p>幸存区（form、to）Survior0、Survior1 区</p>
+<p>老年代</p>
+<p>GC 两个种类：轻 GC（GC）、重 GC（Full GC）</p>
+<p>轻 GC 对新生代和幸存区进行回收</p>
+<p>重 GC 进行全局回收</p>
+<p>如何区分 from 和 to 区：谁空谁是 to 区</p>
+<p>1 . 每次 GC 都会将 Eden 区活的对象移到幸存区中：一旦 Eden 区被 GC 后，就会是空的！</p>
+<p>2 . 当一个对象经历了 15 次 GC，还没有死，就会进入老年代</p>
+<p>-XX:MaxTenuringReshold，通过这个参数可以设定进入老年代的时间（指定在 0~15 次之间）</p>
+<h4 id="常用算法"><a class="markdownIt-Anchor" href="#常用算法">#</a> <strong>常用算法：</strong></h4>
+<p>**1 . 标记清除 **</p>
+<p>分为两步骤：标记 ---- 清除</p>
+<p>标记：扫描，对存活的对象进行标记</p>
+<p>清除：扫描，对没有标记的对象进行清除</p>
+<p>优点：简单，成功率高</p>
+<p>缺点：两次扫描严重耗时，清除会产生内存碎片</p>
+<p><strong>2 .  标记压缩（标记 — 清除 — 压缩）</strong></p>
+<p>标记清除的优化版：防止内存碎片产生</p>
+<p>在标记清除基础上，再次扫描，向一端移动仍存活的对象，清除另一外的碎片</p>
+<p>优点：在标记清除优点上优化了内存碎片</p>
+<p>缺点：对于标记清除又多了一次移动成本，时间增加</p>
+<p><strong>3 .  复制算法</strong>（新生代主要用的复制算法）</p>
+<p>把 from 区向 to 区复制一份，然后清空 from 区，这时 from 区会变成 to 区，复制过去的 to 区变成 from 区等待回收。</p>
+<p>优点：没有内存碎片</p>
+<p>缺点：浪费内存空间（多了一半空间永远是 to 区，假设对象 100% 存活）极端情况下不适用</p>
+<p>复制算法最佳使用场景：对象存活度较低的时候，新生区使用复制算法！</p>
+<p><strong>4 . 分代收集算法：</strong></p>
+<p>​		<strong>由于每个收集算法都无法符合所有的场景，就好比每个对象所在的内存阶段不一样，被回收的概率也不一样，比如在新生代，基本 90% 的对象会被回收，而到了老年代则一半以上的对象存活，所以针对不同的场景，回收的策略也就不一样，所以引出了分代收集算法，根据新生代和老年代不同的场景下使用不同的算法，比如新生代用复制算法，老年代则用标记整理算法</strong></p>
+<p><strong>5.  引用计数器（不高效）</strong></p>
+<p>给每个对象设置计数器，只要有引用就会计数，当一个对象计数器为 0 时，进行回收。缺点：效率低下，现在基本不用</p>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结：</h2>
+<p>内存效率：复制算法 &gt; 标记清除算法 &gt; 标记压缩（时间复杂度）</p>
+<p>内存整齐度：复制算法 == 标记压缩算法 &gt; 标记清除算法</p>
+<p>内存利用率：标记压缩算法 == 标记清除算法 &gt; 复制算法</p>
+<p>// 思考一个问题：难道没有最优算法吗？</p>
+<p>答案：永远不能有最优算法。只有最合适的算法。</p>
+<p>GC：分代收集算法：根据每个代需求来配置不同算法</p>
+<p>年轻代：存活率低：需求时间短：所以用复制算法</p>
+<p>老年代：存活率高、区域大：标记清除 + 标记压缩混合</p>
+<p>内存碎片不是很多就标记清除，内存碎片太多就用压缩</p>
+<p>JMM：</p>
+<p>1 . 什么是 JMM：Java 内存模型（Java Memory Model）</p>
+<p>2 . JMM 作用：</p>
+<p>3 . 如何学习：</p>
+<p>经历过很多面试大部分都会问一句： 你知道 Java 内存模型么？ 然后我就 pulapula 的说一大堆什么堆呀，栈呀，GC 呀什么的，这段时间把 JVM 虚拟机和多线程编程完整的学习了一遍，发现 JMM 和堆 / 栈这些完全不是一个概念，不知道是不是就是因为这才被拒了十来次的 / 尴尬。</p>
+<p>JVM 是 Java 实现的虚拟计算机（Java Virtual Machine），对于熟悉计算机结构的同学，我感觉把这些概念和物理机对应起来更好理解。</p>
+<p>JVM 对应的就是物理机，它有存放数据的存储区：堆、栈等由 JVM 管理的内存（对应于物理机的内存）、执行数据计算的执行单元：线程（对应于物理机的 CPU）、加速线程执行的本次存储区：可能会从存储区里分配一块空间来存储线程本地数据，比如栈（对应于物理机的 cache）。</p>
+<p>众所周知，现代计算机一般都会包含多个处理器，多个处理器共享主内存。为了提升性能，会在每个处理器上增加一个小容量的 cache 加速数据读写。cache 会导致了缓存一致性问题，为了解决缓存一致性问题又引入了一系列 Cache 一致性协议（比如 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol）来解决 CPU 本地缓存和主内存数据不一致问题。</p>
+<p>而 JVM 中管理下的存储空间（包括堆、栈等）就对应与物理机的内存；</p>
+<p>线程本次存储区（例如栈）就对应于物理机的 cache；</p>
+<p>而 JMM 就对应于类似于 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol 这样的缓存一致性协议，用于定义数据读写的规则。</p>
+<p>JMM 相对于物理机的缓存一致性协议来说它还要处理 JVM 自身特有的问题：重排序问题，参见： <a target="_blank" rel="noopener" href="http://cmsblogs.com/?p=2116%E3%80%82">http://cmsblogs.com/?p=2116。</a></p>
+<p>那么 JMM 都有哪些内容呢？</p>
+<p>官方文档： <a target="_blank" rel="noopener" href="http://101.96.10.64/www.cs.umd.edu/~pugh/java/memoryModel/CommunityReview.pdf">http://101.96.10.64/www.cs.umd.edu/~pugh/java/memoryModel/CommunityReview.pdf</a></p>
+<p>通俗理解就是 happens-before 原则 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenssy/p/6393321.html">https://www.cnblogs.com/chenssy/p/6393321.html</a></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="二维码plus"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JVM学习记录</p><p><a href="http://example.com/back_posts/【Java】JVM虚拟机笔记.html">http://example.com/back_posts/【Java】JVM虚拟机笔记.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Brath</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-04-20</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-04-20</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="sharethis-inline-share-buttons"></div><script src="https://brath.cn" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://brath.cloud/zfb.jpg" alt="支付宝"></span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://brath.cloud/wx.jpg" alt="微信"></span></a></div></div></div><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="SOHUCS" sid="back_posts/【Java】JVM虚拟机笔记.html"></div><script charset="utf-8" src="https://changyan.sohu.com/upload/changyan.js"></script><script>window.changyan.api.config({appid: 'cywzQRCbe',conf: '485cd826ef6d780dcea71d0f3b37304a'});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:52:53.490Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90HEXO%E3%80%91%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">【HEXO】使用Hexo搭建属于自己的博客</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.463Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.459Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E5%A4%96%E8%AE%BE%E3%80%91%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%E8%BD%B4%E4%BD%93%E6%80%8E%E4%B9%88%E9%80%89%EF%BC%9F%E4%B8%89%E6%A8%A1%E7%83%AD%E6%8F%92%E6%8B%94%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B/">【外设】机械键盘轴体怎么选？三模热插拔原来是这么回事</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.456Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91DDD%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%9E%8B/">【架构】DDD分层架构模型</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.452Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">119</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">119</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">119</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

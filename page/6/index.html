@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Brath-Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Brath-Blog"><meta name="msapplication-TileImage" content="https://brath.cloud/me.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Brath-Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Brath-Blog"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Brath-Blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="Brath"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Brath-Blog","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"Brath"},"publisher":{"@type":"Organization","name":"Brath-Blog","logo":{"@type":"ImageObject","url":"https://brath.cloud/me.png"}},"description":""}</script><link rel="icon" href="https://brath.cloud/me.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.298Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.844Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">8 分钟读完 (大约1225个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/">Maven加强版 — mvnd的使用测试</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="maven加强版-mvnd的使用测试"><a class="markdownIt-Anchor" href="#maven加强版-mvnd的使用测试">#</a> Maven 加强版 — mvnd 的使用测试</h1>
+<p>Maven、gradle 作为主流的构建工具，几乎所有的 Java 项目都使用，但是 Maven 相对 gradle 来说，构建还是太慢了。特别是构建十几个子项目的程序。</p>
+<p>如果要把项目从 Maven 转换成 gradle，成本也是巨大的。</p>
+<p>但是现在有了 maven-mvnd ，可以使构建变得更快。</p>
+<h2 id="1-maven-mvnd介绍"><a class="markdownIt-Anchor" href="#1-maven-mvnd介绍">#</a> <strong>1、maven-mvnd 介绍</strong></h2>
+<p><code>maven-mvnd</code>  是 <code>Apache Maven团队</code> 借鉴了 <code>Gradle</code>  和 <code>Takari</code>  的优点，衍生出来的更快的构建工具，是 maven 的 <code>强化版</code> 。</p>
+<p>github 地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/apache/maven-mvnd">https://github.com/apache/maven-mvnd</a></p>
+<p>maven-mvnd 特性：</p>
+<ul>
+<li>嵌入 Maven (所以不需要单独安装 Maven)； <code>maven 过渡到 maven-mvnd</code>  的过程中实现  <code>无缝切换</code> ！所以不需要再安装 maven 或进行复杂的配置更改。</li>
+<li>实际的构建发生在一个长期存在的后台进程中，也就是守护进程。如果没有为构建请求服务的空闲守护进程，则可以并行产生多个守护进程。</li>
+<li>一个守护进程实例可以处理来自 mvnd 客户机的多个连续请求。</li>
+<li>使用 GraalVM 构建的本地可执行文件。与传统的 JVM 相比，它启动更快，使用的内存更少。</li>
+</ul>
+<p>这种架构带来的优势有：</p>
+<ul>
+<li>运行实际构建的 JVM 不需要为每个构建重新启动，节省时间。</li>
+<li>JVM 中的实时 (JIT) 编译器生成的本机代码也保留了下来。与 Maven 相比，JIT 编译花费的时间更少。在重复构建过程中，JIT 优化的代码可以立即使用。这不仅适用于来自 Maven 插件和 Maven Core 的代码，也适用于来自 JDK 本身的所有代码。</li>
+</ul>
+<h2 id="2-使用步骤"><a class="markdownIt-Anchor" href="#2-使用步骤">#</a> <strong>2、使用步骤</strong></h2>
+<h3 id="21-下载"><a class="markdownIt-Anchor" href="#21-下载">#</a> <strong>2.1、下载</strong></h3>
+<p>下载：<a href="https://link.zhihu.com/?target=https%3A//github.com/mvndaemon/mvnd/releases">https://github.com/mvndaemon/mvnd/releases</a></p>
+<p><img src="https://brath.cloud/blogImg/v2-a58a6f79a75eeeb834275d74212cacb1_720w.jpg" alt="img"></p>
+<p>我这里是 windows，下载  <code>mvnd-0.7.1-windows-amd64.zip</code>  版本即可。</p>
+<h3 id="22-安装"><a class="markdownIt-Anchor" href="#22-安装">#</a> <strong>2.2、安装</strong></h3>
+<p>直接解压。</p>
+<p>然后配置环境变量：将 bin 目录添加到 PATH</p>
+<h3 id="23-测试"><a class="markdownIt-Anchor" href="#23-测试">#</a> <strong>2.3、测试</strong></h3>
+<p>打开 CMD 终端，输入  <code>mvnd -v</code></p>
+<p>可以看到如下信息表示安装成功：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\HaC&gt; mvnd -v</span><br><span class="line">mvnd native client 0.7.1-windows-amd64 (97c587c11383a67b5bd0ff8388bd94c694b91c1e)</span><br><span class="line">Terminal: org.jline.terminal.impl.jansi.win.JansiWinSysTerminal</span><br><span class="line">Apache Maven 3.8.3 (ff8e977a158738155dc465c6a97ffaf31982d739)</span><br><span class="line">Maven home: E:\apache-mvnd-0.7.1-windows-amd64\mvn</span><br><span class="line">Java version: 1.8.0_131, vendor: Oracle Corporation, runtime: E:\JDK1.8\jre</span><br><span class="line">Default locale: zh_CN, platform encoding: GBK</span><br><span class="line">OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;</span><br></pre></td></tr></table></figure>
+<p>可以看到 mvnd 集成了 Maven 3.8.3 版本。</p>
+<h3 id="24-使用"><a class="markdownIt-Anchor" href="#24-使用">#</a> <strong>2.4、使用</strong></h3>
+<p>在使用上和 Maven 一样，参数也一致。</p>
+<p>Maven 使用  <code>mvn clean package</code>  ；使用 Maven-mvnd 只需要变成  <code>mvnd clean package</code>  即可，其他同理。</p>
+<h3 id="25-配置修改"><a class="markdownIt-Anchor" href="#25-配置修改">#</a> <strong>2.5、配置修改</strong></h3>
+<p>为了最小程度的兼容原来的 Maven，可以使用原来的  <code>setting.xml</code></p>
+<p>打开 Maven-mvnd 安装目录下 的  <code>/conf/mvnd.properties</code>  文件，修改：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">maven.settings</span>=<span class="string">E://apache-maven-3.5.4-bin//apache-maven-3.5.4//conf//settings.xml</span></span><br></pre></td></tr></table></figure>
+<p>（注意是  <code>//</code> ）</p>
+<h2 id="3-打包对比"><a class="markdownIt-Anchor" href="#3-打包对比">#</a> <strong>3、打包对比</strong></h2>
+<p>由于 mvnd-0.7.1 版本使用了 Maven 3.8.3 版本，我这里同样使用 Maven 3.8.3 进行对比。</p>
+<p>命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># maven 打包命令</span><br><span class="line">mvn clean package -Dmaven.test.skip=true</span><br><span class="line"># mvnd 打包命令</span><br><span class="line">mvnd clean package -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+<p>电脑配置：</p>
+<p>CPU：Intel® Core™ i7-4790 CPU @ 3.60GHz 3.60 GHz</p>
+<p>内存：16GB</p>
+<p>结果如下：</p>
+<ul>
+<li>13 个子项目</li>
+</ul>
+<p><img src="https://brath.cloud/blogImg/v2-dd0b655c2c27661612a479ef242058c8_720w.jpg" alt="img">41 秒 vs 21 秒</p>
+<p>可以看到 <strong>mvnd 打包的总时间比 mvn 快了不少</strong>，因为 mvnd 使用了 CPU 的多核心，可以看到每个子模块打包的时间都差不多，所以在单核的机器，就不要尝试使用 mvnd 了。</p>
+<ul>
+<li>19 个子项目</li>
+</ul>
+<p><img src="https://brath.cloud/blogImg/v2-0a301e678b6ebab5577d899b6230ffe5_720w.jpg" alt="img">32 秒 vs 10 秒</p>
+<p>呈现子项目越多，相对速度更快的趋势。</p>
+<p>总的来说：</p>
+<p><strong>如果项目模块很多，可以尝试使用 mvnd 进行辅助打包，比如 测试、生产，可以节省很多时间；</strong></p>
+<p><strong>开发则可以继续使用 mvn ，毕竟 IDEA 无法集成 mvnd，可以在 terminal 通过命令打包。</strong></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.295Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.827Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">2 分钟读完 (大约340个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Jenkins%E3%80%91Linux%E4%B8%8B%E4%BD%BF%E7%94%A8war%E5%8C%85%E9%83%A8%E7%BD%B2Jenkins/">Linux下使用war包部署Jenkins</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="linux下使用war包部署jenkins"><a class="markdownIt-Anchor" href="#linux下使用war包部署jenkins">#</a> Linux 下使用 war 包部署 Jenkins</h1>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h2>
+<p>jenkins 可以多种方式安装，可以 docker，也可以直接下载 war 包，然后 java -jar 方式启动。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.创建安装目录</span><br><span class="line">	mkdir -p /jenkins</span><br><span class="line">2.切换目录</span><br><span class="line">	cd  /jenkins</span><br><span class="line">3.下载war包</span><br><span class="line">	wget -O /jenkins/jenkins.war http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">4.启动</span><br><span class="line">	BUILD_ID=dontKillMe nohup java -DJENKINS_HOME=/jenkins (如果有历史home可以指定其他home：/root/.jenkins) -Xms1046m -Xmx2000m -jar jenkins.war --httpPort=9444  &gt;&gt;jenkinsLog.log 2&gt;&amp;1 &amp;</span><br><span class="line">5.访问</span><br><span class="line">	http://&#123;your ip&#125;:9444</span><br></pre></td></tr></table></figure>
+<h3 id="备注"><a class="markdownIt-Anchor" href="#备注">#</a> <strong>备注:</strong></h3>
+<ol>
+<li>–httpPort 自定义端口</li>
+<li>jenkins 默认工作目录：/root/.jenkins</li>
+<li>nohup 后台启动</li>
+<li>‘&gt;&gt;log’ 以追加的方式记录日志</li>
+<li>2&gt;&amp;1 2: 标准异常输出 1: 标准输出 ，2&gt;&amp;1 两种输出都记录到 log 文件中</li>
+<li>&amp; 后台启动方式</li>
+<li>BUILD_ID=dontKillMe 防止误杀包</li>
+</ol>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.292Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.835Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">6 分钟读完 (大约916个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Jenkins%E3%80%91Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/">Linux环境下安装jenkins</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="linux环境下安装jenkins"><a class="markdownIt-Anchor" href="#linux环境下安装jenkins">#</a> Linux 环境下安装 jenkins</h1>
+<h3 id="1-添加存储库"><a class="markdownIt-Anchor" href="#1-添加存储库">#</a> 1、添加存储库</h3>
+<p>yum 的 repo 中默认没有 Jenkins，需要先将 Jenkins 存储库添加到 yum repos，执行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span><br></pre></td></tr></table></figure>
+<p>完成界面：</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/20201231171035460.png" alt="在这里插入图片描述"></p>
+<p>然后执行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装jenkins"><a class="markdownIt-Anchor" href="#2-安装jenkins">#</a> 2、安装 jenkins</h3>
+<p>执行安装命令： yum install jenkins<br>
+ 如下图所示，出现询问是否下载时，输入 y，然后点击回车，等待安装完成：<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/20201231171215646.png" alt="在这里插入图片描述"></p>
+<h3 id="3-修改配置"><a class="markdownIt-Anchor" href="#3-修改配置">#</a> <strong>3、修改配置</strong></h3>
+<p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=jenkins&amp;spm=1001.2101.3001.7020">jenkins</a> 安装成功后，默认的用户是 jenkins，端口是 8080，为了防止冲突，并且给用户赋权限，我们修改用户名和端口。<br>
+输入命令，进入 jenkins 配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/jenkins</span><br></pre></td></tr></table></figure>
+<p>找到如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_USER=&quot;jenkins&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Type:        string</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Default: &quot;false&quot;</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Whether to skip potentially long-running chown at the</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$JENKINS_HOME</span> location. Do not <span class="built_in">enable</span> this, <span class="string">&quot;true&quot;</span>, unless</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">you know what you<span class="string">&#x27;re doing. See JENKINS-23273.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">#JENKINS_INSTALL_SKIP_CHOWN=&quot;false&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Type: string</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Default:     &quot;-Djava.awt.headless=true&quot;</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Options to pass to java when running Jenkins.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">JENKINS_JAVA_OPTIONS=&quot;-Djava.awt.headless=true&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Type:        integer(0:65535)</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Default:     8080</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Port Jenkins is listening on.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Set to -1 to disable</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">JENKINS_PORT=&quot;8080&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Type:        string</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># Default:     &quot;&quot;</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"># ServiceRestart: jenkins</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># IP address Jenkins listens on for HTTP requests.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Default is all interfaces (0.0.0.0).</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"></span></span></span><br></pre></td></tr></table></figure>
+<h4 id="修改用户名端口"><a class="markdownIt-Anchor" href="#修改用户名端口">#</a> 修改用户名，端口：</h4>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/20201231171521366.png" alt="在这里插入图片描述"></p>
+<h3 id="若为云服务器需配置安全组并开放端口才可以正常访问"><a class="markdownIt-Anchor" href="#若为云服务器需配置安全组并开放端口才可以正常访问">#</a> 若为云服务器，需配置安全组并开放端口才可以正常访问</h3>
+<h1 id="启动jenkins"><a class="markdownIt-Anchor" href="#启动jenkins">#</a> 启动 jenkins</h1>
+<h4 id="1如果是2022年7月以后安装的jekins需要下载jdk11或者jdk17版本的jdk环境"><a class="markdownIt-Anchor" href="#1如果是2022年7月以后安装的jekins需要下载jdk11或者jdk17版本的jdk环境">#</a> 1. 如果是 2022 年 7 月以后安装的 jekins，需要下载 jdk11 或者 jdk17 版本的 jdk 环境</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install fontconfig java-11-openjdk</span><br></pre></td></tr></table></figure>
+<h3 id="设置自启后启动jenkins服务systemctl-enable-now-jenkins"><a class="markdownIt-Anchor" href="#设置自启后启动jenkins服务systemctl-enable-now-jenkins">#</a> 设置自启后启动 jenkins 服务：systemctl enable --now jenkins</h3>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288ebae0938355.png" alt="jenkins在linux下安装（rpm包）_javascript_07"></p>
+<h3 id="查看是否自启动systemctl-is-enabled-jenkins"><a class="markdownIt-Anchor" href="#查看是否自启动systemctl-is-enabled-jenkins">#</a> 查看是否自启动：systemctl is-enabled jenkins</h3>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288ecdddd6790.png" alt="jenkins在linux下安装（rpm包）_java_08"></p>
+<h3 id="查看服务状态systemctl-status-jenkinsservice"><a class="markdownIt-Anchor" href="#查看服务状态systemctl-status-jenkinsservice">#</a> 查看服务状态：systemctl status jenkins.service</h3>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288ee068451100.png" alt="jenkins在linux下安装（rpm包）_java_09"></p>
+<h3 id="jenkins-failed-to-find-a-valid-java-installation"><a class="markdownIt-Anchor" href="#jenkins-failed-to-find-a-valid-java-installation">#</a> jenkins: failed to find a valid Java installation</h3>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013406_6337288eeec5c74170.png" alt="jenkins在linux下安装（rpm包）_javascript_10"></p>
+<h3 id="使用以下方法启动jenkins"><a class="markdownIt-Anchor" href="#使用以下方法启动jenkins">#</a> 使用以下方法启动 jenkins</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">./jenkins start</span><br><span class="line"># 停止</span><br><span class="line">./jenkins stop</span><br><span class="line"># 状态</span><br><span class="line">./jenkins status</span><br></pre></td></tr></table></figure>
+<h3 id="提示jdk版本不满足-可能是jdk11没有配置到jeknins上"><a class="markdownIt-Anchor" href="#提示jdk版本不满足-可能是jdk11没有配置到jeknins上">#</a> 提示 jdk 版本不满足，可能是 jdk11 没有配置到 jeknins 上</h3>
+<h4 id="jenkins-requires-java-versions-17-11-but-you-are-running-with-java-18-from-usrlocaljdk180_211jre"><a class="markdownIt-Anchor" href="#jenkins-requires-java-versions-17-11-but-you-are-running-with-java-18-from-usrlocaljdk180_211jre">#</a> Jenkins requires Java versions [17, 11] but you are running with Java 1.8 from /usr/local/jdk1.8.0_211/jre</h4>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/01013407_6337288f30b9997576.png" alt="jenkins在linux下安装（rpm包）_json_13"></p>
+<h4 id="将jdk11的环境配置到-etcrcdinitdjenkins-的candidates中"><a class="markdownIt-Anchor" href="#将jdk11的环境配置到-etcrcdinitdjenkins-的candidates中">#</a> 将 jdk11 的环境配置到 /etc/rc.d/init.d/jenkins 的 candidates 中</h4>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122105322847.png" alt="image-20221122105322847"></p>
+<h4 id="重新启动服务没有报错"><a class="markdownIt-Anchor" href="#重新启动服务没有报错">#</a> 重新启动服务，没有报错</h4>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122105452465.png" alt="image-20221122105452465"></p>
+<h4 id="访问-jenkins第一次需要输入生成的密码在-varlibjenkinssecrets-目录下的initialadminpassword文件中"><a class="markdownIt-Anchor" href="#访问-jenkins第一次需要输入生成的密码在-varlibjenkinssecrets-目录下的initialadminpassword文件中">#</a> 访问 Jenkins，第一次需要输入生成的密码，在 /var/lib/jenkins/secrets 目录下的 initialAdminPassword 文件中</h4>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122104907426.png" alt="image-20221122104907426"></p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122104919096.png" alt="image-20221122104919096"></p>
+<h2 id="成功"><a class="markdownIt-Anchor" href="#成功">#</a> 成功</h2>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20221122105607288.png" alt="image-20221122105607288"></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.288Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.678Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">10 分钟读完 (大约1444个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90JavaScript%E3%80%91JavaScript%E5%8E%9F%E5%9E%8B%E9%93%BE/">【JavaScript】JavaScript原型链</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="javascriptjavascript原型链"><a class="markdownIt-Anchor" href="#javascriptjavascript原型链">#</a> 【JavaScript】JavaScript 原型链</h1>
+<h5 id="2023417-重温一下多年前的八股文"><a class="markdownIt-Anchor" href="#2023417-重温一下多年前的八股文">#</a> 2023/4/17 重温一下多年前的八股文</h5>
+<h2 id="对象"><a class="markdownIt-Anchor" href="#对象">#</a> 对象</h2>
+<p>要清楚原型链，首先要弄清楚对象：</p>
+<ul>
+<li>
+<p>普通对象</p>
+</li>
+<li>
+<ul>
+<li>最普通的对象：有__proto__属性（指向其原型链），没有 prototype 属性。</li>
+<li>原型对象 (Person.prototype 原型对象还有 constructor 属性（指向构造函数对象）)</li>
+</ul>
+</li>
+<li>
+<p>函数对象：</p>
+<ul>
+<li>凡是通过 new Function () 创建的都是函数对象。</li>
+</ul>
+</li>
+</ul>
+<p>拥有__proto__、prototype 属性（指向原型对象）。</p>
+<p>Function、Object、Array、Date、String、自定义函数</p>
+<p>特例： Function.prototype (是原型对象，却是函数对象，下面会有解释)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数对象  </span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">F1</span>(<span class="params"></span>)&#123;&#125;;  </span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">F2</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;;  </span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">F3</span> = <span class="keyword">function</span>(<span class="params"><span class="string">&quot;n1&quot;</span>,<span class="string">&quot;n2&quot;</span>,<span class="string">&quot;return n1+n2&quot;</span></span>);  </span><br><span class="line">  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="variable constant_">F1</span>);  <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="variable constant_">F2</span>);  <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="variable constant_">F3</span>);   <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Object</span>);   <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Array</span>);   <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">String</span>);   <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Date</span>);   <span class="comment">//function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Function</span>);   <span class="comment">//function  </span></span><br></pre></td></tr></table></figure>
+<p><img src="https://pic3.zhimg.com/80/v2-261209138284cee7af75fd5bd4d98eea_720w.webp" alt="img"></p>
+<p>Array 是函数对象，是 Function 的实例对象，Array 是通过 newFunction 创建出来的。因为 Array 是 Function 的实例，所以 Array.<strong>proto</strong> === Function.prototype</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//普通对象  </span></span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> <span class="title function_">F1</span>();   </span><br><span class="line"><span class="keyword">var</span> o2 = &#123;&#125;;         </span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> <span class="title class_">Object</span>();   </span><br><span class="line">  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> o1);  <span class="comment">//Object  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> o2);   <span class="comment">//Object  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> o3);   <span class="comment">//Object  </span></span><br></pre></td></tr></table></figure>
+<h1 id="原型对象"><a class="markdownIt-Anchor" href="#原型对象">#</a> 原型对象</h1>
+<p>每创建一个函数都会有一个 prototype 属性，这个属性是一个指针，指向一个对象（通过该构造函数创建实例对象的原型对象）。原型对象是包含特定类型的所有实例共享的属性和方法。原型对象的好处是，可以让所有实例对象共享它所包含的属性和方法。</p>
+<p>第一块中有提到，原型对象属于普通对象。Function.prototype 是个例外，它是原型对象，却又是函数对象，作为一个函数对象，它又没有 prototype 属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params"></span>)&#123;&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>) <span class="comment">//Object  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>) <span class="comment">// Object  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>) <span class="comment">// 特殊 Function  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property"><span class="keyword">prototype</span></span>) <span class="comment">//undefined 函数对象却没有prototype属性 </span></span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<p>其实原型对象就是构造函数的一个实例对象。person.prototype 就是 person 的一个实例对象。相当于在 person 创建的时候，自动创建了一个它的实例，并且把这个实例赋值给了 prototype。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params"></span>)&#123;&#125;;  </span><br><span class="line"><span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="title class_">Person</span>();  </span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span> = temp;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Function</span>(<span class="params"></span>)&#123;&#125;;  </span><br><span class="line"><span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="title class_">Function</span>();  </span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span> = temp; <span class="comment">//由new Function()产生的对象都是函数对象  </span></span><br></pre></td></tr></table></figure>
+<p>从一张图看懂原型对象、构造函数、实例对象之间的关系</p>
+<p><img src="https://pic1.zhimg.com/80/v2-830f96ed4a5765089776e9702120d484_720w.webp" alt="img"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Dog</span>(<span class="params"></span>)&#123;&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">name</span> = <span class="string">&quot;小黄&quot;</span>;  </span><br><span class="line"><span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">age</span> =  <span class="number">13</span>;  </span><br><span class="line"><span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getAge</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">age</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> <span class="title class_">Dog</span>();  </span><br><span class="line"><span class="keyword">var</span> dog2 = <span class="keyword">new</span> <span class="title class_">Dog</span>();  </span><br><span class="line">  </span><br><span class="line">dog2.<span class="property">name</span> = <span class="string">&quot;小黑&quot;</span>;  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dog1.<span class="property">name</span>); <span class="comment">// 小黄 来自原型  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dog2.<span class="property">name</span>); <span class="comment">// 小黑 来自实例  </span></span><br></pre></td></tr></table></figure>
+<p><img src="https://pic3.zhimg.com/80/v2-5d7fc42b450728c6a5b72a903ee3fc36_720w.webp" alt="img"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//图中的一些关系  </span><br><span class="line">dog1.__proto__ === Dog.prototype  </span><br><span class="line">  </span><br><span class="line">Dog.prototype.__proto__ === Object.prototype //继承Object 下面原型链说  </span><br><span class="line">  </span><br><span class="line">dog1.__proto__.__proto__ === Object.prototype  </span><br><span class="line">  </span><br><span class="line">Dog.prototype.constructor === Dog   </span><br><span class="line">  </span><br><span class="line">Dog.prototype.isPrototypeOf(dog1)  </span><br><span class="line">  </span><br><span class="line">//获取对象的原型  </span><br><span class="line">dog1.__proto__  //不推荐  </span><br><span class="line">Object.getPrototypeOf(dog1) === Dog.prototype   //推荐  </span><br></pre></td></tr></table></figure>
+<h1 id="原型链"><a class="markdownIt-Anchor" href="#原型链">#</a> 原型链</h1>
+<p>原型链是实现继承的主要方法。</p>
+<p>先说一下继承，许多 OO 语言都支持两张继承方式：接口继承、实现继承。</p>
+<p>|- 接口继承：只继承方法签名</p>
+<p>|- 实现继承：继承实际的方法</p>
+<p>由于函数没有签名，在 ECMAScript 中无法实现接口继承，只支持实现继承，而实现继承主要是依靠原型链来实现。</p>
+<p>原型链基本思路：</p>
+<p>利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
+<p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数想指针 (constructor)，而实例对象都包含一个指向原型对象的内部指针 (<strong>proto</strong>)。如果让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针 (<strong>proto</strong>)，另一个原型也包含着一个指向另一个构造函数的指针 (constructor)。假如另一个原型又是另一个类型的实例…… 这就构成了实例与原型的链条。</p>
+<p>原型链基本思路（图解）：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-901202a60d3f6e9fcc90a69d06fe0282_720w.webp" alt="img"></p>
+<p>举例说明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Animal</span>(<span class="params"></span>)&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;animal&quot;</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="title class_">Animal</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getType</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">type</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Dog</span>(<span class="params"></span>)&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;dog&quot;</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Animal</span>();  </span><br><span class="line">  </span><br><span class="line"><span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">var</span> xiaohuang = <span class="keyword">new</span> <span class="title class_">Dog</span>();  </span><br><span class="line"><span class="comment">//原型链关系  </span></span><br><span class="line">xiaohuang.<span class="property">__proto__</span> === <span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span>  </span><br><span class="line"><span class="title class_">Dog</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">__proto__</span> === <span class="title class_">Animal</span>.<span class="property"><span class="keyword">prototype</span></span>  </span><br><span class="line"><span class="title class_">Animal</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">__proto__</span> === <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>  </span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">__proto__</span> === <span class="literal">null</span>  </span><br></pre></td></tr></table></figure>
+<p>图解:</p>
+<p><img src="https://pic4.zhimg.com/80/v2-b47a3e4984d49bec824db6217cf03ea7_720w.webp" alt="img"></p>
+<p>详细图</p>
+<p><img src="https://pic4.zhimg.com/80/v2-2087bd26483d9aafccbb0e83904f4d1b_720w.webp" alt="img"></p>
+<p>（图片修正：笔误，第一行应该是 xiaohuang.<strong>proto</strong> === Dog.prototype）</p>
+<p>从 xiaohuang 这个实例，看出整个链条</p>
+<p>总结：</p>
+<p>Xiaohuang 这个 Dog 的实例对象继承了 Animal，Animal 继承了 Object。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-58d80f6a14ef493efe6c255b4991a670_720w.webp" alt="img"></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.285Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.822Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">22 分钟读完 (大约3293个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Java%E3%80%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/">设计模式（一）</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h3 id="设计模式笔记-__brathli"><a class="markdownIt-Anchor" href="#设计模式笔记-__brathli">#</a> 设计模式笔记  <strong>__Brath.Li</strong></h3>
+<h3 id="gof2323种设计模式"><a class="markdownIt-Anchor" href="#gof2323种设计模式">#</a> GoF23：23 种设计模式</h3>
+<p>​		<strong>设计模式的本质是面向对象设原则的实际运用，是对类的封装性，继承性，多态性以及类的关联关系和组合关系的充分理解。</strong></p>
+<p>​			<strong>正确使用设计模式具有以下优点：</strong></p>
+<p>​			<strong>1. 提高程序员思维能力，编程能力和设计能力</strong></p>
+<p>​			<strong>2. 使程序设计更加标准化，代码编制更加工程化，使软件开发效率大大提高，从而缩短软件的开的周期。</strong></p>
+<p>​			<strong>3. 使设计的代码可重用性高、可读性强、可靠性高、灵活性好、可维护性强。</strong></p>
+<h3 id="创建型模式"><a class="markdownIt-Anchor" href="#创建型模式">#</a> <strong>创建型模式：</strong></h3>
+<p>​			<strong>单例模式、工厂模式、抽象工厂模式、建造者模式、原型模式。</strong></p>
+<h3 id="结构型模式"><a class="markdownIt-Anchor" href="#结构型模式">#</a> <strong>结构型模式：</strong></h3>
+<p>​			<strong>适配器模式、桥接模式、装饰模式、组合模式、外欧冠模式、享元模式、代理模式。</strong></p>
+<h3 id="行为性模式"><a class="markdownIt-Anchor" href="#行为性模式">#</a> <strong>行为性模式：</strong></h3>
+<p>​			<strong>模板方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、责任链模式、访问者模式。</strong></p>
+<h4 id="oop面向对象七大原则"><a class="markdownIt-Anchor" href="#oop面向对象七大原则">#</a> OOP 面向对象七大原则：</h4>
+<p><strong>1.OCP 开闭原则：</strong></p>
+<p>​			<strong>软件实体（包括类、模块、功能等）应该对扩展开放，但是对修改关闭。</strong></p>
+<p><strong>2. 里氏替换原则：</strong></p>
+<p>​			<strong>继承必须确保超类锁拥有的性质在子类中仍然成立。</strong></p>
+<p><strong>3. 依赖倒置原则：</strong></p>
+<p>​			<strong>面向接口编程，不要面向实现编程。</strong></p>
+<p><strong>4. 单一职责原则：</strong></p>
+<p>​			<strong>控制类粒度大小、将对象解耦合、提高内聚性。</strong></p>
+<p><strong>5. 接口隔离原则：</strong></p>
+<p>​			<strong>要为各个类建立他们需要的专用接口。</strong></p>
+<p><strong>6. 迪米特法则：</strong></p>
+<p>​			** 只与你的直接朋友交谈、不跟 “陌生人” 说话。 **</p>
+<p><strong>7. 合成复用原则：</strong></p>
+<p>​			<strong>尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。</strong></p>
+<h2 id="单例设计模式"><a class="markdownIt-Anchor" href="#单例设计模式">#</a> 单例设计模式：</h2>
+<p>作用：让一个类只能创建一个实例（因为频繁的创建对象，回收对象会造成系统性能下降。）。解决对象的唯一性，保证了内存中一个对象是唯一的 。</p>
+<h4 id="饿汉式hunary"><a class="markdownIt-Anchor" href="#饿汉式hunary">#</a> 饿汉式：Hunary</h4>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C%E9%A5%BF%E6%B1%89%E5%BC%8F.png" alt="饿汉式"></p>
+<p><strong>步骤：1. 私有化构造器  2. 直接创建静态对象 3. 创建一个静态的方法，供外部调用实例</strong></p>
+<p>优点：类初始化的时候，会立即加载该对象，线程天生安全，调用效率高。</p>
+<p>缺点：无法避免被反射破解，不安全</p>
+<h4 id="懒汉式lazyman"><a class="markdownIt-Anchor" href="#懒汉式lazyman">#</a> 懒汉式：LazyMan</h4>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910151318667.png" alt="image-20210910151318667"></p>
+<p>步骤：1. 私有化构造器，不会直接创建对象  2. 向外暴露调用对象方法，在方法中先进行对象判空，为空才创建对象，这就是懒汉式</p>
+<p>优点：类初始化时，不会初始化该对象，真正需要使用的时候才会去创建该对象，具备懒加载功能。</p>
+<p>缺点：</p>
+<p>1. 判空浪费时间</p>
+<p>2. 不加 Synchronized 的懒汉式线程不安全，需要用到 volatile 关键字保持 new 对象的原子性一致</p>
+<p>懒汉式单线程下是 OK 的，但是多线程并发下不安全。</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153316119.png" alt="image-20210910153316119"> 开启十次线程测试</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153327761.png" alt="image-20210910153327761"></p>
+<p><strong>每次重启线程数都不一致</strong>，线程不安全。</p>
+<p>怎么解决：</p>
+<p>Tips：懒汉式也是可以实现线程安全的：只要加上 Synchronized 加锁即可：</p>
+<p>但是这样一来，会降低整个访问的速度，而且每次都要判断。那么有没有更好的方式来实现呢？</p>
+<p>解决方案：</p>
+<p><strong>double-check-lock 双重加锁</strong></p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910152638263.png" alt="image-20210910152638263"></p>
+<p>所谓双重加锁机制。指的是，并不是每次进入 getInstance 方法都需要同步，而是先不同步，进入方法之后先检查实例是否存在，如果不存在才进入下面 Synchronized 加锁，之后会再次检查实例是否存在，如果还不存在才创建实例。</p>
+<p>双重检测方式（因为 JVM 本身重排序的原因，可能会出现多次的初始化）</p>
+<p>这种模式下的懒汉式，称为<strong> DCL 懒汉式</strong>！</p>
+<p>你以为这样就没问题了？大错特错，注意：这里的 new 对象操作不是原子性的</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153630120.png" alt="image-20210910153630120"></p>
+<p>new 一个对象的执行顺序 ↓</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 1.分配内存空间</span></span><br><span class="line"><span class="comment">  * 2.执行构造方法初始化对象</span></span><br><span class="line"><span class="comment">  * 3.把这个对象指向内存空间</span></span><br><span class="line"><span class="comment">  * 这是创建对象的步骤 正确顺序为 123</span></span><br><span class="line"><span class="comment">  * 举例：</span></span><br><span class="line"><span class="comment">  * 线程A 创建对象 步骤为 123, 我们的代码没有问题</span></span><br><span class="line"><span class="comment">  * 线程B 创建对象 因为操作步骤不是原子性的，可能会走成 1 3 2，先指向了内存空间，再去构造对象</span></span><br><span class="line"><span class="comment">  * 这时会出现一个问题，指令重排：双重检测模式会失效，因为此时我们的类，不为空了，但是里面返回的对象是空的。</span></span><br><span class="line"><span class="comment">  * 所以就要用到一个关键字volatile，避免指令重排，保持操作原子性</span></span><br><span class="line"><span class="comment">  */</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910153756918.png" alt="image-20210910153756918"></p>
+<h4 id="静态内部类模式"><a class="markdownIt-Anchor" href="#静态内部类模式">#</a> 静态内部类模式：</h4>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910155204370.png" alt="image-20210910155204370"></p>
+<p>步骤：1. 私有化构造器  2. 创建一个静态内部类，类中创建外部类的实例  3. 向外暴露一个方法获取静态内部类中创建的对象</p>
+<p>优点：结合了懒汉式和饿汉式各自的优点，真正需要对象的时候才会加载，加载类是线程安全的。</p>
+<p>缺点：每次调用都会创建多余的对象</p>
+<h3 id="以上单例设计模式都会被反射破解枚举不会"><a class="markdownIt-Anchor" href="#以上单例设计模式都会被反射破解枚举不会">#</a> 以上单例设计模式都会被反射破解，枚举不会！</h3>
+<p>枚举：枚举本身是一个类，继承了 Enum 的实例就成为了枚举类</p>
+<p>使用枚举实现单例模式，实现简单、调用效率高，枚举本身就是单例，由 JVM 从根本上提供保障，避免通过反射和反序列化的漏洞，缺点是没有延迟加载。</p>
+<p>在源码 Constructor 中<img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150042754.png" alt="image-20210910150042754"></p>
+<p>如果是对象是通过反射机制创建的会抛出一个异常</p>
+<p>IllegalArgumentException: Cannot reflectively create enum objects</p>
+<p>枚举类在 traget 输出的代码中，构造器是空的，隐藏起来了，用 javap -p 反编译也看不见构造器</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150706569.png" alt="image-20210910150706569"></p>
+<p>我们用反射机制获取空构造器会获取不到对象，这时候用 jad 反编译工具，得到的 java 文件中，</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150400927.png" alt="image-20210910150400927"></p>
+<p>可以看见构造器其实是有数据的，我们把数据放到反射中实现，就会得到这个异常 Cannot reflectively create enum objects</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150429958.png" alt="image-20210910150429958"></p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910150418256.png" alt="image-20210910150418256"></p>
+<p>由此可见，反射不能破坏枚举的单例模式</p>
+<p>优点：实现简单，线程安全，防止反射攻击等。</p>
+<p>缺点： 在不需要的时候可能就加载了，造成内存浪费</p>
+<p>Tips：利用反射破解懒汉式。懒汉式不是安全的！</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910160648326.png" alt="image-20210910160648326"></p>
+<p>私有化构造器的时候判断外面的字段 guoqing 是否 ==false，等于的话就设置为 true，如果不等于的话就抛出运行异常，这样设计的话在我们用反射机制获取构造器的时候，就获取不到对象了</p>
+<p>但是有解决方法：利用反射强大的机制，假如我们反编译，知道要破解的字段是 guoqing，那我们直接用反射获取 guoqing 字段，然后设置解除私有化限制，在创建构造器实例的时候，把 guoqing 设置为 true，就可以破解 DCL 懒汉式了</p>
+<p><img src="C:%5CUsers%5C26344%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210910160638735.png" alt="image-20210910160638735"></p>
+<h2 id="工厂设计模式-factory-model"><a class="markdownIt-Anchor" href="#工厂设计模式-factory-model">#</a> 工厂设计模式 Factory Model：</h2>
+<p>​		<strong>核心本质：</strong></p>
+<p>​			<strong>实例化对象不使用 new，用工厂方法代替</strong></p>
+<p>​			<strong>将选择实现类，创建对象统一管理和控制。从而将调用者跟我们的实现类解耦。</strong></p>
+<p>​		<strong>详细分类：</strong></p>
+<p>​			<strong>简单工厂模式</strong></p>
+<p>​						<strong>用来生产同一等级结构中的任意产品：扩展性差</strong></p>
+<p>​			<strong>工厂方法模式</strong></p>
+<p>​						<strong>用来生产同一等级结构中的固定产品：扩展性强</strong></p>
+<p>​			<strong>抽象工厂模式</strong></p>
+<p>​						<strong>围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。</strong></p>
+<p><strong>工厂设计模式应用场景：</strong></p>
+<p>​			<strong>JDK 中的 Calendar 的 getInstance 方法</strong></p>
+<p>​			<strong>JDBC 中的 Connection 对象的获取</strong></p>
+<p>​			<strong>Spring 的 IOC 容器创建管理 Bean 对象</strong></p>
+<p>​			<strong>反射 Class 对象的 newInsetance 方法</strong></p>
+<h2 id="建造者模式"><a class="markdownIt-Anchor" href="#建造者模式">#</a> 建造者模式：</h2>
+<p>​	<strong>建造者模式也属于创建型模式，它提供了一种创建对象的最佳方式。</strong></p>
+<p>​	<strong>定义：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示</strong></p>
+<p>​	<strong>主要作用：在用户不知道对象的建造过程和细节的情况下就可以直接创建复杂对象。</strong></p>
+<p>​	<strong>用户只需要给出指定复杂对象的类型和内容，建造者模式负责将按顺序创建复杂对象（把内部的建造过程和细节隐藏起来）</strong></p>
+<p>​	<strong>例子：</strong></p>
+<p>​			<strong>工厂（建造者模式）：负责制造汽车（组装过程和细节在工厂内）</strong></p>
+<p>​			<strong>汽车购买者（用户）：你只需要说你需要的型号（对象的类型和内容），然后直接购买就可以了（不需要知道汽车是怎么组装的（发动机、变速箱、轮毂、车门））</strong></p>
+<h2 id="原型模式"><a class="markdownIt-Anchor" href="#原型模式">#</a> 原型模式：</h2>
+<p>​		创建型模式之一。</p>
+<p>​</p>
+<h2 id="适配器模式"><a class="markdownIt-Anchor" href="#适配器模式">#</a> 适配器模式</h2>
+<p>​		将一个类的接口转换成客户希望的另外一个接口，Adapter 模式使得原本由于接口不兼容而不能一起工作的那些类可以在一起工作！</p>
+<p>​		角色分析：</p>
+<p>​				1 . 目标接口：客户所期待的接口，目标可以使具体或抽象的类，也可以是接口。</p>
+<p>​				2 . 需要适配的类：需要适配的类或者适配者类。</p>
+<p>​				3 . 适配器：通过包装一个需要适配的对象，将原接口转换成目标对象。</p>
+<p>​		对象适配器优点</p>
+<p>​				1 . 一个对象适配器可以把多个不同的适配者适配到同一个目标</p>
+<p>​				2 . 可以适配一个适配者的子类，由于适配器和适配者之间是关联关系，根据 “里氏代换原则” ，适配者的子类也可以通过该适配器进行适配。</p>
+<p>​		类适配器缺点：</p>
+<p>​				1 . 对于 Java、C# 等不支持多重类继承的语言，一次最多只能适配一个适配者类，不能同时适配多个适配者。</p>
+<p>​				2 . 在 Java、C# 等语言中，适配器模式中的目标抽象类只能为接口，不能为类，其使用有一定的局限性。</p>
+<p>​		适用场景：</p>
+<p>​				1 . 系统需要使用一些现有的类，而这些类的接口不符合系统的需要，甚至没有这些类的代码。</p>
+<p>​				2 . 想创建一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作。</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.281Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.807Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">8 分钟读完 (大约1167个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="java如何优雅的将数组转换为list集合"><a class="markdownIt-Anchor" href="#java如何优雅的将数组转换为list集合">#</a> 【Java】如何优雅的将数组转换为 List 集合</h1>
+<h2 id="第一种方式未必最佳使用arraylistasliststrarray"><a class="markdownIt-Anchor" href="#第一种方式未必最佳使用arraylistasliststrarray">#</a> 第一种方式 (未必最佳): 使用 ArrayList.asList (strArray)</h2>
+<p>使用 Arrays 工具类 Arrays.asList (strArray) 方式，转换完成后，只能对 List 数组进行查改，不能增删，增删就会抛出<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=UnsupportedOperationException&amp;spm=1001.2101.3001.7020"> UnsupportedOperationException</a> 异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List; </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Demo1</span><span class="params">()</span> &#123;</span><br><span class="line">        String[] str = &#123;<span class="string">&quot;fgx&quot;</span>, <span class="string">&quot;lzy&quot;</span>&#125;;</span><br><span class="line">        <span class="comment">//注意这个List不是Collections包内的List,而是util包里面的List接口</span></span><br><span class="line">        List&lt;String&gt; ints = Arrays.asList(str);</span><br><span class="line">    	<span class="comment">//这里会报错</span></span><br><span class="line">        ints.add(<span class="string">&quot;laopo&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>添加数据报错:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.UnsupportedOperationException</span><br><span class="line">at java.util.AbstractList.add(AbstractList.java:<span class="number">148</span>)</span><br><span class="line">at java.util.AbstractList.add(AbstractList.java:<span class="number">108</span>)</span><br><span class="line">at JAVA基础.JDK8新特性.Java数组转List.Demo1(Java数组转List.java:<span class="number">20</span>)</span><br><span class="line">at JAVA基础.JDK8新特性.Java数组转List.main(Java数组转List.java:<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line">报错原因:Arrays.asList(str)返回值是java.util.Arrays类中一个私有静态内部类 </span><br><span class="line">java.utiil.Arrays.Arraylist,并不是我们平时用的java.util.ArrayList();</span><br><span class="line"></span><br><span class="line">使用场景:Arrays.asList(strArray)方式仅能用在将数组转换为List后，不需要增删其中的值，仅作为数据源读取使用。</span><br></pre></td></tr></table></figure>
+<h2 id="第二种方法支持增删查改"><a class="markdownIt-Anchor" href="#第二种方法支持增删查改">#</a> 第二种方法 (支持增删查改):</h2>
+<p>通过 ArrayList 的构造器，将 Arrays.asList (strArray) 的返回值由 java.utilArrays.ArrayList 转为 java.util.ArrayList.<br>
+ 关键代码：ArrayList list = new ArrayList (Arrays.asList (strArray)) ;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String[] str = &#123;<span class="string">&quot;fgx&quot;</span>, <span class="string">&quot;lzy&quot;</span>&#125;;</span><br><span class="line">      <span class="comment">//注意这个List不是Collections包内的List,而是util包里面的List接口</span></span><br><span class="line">      java.util.ArrayList&lt;String&gt; strings = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(Arrays.asList(str));</span><br><span class="line">      strings.add(<span class="string">&quot;aop&quot;</span>);</span><br><span class="line">      strings.stream().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/f33d7ecf29754253b15d6abeda2034aa.png" alt="在这里插入图片描述"><br>
+使用场景：需要在将数组转换为 List 后，对 List 进行增删改查操作，在 List 的数据量不大的情况下，可以使用。</p>
+<h2 id="第三种方式通过集合工具类collectionsaddall方法最高效"><a class="markdownIt-Anchor" href="#第三种方式通过集合工具类collectionsaddall方法最高效">#</a> 第三种方式 (通过集合工具类 Collections.<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=addAll&amp;spm=1001.2101.3001.7020">addAll</a> () 方法 (最高效))</h2>
+<p>通过 Collections.addAll (arrayList, strArray) 方式转换，根据数组的长度创建一个长度相同的 List，然后通过 Collections.addAll () 方法，将数组中的元素转为二进制，然后添加到 List 中，这是最高效的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Demo3</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">//注意这个List不是Collections包内的List,而是util包里面的List接口</span></span><br><span class="line">       String[] str = &#123;<span class="string">&quot;fgx&quot;</span>, <span class="string">&quot;lzy&quot;</span>&#125;;</span><br><span class="line">       java.util.ArrayList&lt;String&gt; stringList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(str.length);</span><br><span class="line">       Collections.addAll(stringList,str);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第四种方式通过jdk8的stream流将3总基本类型数组转为list"><a class="markdownIt-Anchor" href="#第四种方式通过jdk8的stream流将3总基本类型数组转为list">#</a> 第四种方式通过 JDK8 的 Stream 流将 3 总基本类型数组转为 List</h2>
+<p>如果 JDK 版本在 1.8 以上，使用流 stream 来将下列 3 种数组快速转为 List, 分别是 int [],long [],double [], 不支持 short [ ],byte [ ],char [] 在 JDK1.8 中暂不支持.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] ints = &#123;<span class="number">2</span>, <span class="number">34</span>, <span class="number">55</span>, <span class="number">22</span>, <span class="number">11</span>&#125;;</span><br><span class="line">       <span class="type">long</span>[] longs = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">       <span class="type">double</span>[] doubles = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">       Arrays.stream(ints).boxed().collect(Collectors.toList());</span><br><span class="line">       Arrays.stream(longs).boxed().collect(Collectors.toList());</span><br><span class="line">       Arrays.stream(doubles).boxed().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<p>TIPs: 为什么 int [] 不能直接转为 List, 而 Integer [] 可以转为 List, 而 Integer [] 就可以转为 List 了，因为 List 中的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%B3%9B%E5%9E%8B&amp;spm=1001.2101.3001.7020">泛型</a>必须是引用类型。</p>
+<p><strong>java 数组转 list 误区</strong><br>
+<strong>一、不能把基本数据类型转化为列表</strong><br>
+仔细观察可以发现 asList 接受的参数是一个泛型的变长参数，而基本数据类型是无法泛型化的，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">App</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">     <span class="type">int</span> [] intarray = &#123; <span class="number">1</span> ,  <span class="number">2</span> ,  <span class="number">3</span> ,  <span class="number">4</span> ,  <span class="number">5</span> &#125;;</span><br><span class="line">     <span class="comment">//List&lt;Integer&gt; list = Arrays.asList(intarray); 编译通不过</span></span><br><span class="line">     List&lt; <span class="type">int</span> []&gt; list = Arrays.asList(intarray);</span><br><span class="line">     System.out.println(list);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output：</span><br><span class="line">[[I @66d3c617 ]</span><br></pre></td></tr></table></figure>
+<p>这是因为把 int 类型的数组当参数了，所以转换后的列表就只包含一个 int [] 元素。<br>
+解决方案：<br>
+要想把基本数据类型的数组转化为其包装类型的 list，可以使用 guava 类库的工具方法，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> [] intArray = &#123; <span class="number">1</span> ,  <span class="number">2</span> ,  <span class="number">3</span> ,  <span class="number">4</span> &#125;;</span><br><span class="line">List&lt;Integer&gt; list = Ints.asList(intArray);</span><br></pre></td></tr></table></figure>
+<p><strong>二、asList 方法返回的是数组的一个视图</strong><br>
+视图意味着，对这个 list 的操作都会反映在原数组上，而且这个 list 是定长的，不支持 add、remove 等改变长度的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">class</span>  <span class="title class_">App</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">     <span class="type">int</span> [] intArray = &#123; <span class="number">1</span> ,  <span class="number">2</span> ,  <span class="number">3</span> ,  <span class="number">4</span> &#125;;</span><br><span class="line">     List&lt;Integer&gt; list = Ints.asList(intArray);</span><br><span class="line">     list.set( <span class="number">0</span> ,  <span class="number">100</span> );</span><br><span class="line">     System.out.println(Arrays.toString(intArray));</span><br><span class="line">     list.add( <span class="number">5</span> );</span><br><span class="line">     list.remove( <span class="number">0</span> );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output：</span><br><span class="line">[ <span class="number">100</span> ,  <span class="number">2</span> ,  <span class="number">3</span> ,  <span class="number">4</span> ]</span><br><span class="line">UnsupportedOperationException</span><br><span class="line">UnsupportedOperationException</span><br></pre></td></tr></table></figure>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.278Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.815Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">1 分钟读完 (大约206个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Java%E3%80%91%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E6%83%85%E5%86%B5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/">端口占用问题</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<p>安装好 Maven 之后配置环境变量：</p>
+<p>netstat -ano：查询全部活动连接</p>
+<p>tasklist ：查询全部的进程和 PID</p>
+<p>tasklist | findstr “占用端口的进程 PID”</p>
+<p>taskkill /f/t /im 占用端口的进程名字.exe</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.273Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.802Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">36 分钟读完 (大约5409个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Java%E3%80%91ZGC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AZGC%E7%AE%80%E4%BB%8B%E5%92%8CJDK17%E5%AF%B9ZGC%E7%9A%84%E4%BC%98%E5%8C%96/">ZGC学习笔记：ZGC简介和JDK17对ZGC的优化</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<p>01 ZGC 简介<br>
+ ZGC 是一个可扩展的低延迟垃圾收集器，能够处理 8MB 到 16TB 大小的堆，最大暂停时间为亚毫秒。</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/image-20220929120415958.png" alt="image-20220929120415958"></p>
+<p>OpenJDK 的官网只写到这里，然后让我们自己去看 Wiki（链接 2）…… 好偷懒……</p>
+<pre><code>    Wiki的介绍是更详细一些。
+
+    Z Garbage Collector，也称为 ZGC，是一种可扩展的低延迟垃圾收集器，旨在满足以下目标：
+</code></pre>
+<p>亚毫秒最大暂停时间</p>
+<p>暂停时间不会随着堆、live-set 或 root-set 的大小而增加</p>
+<p>处理大小从 8MB 到 16TB 的堆</p>
+<p>ZGC 最初是作为 JDK 11 中的一项实验性功能引入的，并在 JDK 15 中被宣布为 Production Ready。</p>
+<p>ZGC 的几个特征：</p>
+<p>并发</p>
+<p>基于区域</p>
+<p>基于压缩</p>
+<p>NUMA 感知</p>
+<p>使用染色指针</p>
+<p>使用负载屏障（原文为 load barriers）</p>
+<p>ZGC 的核心是一个并发垃圾收集器，这意味着所有繁重的工作都在 Java 线程继续执行的同时完成。这极大地减少了垃圾收集对应用程序响应时间的影响。</p>
+<p>ZGC 项目由 HotSpot Group 赞助。</p>
+<p>下图是截止目前为止（2020-04-17）的 ZGC 的发布时间表，可以看出 ZGC 总 JDK11 开始实验性推出，JDK15 开始正式发布。</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/07193612e6885c5946cf49cd8b796561.png" alt="img"></p>
+<pre><code>    ZGC的部分参数：
+</code></pre>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/5cd0e8857e5f10201c406b4b8c23a379.png" alt="img"></p>
+<p>ZGC 部分操作：</p>
+<p>使用下述命令选项启用 ZGC</p>
+<p>-XX:+UseZGC<br>
+ 启用 ZGC</p>
+<p>设置堆大小</p>
+<pre><code>ZGC 最重要的调优选项是设置最大堆大小（-Xmx&lt;size&gt;）。由于 ZGC 是一个并发收集器，因此必须选择最大堆大小，以便 
+</code></pre>
+<ol>
+<li>
+<p>堆可以容纳应用程序的实时集，</p>
+</li>
+<li>
+<p>堆中有足够的空间来允许在 GC 时处理处理分配。</p>
+</li>
+</ol>
+<p>需要多少空间取决于应用程序的分配率和 live-set 大小。一般而言，给 ZGC 的内存越多越好。但与此同时，浪费内存是不可取的，所以这一切都是为了在内存使用和 GC 需要运行的频率之间找到一个平衡点。</p>
+<p>3. 设置并发 GC 线程数</p>
+<pre><code>    第二个重要的选项是设置并发 GC 线程的数量 (-XX:ConcGCThreads=&lt;number&gt;)。ZGC 具有自动选择此数字的启发式方法。这种启发式通常效果很好，但根据应用程序的特性，这可能需要进行调整。这个选项本质上决定了应该给 GC 多少 CPU-time（ps：这个不知道咋翻译，就叫CPU时间？先不翻译）。给了ZGC太多运行时间，GC 将从应用程序中占用过多的 CPU-time。给它太少，应用程序分配垃圾的速度可能比 GC 收集它的速度快。
+
+    一般来说，如果低延迟（即低应用程序响应时间）是工业环境中的最大痛点，在配置相应操作时候就不需要太吝啬。理想情况下，系统的 CPU 利用率不应超过 70%。
+</code></pre>
+<p>4. 返回未使用内存给操作系统</p>
+<pre><code>    默认情况下，ZGC 取消提交未使用的内存，将其返回给操作系统。这对于注重内存占用的应用程序和环境很有用。可以使用 -XX:-ZUncommit 禁用此功能。此外，内存不会被取消提交，因此堆大小会缩小到最小堆大小 (-Xms) 以下。这意味着如果最小堆大小 (-Xms) 配置为等于最大堆大小 (-Xmx)，则此功能将被隐式禁用。
+
+    可以使用 -XX:ZUncommitDelay=&lt;seconds&gt; 配置取消提交延迟（默认为 300 秒）。此延迟指定内存在有资格取消提交之前应该未使用多长时间。
+
+注意事项：在 Linux 上，取消提交未使用的内存需要具有 FALLOC_FL_PUNCH_HOLE 支持的 fallocate(2)，此特性首先出现在内核版本 3.5（用于 tmpfs）和 4.3（用于 hugetlbfs）中。
+</code></pre>
+<p>5. 启用 Linux 的大页（large page）操作</p>
+<pre><code>    将 ZGC 配置为使用大页面通常会产生更好的性能（在吞吐量、延迟和启动时间方面）并且没有真正的缺点，只是设置起来稍微复杂一些。设置过程通常需要 root 权限，这就是默认情况下不启用它的原因。
+
+    在 Linux/x86 上，大页面（英文原文为large page和huge page）的大小为 2MB。
+
+    假设您需要一个 16G Java 堆。这意味着您需要 16G / 2M = 8192 个大页面。
+
+    首先为大页面池分配至少 16G（8192 页）的内存。“至少”部分很重要，因为在 JVM 中启用大页面意味着不仅 GC 会尝试将这些用于 Java 堆，而且 JVM 的其他部分也会尝试将它们用于各种 内部数据结构（代码堆、标记位图等）。因此，在本例中，我们将保留 9216 个页面 (18G) 以允许 2G 的非 Java 堆分配来使用大页面。
+</code></pre>
+<p>6. 启用 Linux 的透明大页（transparent large page）操作</p>
+<pre><code>    使用显式大页面（explicit large pages，就是5小节的大页面）的替代方法是使用透明大页面（ transparent huge pages）。通常不建议对延迟敏感的应用程序使用透明大页面（ latency sensitive，因为它往往会导致不必要的延迟峰值。但是，可能值得尝试看看系统的工作负载是否/如何受到它的影响。
+
+    注意事项：在 Linux 上，使用启用透明大页的 ZGC 需要kernel &gt;= 4.7。
+</code></pre>
+<p>7. 启用 NUMA 支持</p>
+<pre><code>    ZGC 支持 NUMA，这意味着它会尽量将 Java 堆分配指向 NUMA 本地内存。默认情况下启用此功能。但是，如果 JVM 检测到它只能使用单个 NUMA 节点上的内存，它将自动被禁用。通常，无需担心此设置，但如果您想显式覆盖 JVM 的决定，可以使用 -XX:+UseNUMA 或 -XX:-UseNUMA 选项来实现。
+
+    在 NUMA 机器（例如多插槽 x86 机器）上运行时，启用 NUMA 支持通常会显著提升性能。
+
+    注:
+
+   关于NUMA,即Non Uniform Memory Access，非统一内存管理技术。以下直接截图于百度百科：
+</code></pre>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/9fa912e0f93d4dd49a4eecd618d86951.png" alt="img"></p>
+<p>8. 启用 GC 日志</p>
+<p>打个日志而已，就截图了。</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0f12489b9377904e0ada4b5977cb3e19.png" alt="img"></p>
+<p>具体操作还是参考链接 2。</p>
+<p>02 ZGC 在 JDK17 中的最新优化<br>
+翻译自链接 4。</p>
+<pre><code>   JDK 17 于2021年 9 月 14 日发布。这是一个长期支持 (LTS) 版本，这意味着它将得到多年的支持和更新。这也是第一个包含 ZGC 生产就绪版本（production ready version）的 LTS 版本。 稍微回忆一下，JDK 11（以前的 LTS 版本）中包含了 ZGC 的实验版本，而 ZGC 的第一个生产就绪版本出现在 JDK 15（非 LTS 版本）中。
+
+    因此，可以说JDK17是第一个开始推出成熟的ZGC的长期支持的ZGC版本。
+
+    （本来还想把JDK15，JDK16啥的ZGC的翻译一下，不过既然JDK17中ZGC这么重要，就只搬运JDK17的优化好了。）
+</code></pre>
+<p>1. 动态 GC 线程数</p>
+<pre><code>    长期以来，JVM 都有一个名为
+
+    -XX:+UseDynamicNumberOfGCThreads 
+</code></pre>
+<p>的选项。它默认启用，并告诉 GC 智能地了解它用于各种操作的 GC 线程数。使用的线程数将不断重新评估，因此会随着时间而变化。这个选项很有用有几个原因。例如，很难确定给定工作负载的最佳 GC 线程数是多少。通常发生的情况是，运维人员尝试各种设置 -XX:ParallelGCThreads 和 / 或 -XX:ConcGCThreads （取决于使用的 GC），看看哪个似乎给出了最好的结果。更复杂的是，最佳 GC 线程数可能会随着应用程序经历不同阶段而随时间变化，因此设置固定数量的 GC 线程本质上可能不是最佳的。</p>
+<pre><code>    在 JDK 17 之前，ZGC 忽略 -XX:+UseDynamicNumberOfGCThreads 并始终使用固定数量的线程。在 JVM 启动期间，ZGC 使用启发式方法来决定该固定数字 (-XX:ConcGCThreads) 应该是什么。一旦设定了这个数字，它就再也不会改变了。从 JDK 17 开始，ZGC 现在支持 -XX:+UseDynamicNumberOfGCThreads 并尝试使用尽可能少、但是足够多的线程来保持以创建的速度收集垃圾。这有助于避免使用比需要更多的 CPU 时间，从而使 Java 线程可以使用更多的 CPU 时间。
+
+    另请注意，启用此功能后，-XX:ConcGCThreads 的含义从“使用这么多线程”变为“最多使用这么多线程”。除非有一个非常规的工作负载，否则你通常不需要摆弄 -XX:ConcGCThreads。ZGC 的启发式算法会根据运行的系统的大小为机器选择合适的最大线程数。
+
+    （注：就是说JDK17开始，ZGC的运行时线程数是动态的，-XX:ConcGCThreads 设置的是最大可用线程，但是如果更少的线程就能满足需求，ZGC就会使用更少的线程；如果运行中需要增加线程数，ZGC也会动态增加线程数）
+</code></pre>
+<p>为了说明此功能的实际作用，官方贴出了一下运行 SPECjbb2015 时的一些图表。</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/8d76e888d04e4ade98e9570cc2e6b6c2.png" alt="img"></p>
+<pre><code>    第一张图显示了整个运行过程中使用的 GC 线程数。SPECjbb2015 有一个初始加速阶段，随后是一个较长的阶段，其中负载（注入速率）逐渐增加。我们可以看到 ZGC 使用的线程数反映了它需要做的工作量来跟上。只有在少数情况下，它需要所有（在本例中为 5 个）线程。
+
+    JDK16和JDK17的打分比较图如下。
+</code></pre>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/0ee86707c2957f6abf19e262612ec1db.png" alt="img"></p>
+<pre><code>    如果出于某种原因希望始终使用固定数量的 GC 线程（如在 JDK 16 和更早版本中），则可以使用 -XX:-UseDynamicNumberOfGCThreads 禁用此功能（注：应该没人会用吧？）。
+</code></pre>
+<p>2. 快速 JVM 终止</p>
+<pre><code>    在之前使用版本的Java程序中，如果使用的垃圾回收器是 ZGC ，终止正在运行的 Java 进程（例如，通过按 Ctrl+C 或通过让应用程序调用 System.exit()）， JVM 有时可能需要一段时间（在最坏的情况下为数秒）才能真正终止。这在一些需要快速宕机的场景下很烦人，如果某个场景需要快速终止程序，JVM的慢停止会导致一定问题。。
+
+    那么，为什么之前在使用 ZGC 时，JVM 有时会需要一些时间来终止呢？原因是 JVM 的关闭顺序需要与 GC 协调，让 GC 停止正在做的事情，进入“安全”状态。ZGC 仅在空闲时处于“安全”状态，即当前不收集垃圾。如果终止信号到达时正在进行一个非常长的 GC 周期，那么 JVM 关闭序列只需等待该 GC 周期完成，然后 ZGC 变为空闲并再次进入“安全”状态。
+
+    这已在 JDK 17 中得到解决。ZGC 现在能够中止正在进行的 GC 循环，以按需快速达到“安全”状态。终止运行 ZGC 的 JVM 现在或多或少是即时的。
+</code></pre>
+<p>3. 减少标记堆栈内存使用</p>
+<pre><code>    ZGC做条纹标记。这是指将堆划分为条带，并分配每个 GC 线程来标记其中一个条带（strip）中的对象。这有助于最小化 GC 线程之间的共享状态，并使标记过程对缓存更加友好，因为两个 GC 线程不会在堆的同一部分标记对象。这种方法还可以在 GC 线程之间实现自然的工作平衡，因为一个条带（strip）中的工作量往往大致相同。
+
+    下图是ZGC的基于多线程垃圾回收器对基于条带的Java堆内存的回收机制示意图。
+</code></pre>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3792f57ec3bd3c6ddb1b3f61b7f70b5c.png" alt="img"></p>
+<pre><code>    在 JDK 17 之前，ZGC 的标记严格遵守条带化。如果一个 GC 线程在跟踪对象图时遇到一个对象引用，该对象引用指向不属于其分配的条带的堆的一部分，则该对象引用被放置在与该其他对象关联的线程本地标记堆栈上条纹。一旦该堆栈已满（254 个条目），它就会被移交给分配给该条带处理标记的 GC 线程。将对象引用加载到尚未标记的对象的 Java 线程会做同样的事情，只是它总是将对象引用放在关联的线程本地标记堆栈上，并且不会自己做任何实际的标记工作。
+
+    这种方法适用于大多数工作负载，但也存在病态问题。如果您有一个具有一个或多个 N:1 关系的对象图，其中 N 是一个非常大的数字，那么您可能会为标记堆栈使用大量内存（如许多 GB）。我们一直都知道这可能是一个问题，您可以编写一个小型综合测试来引发它，但我们从未真正遇到过暴露它的真实工作负载。也就是说，直到来自腾讯的 OpenJDK 贡献者报告他们在野外遇到了这个问题（注：我去，鹅厂！）。
+
+    JDK 17 中对此的修复涉及通过以下方式放松严格条带化：
+</code></pre>
+<p>对于 GC 线程，无论对象引用指向哪个条带，首先尝试标记对象（即可能跳出 GC 线程分配的条带），如果尚未标记，则将对象引用推送到关联标记 堆。</p>
+<p>对于 Java 线程，首先检查对象是否已标记，如果尚未标记，则将对象引用推送到关联的标记堆栈。</p>
+<p>（注：这一块我其实看的不是很懂。要是有人有兴趣讨论的话欢迎交流）。</p>
+<pre><code>这些调整有助于阻止在病态 N:1 情况下过度使用标记堆栈内存，其中 GC 线程一遍又一遍地遇到相同的对象引用，将大量重复的对象引用推入标记堆栈。重复是没有用的，因为一个对象只需要标记一次。通过在推送之前进行标记，并且只推送以前未标记的对象，复制品的生产就会停止。
+
+我们最初有点不愿意这样做，因为 GC 线程现在正在执行原子比较和交换操作，以标记内存中属于分配给其他 GC 线程工作的条带的对象。这打破了严格的条带化，使其对缓存不太友好。Java 线程现在也在进行原子加载以查看对象是否被标记，这是他们以前没有做过的事情。同时，GC 线程完成的其他工作（扫描/跟踪对象字段和跟踪每个堆区域的活动对象/字节数）仍然遵守严格的条带化。最后，基准测试表明我们最初的担忧是没有根据的。GC 标记时间不受影响，对 Java 线程的影响也不明显。另一方面，我们现在有一个更健壮的标记方案，不会出现过多的内存使用。
+
+    （注：所以其实出现这个问题，是不是因为只是因为某厂的代码写的太烂了……）
+</code></pre>
+<p>支持 ARM 上的 macOS</p>
+<pre><code>    前段时间（注：苹果2020年的秋季发布会的消息），Apple 宣布了一项将其 Mac 计算机产品线从 x86 过渡到 ARM 的长期计划。不久之后，JEP 391: macOS/AArch64 Port 提出了 JDK 到这个新平台的移植。JVM 代码库是相当模块化的，特定于操作系统和 CPU 的代码与共享平台无关代码隔离。JDK 已经支持 macOS/x86 和 Linux/Aarch64，因此支持 macOS/Aarch64 所需的主要部分已经存在。当然，任何计划发布和支持 JDK 的 macOS/Aarch64 构建的人仍然需要做一些工作，比如投资新硬件，将这个新平台集成到 CI 管道中等。
+
+    ZGC的故事几乎相同。macOS/x86 和 Linux/Aarch64 都已经得到支持，因此主要是启用构建和测试这种新的 OS/CPU 组合的问题。从 JDK 17 开始，ZGC 在以下平台上运行：
+</code></pre>
+<p>Linux/x64</p>
+<p>Linux/AArch64</p>
+<p>macOS/x64</p>
+<p>macOS/AArch64</p>
+<p>Window/x64</p>
+<p>Windows/AArch64</p>
+<p>大多数 ZGC 代码库继续独立于平台。当前的代码分布如下所示：</p>
+<p>​        <img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d43c84500703a456f8a4ad7e2a2c686b.png" alt="img"></p>
+<p>用于循环和暂停的 GarbageCollectorMXBeans</p>
+<pre><code>    GarbageCollectorMXBean 提供有关 GC 的信息。通过这个 bean，应用程序可以提取摘要信息（到目前为止完成的 GC 次数、累计花费的 GC 时间等）并监听 GarbageCollectionNotificationInfo 通知以获取有关单个 GC 的更细粒度的信息（GC 原因、开始时间、结束时间， ETC）。
+
+    在 JDK 17 之前，ZGC 发布了一个名为 ZGC 的单个 bean。这个 bean 提供了有关 ZGC 周期的信息。一个循环包括从开始到结束的所有 GC 阶段。大多数阶段是并发的，但有些是 Stop-The-World 暂停。虽然有关周期的信息很有用，但您可能还想知道在执行 GC 上花费了多少时间在 Stop-The-World 暂停上。此信息不适用于单个 ZGC bean。为了解决这个问题，ZGC 现在发布了两个 bean，一个称为 ZGC Cycles，一个称为 ZGC Pauses。顾名思义，每个 bean 提供的信息分别映射到周期和暂停。
+</code></pre>
+<p>总结：</p>
+<pre><code>    作为第一个支持生产版本ZGC的LTS版本的JDK，JDK17中对ZGC做了下述优化：
+</code></pre>
+<p>支持 JVM 选项 -XX:+UseDynamicNumberOfGCThreads。此功能默认启用，并告诉 ZGC 对其使用的 GC 线程数保持智能，这通常会导致 Java 应用程序级别的更高吞吐量和更低延迟。</p>
+<p>使用了 ZGC 的 JVM 在停止运行时， 基本上是实时的，而之前版本花费的时间更多。</p>
+<p>标记算法现在通常使用更少的内存，并且不再容易出现过多的内存使用。</p>
+<p>ZGC 现在可以在 macOS/Aarch64 上运行。</p>
+<p>ZGC 现在发布了两个 GarbageCollectorMXBean，以提供有关 GC 周期和 GC 暂停的信息。</p>
+<p>03 一些很搞笑的事情</p>
+<pre><code>    据说有哥们在面试时候被面试官问到，ZGC的Z代表的是啥？
+
+    面试者老哥内心OS：我去葛格不讲武德啊，之前面经没有讲到这个啊。但是呆胶布，我现场编一个。
+
+    于是他说，“ZGC的Z是英文字母的最后一个字母，这说明Oracle公司想把ZGC作为Java的最终解决方案，是一个革命性的Java垃圾回收机制解决方案，blabla。”
+
+    面试官微微一笑贴出官网截屏：
+</code></pre>
+<p>​</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/b5813b2129f9db814556823199eb2355.png" alt="img"></p>
+<p>翻译：ZGC 的 Z 毛线都不表示，莫得含义。</p>
+<pre><code>    面试者：不听不听王八念经。
+
+    笑死。
+</code></pre>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.270Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.796Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">13 分钟读完 (大约1945个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/">Volatile关键字</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="volatile关键字"><a class="markdownIt-Anchor" href="#volatile关键字">#</a> Volatile 关键字</h1>
+<p>Volatile 关键字的作用主要有如下两个：</p>
+<p>线程的可见性：当一个线程修改一个共享变量时，另外一个线程能读到这个修改的值。</p>
+<p>顺序一致性：禁止指令重排序。</p>
+<h1 id="一-线程可见性"><a class="markdownIt-Anchor" href="#一-线程可见性">#</a> 一、线程可见性</h1>
+<p>我们先通过一个例子来看看线程的可见性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">VolatileTest</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateFlag</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.flag = <span class="literal">false</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;修改flag值为：&quot;</span> + <span class="built_in">this</span>.flag);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">VolatileTest</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">VolatileTest</span>();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (test.flag) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;结束&quot;</span>);</span><br><span class="line">        &#125;, <span class="string">&quot;Thread1&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                test.updateFlag();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;Thread2&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印结果如下，我们可以看到虽然线程 Thread2 已经把 flag 修改为 false 了，但是线程 Thread1 没有读取到 flag 修改后的值，线程一直在运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改flag值为：false</span><br></pre></td></tr></table></figure>
+<p>我们把 flag 变量加上 volatile：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatile  boolean flag = true;</span><br></pre></td></tr></table></figure>
+<p>重新运行程序，打印结果如下。Thread1 结束，说明 Thread1 读取到了 flage 修改后的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改flag值为：false</span><br><span class="line">Thread1结束</span><br></pre></td></tr></table></figure>
+<p>说到可见性，我们需要先了解一下 Java 内存模型，Java 内存模型如下所示：</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d90e39f9caa340b0bb589ef1dbb2f667.png" alt="在这里插入图片描述"></p>
+<p>线程之间的共享变量存储在主内存中（Main Memory）中，每个线程都一个都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读 / 写共享变量的副本。</p>
+<p>所以当一个线程把主内存中的共享变量读取到自己的本地内存中，然后做了更新。在还没有把共享变量刷新的主内存的时候，另外一个线程是看不到的。</p>
+<p>如何把修改后的值刷新到主内存中的？<br>
+现代的处理器使用写缓冲区临时保存向内存写入的数据。写缓冲区可以保证指令流水线持续运行，它可以避免由于处理器停顿下来等向内存写入数据而产生的延迟。同时，通过以批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，较少对内存总线的占用。但是什么时候写入到内存是不知道的。<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f96ceb17a5644f7db67d3a64f8b888fa.png" alt="在这里插入图片描述"></p>
+<p>所以就引入了 volatile，volatile 是如何保证可见性的呢？<br>
+在 X86 处理器下通过工具获取 JIT 编译器生成的汇编指令来查看对 volatile 进行写操作时，会多出 lock addl。Lock 前缀的指令在多核处理器下会引发两件事情：</p>
+<p>1. 将当前处理器缓存行的数据写回到系统内存。<br>
+2. 这个写回内存的操作会使其他 cpu 里缓存了该内存地址的数据无效。<br>
+如果声明了 volatile 的变量进行写操作，JVM 就会向处理器发送一条 Lock 前缀的指令，将这个变量所在缓存行的数据写回到系统内存。但是，就算写回到内存，如果其他处理器缓存的还是旧的，在执行操作就会有问题。所以，在多处理器下，为了保证各个处理器的缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置成无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存里。</p>
+<h1 id="二-顺序一致性"><a class="markdownIt-Anchor" href="#二-顺序一致性">#</a> 二、顺序一致性</h1>
+<p>在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。重排序分为如下三种：</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/39a6b41a1a1a4d0191f418b0519aa532.png" alt="在这里插入图片描述"></p>
+<p>1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序可能会导致多线程程序出现内存可见性问题。<br>
+当变量声明为 volatile 时，Java 编译器在生成指令序列时，会插入内存屏障指令。通过内存屏障指令来禁止重排序。<br>
+JMM 内存屏障插入策略如下：<br>
+在每个 volatile 写操作的前面插入一个 StoreStore 屏障，后面插入一个 StoreLoad 屏障。<br>
+在每个 volatile 读操作后面插入一个 LoadLoad，LoadStore 屏障。</p>
+<p>Volatile 写插入内存屏障后生成指令序列示意图：</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f44d26762f704a28905e2f65b2a75d53.png" alt="在这里插入图片描述"></p>
+<p>Volatile 读插入内存屏障后生成指令序列示意图：</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/97e184ee75ed4e18b3066e1c8ab585e1.png" alt="在这里插入图片描述"></p>
+<p>通过上面这些我们可以得出如下结论：编译器不会对 volatile 读与 volatile 读后面的任意内存操作重排序；编译器不会对 volatile 写与 volatile 写前面的任意内存操作重排序。</p>
+<p>防止重排序使用案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SafeDoubleCheckedLocking</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Instance instane;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">static</span> Instance <span class="title function_">getInstane</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instane==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SafeDoubleCheckedLocking.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instane==<span class="literal">null</span>)&#123;</span><br><span class="line">                    instane=<span class="keyword">new</span> <span class="title class_">Instance</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instane;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建一个对象主要分为如下三步：</p>
+<p>分配对象的内存空间。<br>
+初始化对象。<br>
+设置 instance 指向内存空间。<br>
+如果 instane 不加 volatile，上面的 2，3 可能会发生重排序。假设 A，B 两个线程同时获取，A 线程获取到了锁，发生了指令重排序，先设置了 instance 指向内存空间。这个时候 B 线程也来获取，instance 不为空，这样 B 拿到了没有初始化完成的单例对象（如下图）</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/70457cf0d7904aa5a8b3edb1bffd4561.png" alt="在这里插入图片描述"></p>
+<p>二、Volatile 与 Synchronized 比较<br>
+ 1.Volatile 是轻量级的 synchronized，因为它不会引起上下文的切换和调度，所以 Volatile 性能更好。<br>
+2.Volatile 只能修饰变量，synchronized 可以修饰方法，静态方法，代码块。<br>
+3.Volatile 对任意单个变量的读 / 写具有原子性，但是类似于 i++ 这种复合操作不具有原子性。而锁的互斥执行的特性可以确保对整个临界区代码执行具有原子性。<br>
+4. 多线程访问 volatile 不会发生阻塞，而 synchronized 会发生阻塞。<br>
+5.volatile 是变量在多线程之间的可见性，synchronize 是多线程之间访问资源的同步性。</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-20T06:02:20.268Z" title="2023-4-20 14:02:20">2023-04-20</time>发表</span><span class="level-item"><time dateTime="2023-04-20T06:01:26.789Z" title="2023-4-20 14:01:26">2023-04-20</time>更新</span><span class="level-item">33 分钟读完 (大约4929个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/20/%E3%80%90Java%E3%80%91TheadLocal/">ThreadLocal</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="threadlocal-详解"><a class="markdownIt-Anchor" href="#threadlocal-详解">#</a> ThreadLocal 详解</h1>
+<p>ThreadLocal 概述<br>
+ ThreadLocal 类用来提供线程内部的局部变量，不同的线程之间不会相互干扰<br>
+这种变量在多线程环境下访问（通过 get 和 set 方法访问）时能保证各个线程的变量相对独立于其他线程内的变量<br>
+在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间一些公共变量传递的复杂度<br>
+使用<br>
+常用方法</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法名</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ThreadLocal()</td>
+<td>创建 ThreadLocal 对象</td>
+</tr>
+<tr>
+<td>public void set( T value)</td>
+<td>设置当前线程绑定的局部变量</td>
+</tr>
+<tr>
+<td>public T get()</td>
+<td>获取当前线程绑定的局部变量</td>
+</tr>
+<tr>
+<td>public T remove()</td>
+<td>移除当前线程绑定的局部变量，该方法可以帮助 JVM 进行 GC</td>
+</tr>
+<tr>
+<td>protected T initialValue()</td>
+<td>返回当前线程局部变量的初始值</td>
+</tr>
+</tbody>
+</table>
+<p>案例<br>
+场景：让每个线程获取其设置的对应的共享变量值<br>
+共享变量访问问题案例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线程间访问共享变量之间问题</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoQuestion</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">DemoQuestion</span> <span class="variable">demoQuestion</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DemoQuestion</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// int j = i;</span></span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt;&#123;</span><br><span class="line">                <span class="comment">// demoQuestion.setAge(j);</span></span><br><span class="line">                demoQuestion.setName(Thread.currentThread().getName() + <span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;---&gt;&quot;</span> + demoQuestion.getName());</span><br><span class="line">                <span class="comment">// System.out.println(Thread.currentThread().getName() + &quot;---&gt;&quot; + demoQuestion.getAge());</span></span><br><span class="line">            &#125;,<span class="string">&quot;t&quot;</span> + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用关键字 Synchronized 关键字加锁解决方案</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用加锁的方式解决：线程间访问共享变量之间问题</span></span><br><span class="line"><span class="comment"> * 将对共享变量的操作进行加锁，保证其原子性</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SolveDemoQuestionBySynchronized</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SolveDemoQuestionBySynchronized</span> <span class="variable">demoQuestion</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SolveDemoQuestionBySynchronized</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// int j = i;</span></span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt;&#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (SolveDemoQuestionBySynchronized.class)&#123;</span><br><span class="line">                    demoQuestion.setName(Thread.currentThread().getName() + <span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                    System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">&quot;---&gt;&quot;</span> + demoQuestion.getName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,<span class="string">&quot;t&quot;</span> + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 ThreadLocal 方式解决</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SolveDemoQuestionByThreadLocal</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>  ThreadLocal&lt;String&gt; name = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SolveDemoQuestionByThreadLocal</span> <span class="variable">demoQuestion</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SolveDemoQuestionByThreadLocal</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt;&#123;</span><br><span class="line">                demoQuestion.setName(Thread.currentThread().getName() + <span class="string">&quot;的数据&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot;---&gt;&quot;</span> + demoQuestion.getName());</span><br><span class="line">            &#125;,<span class="string">&quot;t&quot;</span> + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name.get();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String content)</span> &#123;</span><br><span class="line">        name.set(content);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="threadlocalmap-内部结果"><a class="markdownIt-Anchor" href="#threadlocalmap-内部结果">#</a> ThreadLocalMap 内部结果</h2>
+<blockquote>
+<p>JDK8 之前的设计<br>
+每个 ThreadLocal 都创建一个 ThreadLocalMap，用线程作为 ThreadLocalMap 的 key，要存储的局部变量作为 ThreadLocalMap 的 value，这样就能达到各个线程的局部变量隔离的效果</p>
+</blockquote>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/baa00cdb33a14aaeab7b453c1bb1469b.png" alt="在这里插入图片描述"></p>
+<p>JDK8 之后的设计<br>
+每个 Thread 维护一个 ThreadLocalMap，这个 ThreadLocalMap 的 key 是 ThreadLocal 实例本身，value 才是真正要存储的值 Object<br>
+ 每个 Thread 线程内部都有一个 ThreadLocalMap<br>
+Map 里面存储 ThreadLocal 对象（key）和线程的变量副本（value）<br>
+Thread 内部的 Map 是由 ThreadLocal 维护的，由 ThreadLocal 负责向 map 获取和设置线程的变量值<br>
+对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/5633b9ff01d84aaeb06b799d825e289e.png" alt="在这里插入图片描述"></p>
+<p>JDK 对 ThreadLocal 这样改造的好处<br>
+减少 ThreadLocalMap 存储的 Entry 数量：因为之前的存储数量由 Thread 的数量决定，现在是由 ThreadLocal 的数量决定。在实际运用当中，往往 ThreadLocal 的数量要少于 Thread 的数量<br>
+当 Thread 销毁之后，对应的 ThreadLocalMap 也会随之销毁，能减少内存的使用（但是不能避免内存泄漏问题，解决内存泄漏问题应该在使用完后及时调用 remove () 对 ThreadMap 里的 Entry 对象进行移除，由于 Entry 继承了弱引用类，会在下次 GC 时被 JVM 回收）</p>
+<h2 id="threadlocal相关方法源码解析"><a class="markdownIt-Anchor" href="#threadlocal相关方法源码解析">#</a> ThreadLocal 相关方法源码解析</h2>
+<h3 id="set方法"><a class="markdownIt-Anchor" href="#set方法">#</a> set 方法</h3>
+<ul>
+<li>源码及相关注释</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 设置当前线程对应的ThreadLocal的值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> value 将要保存在当前线程对应的ThreadLocal的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(T value)</span> &#123;</span><br><span class="line">       <span class="comment">// 获取当前线程对象</span></span><br><span class="line">       <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取此线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">       <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">       <span class="comment">// 判断map是否存在</span></span><br><span class="line">       <span class="keyword">if</span> (map != <span class="literal">null</span>)</span><br><span class="line">           <span class="comment">// 存在则调用map.set设置此实体entry,this这里指调用此方法的ThreadLocal对象</span></span><br><span class="line">           map.set(<span class="built_in">this</span>, value);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="comment">// 1）当前线程Thread 不存在ThreadLocalMap对象</span></span><br><span class="line">           <span class="comment">// 2）则调用createMap进行ThreadLocalMap对象的初始化</span></span><br><span class="line">           <span class="comment">// 3）并将 t(当前线程)和value(t对应的值)作为第一个entry存放至ThreadLocalMap中</span></span><br><span class="line">           createMap(t, value);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取当前线程Thread对应维护的ThreadLocalMap </span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span>  t the current thread 当前线程</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> the map 对应维护的ThreadLocalMap </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   ThreadLocalMap <span class="title function_">getMap</span><span class="params">(Thread t)</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    *创建当前线程Thread对应维护的ThreadLocalMap </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t 当前线程</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> firstValue 存放到map中第一个entry的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">createMap</span><span class="params">(Thread t, T firstValue)</span> &#123;</span><br><span class="line">       <span class="comment">//这里的this是调用此方法的threadLocal</span></span><br><span class="line">       t.threadLocals = <span class="keyword">new</span> <span class="title class_">ThreadLocalMap</span>(<span class="built_in">this</span>, firstValue);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>相关流程图</li>
+</ul>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/2430f09d315e40769a63720f84a8a06c.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>执行流程</li>
+</ul>
+<ol>
+<li>获取当前线程，并根据当前线程获取一个 Map</li>
+<li>如果获取的 Map 不为空，则将参数设置到 Map 中（当前 ThreadLocal 的引用作为 key）</li>
+<li>如果 Map 为空，则给该线程创建 Map，并设置初始值</li>
+</ol>
+<h3 id="get方法"><a class="markdownIt-Anchor" href="#get方法">#</a> get () 方法</h3>
+<ul>
+<li>源码及相关注释</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 返回当前线程中保存ThreadLocal的值</span></span><br><span class="line"><span class="comment">    * 如果当前线程没有此ThreadLocal变量，</span></span><br><span class="line"><span class="comment">    * 则它会通过调用&#123;<span class="doctag">@link</span> #initialValue&#125; 方法进行初始化值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> 返回当前线程对应此ThreadLocal的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">// 获取当前线程对象</span></span><br><span class="line">       <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取此线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">       <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">       <span class="comment">// 如果此map存在</span></span><br><span class="line">       <span class="keyword">if</span> (map != <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="comment">// 以当前的ThreadLocal 为 key，调用getEntry获取对应的存储实体e</span></span><br><span class="line">           ThreadLocalMap.<span class="type">Entry</span> <span class="variable">e</span> <span class="operator">=</span> map.getEntry(<span class="built_in">this</span>);</span><br><span class="line">           <span class="comment">// 对e进行判空 </span></span><br><span class="line">           <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123;</span><br><span class="line">               <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">               <span class="comment">// 获取存储实体 e 对应的 value值,即为我们想要的当前线程对应此ThreadLocal的值</span></span><br><span class="line">               <span class="type">T</span> <span class="variable">result</span> <span class="operator">=</span> (T)e.value;</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment">       	初始化 : 有两种情况有执行当前代码</span></span><br><span class="line"><span class="comment">       	第一种情况: map不存在，表示此线程没有维护的ThreadLocalMap对象</span></span><br><span class="line"><span class="comment">       	第二种情况: map存在, 但是没有与当前ThreadLocal关联的entry</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">return</span> setInitialValue();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始化</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> the initial value 初始化后的值</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> T <span class="title function_">setInitialValue</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">// 调用initialValue获取初始化的值</span></span><br><span class="line">       <span class="comment">// 此方法可以被子类重写, 如果不重写默认返回null</span></span><br><span class="line">       <span class="type">T</span> <span class="variable">value</span> <span class="operator">=</span> initialValue();</span><br><span class="line">       <span class="comment">// 获取当前线程对象</span></span><br><span class="line">       <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取此线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">       <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">       <span class="comment">// 判断map是否存在</span></span><br><span class="line">       <span class="keyword">if</span> (map != <span class="literal">null</span>)</span><br><span class="line">           <span class="comment">// 存在则调用map.set设置此实体entry</span></span><br><span class="line">           map.set(<span class="built_in">this</span>, value);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="comment">// 1）当前线程Thread 不存在ThreadLocalMap对象</span></span><br><span class="line">           <span class="comment">// 2）则调用createMap进行ThreadLocalMap对象的初始化</span></span><br><span class="line">           <span class="comment">// 3）并将 t(当前线程)和value(t对应的值)作为第一个entry存放至ThreadLocalMap中</span></span><br><span class="line">           createMap(t, value);</span><br><span class="line">       <span class="comment">// 返回设置的值value</span></span><br><span class="line">       <span class="keyword">return</span> value;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>流程图</li>
+</ul>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/a7e417b2719348729b4229071e4d3f4f.png" alt="在这里插入图片描述"></p>
+<p>执行流程<br>
+获取当前线程，根据当前线程获取一个 Map<br>
+ 如果获取的 Map 不为空，则在 Map 中以 ThreadLocal 的引用作为 key 来在 Map 中获取对应的 Entrye，否则转到 4<br>
+ 如果 e 不为 null，则返回 e.value，否则转到 4<br>
+Map 为空或者 e 为空，则通过 initialValue 函数获取初始值 value，然后用 ThreadLocal 的引用和 value 作为 firstKey 和 firstValue 创建一个新的 Map</p>
+<h2 id="remove方法"><a class="markdownIt-Anchor" href="#remove方法">#</a> remove 方法</h2>
+<ul>
+<li>源码及相关注释</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除当前线程中保存的ThreadLocal对应的实体entry</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取当前线程对象中维护的ThreadLocalMap对象</span></span><br><span class="line">         <span class="type">ThreadLocalMap</span> <span class="variable">m</span> <span class="operator">=</span> getMap(Thread.currentThread());</span><br><span class="line">        <span class="comment">// 如果此map存在</span></span><br><span class="line">         <span class="keyword">if</span> (m != <span class="literal">null</span>)</span><br><span class="line">            <span class="comment">// 存在则调用map.remove</span></span><br><span class="line">            <span class="comment">// 以当前ThreadLocal为key删除对应的实体entry</span></span><br><span class="line">             m.remove(<span class="built_in">this</span>);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行流程</li>
+</ul>
+<ol>
+<li>首先获取当前线程，并根据当前线程获取一个 Map</li>
+<li>如果获取的 Map 不为空，则移除当前 ThreadLocal 对象对应的 entry</li>
+</ol>
+<p>initialValue 方法<br>
+此方法的作用是返回该线程局部变量的初始值<br>
+这个方法是一个延迟调用方法，从上面的代码我们得知，在 set 方法还未调用而先调用了 get 方法时才执行，并且仅执行 1 次<br>
+这个方法缺省实现直接返回一个 null<br>
+ 如果想要一个除 null 之外的初始值，可以重写此方法。（备注： 该方法是一个 protected 的方法，显然是为了让子类覆盖而设计的）<br>
+源码及相关注释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 返回当前线程对应的ThreadLocal的初始值</span></span><br><span class="line"><span class="comment">  * 此方法的第一次调用发生在，当线程通过get方法访问此线程的ThreadLocal值时</span></span><br><span class="line"><span class="comment">  * 除非线程先调用了set方法，在这种情况下，initialValue 才不会被这个线程调用。</span></span><br><span class="line"><span class="comment">  * 通常情况下，每个线程最多调用一次这个方法。</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * &lt;p&gt;这个方法仅仅简单的返回null &#123;<span class="doctag">@code</span> null&#125;;</span></span><br><span class="line"><span class="comment">  * 如果想ThreadLocal线程局部变量有一个除null以外的初始值，</span></span><br><span class="line"><span class="comment">  * 必须通过子类继承&#123;<span class="doctag">@code</span> ThreadLocal&#125; 的方式去重写此方法</span></span><br><span class="line"><span class="comment">  * 通常, 可以通过匿名内部类的方式实现</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span> 当前ThreadLocal的初始值</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">protected</span> T <span class="title function_">initialValue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ThreadLocalMap 解析</p>
+<h2 id="内部结构"><a class="markdownIt-Anchor" href="#内部结构">#</a> 内部结构</h2>
+<p>ThreadLocalMap 是 ThreadLocal 的内部类，没有实现 Map 接口，用独立的方式实现了 Map 的功能，其内部的 Entry 也是独立实现的，而 Entry 又是 ThreadLocalMap 的内部类，且集成弱引用 (WeakReference) 类。</p>
+<h2 id="成员变量"><a class="markdownIt-Anchor" href="#成员变量">#</a> 成员变量</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">        * The entries in this hash map extend WeakReference, using</span></span><br><span class="line"><span class="comment">        * its main ref field as the key (which is always a</span></span><br><span class="line"><span class="comment">        * ThreadLocal object).  Note that null keys (i.e. entry.get()</span></span><br><span class="line"><span class="comment">        * == null) mean that the key is no longer referenced, so the</span></span><br><span class="line"><span class="comment">        * entry can be expunged from table.  Such entries are referred to</span></span><br><span class="line"><span class="comment">        * as &quot;stale entries&quot; in the code that follows.</span></span><br><span class="line"><span class="comment">        * </span></span><br><span class="line"><span class="comment">			* Entry继承WeakReference，并且用ThreadLocal作为key.</span></span><br><span class="line"><span class="comment">				* 如果key为null(entry.get() == null)，意味着key不再被引用，</span></span><br><span class="line"><span class="comment">				* 因此这时候entry也可以从table中清除。</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Entry</span> <span class="keyword">extends</span> <span class="title class_">WeakReference</span>&lt;ThreadLocal&lt;?&gt;&gt; &#123;</span><br><span class="line">           <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">           Object value;</span><br><span class="line"></span><br><span class="line">           Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">               <span class="built_in">super</span>(k);</span><br><span class="line">               value = v;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始容量 —— 必须是2的整次幂</span></span><br><span class="line"><span class="comment">    *  The initial capacity -- MUST be a power of two.  </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">INITIAL_CAPACITY</span> <span class="operator">=</span> <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 存放数据的table，Entry类的定义在下面分析</span></span><br><span class="line"><span class="comment">    * 同样，数组长度必须是2的整次幂。</span></span><br><span class="line"><span class="comment">    * The table, resized as necessary.</span></span><br><span class="line"><span class="comment">    * table.length MUST always be a power of two.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Entry[] table;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 数组里面entrys的个数，可以用于判断table当前使用量是否超过阈值。</span></span><br><span class="line"><span class="comment">    * The number of entries in the table</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 进行扩容的阈值，表使用量大于它的时候进行扩容。</span></span><br><span class="line"><span class="comment">    * The next size value at which to resize</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> threshold; <span class="comment">// Default to 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="弱引用和内存泄漏"><a class="markdownIt-Anchor" href="#弱引用和内存泄漏">#</a> 弱引用和内存泄漏</h2>
+<p>弱引用相关概念<br>
+强引用（“Strong” Reference），就是我们最常见的普通对象引用，只要还有强引用指向一个对象，就能表明对象还 “活着”，垃圾回收器就不会回收这种对象<br>
+弱引用（WeakReference），垃圾回收器一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存</p>
+<h2 id="内存泄漏相关概念"><a class="markdownIt-Anchor" href="#内存泄漏相关概念">#</a> 内存泄漏相关概念</h2>
+<p>Memory overflow: 内存溢出，没有足够的内存提供申请者使用<br>
+ Memory leak: 内存泄漏是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。内存泄漏的堆积终将导致内存溢出</p>
+<h2 id="内存泄漏与强弱引用关系"><a class="markdownIt-Anchor" href="#内存泄漏与强弱引用关系">#</a> 内存泄漏与强弱引用关系</h2>
+<p>ThreadLocal 内存结构</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/7476f5b3aec44f20b884e118880925b1.png" alt="在这里插入图片描述"></p>
+<p>如果 key 使用强引用，也就是上图中的红色背景框部分<br>
+业务代码中使用完 ThreadLocal ，threadLocal Ref 被回收了<br>
+因为 threadLocalMap 的 Entry 强引用了 threadLocal，造成 threadLocal 无法被回收<br>
+在没有手动删除这个 Entry 以及 CurrentThread 依然运行的前提下，始终有强引用链 threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry，Entry 就不会被回收（Entry 中包括了 ThreadLocal 实例和 value），导致 Entry 内存泄漏<br>
+如果 key 使用弱引用，也就是上图中的红色背景框部分<br>
+业务代码中使用完 ThreadLocal ，threadLocal Ref 被回收了<br>
+由于 ThreadLocalMap 只持有 ThreadLocal 的弱引用，没有任何强引用指向 threadlocal 实例，所以 threadlocal 就可以顺利被 gc 回收，此时 Entry 中的 key=null<br>
+ 但是在没有手动删除这个 Entry 以及 CurrentThread 依然运行的前提下，也存在有强引用链 threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry -&gt; value ，value 不会被回收， 而这块 value 永远不会被访问到了，导致 value 内存泄漏</p>
+<h2 id="出现内存泄漏的真实原因"><a class="markdownIt-Anchor" href="#出现内存泄漏的真实原因">#</a> 出现内存泄漏的真实原因</h2>
+<p>没有手动删除对应的 Entry 节点信息<br>
+ ThreadLocal 对象使用完后，对应线程仍然在运行</p>
+<h2 id="避免内存泄漏的的两种方式"><a class="markdownIt-Anchor" href="#避免内存泄漏的的两种方式">#</a> 避免内存泄漏的的两种方式</h2>
+<p>使用完 ThreadLocal，调用其 remove 方法删除对应的 Entry<br>
+ 使用完 ThreadLocal，当前 Thread 也随之运行结束<br>
+对于第一种方式很好控制，调用对应 remove () 方法即可，但是对于第二种方式，我们是很难控制的，正因为不好控制，这也是为什么 ThreadLocalMap 里对应的 Entry 对象继承弱引用的原因，因为使用了弱引用，当 ThreadLocal 使用完后，key 的引用就会为 null，而在调用 ThreadLocal 中的 get ()/set () 方法时，当判断 key 为 null 时会将 value 置为 null，这就就会在 jvm 下次 GC 时将对应的 Entry 对象回收，从而避免内存泄漏问题的出现。</p>
+<h2 id="hash冲突问题及解决方法"><a class="markdownIt-Anchor" href="#hash冲突问题及解决方法">#</a> hash 冲突问题及解决方法</h2>
+<p>首先从 ThreadLocal 的 set () 方法入手</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void set(T value) &#123;</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocal.ThreadLocalMap map = getMap(t);</span><br><span class="line">        if (map != null)</span><br><span class="line">            //调用了ThreadLocalMap的set方法</span><br><span class="line">            map.set(this, value);</span><br><span class="line">        else</span><br><span class="line">            createMap(t, value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ThreadLocal.ThreadLocalMap getMap(Thread t) &#123;</span><br><span class="line">        return t.threadLocals;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void createMap(Thread t, T firstValue) &#123;</span><br><span class="line">        	//调用了ThreadLocalMap的构造方法</span><br><span class="line">        t.threadLocals = new ThreadLocal.ThreadLocalMap(this, firstValue);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>构造方法 <code>ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue)</code></p>
+</li>
+<li>
+<pre><code> /*
+  * firstKey : 本ThreadLocal实例(this)
+  * firstValue ： 要保存的线程本地变量
+  */
+ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) &#123;
+        //初始化table
+        table = new ThreadLocal.ThreadLocalMap.Entry[INITIAL_CAPACITY];
+        //计算索引(重点代码）
+        int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1);
+        //设置值
+        table[i] = new ThreadLocal.ThreadLocalMap.Entry(firstKey, firstValue);
+        size = 1;
+        //设置阈值
+        setThreshold(INITIAL_CAPACITY);
+    &#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">构造函数首先创建一个长度为16的Entry数组，然后计算出firstKey对应的索引，然后存储到table中，并设置size和threshold</span><br><span class="line"></span><br><span class="line">分析：int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1)</span><br><span class="line">关于：firstKey.threadLocalHashCode</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+private final int threadLocalHashCode = nextHashCode();
+    
+    private static int nextHashCode() &#123;
+        return nextHashCode.getAndAdd(HASH_INCREMENT);
+    &#125;
+//AtomicInteger是一个提供原子操作的Integer类，通过线程安全的方式操作加减,适合高并发情况下的使用
+    private static AtomicInteger nextHashCode =  new AtomicInteger();
+     //特殊的hash值
+    private static final int HASH_INCREMENT = 0x61c88647;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里定义了一个AtomicInteger类型，每次获取当前值并加上HASH_INCREMENT，HASH_INCREMENT = 0x61c88647,这个值跟斐波那契数列（黄金分割数）有关，其主要目的就是为了让哈希码能均匀的分布在2的n次方的数组里, 也就是Entry[] table中，这样做可以尽量避免hash冲突</span><br><span class="line"></span><br><span class="line">关于：&amp; (INITIAL_CAPACITY - 1)</span><br><span class="line">计算hash的时候里面采用了hashCode &amp; (size - 1)的算法，这相当于取模运算hashCode % size的一个更高效的实现。正是因为这种算法，我们要求size必须是2的整次幂，这也能保证在索引不越界的前提下，使得hash发生冲突的次数减小</span><br><span class="line">ThreadLocalMap中的set方法</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+private void set(ThreadLocal&lt;?&gt; key, Object value) &#123;
+        ThreadLocal.ThreadLocalMap.Entry[] tab = table;
+        int len = tab.length;
+        //计算索引(重点代码，刚才分析过了）
+        int i = key.threadLocalHashCode &amp; (len-1);
+        /**
+         * 使用线性探测法查找元素（重点代码）
+         */
+        for (ThreadLocal.ThreadLocalMap.Entry e = tab[i];
+             e != null;
+             e = tab[i = nextIndex(i, len)]) &#123;
+            ThreadLocal&lt;?&gt; k = e.get();
+            //ThreadLocal 对应的 key 存在，直接覆盖之前的值
+            if (k == key) &#123;
+                e.value = value;
+                return;
+            &#125;
+            // key为 null，但是值不为 null，说明之前的 ThreadLocal 对象已经被回收了，
+           // 当前数组中的 Entry 是一个陈旧（stale）的元素
+            if (k == null) &#123;
+                //用新元素替换陈旧的元素，这个方法进行了不少的垃圾清理动作，防止内存泄漏
+                replaceStaleEntry(key, value, i);
+                return;
+            &#125;
+        &#125;
+    
+    	//ThreadLocal对应的key不存在并且没有找到陈旧的元素，则在空元素的位置创建一个新的Entry。
+            tab[i] = new Entry(key, value);
+            int sz = ++size;
+            /**
+             * cleanSomeSlots用于清除那些e.get()==null的元素，
+             * 这种数据key关联的对象已经被回收，所以这个Entry(table[index])可以被置null。
+             * 如果没有清除任何entry,并且当前使用量达到了负载因子所定义(长度的2/3)，那么进行				 * rehash（执行一次全表的扫描清理工作）
+             */
+            if (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;= threshold)
+                rehash();
+&#125;
+
+ /**
+     * 获取环形数组的下一个索引
+     */
+    private static int nextIndex(int i, int len) &#123;
+        return ((i + 1 &lt; len) ? i + 1 : 0);
+    &#125;
+</code></pre>
+<h2 id="代码执行流程"><a class="markdownIt-Anchor" href="#代码执行流程">#</a> 代码执行流程：</h2>
+<p>1. 首先还是根据 key 计算出索引 i，然后查找 i 位置上的 Entry</p>
+<p>2. 若是 Entry 已经存在并且 key 等于传入的 key，那么这时候直接给这个 Entry 赋新的 value 值</p>
+<p>3. 若是 Entry 存在，但是 key 为 null，则调用 replaceStaleEntry 来更换这个 key 为空的 Entry</p>
+<p>4. 不断循环检测，直到遇到为 null 的地方，这时候要是还没在循环过程中 return，那么就在这个 null 的位置新建一个 Entry，并且插入，同时 size 增加 1</p>
+<p>5. 最后调用 cleanSomeSlots，清理 key 为 null 的 Entry，最后返回是否清理了 Entry，接下来再判断 sz 是否 &gt;= thresgold 达到了 rehash 的条件，达到的话就会调用 rehash 函数执行一次全表的扫描清理</p>
+<ul>
+<li>分析 ： ThreadLocalMap 使用线性探测法来解决哈希冲突的</li>
+</ul>
+<p>1. 该方法一次探测下一个地址，直到有空的地址后插入，若整个空间都找不到空余的地址，则产生溢出<br>
+ 2. 假设当前 table 长度为 16，也就是说如果计算出来 key 的 hash 值为 14，如果 table [14] 上已经有值，并且其 key 与当前 key 不一致，那么就发生了 hash 冲突，这个时候将 14 加 1 得到 15，取 table [15] 进行判断，这个时候如果还是冲突会回到 0，取 table [0], 以此类推，直到可以插入</p>
+<p>3. 可以把 Entry [] table 看成一个环形数组</p>
+</li>
+</ul>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/5/">上一页</a></div><div class="pagination-next"><a href="/page/7/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link is-current" href="/page/6/">6</a></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/12/">12</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:52:53.490Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90HEXO%E3%80%91%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">【HEXO】使用Hexo搭建属于自己的博客</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.463Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.459Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E5%A4%96%E8%AE%BE%E3%80%91%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%E8%BD%B4%E4%BD%93%E6%80%8E%E4%B9%88%E9%80%89%EF%BC%9F%E4%B8%89%E6%A8%A1%E7%83%AD%E6%8F%92%E6%8B%94%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B/">【外设】机械键盘轴体怎么选？三模热插拔原来是这么回事</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.456Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91DDD%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%9E%8B/">【架构】DDD分层架构模型</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.452Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">119</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">119</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">119</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

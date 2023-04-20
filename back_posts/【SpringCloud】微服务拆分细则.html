@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>微服务拆分细则 - Brath-Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Brath-Blog"><meta name="msapplication-TileImage" content="https://brath.cloud/me.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Brath-Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="​	在微服务的设计过程中，微服务设计有多大，微服务粒度的把控，一直是设计人员需要考虑和设计的难点。 因为服务粒度设计过大，不能得到微服务架构带来的便利，例如：更加敏态的开发，更频繁的版本发布，由于服务功能划分的小，可以根据实际的业务场景，选择更加合适的技术进行代码重构等等。 ​		但同时我们也要注意，不是服务越” 微 “越好，因为服务的过度拆分会使架构的设计复杂度大大提升，同时也会大大提升运维和"><meta property="og:type" content="blog"><meta property="og:title" content="微服务拆分细则"><meta property="og:url" content="http://example.com/back_posts/%E3%80%90SpringCloud%E3%80%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99.html"><meta property="og:site_name" content="Brath-Blog"><meta property="og:description" content="​	在微服务的设计过程中，微服务设计有多大，微服务粒度的把控，一直是设计人员需要考虑和设计的难点。 因为服务粒度设计过大，不能得到微服务架构带来的便利，例如：更加敏态的开发，更频繁的版本发布，由于服务功能划分的小，可以根据实际的业务场景，选择更加合适的技术进行代码重构等等。 ​		但同时我们也要注意，不是服务越” 微 “越好，因为服务的过度拆分会使架构的设计复杂度大大提升，同时也会大大提升运维和"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png"><meta property="article:published_time" content="2023-04-20T01:23:36.413Z"><meta property="article:modified_time" content="2023-04-20T01:23:36.413Z"><meta property="article:author" content="Brath"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/back_posts/%E3%80%90SpringCloud%E3%80%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99.html"},"headline":"微服务拆分细则","image":["https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png","https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png"],"datePublished":"2023-04-20T01:23:36.413Z","dateModified":"2023-04-20T01:23:36.413Z","author":{"@type":"Person","name":"Brath"},"publisher":{"@type":"Organization","name":"Brath-Blog","logo":{"@type":"ImageObject","url":"https://brath.cloud/me.png"}},"description":"​\t在微服务的设计过程中，微服务设计有多大，微服务粒度的把控，一直是设计人员需要考虑和设计的难点。 因为服务粒度设计过大，不能得到微服务架构带来的便利，例如：更加敏态的开发，更频繁的版本发布，由于服务功能划分的小，可以根据实际的业务场景，选择更加合适的技术进行代码重构等等。 ​\t\t但同时我们也要注意，不是服务越” 微 “越好，因为服务的过度拆分会使架构的设计复杂度大大提升，同时也会大大提升运维和"}</script><link rel="canonical" href="http://example.com/back_posts/%E3%80%90SpringCloud%E3%80%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E7%BB%86%E5%88%99.html"><link rel="icon" href="https://brath.cloud/me.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">微服务拆分细则</h1><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="扫码_搜索联合传播样式-标准色版"></p>
+<p>​	在微服务的设计过程中，微服务设计有多大，微服务粒度的把控，一直是设计人员需要考虑和设计的难点。</p>
+<p>因为服务粒度设计过大，不能得到微服务架构带来的便利，例如：更加敏态的开发，更频繁的版本发布，由于服务功能划分的小，可以根据实际的业务场景，选择更加合适的技术进行代码重构等等。</p>
+<p>​		但同时我们也要注意，不是服务越” 微 “越好，因为服务的过度拆分会使架构的设计复杂度大大提升，同时也会大大提升运维和测试的复杂度等。</p>
+<p>​		所以对服务拆分粒度的把控，对设计人员来讲就至关重要了，甚至对项目的成败有非常重要的影响。</p>
+<p>这篇文档提供了一些主要的微服务拆分原则，供您参考，来帮助您进行更加合理粒度的微服务设计。</p>
+<h3 id="微服务的拆分原则-通用"><a class="markdownIt-Anchor" href="#微服务的拆分原则-通用">#</a> 微服务的拆分原则 - 通用</h3>
+<table>
+<thead>
+<tr>
+<th><strong>编号</strong></th>
+<th><strong>原则</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原则 1</td>
+<td>基于业务分析拆分</td>
+<td>基于 TOGAF， ADA 等</td>
+</tr>
+<tr>
+<td>原则 2</td>
+<td>基于 DDD 领域驱动设计中的子域设计拆分</td>
+<td>基于领域驱动设计</td>
+</tr>
+<tr>
+<td>原则 3</td>
+<td>根据动作和用例拆分</td>
+<td>比如支付</td>
+</tr>
+<tr>
+<td>原则 4</td>
+<td>根据名词或者资源拆</td>
+<td>比如账号</td>
+</tr>
+<tr>
+<td>原则 5</td>
+<td>架构稳定</td>
+<td>拆分的结构稳定，不会经常修改</td>
+</tr>
+<tr>
+<td>原则 6</td>
+<td>服务是可测试的</td>
+<td>集成测试要可定义，测试可回溯</td>
+</tr>
+<tr>
+<td>原则 7</td>
+<td>单一原则</td>
+<td>一个服务做一个业务， 自己治理自己的数据库</td>
+</tr>
+<tr>
+<td>原则 8</td>
+<td>开闭原则</td>
+<td>面向对象理论， 对扩展开放， 对修改关闭</td>
+</tr>
+<tr>
+<td>原则 9</td>
+<td>高内聚</td>
+<td>强一致，强依赖关系的放在一起， 减少分布式事务</td>
+</tr>
+<tr>
+<td>原则 10</td>
+<td>低耦合</td>
+<td>服务间互相独立</td>
+</tr>
+<tr>
+<td>原则 11</td>
+<td>足够小的团队可维护，最大两个 pizza team</td>
+<td>6-10 人一个 pizza team</td>
+</tr>
+<tr>
+<td>原则 12</td>
+<td>团队自治，自己的服务的开发和发布要跟别的团队尽可能小的协调</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="微服务的拆分原则-技术侧重点"><a class="markdownIt-Anchor" href="#微服务的拆分原则-技术侧重点">#</a> 微服务的拆分原则 - 技术侧重点</h2>
+<table>
+<thead>
+<tr>
+<th><strong>编号</strong></th>
+<th><strong>原则</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原则 1</td>
+<td>潜在风险</td>
+<td>服务的风险性</td>
+</tr>
+<tr>
+<td>原则 2</td>
+<td>资源性能计算性能硬盘性能内存容量网络带宽</td>
+<td>机器的性能决定了方案的部分选择</td>
+</tr>
+<tr>
+<td>原则 3</td>
+<td>安全</td>
+<td>安全要求是否很高，安全的策略</td>
+</tr>
+<tr>
+<td>原则 4</td>
+<td>高并发瞬时并发持续并发</td>
+<td>并发的种类， 持续的时间</td>
+</tr>
+<tr>
+<td>原则 5</td>
+<td>数据库数据量大小读操作写操作数据类型</td>
+<td>数据的类型， 读写的多少，数据量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="二维码plus"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>微服务拆分细则</p><p><a href="http://example.com/back_posts/【SpringCloud】微服务拆分细则.html">http://example.com/back_posts/【SpringCloud】微服务拆分细则.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Brath</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-04-20</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-04-20</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="sharethis-inline-share-buttons"></div><script src="https://brath.cn" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://brath.cloud/zfb.jpg" alt="支付宝"></span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://brath.cloud/wx.jpg" alt="微信"></span></a></div></div></div><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="SOHUCS" sid="back_posts/【SpringCloud】微服务拆分细则.html"></div><script charset="utf-8" src="https://changyan.sohu.com/upload/changyan.js"></script><script>window.changyan.api.config({appid: 'cywzQRCbe',conf: '485cd826ef6d780dcea71d0f3b37304a'});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:52:53.490Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90HEXO%E3%80%91%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">【HEXO】使用Hexo搭建属于自己的博客</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.463Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E3%80%91%E8%85%BE%E8%AE%AF%E4%BA%91%E7%94%B3%E8%AF%B7%E7%9A%84%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%92%8C%E4%BA%91%E7%9B%BE%E8%AF%81%E4%B9%A6%E4%B8%AD%E5%BF%83/">腾讯云申请的免费证书部署到阿里云CDN和云盾证书中心</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.459Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E5%A4%96%E8%AE%BE%E3%80%91%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%E8%BD%B4%E4%BD%93%E6%80%8E%E4%B9%88%E9%80%89%EF%BC%9F%E4%B8%89%E6%A8%A1%E7%83%AD%E6%8F%92%E6%8B%94%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B/">【外设】机械键盘轴体怎么选？三模热插拔原来是这么回事</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.456Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91DDD%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%9E%8B/">【架构】DDD分层架构模型</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-20T06:02:20.452Z">2023-04-20</time></p><p class="title"><a href="/2023/04/20/%E3%80%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9D%E5%A1%94/">云服务器部署宝塔面板</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">119</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">119</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">119</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
