@@ -29,7 +29,342 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-23T15:57:03.000Z" title="2023/2/23 23:57:03">2023-02-23</time>发表</span><span class="level-item"><time dateTime="2022-01-16T11:58:13.000Z" title="2022/1/16 19:58:13">2022-01-16</time>更新</span><span class="level-item">4 分钟读完 (大约646个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/23/%E3%80%90Java%E3%80%91Java%E5%AD%97%E7%AC%A6%E4%B8%8EASCII%E7%A0%81%E4%BA%92%E8%BD%AC/">【Java】Java字符与ASCII码互转</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-03-07T02:12:13.000Z" title="2023/3/7 10:12:13">2023-03-07</time>发表</span><span class="level-item"><time dateTime="2023-04-26T02:22:12.911Z" title="2023/4/26 10:22:12">2023-04-26</time>更新</span><span class="level-item">4 分钟读完 (大约581个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/03/07/%E3%80%90chatGPT%E3%80%91%E5%88%A9%E7%94%A8%E8%85%BE%E8%AE%AF%E4%BA%91%E5%87%BD%E6%95%B0%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E5%9B%BD%E5%86%85%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8ChatGPT%E4%BB%A3%E7%90%86%EF%BC%8C%E8%A7%A3%E5%86%B3%E7%BD%91%E7%BB%9C%E4%B8%8D%E5%8F%AF%E7%94%A8%E5%8F%8A1020%E7%AD%89%E9%97%AE%E9%A2%98/">【chatGPT】利用腾讯云函数免费部署国内直接使用ChatGPT代理，解决网络不可用及1020等问题</a></p><div class="content"><h1 id="chatgpt利用腾讯云函数免费部署国内直接使用chatgpt代理解决网络不可用及1020等问题"><a class="markdownIt-Anchor" href="#chatgpt利用腾讯云函数免费部署国内直接使用chatgpt代理解决网络不可用及1020等问题">#</a> 【chatGPT】利用腾讯云函数免费部署国内直接使用 ChatGPT 代理，解决网络不可用及 1020 等问题</h1>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h2>
+<p>在 Github 上发现一个项目，可以利用腾讯云提供的云函数，一分钟就能搭建好一台可以直接访问 ChatGPT 的代理，关键还是免费的。今天就来一起折腾它。</p>
+<h2 id="项目"><a class="markdownIt-Anchor" href="#项目">#</a> 项目</h2>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/geekr-dev/openai-proxy">https://github.com/geekr-dev/openai-proxy</a></p>
+<h2 id="教程"><a class="markdownIt-Anchor" href="#教程">#</a> 教程</h2>
+<p>可以直接看官方文字教程，如果是新手，可以按我图文教程</p>
+<h5 id="第一步"><a class="markdownIt-Anchor" href="#第一步">#</a> 第一步：</h5>
+<p>​	登录腾讯控制台：<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/scf/list">https://console.cloud.tencent.com/scf/list</a></p>
+<p>​	如果之前没使用腾讯云函数，会提示授权</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420085936706.png" alt="image-20230420085936706"></p>
+<h5 id="第二步前往访问管理"><a class="markdownIt-Anchor" href="#第二步前往访问管理">#</a> 第二步：前往访问管理</h5>
+<p>​	<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420085957003.png" alt="image-20230420085957003"></p>
+<h5 id="第三步新建函数记得选择非大陆地区哟"><a class="markdownIt-Anchor" href="#第三步新建函数记得选择非大陆地区哟">#</a> 第三步：新建函数，记得选择<strong>非大陆</strong>地区哟</h5>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090015818.png" alt="image-20230420090015818"></p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090031428.png" alt="image-20230420090031428"></p>
+<h5 id="上传github项目中的zip文件"><a class="markdownIt-Anchor" href="#上传github项目中的zip文件">#</a> 上传 Github 项目中的 ZIP 文件</h5>
+<h5 id="第四步高级配置"><a class="markdownIt-Anchor" href="#第四步高级配置">#</a> 第四步：高级配置</h5>
+<p>上传完 ZIP 文件，接着下拉，找到高级配置，点进去编辑<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090114681.png" alt="image-20230420090114681"></p>
+<p>点高级配置的最右边的编辑按钮</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090132944.png" alt="image-20230420090132944"></p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090140465.png" alt="image-20230420090140465"></p>
+<h5 id="第五步获取代理地址"><a class="markdownIt-Anchor" href="#第五步获取代理地址">#</a> 第五步：获取代理地址</h5>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090255336.png" alt="image-20230420090255336"></p>
+<p>不要 &quot;/release&quot; 路径，只要取子域名部分就可以了</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/image-20230420090309398.png" alt="image-20230420090309398"></p>
+<p>这时候访问路径内容和 api.open.com 的结果是一至的了。</p>
+<p><strong>至此：已经有了海外域名的代理地址了。</strong></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-03-04T12:23:03.000Z" title="2023/3/4 20:23:03">2023-03-04</time>发表</span><span class="level-item"><time dateTime="2023-04-26T02:22:15.829Z" title="2023/4/26 10:22:15">2023-04-26</time>更新</span><span class="level-item">9 分钟读完 (大约1359个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/03/04/%E3%80%90chatGPT%E3%80%91%E5%9F%BA%E4%BA%8EDocker%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84ChatGPT/">【chatGPT】基于Docker如何快速部署自己的ChatGPT</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="基于docker如何快速部署自己的chatgpt"><a class="markdownIt-Anchor" href="#基于docker如何快速部署自己的chatgpt">#</a> 基于 Docker 如何快速部署自己的 ChatGPT</h1>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景">#</a> 背景</h2>
+<p>随着<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=OpenAI&amp;spm=1001.2101.3001.7020"> OpenAI</a> 在 2022 年底发布的 LLM 模型 - ChatGPT 展现出的强大效果，ChatGPT 无疑成为了当下炙手可热的明星模型。</p>
+<p>现有的基于<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=GPT&amp;spm=1001.2101.3001.7020"> GPT</a> 的开源项目已经非常多，本文以现有的高热度 github 开源项目<a target="_blank" rel="noopener" href="https://github.com/Chanzhaoyu/chatgpt-web"> chatgpt-web</a> 为例，教大家简单快速地搭建属于自己的 ChatGPT。</p>
+<h2 id="chatgpt-web"><a class="markdownIt-Anchor" href="#chatgpt-web">#</a> ChatGPT-Web</h2>
+<p>chatgpt-web 项目中的部署教程已经非常完整，本文不再过多解释。</p>
+<p>仅以 Docker 部署为例</p>
+<p>前置条件</p>
+<ul>
+<li>本地或者服务器应该具有 Docker 环境</li>
+<li>具有 ChatGPT 帐号</li>
+</ul>
+<p>以 token 模式为例，请求 chatgpt web 版本，免费但稍微具有延迟</p>
+<p><strong>Step1. 找到你帐号的 token</strong></p>
+<p>点击 https://chat.openai.com/api/auth/session，获取你帐号的 token，并记录他</p>
+<p><strong>Step2. 运行 docker</strong></p>
+<p>按需配置访问 Web 页面的密码，Token、超时等信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name chatgpt-web -d -p 127.0.0.1:3888:3002 --<span class="built_in">env</span> OPENAI_ACCESS_TOKEN=your_access_token --<span class="built_in">env</span> AUTH_SECRET_KEY=you_secret_key chenzhaoyu94/chatgpt-web</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p><strong>Step3. 访问 localhost:3002 查看效果</strong><br>
+<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/b6ea40d61cb741129cc1d98af9633d18.png" alt="在这里插入图片描述"><br>
+在上述步骤中我们无需进行任何代理，就可以直接与 GPT 交流，使用 API 方式同理。当然了，根据项目作者的介绍，<strong>使用 API 时需要进行代理自建</strong>。</p>
+<p>如果你只是在本地部署给自己使用，那么以上 3 步就满足了需求，如果想要在公网访问，或者像 App 一样访问你的 ChatGPT，那么请接着往下看。</p>
+<h2 id="nginx反向代理"><a class="markdownIt-Anchor" href="#nginx反向代理">#</a> Nginx 反向代理</h2>
+<p>以宝塔面板为例，我们在服务器上拉起 docker 镜像后，可以通过 <code>ip:port</code>  进行访问</p>
+<p>但通常来说我们的网站带有域名，以笔者所使用的腾讯云服务器为例</p>
+<p>前置条件</p>
+<ul>
+<li>拥有一个域名</li>
+<li>拥有一台云服务器</li>
+</ul>
+<p><strong>Step1. SSL 证书</strong></p>
+<p>首先在云产品中找到 SSL 证书，点击我的证书 - 免费证书 - 申请免费证书</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/34d88a1248ea4158ba5e2e6a07ab0a67.png" alt="在这里插入图片描述"></p>
+<p>填写申请的域名，申请成功之后，点击下载，下载 nginx 格式的即可</p>
+<p><strong>Step2. 配置域名 SSL</strong></p>
+<p>在宝塔面板中选择 - 网站 - 添加站点</p>
+<p>填写刚刚申请 SSL 证书的域名，选择纯静态，其余默认，点击确定即可</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/9ece432796a34885adc258df4bc25555.png" alt="在这里插入图片描述"></p>
+<p><strong>Step3. 配置证书</strong></p>
+<p>点击添加好的网站，然后点击 SSL，填入刚刚下载的文件中的 <code>key</code>  和 <code>pem</code> <br>
+<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/852f85f818444491bc4b8e04248b9a4b.png" alt="在这里插入图片描述"></p>
+<p>配置完成后点击保存</p>
+<p><strong>Step4. 配置 DNS 解析</strong></p>
+<p>在云产品中搜索 - 云解析 - 选择 DNS 解析 DNSPod</p>
+<p>点击我的域名 - 添加记录</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/383f44e9fe714847ab5c5f2079d81982.png" alt="在这里插入图片描述"></p>
+<p>填入刚刚申请的域名，如果带有前缀，则第一个红框填入你的域名前缀，<a target="_blank" rel="noopener" href="http://xn--www-eo8er22f.baidu.com">比如 www.baidu.com</a>，则这里填 www</p>
+<p>第二个红框填写你的服务器 ip，或者你的 CDN 域名</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/2882e7602c324fc4a9a5520262c23a0a.png" alt="在这里插入图片描述"></p>
+<p><strong>Step5. 配置反向代理</strong></p>
+<p>在宝塔面板中，点击刚刚添加的网站，点击反向代理，填入刚刚 docker 启动时的宿主机端口<br>
+<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/abbf944aab284d368e63d28b61024d7f.png" alt="在这里插入图片描述"></p>
+<p>如上文中的 3888</p>
+<p>以上配置完成之后，访问 https:// 你的域名就可以了～</p>
+<h2 id="pwa支持"><a class="markdownIt-Anchor" href="#pwa支持">#</a> PWA 支持</h2>
+<p>PWA 技术可以让我们访问网站能够拥有访问 App 一般的体验，在 chatgpt-web 中已经内嵌，但默认是关闭的</p>
+<p>我们可以通过设置启动时的参数 <code>-env VITE_GLOB_APP_PWA=true</code>  将他打开</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name chatgpt-web -d -p 127.0.0.1:3888:3002 --<span class="built_in">env</span> OPENAI_ACCESS_TOKEN=your_access_token --<span class="built_in">env</span> AUTH_SECRET_KEY=you_secret_key --<span class="built_in">env</span> VITE_GLOB_APP_PWA=<span class="literal">true</span> chenzhaoyu94/chatgpt-web</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>部署成功之后，我们再到手机上访问该网站时便可以保存他在桌面了。</p>
+<p>默认的 PWA 图标和全局用户信息配置在项目中，即使在网页可以修改当前登陆者的用户信息，在清除 Cookie 之后便会还原，如果你想定制这两种信息，请拉下 chatgpt-web 项目进行镜像自定义</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-24T14:08:51.000Z" title="2023/2/24 22:08:51">2023-02-24</time>发表</span><span class="level-item"><time dateTime="2022-12-17T00:57:31.000Z" title="2022/12/17 08:57:31">2022-12-17</time>更新</span><span class="level-item">11 分钟读完 (大约1615个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/24/%E3%80%90Docker%E3%80%91Linux%E9%83%A8%E7%BD%B2Docker/">【Docker】Linux部署Docker</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="dockerlinux部署docker"><a class="markdownIt-Anchor" href="#dockerlinux部署docker">#</a> 【Docker】Linux 部署 Docker</h1>
+<p>接触一段时间 docker，这个工具大大提高了开发者打包应用的效率。</p>
+<p>一直都是直接把镜像扔到到 docker 里构建容器启动，并没有深入了解。</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/3eca951ddd044e9d9e1e6f2fcd5c680b.png" alt="在这里插入图片描述"><br>
+本文由<a target="_blank" rel="noopener" href="https://blog.csdn.net/alpha0808?type=blog"> alpha0808</a> 大佬指导，如果要了解 docker 的概念以及命令，请去看大佬这篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/alpha0808/article/details/125699252?spm=1001.2014.3001.5502"> DOCKER 之入门篇</a></p>
+<p>本篇文章集中于 linux 系统下对 docker 及相关组件的部署。</p>
+<h3 id="目录"><a class="markdownIt-Anchor" href="#目录">#</a> 目录</h3>
+<ul>
+<li><a href="#docker_9">一、安装 docker</a></li>
+<li><a href="#_47">二、镜像加速</a></li>
+<li>
+<ul>
+<li><a href="#_50">获取阿里云镜像地址</a></li>
+<li><a href="#_56">添加加速器地址</a></li>
+</ul>
+</li>
+<li><a href="#Portainer_75">三、可视化管理工具 Portainer</a></li>
+<li>
+<ul>
+<li><a href="#_76">简介</a></li>
+<li><a href="#_79">展示</a></li>
+<li><a href="#_90">安装</a></li>
+<li>
+<ul>
+<li><a href="#_92">镜像下载</a></li>
+<li><a href="#_105">容器运行</a></li>
+<li><a href="#_113">创建用户</a></li>
+<li><a href="#docker_116">docker 连接管理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_134">四、补充</a></li>
+<li>
+<ul>
+<li><a href="#docker_135">docker 开机自启</a></li>
+<li><a href="#_139">容器开机自启</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="一-安装docker"><a class="markdownIt-Anchor" href="#一-安装docker">#</a> 一、安装 docker</h1>
+<p>按照官网 <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E5%8D%B3%E5%8F%AF">https://docs.docker.com/engine/install/centos/ 执行命令即可</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#<span class="number">1.</span>yum检查更新</span><br><span class="line">sudo yum check-update</span><br><span class="line">#<span class="number">2.</span>删除旧版本</span><br><span class="line">sudo yum remove docker docker-client docker-client-latest  docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine</span><br><span class="line">#<span class="number">3.</span>安装gcc环境</span><br><span class="line">yum -y install gcc</span><br><span class="line">yum -y install gcc-c++</span><br><span class="line">#<span class="number">4.</span>安装依赖项</span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">#<span class="number">5.</span>将 Docker 存储库添加到 CentOS</span><br><span class="line">sudo yum-config-manager --add-repo https:<span class="comment">//download.docker.com/linux/centos/docker-ce.repo</span></span><br><span class="line">#使用阿里服务器下载</span><br><span class="line">yum-config-manager --add-repo http:<span class="comment">//mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span></span><br><span class="line">#如果没有执行命令<span class="number">1</span>更新，那么此时执行命令即可</span><br><span class="line">yum makecache fast</span><br><span class="line">#<span class="number">6.</span>下载docker</span><br><span class="line">sudo yum install -y docker #注意这样下载需要接受GPG秘钥，相当于一个数字指纹，指纹格式：<span class="number">060</span>A <span class="number">61</span>C5 <span class="number">1B</span>55 <span class="number">8</span>A7F <span class="number">742B</span> <span class="number">77</span>AA C52F EB6B <span class="number">621</span>E <span class="number">9F</span>35</span><br><span class="line">#或者社区版本</span><br><span class="line">yum -y install docker-ce</span><br><span class="line">#<span class="number">7.</span>检查版本</span><br><span class="line">docker version</span><br><span class="line">#或者</span><br><span class="line">docker -v</span><br><span class="line">#<span class="number">8.</span>查看docker进程</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>执行第 8 步，如果报错<br>
+ “<strong>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemo</strong>”<br>
+ 是因为 docker 还没启动</p>
+<p>解决方案：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+<h1 id="二-镜像加速"><a class="markdownIt-Anchor" href="#二-镜像加速">#</a> 二、镜像加速</h1>
+<p>使用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F&amp;spm=1001.2101.3001.7020">阿里云镜像</a>地址来加速镜像下载的速度</p>
+<h2 id="获取阿里云镜像地址"><a class="markdownIt-Anchor" href="#获取阿里云镜像地址">#</a> 获取阿里云镜像地址</h2>
+<p>点击<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances">容器镜像服务</a><br>
+<strong>镜像工具</strong>→<strong>镜像加速器</strong>，生成<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%8A%A0%E9%80%9F%E5%99%A8&amp;spm=1001.2101.3001.7020">加速器</a>地址</p>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/644a2eab2b884c86874988c992891308.png" alt="在这里插入图片描述"></p>
+<h2 id="添加加速器地址"><a class="markdownIt-Anchor" href="#添加加速器地址">#</a> 添加加速器地址</h2>
+<p>切换目录至 /etc/docker</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/docker</span><br></pre></td></tr></table></figure>
+<p>编辑 daemon.js 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;加速器地址&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%87%8D%E5%90%AFdocker&amp;spm=1001.2101.3001.7020">重启 docker</a> 的伴随线程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<p>重启 docker 服务</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h1 id="三-可视化管理工具portainer"><a class="markdownIt-Anchor" href="#三-可视化管理工具portainer">#</a> 三、可视化管理工具 Portainer</h1>
+<h2 id="简介"><a class="markdownIt-Anchor" href="#简介">#</a> 简介</h2>
+<p>Portainer 是 Docker 的<strong>图形化</strong>管理工具，提供状态显示面板、应用模板快速部署、容器镜像网络数据卷的基本操作（包括上传下载镜像，创建容器等操作）、事件日志显示、容器控制台操作、Swarm 集群和服务等集中管理和操作、登录用户管理和控制等功能</p>
+<h2 id="展示"><a class="markdownIt-Anchor" href="#展示">#</a> 展示</h2>
+<ul>
+<li>首页<br>
+包含 docker-compose、容器、镜像、卷、网络总体概况<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/a02aadfe750448a2b68d3af149c24a3a.png" alt="在这里插入图片描述"></li>
+<li>容器<br>
+包含容器的启动、暂停、杀死进程、重启、新增，监控，日志查看，容器控制台等功能。<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/906ebda299ae49dab32718dbd0519d2f.png" alt="在这里插入图片描述"></li>
+<li>镜像<br>
+包含镜像详细查看、删除、导入、导出等功能<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/14cc4c0cbaea403f895b07bbc006474a.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装">#</a> 安装</h2>
+<p>采用 docker 安装</p>
+<h3 id="镜像下载"><a class="markdownIt-Anchor" href="#镜像下载">#</a> 镜像下载</h3>
+<p>查询 portainer 镜像</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search portainer</span><br></pre></td></tr></table></figure>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/52a91f8890aa4618999620689636e6ce.png" alt="在这里插入图片描述"></p>
+<p>下载 portainer 镜像</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull portainer/portainer</span><br></pre></td></tr></table></figure>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/15a7b2b883bd41c78d66d8f391e791eb.png" alt="在这里插入图片描述"></p>
+<h3 id="容器运行"><a class="markdownIt-Anchor" href="#容器运行">#</a> 容器运行</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p <span class="number">9000</span>:<span class="number">9000</span> --name portainer -v /var/run/docker.sock:/var/run/docker.sock -d portainer/portainer</span><br></pre></td></tr></table></figure>
+<p>开放 9000 端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=9000/tcp --permanent &amp;&amp; firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h3 id="创建用户"><a class="markdownIt-Anchor" href="#创建用户">#</a> 创建用户</h3>
+<p>访问 9000 端口，第一次登录设置管理员账号和密码<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/90ff15efcc5e44f38105bf45c4a10faa.png" alt="在这里插入图片描述"></p>
+<h3 id="docker连接管理"><a class="markdownIt-Anchor" href="#docker连接管理">#</a> docker 连接管理</h3>
+<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/e0730e684e3c407fba300d41ad5dff7e.png" alt="在这里插入图片描述"><br>
+可以选择管理本地 Local 和远程 Remote 的 Docker 两个选项，我们安装在本机，直接选择 Local，然后 Connect 进入管理界面<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/50e22542b48144a7bebcc9c2cc194dfc.png" alt="在这里插入图片描述"><br>
+点击 connect，报错</p>
+<blockquote>
+<p>Failure dial unix /var/run/docker.sock: connect: permission denied</p>
+</blockquote>
+<p>可以猜测是 SElinux 的问题，看 SELinux 状态：sestatus 命令进行查看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态</span><br><span class="line">SELinux status:                 enabled</span><br></pre></td></tr></table></figure>
+<p>修改 /etc/selinux/config 文件，保存后重启机器</p>
+<blockquote>
+<p>将<strong> SELINUX=enforcing</strong> 改为<strong> SELINUX=disabled</strong></p>
+</blockquote>
+<p>再次访问 9000，连接 local，成功<br>
+<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/e2756cc7d9154993992f2c3a00d5ca58.png" alt="在这里插入图片描述"></p>
+<h1 id="四-补充"><a class="markdownIt-Anchor" href="#四-补充">#</a> 四、补充</h1>
+<h2 id="docker开机自启"><a class="markdownIt-Anchor" href="#docker开机自启">#</a> docker 开机自启</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker</span><br></pre></td></tr></table></figure>
+<h2 id="容器开机自启"><a class="markdownIt-Anchor" href="#容器开机自启">#</a> 容器开机自启</h2>
+<p>以上面的 docker 可视化管理工具 portainer 为例，希望开机的时候，自动启动镜像</p>
+<p>启动命令加–restart=always</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p <span class="number">9000</span>:<span class="number">9000</span> --name portainer --restart=always  -v /var/run/docker.sock:/var/run/docker.sock -d portainer/portainer</span><br></pre></td></tr></table></figure>
+<p>如果已经在运行的镜像</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker update --restart=always portainer</span><br></pre></td></tr></table></figure>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-24T03:58:39.000Z" title="2023/2/24 11:58:39">2023-02-24</time>发表</span><span class="level-item"><time dateTime="2020-01-04T09:13:01.000Z" title="2020/1/4 17:13:01">2020-01-04</time>更新</span><span class="level-item">22 分钟读完 (大约3342个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/24/%E3%80%90Java%E3%80%91CAS%E6%9C%BA%E5%88%B6/">CAS机制</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="cas机制"><a class="markdownIt-Anchor" href="#cas机制">#</a> CAS 机制</h1>
+<h3 id="我们先看一段代码"><a class="markdownIt-Anchor" href="#我们先看一段代码">#</a> 我们先看一段代码：</h3>
+<p>启动两个线程，每个线程中让静态变量 count 循环累加 100 次。</p>
+<p><img src="https://img-blog.csdn.net/20180312170840546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>最终输出的 count 结果一定是 200 吗？因为这段代码是非<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8&amp;spm=1001.2101.3001.7020">线程安全</a>的，所以最终的自增结果很可能会小于 200。我们再加上 synchronized 同步锁，再来看一下。</p>
+<p><img src="https://img-blog.csdn.net/20180312170827236?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>加了同步锁之后，count 自增的操作变成了原子性操作，所以最终输出一定是 count=200，代码实现了线程安全。虽然 synchronized 确保了线程安全，但是在某些情况下，这并不是一个最有的选择。</p>
+<p>关键在于性能问题。</p>
+<p>synchronized 关键字会让没有得到锁资源的线程进入 BLOCKED 状态，而后在争夺到锁资源后恢复为 RUNNABLE 状态，这个过程中涉及到操作系统用户模式和内核模式的转换，代价比较高。</p>
+<p>尽管 JAVA 1.6 为 synchronized 做了优化，增加了从偏向锁到轻量级锁再到重量级锁的过过度，但是在最终转变为重量级锁之后，性能仍然比较低。所以面对这种情况，我们就可以使用 java 中的 “原子操作类”。</p>
+<p>所谓原子操作类，指的是 java.util.concurrent.atomic 包下，一系列以 Atomic 开头的包装类。如 AtomicBoolean，AtomicUInteger，AtomicLong。它们分别用于 Boolean，Integer，Long 类型的原子性操作。</p>
+<p>现在我们尝试使用 AtomicInteger 类：</p>
+<p><img src="https://img-blog.csdn.net/20180312172106130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>使用 AtomicInteger 之后，最终的输出结果同样可以保证是 200。并且在某些情况下，代码的性能会比 synchronized 更好。</p>
+<p>而 Atomic 操作类的底层正是用到了 “CAS 机制”。</p>
+<p>CAS 是英文单词 Compare and Swap 的缩写，翻译过来就是比较并替换。</p>
+<p>CAS 机制中使用了 3 个基本操作数：内存地址 V，旧的预期值 A，要修改的新值 B。</p>
+<p>更新一个变量的时候，只有当变量的预期值 A 和内存地址 V 当中的实际值相同时，才会将内存地址 V 对应的值修改为 B。</p>
+<p>我们看一个例子：</p>
+<p>\1. 在内存地址 V 当中，存储着值为 10 的变量。</p>
+<p><img src="https://img-blog.csdn.net/20180312172707148?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\2. 此时线程 1 想把变量的值增加 1. 对线程 1 来说，旧的预期值 A=10，要修改的新值 B=11.</p>
+<p><img src="https://img-blog.csdn.net/20180312172814864?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\3. 在线程 1 要提交更新之前，另一个线程 2 抢先一步，把内存地址 V 中的变量值率先更新成了 11。</p>
+<p><img src="https://img-blog.csdn.net/20180312172943800?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\4. 线程 1 开始提交更新，首先进行 A 和地址 V 的实际值比较，发现 A 不等于 V 的实际值，提交失败。</p>
+<p><img src="https://img-blog.csdn.net/20180312173045349?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\5. 线程 1 重新获取内存地址 V 的当前值，并重新计算想要修改的值。此时对线程 1 来说，A=11，B=12。这个重新尝试的过程被称为自旋。</p>
+<p><img src="https://img-blog.csdn.net/20180312173220371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\6. 这一次比较幸运，没有其他线程改变地址 V 的值。线程 1 进行比较，发现 A 和地址 V 的实际值是相等的。</p>
+<p><img src="https://img-blog.csdn.net/20180312173331761?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\7. 线程 1 进行交换，把地址 V 的值替换为 B，也就是 12.</p>
+<p><img src="https://img-blog.csdn.net/20180312173421205?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>从思想上来说，synchronized 属于悲观锁，悲观的认为程序中的并发情况严重，所以严防死守，CAS 属于乐观锁，乐观地认为程序中的并发情况不那么严重，所以让线程不断去重试更新。</p>
+<p>在 java 中除了上面提到的 Atomic 系列类，以及 Lock 系列类夺得底层实现，甚至在 JAVA1.6 以上版本，synchronized 转变为重量级锁之前，也会采用 CAS 机制。</p>
+<p><strong>CAS 的缺点：</strong></p>
+<p>1） CPU 开销过大</p>
+<p>在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给 CPU 带来很到的压力。</p>
+<p>2） 不能保证代码块的原子性</p>
+<p>CAS 机制所保证的知识一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证 3 个变量共同进行原子性的更新，就不得不使用 synchronized 了。</p>
+<p>3） ABA 问题</p>
+<p>这是 CAS 机制最大的问题所在。（后面有介绍）</p>
+<p>我们下面来介绍一下两个问题：</p>
+<p><em><strong>*1. JAVA 中 CAS 的底层实现 *</strong></em></p>
+<p><em><strong>*2. CAS 的 ABA 问题和解决办法。*</strong></em></p>
+<p>我们看一下 AtomicInteger 当中常用的自增方法 incrementAndGet：</p>
+<p>public final int incrementAndGet() {</p>
+<p>for (;😉 {</p>
+<p>​    int current = get();</p>
+<p>​    int next = current + 1;</p>
+<p>​    if (compareAndSet(current, next))</p>
+<p>​      return next;</p>
+<p>}</p>
+<p>}</p>
+<p>private volatile int value;</p>
+<p>public final int get() {</p>
+<p>return value;</p>
+<p>}</p>
+<p>这段代码是一个无限循环，也就是 CAS 的自旋，循环体中做了三件事：</p>
+<p>\1. 获取当前值</p>
+<p>\2. 当前值 + 1，计算出目标值</p>
+<p>\3. 进行 CAS 操作，如果成功则跳出循环，如果失败则重复上述步骤</p>
+<p>这里需要注意的重点是 get 方法，这个方法的作用是获取变量的当前值。</p>
+<p>如何保证获取的当前值是内存中的最新值？很简单，用 volatile 关键字来保证（保证线程间的可见性）。我们接下来看一下 compareAndSet 方法的实现：</p>
+<p><img src="https://img-blog.csdn.net/2018031217514825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>compareAndSet 方法的实现很简单，只有一行代码。这里涉及到两个重要的对象，一个是 unsafe，一个是 valueOffset。</p>
+<p>什么是 unsafe 呢？Java 语言不像 C，C++ 那样可以直接访问底层操作系统，但是 JVM 为我们提供了一个后门，这个后门就是 unsafe。unsafe 为我们提供了硬件级别的原子操作。</p>
+<p>至于 valueOffset 对象，是通过 unsafe.objectFiledOffset 方法得到，所代表的是 AtomicInteger 对象 value 成员变量在内存中的偏移量。我们可以简单的把 valueOffset 理解为 value 变量的内存地址。</p>
+<p>我们上面说过，CAS 机制中使用了 3 个基本操作数：内存地址 V，旧的预期值 A，要修改的新值 B。</p>
+<p>而 unsafe 的 compareAndSwapInt 方法的参数包括了这三个基本元素：valueOffset 参数代表了 V，expect 参数代表了 A，update 参数代表了 B。</p>
+<p>正是 unsafe 的 compareAndSwapInt 方法保证了 Compare 和 Swap 操作之间的原子性操作。</p>
+<p>我们现在来说什么是 ABA 问题。假设内存中有一个值为 A 的变量，存储在地址 V 中。</p>
+<p><img src="https://img-blog.csdn.net/2018031218013467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>此时有三个线程想使用 CAS 的方式更新这个变量的值，每个线程的执行时间有略微偏差。线程 1 和线程 2 已经获取当前值，线程 3 还未获取当前值。</p>
+<p><img src="https://img-blog.csdn.net/20180312180247202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>接下来，线程 1 先一步执行成功，把当前值成功从 A 更新为 B；同时线程 2 因为某种原因被阻塞住，没有做更新操作；线程 3 在线程 1 更新之后，获取了当前值 B。</p>
+<p><img src="https://img-blog.csdn.net/20180312180432152?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在之后，线程 2 仍然处于阻塞状态，线程 3 继续执行，成功把当前值从 B 更新成了 A。</p>
+<p><img src="https://img-blog.csdn.net/20180312180546889?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>最后，线程 2 终于恢复了运行状态，由于阻塞之前已经获得了 “当前值 A”，并且经过 compare 检测，内存地址 V 中的实际值也是 A，所以成功把变量值 A 更新成了 B。</p>
+<p><img src="https://img-blog.csdn.net/20180312180729792?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>看起来这个例子没啥问题，但如果结合实际，就可以发现它的问题所在。</p>
+<p>我们假设一个提款机的例子。假设有一个遵循 CAS 原理的提款机，小灰有 100 元存款，要用这个提款机来提款 50 元。</p>
+<p><img src="https://img-blog.csdn.net/20180312181342879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>由于提款机硬件出了点问题，小灰的提款操作被同时提交了两次，开启了两个线程，两个线程都是获取当前值 100 元，要更新成 50 元。</p>
+<p>理想情况下，应该一个线程更新成功，一个线程更新失败，小灰的存款值被扣一次。</p>
+<p><img src="https://img-blog.csdn.net/20180312181404403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程 1 首先执行成功，把余额从 100 改成 50. 线程 2 因为某种原因阻塞。这时，小灰的妈妈刚好给小灰汇款 50 元。</p>
+<p><img src="https://img-blog.csdn.net/20180312181531202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程 2 仍然是阻塞状态，线程 3 执行成功，把余额从 50 改成了 100。</p>
+<p><img src="https://img-blog.csdn.net/20180312181635868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程 2 恢复运行，由于阻塞之前获得了 “当前值” 100，并且经过 compare 检测，此时存款实际值也是 100，所以会成功把变量值 100 更新成 50。</p>
+<p><img src="https://img-blog.csdn.net/20180312181813320?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>原本线程 2 应当提交失败，小灰的正确余额应该保持 100 元，结果由于 ABA 问题提交成功了。</p>
+<p>怎么解决呢？加个版本号就可以了。</p>
+<p>真正要做到严谨的 CAS 机制，我们在 compare 阶段不仅要比较期望值 A 和地址 V 中的实际值，还要比较变量的版本号是否一致。</p>
+<p>我们仍然以刚才的例子来说明，假设地址 V 中存储着变量值 A，当前版本号是 01。线程 1 获取了当前值 A 和版本号 01，想要更新为 B，但是被阻塞了。</p>
+<p><img src="https://img-blog.csdn.net/20180312182255181?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>这时候，内存地址 V 中变量发生了多次改变，版本号提升为 03，但是变量值仍然是 A。</p>
+<p><img src="https://img-blog.csdn.net/20180312182346458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>随后线程 1 恢复运行，进行 compare 操作。经过比较，线程 1 所获得的值和地址的实际值都是 A，但是版本号不相等，所以这一次更新失败。</p>
+<p><img src="https://img-blog.csdn.net/20180312182506360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在 Java 中，AtomicStampedReference 类就实现了用版本号作比较额 CAS 机制。</p>
+<p><em><strong>*1. java 语言 CAS 底层如何实现？*</strong></em></p>
+<p><em><strong>* 利用 unsafe 提供的原子性操作方法。*</strong></em></p>
+<p><em><strong>*2. 什么事 ABA 问题？怎么解决？*</strong></em></p>
+<p><em><strong>* 当一个值从 A 变成 B，又更新回 A，普通 CAS 机制会误判通过检测。*</strong></em></p>
+<p><em><strong>* 利用版本号比较可以有效解决 ABA 问题。*</strong></em></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-23T15:57:03.000Z" title="2023/2/23 23:57:03">2023-02-23</time>发表</span><span class="level-item"><time dateTime="2022-01-16T11:58:13.000Z" title="2022/1/16 19:58:13">2022-01-16</time>更新</span><span class="level-item">4 分钟读完 (大约646个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/23/%E3%80%90Java%E3%80%91Java%E5%AD%97%E7%AC%A6%E4%B8%8EASCII%E7%A0%81%E4%BA%92%E8%BD%AC/">【Java】Java字符与ASCII码互转</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
 <h1 id="javajava字符与ascii码互转"><a class="markdownIt-Anchor" href="#javajava字符与ascii码互转">#</a> 【Java】Java 字符与 ASCII 码互转</h1>
 <p>字符转对应<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ASCII%E7%A0%81&amp;spm=1001.2101.3001.7020"> ASCII 码</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法一：将char强制转换为byte</span></span><br><span class="line"><span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="type">byte</span> <span class="variable">byteAscii</span> <span class="operator">=</span> (<span class="type">byte</span>) ch;</span><br><span class="line">System.out.println(byteAscii);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二：将char直接转化为int，其值就是字符的ascii</span></span><br><span class="line"><span class="type">int</span> <span class="variable">byteAscii1</span> <span class="operator">=</span> (<span class="type">int</span>) ch;</span><br><span class="line">System.out.println(byteAscii1);</span><br></pre></td></tr></table></figure>
@@ -379,489 +714,7 @@ Go to Preferences &gt; Version Control &gt; SubVersion &gt; Enable Interactive M
 <p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
 <p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
 <p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-01-13T14:51:03.000Z" title="2023/1/13 22:51:03">2023-01-13</time>发表</span><span class="level-item"><time dateTime="2019-08-28T10:02:54.000Z" title="2019/8/28 18:02:54">2019-08-28</time>更新</span><span class="level-item">6 分钟读完 (大约866个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/01/13/%E3%80%90MySQL%E3%80%91Mysql8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">MySQL8下载与安装教程</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="mysql下载与安装8020版教程"><a class="markdownIt-Anchor" href="#mysql下载与安装8020版教程">#</a> MySQL 下载与安装（8.0.20 版）教程</h1>
-<p>MySQL 官网：<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">链接</a></p>
-<p>直接点击链接也可以下载：<a target="_blank" rel="noopener" href="https://www.jb51.net/softs/609101.html">mysql 8.0.20</a></p>
-<p>登录官网后如下图下载 MySQL 软件：</p>
-<p><img src="https://xysaobi.oss-cn-beijing.aliyuncs.com/img/2036459-20200521220018274-67173082.png" alt="MySQL下载与安装"></p>
-<p>点击 1 和 2 后进入下图页面：</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220029745-1322700384.png" alt="MySQL下载与安装"></p>
-<p>再点击 MySQL Community Server 进入下图下载页面：</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220041569-1305043095.png" alt="MySQL下载与安装"></p>
-<p>根据上图选择好 1 处后点击 2 处进入 Windows 安装包的下载页面 (如下图):</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220158844-1266620614.png" alt="mysql80.20安装教程"></p>
-<p>上图中有两个下载包，一个是安装引导包，一个是压缩安装包，我们选择第二个。点击 Download 进入下图页面。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220326093-1181789318.png" alt="mysql80.20安装教程"></p>
-<p>我们不登陆下载，所以直接点击红框按钮进行下载。这样我们就把软件下载下来了。</p>
-<p><strong>安装：</strong></p>
-<p>双击上面下载的软件，打开下图页面。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220337052-1815726332.png" alt="mysql80.20安装教程"></p>
-<p>点击 Next, 转到下图页面。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220348558-1991987874.png" alt="mysql80.20安装教程"></p>
-<p>如果大红框上面有些没有安装的软件会出现这里，可以点击 Next 左边的 Excute 按钮安装，安装完成之后点击 Next 按钮，会出现个弹框，如下图。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220400913-2029518725.png" alt="mysql80.20安装教程"></p>
-<p>点击 Yes。弹出下图页面。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220415332-220059202.png" alt="mysql80.20安装教程"></p>
-<p>点击 Execute 进行安装。等待所有安装完成。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220425391-1135522490.png" alt="mysql80.20安装教程"></p>
-<p>至少保证红杠处的 3 项安装成功，假若有安装失败的可以卸载重新安装。安装成功后我们点击 Next。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220438215-1446733656.png" alt="mysql80.20安装教程"></p>
-<p>点击 Next。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220449513-157912578.png" alt="mysql80.20安装教程"></p>
-<p>点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360113.png" alt="mysql80.20安装教程"></p>
-<p>点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360114.png" alt="img"></p>
-<p>在红框里输入账号和密码，账号密码必须大于或等于 4 个字符，点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360115.png" alt="img"></p>
-<p>点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360116.png" alt="img"></p>
-<p>点击 Excute。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360117.png" alt="img"></p>
-<p>点击 Finish。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360118.png" alt="img"></p>
-<p>点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360119.png" alt="img"></p>
-<p>点击 Finish。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360120.png" alt="img"></p>
-<p>点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360121.png" alt="img"></p>
-<p>输入密码后点击 Check, 再点击 Next。</p>
-<p><img src="https://img.jbzj.com/file_images/article/202005/2020051108360122.png" alt="img"></p>
-<p>点击 Execute。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220545404-521370663.png" alt="img"></p>
-<p>点击 Finish。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220534248-896731311.png" alt="mysql80.20安装教程"></p>
-<p>点击 Next。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2036459/202005/2036459-20200521220522143-393956818.png" alt="mysql80.20安装教程"></p>
-<p>点击 Finish。</p>
-<p>到此位置 MySQL 就安装完成了。</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-01-12T15:56:53.000Z" title="2023/1/12 23:56:53">2023-01-12</time>发表</span><span class="level-item"><time dateTime="2019-11-26T11:55:26.000Z" title="2019/11/26 19:55:26">2019-11-26</time>更新</span><span class="level-item">19 分钟读完 (大约2775个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/01/12/%E3%80%90Flutter%E3%80%91Flutter_GetX%E6%96%87%E6%A1%A3/">Flutter GETX框架</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<p>​		GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理。</p>
-<p>​		与其说是一个状态管理库，倒不如是是一个简化 Flutter 开发的百宝箱。它提供了很多工具来简化我们的开发，本篇我们先对 GetX 有一个大概的认识，然后接下来的篇章再将 GetX 的具体应用。</p>
-<h2 id="getx-工具介绍"><a class="markdownIt-Anchor" href="#getx-工具介绍">#</a> <strong>GetX 工具介绍</strong></h2>
-<p>官方文档给出关于 GetX 的介绍如下：</p>
-<blockquote>
-<p>GetX is an extra-light and powerful solution for Flutter. It combines high-performance state management, intelligent dependency injection, and route management quickly and practically. GetX 是一个超轻量且强大的 Flutter 应用解决方案。它组合了高性能的状态管理、智能的依赖注入以及快速可用的路由管理。</p>
-</blockquote>
-<p>而实际上，GetX 还有更多的小工具，示例如下：</p>
-<h4 id="状态管理"><a class="markdownIt-Anchor" href="#状态管理">#</a> 状态管理</h4>
-<ul>
-<li>Obx 是配合 Rx 响应式变量使用、GetBuilder 是配合 update 使用：请注意，这完全是俩套定点刷新控件的方案。<br>
-区别：前者响应式变量变化，Obx 自动刷新；后者需要使用 update 手动调用刷新</li>
-<li>每一个响应式变量，都需要生成对应的 GetStream，占用资源大于基本数据类型，会对内存造成一定压力</li>
-<li>GetBuilder 内部实际上是对 StatefulWidget 的封装，所以占用资源极小（推荐使用）</li>
-</ul>
-<h4 id="控制器的注入"><a class="markdownIt-Anchor" href="#控制器的注入">#</a> 控制器的注入</h4>
-<ul>
-<li>静态路由绑定</li>
-</ul>
-<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AsWorkStatisticsBinding</span> <span class="keyword">implements</span> <span class="title class_">Bindings</span> &#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">void</span> <span class="title function_">dependencies</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">Get</span>.<span class="property">lazyPut</span>&lt;<span class="title class_">AsWorkStatisticsController</span>&gt;(<span class="function">() =&gt;</span> <span class="title class_">AsWorkStatisticsController</span>());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> final <span class="title class_">List</span>&lt;<span class="title class_">GetPage</span>&gt; routes = [</span><br><span class="line">    <span class="title class_">GetPage</span>(</span><br><span class="line">      <span class="attr">name</span>: workStatisticsPage,</span><br><span class="line">      <span class="attr">page</span>: <span class="function">() =&gt;</span> <span class="keyword">const</span> <span class="title class_">AsWorkStatisticsPage</span>(),</span><br><span class="line">      <span class="attr">binding</span>: <span class="title class_">AsWorkStatisticsBinding</span>(),</span><br><span class="line">    ),</span><br><span class="line">];</span><br><span class="line"><span class="title class_">Get</span>.<span class="title function_">toNamed</span>(<span class="title class_">ASRouteConfig</span>.<span class="property">workPlanDetailPage</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>动态路由绑定</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get<span class="selector-class">.to</span>(AsWorkStatisticsPage(),binding: <span class="built_in">AsWorkStatisticsBinding</span>());</span><br></pre></td></tr></table></figure>
-<ul>
-<li>页面注入</li>
-</ul>
-<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Get</span>.<span class="property">lazyPut</span>&lt;<span class="title class_">AsWorkStatisticsController</span>&gt;(<span class="function">() =&gt;</span> <span class="title class_">AsWorkStatisticsController</span>());</span><br></pre></td></tr></table></figure>
-<h4 id="动态简单路由和静态命名路由"><a class="markdownIt-Anchor" href="#动态简单路由和静态命名路由">#</a> 动态 / 简单路由和静态 / 命名路由</h4>
-<p>请注意命名路由，只需要在 api 结尾加上 Named 即可，举例：</p>
-<ul>
-<li>默认：<a target="_blank" rel="noopener" href="http://Get.to">Get.to</a>(SomePage());</li>
-<li>命名路由：Get.toNamed (“/somePage”);</li>
-<li>导航到新的页面</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.to(NextScreen());</span><br><span class="line">Get.toNamed(<span class="string">&quot;/NextScreen&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>关闭 SnackBars、Dialogs、BottomSheets 或任何你通常会用 Navigator.pop (context) 关闭的东西</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get<span class="selector-class">.back</span>();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入下一个页面，但没有返回上一个页面的选项（用于 SplashScreens，登录页面等）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.off(NextScreen());</span><br><span class="line">Get.offNamed(<span class="string">&quot;/NextScreen&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入下一个界面并取消之前的所有路由（在购物车、投票和测试中很有用）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.offAll(NextScreen());</span><br><span class="line">Get.offAllNamed(<span class="string">&quot;/NextScreen&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>发送数据到其它页面</li>
-</ul>
-<p>只要发送你想要的参数即可。Get 在这里接受任何东西，无论是一个字符串，一个 Map，一个 List，甚至一个类的实例。</p>
-<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Get</span>.<span class="title function_">to</span>(<span class="title class_">NextScreen</span>(), <span class="attr">arguments</span>: <span class="string">&#x27;Get is the best&#x27;</span>);</span><br><span class="line"><span class="title class_">Get</span>.<span class="title function_">toNamed</span>(<span class="string">&quot;/NextScreen&quot;</span>, <span class="attr">arguments</span>: <span class="string">&#x27;Get is the best&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>在你的类或控制器上。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(Get.arguments);</span><br><span class="line"><span class="comment">//print out: Get is the best</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>要导航到下一条路由，并在返回后立即接收或更新数据</li>
-</ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">await</span> Get.to(Payment());</span><br><span class="line"><span class="keyword">var</span> data = <span class="keyword">await</span> Get.toNamed(<span class="string">&quot;/payment&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在另一个页面上，发送前一个路由的数据</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get.back(result: <span class="string">&#x27;success&#x27;</span>);</span><br><span class="line"><span class="comment">// 并使用它，例：</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">data</span> == <span class="string">&#x27;success&#x27;</span>) madeAnything();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>跳转重复页面，可以这样写</li>
-</ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get.to(XxxxPage(), preventDuplicates: <span class="literal">false</span>);</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">Get.toNamed(<span class="string">&#x27;xxx&#x27;</span>,  preventDuplicates: <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果你不想使用 GetX 语法，只要把 Navigator（大写）改成 navigator（小写），你就可以拥有标准导航的所有功能，而不需要使用 context，例如：</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认的Flutter导航</span></span><br><span class="line">Navigator.of(context).push(</span><br><span class="line">  context,</span><br><span class="line">  MaterialPageRoute(</span><br><span class="line">    builder: (BuildContext context) &#123;</span><br><span class="line">      <span class="keyword">return</span> HomePage();</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Flutter语法获得，而不需要context。</span></span><br><span class="line">navigator.push(</span><br><span class="line">  MaterialPageRoute(</span><br><span class="line">    builder: (_) &#123;</span><br><span class="line">      <span class="keyword">return</span> HomePage();</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get语法</span></span><br><span class="line">Get.to(HomePage());</span><br></pre></td></tr></table></figure>
-<h4 id="getview的使用"><a class="markdownIt-Anchor" href="#getview的使用">#</a> GetView 的使用</h4>
-<p>GetView 只是对已注册的 Controller 有一个名为 controller 的 getter 的 const Stateless 的 Widget，如果我们只有单个控制器作为依赖项，那我们就可以使用 GetView，而不是使用 StatelessWidget，并且避免了写 Get.Find ()。</p>
-<p>GetView 的使用方法非常简单，只是要将你的视图层继承自 GetView 并传入需要注册的控制器并 Get.put () 即可：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GetViewAndGetWidgetExample</span> <span class="keyword">extends</span> <span class="title class_">GetView</span>&lt;GetViewCountController&gt; &#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget <span class="title function_">build</span><span class="params">(BuildContext context)</span> &#123;</span><br><span class="line"></span><br><span class="line">    Get.put(GetViewCountController());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Container();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="路由"><a class="markdownIt-Anchor" href="#路由">#</a> <strong>路由</strong></h3>
-<p>路由支持命名路由和匿名路由：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Get.to(() =&gt; Home());</span><br><span class="line">Get.toNamed(&#x27;/home&#x27;);</span><br><span class="line">// 返回上一个页面</span><br><span class="line">Get.back();</span><br><span class="line">// 使用下一个页面替换</span><br><span class="line">Get.off(NextScreen());</span><br><span class="line">// 清空导航堆栈全部页面</span><br><span class="line">Get.offAll(NextScreen());</span><br><span class="line">// 获取命名路由参数</span><br><span class="line">print(Get.parameters[&#x27;id&#x27;]);</span><br><span class="line">print(Get.parameters[&#x27;name&#x27;]);</span><br></pre></td></tr></table></figure>
-<p>GetX 的路由好处是不依赖于  <code>context</code> ，十分简洁，更多路由介绍可以参考：<strong><a href="https://link.zhihu.com/?target=https%3A//github.com/jonataslaw/getx/blob/master/documentation/en_US/route_management.md">GetX 路由介绍官方文档</a></strong>。</p>
-<h2 id="snackbar"><a class="markdownIt-Anchor" href="#snackbar">#</a> <strong>SnackBar</strong></h2>
-<p>Flutter 自身携带的 SnackBar 有很多限制，而 GetX 的非常简单，当然也有更多的样式配置和位置配置参数。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get.snackbar(&#x27;SnackBar&#x27;, &#x27;这是GetX的SnackBar&#x27;);</span><br></pre></td></tr></table></figure>
-<h2 id="对话框"><a class="markdownIt-Anchor" href="#对话框">#</a> <strong>对话框</strong></h2>
-<p>对话框也一样，默认的对话框开箱即用。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Get.defaultDialog(</span><br><span class="line">  title: &#x27;对话框&#x27;,</span><br><span class="line">  content: Text(&#x27;对话框内容&#x27;),</span><br><span class="line">  onConfirm: () &#123;</span><br><span class="line">    print(&#x27;Confirm&#x27;);</span><br><span class="line">    Get.back();</span><br><span class="line">  &#125;,</span><br><span class="line">  onCancel: () &#123;</span><br><span class="line">    print(&#x27;Cancel&#x27;);</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h2 id="内存缓存"><a class="markdownIt-Anchor" href="#内存缓存">#</a> <strong>内存缓存</strong></h2>
-<p>GetX 可以缓存内容对象，以便在不同页面共享数据。使用的时候需要注意，需要先  <code>put</code>  操作再  <code>find</code>  操作，否则会抛异常。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get.put(CacheData(name: &#x27;这是缓存数据&#x27;));</span><br><span class="line">CacheData cache = Get.find();</span><br></pre></td></tr></table></figure>
-<h2 id="离线存储"><a class="markdownIt-Anchor" href="#离线存储">#</a> <strong>离线存储</strong></h2>
-<p>GetX 提供了一个 <strong><a href="https://link.zhihu.com/?target=https%3A//pub.flutter-io.cn/packages/get_storage">get_storage</a></strong> 插件用于离线存储，与  <code>shared_preferences</code>  相比，其优点是纯 Dart 编写，不依赖于原生，因此可以在安卓、iOS、Web、Linux、Mac 等多个平台使用。 <code>GetStorage</code>  是基于内存和文件存储的，当内存容器中有数据时优先从内存读取。同时在构建 GetStorage 对象到时候指定存储的文件名以及存储数据的容器。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GetStorage storage = GetStorage();</span><br><span class="line">storage.write(&#x27;name&#x27;, &#x27;岛上码农&#x27;);</span><br><span class="line">storage.read(&#x27;name&#x27;);</span><br></pre></td></tr></table></figure>
-<h2 id="更改主题"><a class="markdownIt-Anchor" href="#更改主题">#</a> <strong>更改主题</strong></h2>
-<p>可以说是一行代码搞定深色和浅色模式，也可以更改为自定义主题 —— <strong>老板让你根据手机壳改主体颜色的需求</strong>已经搞定了一大半了！</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get.changeTheme(</span><br><span class="line">  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><img src="https://brath.cloud/blogImg/v2-196c01dbae06a8e68132fcd94e3983a6_b.jpg" alt="img"></p>
-<h2 id="多语言支持"><a class="markdownIt-Anchor" href="#多语言支持">#</a> <strong>多语言支持</strong></h2>
-<p>多语言支持使用数据字典完成，在  <code>GetMaterialApp</code>  指定字典对象（继承自  <code>Translations</code> ），使用字符串的时候假设 <code>.tr</code>  后缀，就可以在切换语言的时候自动切换字符串对应语言的翻译了。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class GetXDemo extends StatelessWidget &#123;</span><br><span class="line">  // 省略其他代码</span><br><span class="line">  TextButton(</span><br><span class="line">    onPressed: () &#123;</span><br><span class="line">      var locale = Locale(&#x27;en&#x27;, &#x27;US&#x27;);</span><br><span class="line">      Get.updateLocale(locale);</span><br><span class="line">    &#125;,</span><br><span class="line">    child: Text(&#x27;name&#x27;.tr),</span><br><span class="line">  ),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Messages extends Translations &#123;</span><br><span class="line">  @override</span><br><span class="line">  Map&lt;String, Map&lt;String, String&gt;&gt; get keys =&gt; &#123;</span><br><span class="line">        &#x27;en_US&#x27;: &#123;</span><br><span class="line">          &#x27;name&#x27;: &#x27;Island Coder&#x27;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x27;zh_CN&#x27;: &#123;</span><br><span class="line">          &#x27;name&#x27;: &#x27;岛上码农&#x27;,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyApp extends StatelessWidget &#123;</span><br><span class="line">  // This widget is the root of your application.</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return GetMaterialApp(</span><br><span class="line">      translations: Messages(),</span><br><span class="line">      locale: Locale(&#x27;zh&#x27;, &#x27;CN&#x27;),</span><br><span class="line">      color: Colors.white,</span><br><span class="line">      navigatorKey: Get.key,</span><br><span class="line">      title: &#x27;Flutter Demo&#x27;,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">        brightness: Brightness.light,</span><br><span class="line">      ),</span><br><span class="line">      home: GetXDemo(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="getx-的理念"><a class="markdownIt-Anchor" href="#getx-的理念">#</a> <strong>GetX 的理念</strong></h2>
-<p>GetX 有三个基本的理念，分别是性能、生产力和组织性（Organization）。</p>
-<ul>
-<li>性能（Performance）：GetX 关注性能并最小化资源消耗。GetX 不使用  <code>Stream</code>  或  <code>ChangeNotifier</code> 。</li>
-<li>生产力（Productivity）：GetX 使用简洁愉悦的语法。不管你要做什么，使用 GetX 都会觉得简便。这使得开发的时间大大节省，并且保证应用性能的最大化。通常来说，开发者需要关注从内存中移除控制器。而使用 GetX 的时候，则无需这么做。当控制器不被使用的时候，资源会自动从内存中释放。如果确实需要常住内存，那就需要在依赖中声明  <code>permanent:true</code> 。通过这种方式，可以降低内存中有过多不必要依赖对象的风险。同时，依赖默认也是懒加载。</li>
-<li>组织性（Organization）：GetX 可以将视图、展示逻辑、业务逻辑、依赖注入和导航完全解耦。路由之间跳转无需  <code>context</code> ，因此我们的导航不会依赖组件树。也不需要使用通过  <code>InheritedWidget</code>  的  <code>context</code>  访问控制器或 BLOC 对象，因此可以将展示逻辑和业务逻辑从虚拟的组件层分离。我们也不需要像 MultiProvider 那样往组件树中注入 Controller/Model/Bloc 等类对象。因此可以将依赖注入和视图分离。</li>
-</ul>
-<h2 id="getx-生态"><a class="markdownIt-Anchor" href="#getx-生态">#</a> <strong>GetX 生态</strong></h2>
-<p>GetX 有很多特性，使得编码变得容易。每个特性之间是相互独立的，并且只会在使用的时候才启动。例如，如果仅仅是使用状态管理，那么只有状态管理会被编译。而如果只使用路由，那么状态管理的部分就不会编译。</p>
-<p>GetX 有一个很大的生态，包括了大型的社区维护，大量的协作者（GitHub 上看有 132 位），并且承诺只要 Flutter 存在就会继续维护下去。而且 GetX 兼容 Android, iOS, Web, Mac, Linux, Windows 多个平台。GetX 甚至还有服务端版本 <strong><a href="https://link.zhihu.com/?target=https%3A//github.com/jonataslaw/get_server">Get_Server</a></strong>（感觉 Flutter 要一统程序员界啊，啥时候支持鸿蒙？）。</p>
-<p>为了简化开发，GetX 还提供了脚手架工具 **<a href="https://link.zhihu.com/?target=https%3A//pub.flutter-io.cn/packages/get_cli">GET_CLI</a>** 和 VSCode 插件 <code>GetX Snippets</code> （也有 Android Studio 和 Intellij 插件）。提供了如下快速代码模板：</p>
-<ul>
-<li>
-<p>getmain：GetX 的 main.dart 代码；</p>
-</li>
-<li>
-<p>getmodel：Model 类代码，包括了 fromJson 和 toJson 方法</p>
-</li>
-<li>
-<p>其他，输入 getxxxx 根据提示生成即可，具体参考：<strong><a href="https://link.zhihu.com/?target=https%3A//marketplace.visualstudio.com/items%3FitemName%3Dget-snippets.get-snippets">GetX Snippets 介绍</a></strong>。</p>
-</li>
-</ul>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> <strong>总结</strong></h2>
-<p>本篇对 GetX 插件做了简单的介绍，可以看到 GetX 的生态确实很丰富，感觉是一个集大成者，GetX 基本上涵盖了 Flutter 应用开发的很大一部分，如路由、主题、多语言、弹层、状态管理、依赖注入、网络请求封装等等。GetX 看着像一个框架， 但实际上它的各个模块是独立的，其实是一个工具箱。对于开发的时候，可以用它的全家桶，也可以从中任取所需的模块到我们的应用中使用。</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-01-05T22:54:23.000Z" title="2023/1/6 06:54:23">2023-01-06</time>发表</span><span class="level-item"><time dateTime="2019-12-31T16:50:49.000Z" title="2020/1/1 00:50:49">2020-01-01</time>更新</span><span class="level-item">29 分钟读完 (大约4379个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/01/06/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91DDD%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BC%A0%E7%BB%9F%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%E7%9A%84%E5%8C%BA%E5%88%AB/">【DDD】DDD分层架构与传统三层架构的区别</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="dddddd分层架构与传统三层架构的区别"><a class="markdownIt-Anchor" href="#dddddd分层架构与传统三层架构的区别">#</a> 【DDD】DDD 分层架构与传统三层架构的区别</h1>
-<h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录">#</a> 文章目录</h3>
-<ul>
-<li>
-<ul>
-<li><a href="#DDD_1">DDD 分层与传统三层区别</a></li>
-<li><a href="#DDD_16">DDD 分层详解</a></li>
-<li>
-<ul>
-<li><a href="#_17">四层架构图</a></li>
-<li><a href="#_24">分层作用</a></li>
-<li><a href="#_31">领域对象</a></li>
-</ul>
-</li>
-<li><a href="#DDD_44">DDD 编码实践（改进分层）</a></li>
-<li>
-<ul>
-<li><a href="#_53">代码结构描述</a></li>
-<li><a href="#_115">扩展定义注解和接口声明</a></li>
-<li><a href="#_135">领域模型注入仓储类的问题</a></li>
-</ul>
-</li>
-<li><a href="#_235">一些个人思考…</a></li>
-<li>
-<ul>
-<li><a href="#DDD_242">项目按上述经典四层架构进行搭建，可以说是 DDD 架构实践么？</a></li>
-<li><a href="#SpringDDD_251">题外话：Spring 与 DDD</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="ddd分层与传统三层区别"><a class="markdownIt-Anchor" href="#ddd分层与传统三层区别">#</a> DDD 分层与传统三层区别</h2>
-<p>根据 DDD 领域驱动设计原则，对应的软件架构也需要做出相应的调整。<br>
-我们常用的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84&amp;spm=1001.2101.3001.7020">三层架构</a>模型划分为表现层，业务逻辑层，数据访问层等，在 <code>DDD</code>  分层结构中既有联系又有区别，<br>
-个人认为主要有如下异同：</p>
-<ul>
-<li>在架构设计上，在 <code>DDD</code>  分层结构中将传统三层架构的业务逻辑层拆解为应用层和领域层<br>
-其中 Application 划分为很薄的一层服务，非核心的逻辑放到此层去实现，核心的业务逻辑表现下沉到领域层去实现，凝练为更为精确的业务规则集合，通过领域对象去阐述说明。<br>
-<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/20200110163924602.png" alt="与传统三层区别"></li>
-<li>在建模方式上， <code>DDD</code>  分层的建模思维方式有别于传统三层<br>
-传统三层通常是以数据库为起点进行数据库分析设计，而 <code>DDD</code>  则需要以业务<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B&amp;spm=1001.2101.3001.7020">领域模型</a>为核心建模（即面向对象建模方式），更能体现对现实世界的抽象。<br>
-故<strong>在 DDD 分层凸显领域层的重要作用，领域层为系统的核心，包括所有的业务领域模型的抽象表达</strong>。</li>
-<li>在职责划分上，基础设施层涵盖了 2 方面内容
-<ul>
-<li>持久化功能，其中原三层架构的数据访问层下沉到基础设施层的持久化机制实现</li>
-<li>通用技术支持，一些公共通用技术支持也放到基础设施层去实现。</li>
-</ul>
-</li>
-</ul>
-<h2 id="ddd分层详解"><a class="markdownIt-Anchor" href="#ddd分层详解">#</a> DDD 分层详解</h2>
-<h3 id="四层架构图"><a class="markdownIt-Anchor" href="#四层架构图">#</a> 四层架构图</h3>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/20200110164305632.png" alt="在这里插入图片描述"></p>
-<p>在该架构中，上层模块可以调用下层模块，反之不行。即</p>
-<ul>
-<li><code>Interface</code>  ——&gt;  <code>application</code>  |  <code>domain</code>  |  <code>infrastructure</code></li>
-<li><code>application </code> ——&gt; <code> domain</code>  |  <code>infrastructure</code></li>
-<li><code>domain</code>  ——&gt; <code> infrastructure</code></li>
-</ul>
-<h3 id="分层作用"><a class="markdownIt-Anchor" href="#分层作用">#</a> 分层作用</h3>
-<table>
-<thead>
-<tr>
-<th>分层</th>
-<th>英文</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>表现层</td>
-<td><code>User Interface</code></td>
-<td>用户界面层，或者表现层，负责向用户显示解释用户命令</td>
-</tr>
-<tr>
-<td>应用层</td>
-<td><code>Application Layer</code></td>
-<td>定义软件要完成的任务，并且指挥协调领域对象进行不同的操作。该层不包含业务领域知识。</td>
-</tr>
-<tr>
-<td>领域层</td>
-<td><code>Domain Layer</code></td>
-<td>或称为模型层，系统的核心，负责表达业务概念，业务状态信息以及业务规则。即包含了该领域（问题域）所有复杂的业务知识抽象和规则定义。该层主要精力要放在领域对象分析上，可以从实体，值对象，聚合（聚合根），领域服务，领域事件，仓储，工厂等方面入手</td>
-</tr>
-<tr>
-<td>基础设施层</td>
-<td><code>Infrastructure Layer</code></td>
-<td>主要有 2 方面内容，一是为领域模型提供持久化机制，当软件需要持久化能力时候才需要进行规划；一是对其他层提供通用的技术支持能力，如消息通信，通用工具，配置等的实现；</td>
-</tr>
-</tbody>
-</table>
-<h3 id="领域对象"><a class="markdownIt-Anchor" href="#领域对象">#</a> 领域对象</h3>
-<p>根据战术设计，关注的领域对象主要包括有</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>英文</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>值对象</td>
-<td><code>value object</code></td>
-<td>无唯一标识的简单对象</td>
-</tr>
-<tr>
-<td>实体</td>
-<td><code>entity</code></td>
-<td>充血的领域模型，有唯一标识</td>
-</tr>
-<tr>
-<td>聚合（聚合根）</td>
-<td><code>aggregate</code></td>
-<td>实体的聚合，拥有聚合根，可为某一个实体</td>
-</tr>
-<tr>
-<td>领域服务</td>
-<td><code>service</code></td>
-<td>无法归类到某个具体领域模型的行为</td>
-</tr>
-<tr>
-<td>领域事件</td>
-<td><code>event</code></td>
-<td>不常用</td>
-</tr>
-<tr>
-<td>仓储</td>
-<td><code>repository</code></td>
-<td>持久化相关，与基础设施层关联</td>
-</tr>
-<tr>
-<td>工厂</td>
-<td><code>factory</code></td>
-<td>负责复杂对象创建</td>
-</tr>
-<tr>
-<td>模块</td>
-<td><code>module</code></td>
-<td>子模块引入，可以理解为子域划分</td>
-</tr>
-</tbody>
-</table>
-<h2 id="ddd编码实践改进分层"><a class="markdownIt-Anchor" href="#ddd编码实践改进分层">#</a> DDD 编码实践（改进分层）</h2>
-<p>本文在对上述的传统四层的实践中，（1）根据 <code>依赖倒置原则</code> 对分层结构进行了改进，通过改变不同层的依赖关系（即将基础设施层倒置）来改进具体实现与抽象之间关系；（2）在基础设施层中增加 <code>引用适配层</code> （防腐层）来增强防御策略，用来统一封装外部系统接口的引用。改进的分层结构如下：<br>
-<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/74de60360d744758993b3ba54ac20370.png" alt="在这里插入图片描述"></p>
-<blockquote>
-<p>依赖倒置原则（DIP）：</p>
-<ul>
-<li>高层模块不依赖于低层模块，两者都依赖于抽象；</li>
-<li>抽象不应该依赖于细节，细节应依赖抽象</li>
-</ul>
-</blockquote>
-<h3 id="代码结构描述"><a class="markdownIt-Anchor" href="#代码结构描述">#</a> 代码结构描述</h3>
-<p><code>eg.</code>  后端 Java 代码工程为例，<br>
- <code>表现层</code> 在此代码结构中表现为 <code>api层</code> ，对外暴露接口的最上层</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">├─com.company.microservice</span><br><span class="line">├─com.company.microservice</span><br><span class="line">│    │ </span><br><span class="line">│    ├─apis   API接口层 </span><br><span class="line">│    │    └─controller       控制器，对外提供（Restful）接口</span><br><span class="line">│    │ </span><br><span class="line">│    ├─application           应用层</span><br><span class="line">│    │    ├─model            数据传输对象模型及其装配器（含校验）</span><br><span class="line">│    │    │    ├─assembler   装配器,，实现模型转换eg. apiModel&lt;=&gt; domainModel</span><br><span class="line">│    │    │    └─dto         模型定义（含校验规则）      </span><br><span class="line">│    │    ├─service          应用服务，非核心服务，跨领域的协作、复杂分页查询等</span><br><span class="line">│    │    ├─task             任务定义，协调领域模型</span><br><span class="line">│    │    ├─listener         事件监听定义</span><br><span class="line">│    │    └─***              others</span><br><span class="line">│    │ </span><br><span class="line">│    ├─domain   领域层</span><br><span class="line">│    │    ├─common           模块<span class="number">0</span>-公共代码抽取，限于领域层有效  </span><br><span class="line">│    │    ├─<span class="keyword">module</span>-xxx       模块<span class="number">1</span>-xxx，领域划分的模块，可理解为子域划分     </span><br><span class="line">│    │    ├─<span class="keyword">module</span>-user      模块<span class="number">2</span>-用户子域（领域划分的模块，可理解为子域划分）</span><br><span class="line">│    │    │    ├─action      行为定义</span><br><span class="line">│    │    │    │    ├─UserDomainService.java        领域服务,用户领域服务</span><br><span class="line">│    │    │    │    ├─UserPermissionChecker.java    其他行为，用户权限检查器</span><br><span class="line">│    │    │    │    ├─WhenUserCreatedEventPublisher.java     领域事件，当用户创建完成时的事件 </span><br><span class="line">│    │    │    ├─model       领域聚合内模型 </span><br><span class="line">│    │    │    │    ├─UserEntity.java                领域实体，有唯一标识的充血模型，如本身的CRUD操作在此处</span><br><span class="line">│    │    │    │    ├─UserDictVObj.java              领域值对象，用户字典kv定义       </span><br><span class="line">│    │    │    |    ├─UserDPO.java                   领域负载对象    </span><br><span class="line">│    │    │    ├─repostiory  领域仓储接口</span><br><span class="line">│    │    │    │    ├─UserRepository.java</span><br><span class="line">│    │    │    ├─reference   领域适配接口</span><br><span class="line">│    │    │    │    ├─UserEmailSenderFacade.java</span><br><span class="line">│    │    │    └─factory     领域工厂  </span><br><span class="line">│    │ </span><br><span class="line">│    ├─infrastructure  基础设施层</span><br><span class="line">│    │    ├─persistence      持久化机制</span><br><span class="line">│    │    │    ├─converter   持久化模型转换器</span><br><span class="line">│    │    │    ├─po          持久化对象定义 </span><br><span class="line">│    │    │    └─repository.impl  仓储类，持久化接口&amp;实现，可与ORM映射框架结合</span><br><span class="line">│    │    ├─general          通用技术支持，向其他层输出通用服务</span><br><span class="line">│    │    │    ├─config      配置类</span><br><span class="line">│    │    │    ├─toolkit     工具类  </span><br><span class="line">│    │    │    ├─extension   扩展定义  </span><br><span class="line">│    │    │    └─common      基础公共模块等 </span><br><span class="line">│    │    ├─reference        引用层，包装外部接口用，防止穿插到Domain层腐化领域模型等</span><br><span class="line">│    │    │    ├─dto         传输模型定义</span><br><span class="line">│    │    │    ├─converter   传输模型转换器       </span><br><span class="line">│    │    │    └─facade.impl 适配器具体实现，此处的RPC、Http等调用</span><br><span class="line">│    │ </span><br><span class="line">│    └─resources  </span><br><span class="line">│        ├─statics  静态资源</span><br><span class="line">│        ├─template 系统页面 </span><br><span class="line">│        └─application.yml   全局配置文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其中在上述目录结构中，Domain 层中为对 <code>module</code>  进行划分，实际上默认该层只有一个模块，根据微服务划分可以进行增加模块来规范代码结构。<br>
-示例代码工程：</p>
-<p>GITHUB 地址：<a target="_blank" rel="noopener" href="https://github.com/smingjie/bbq-ddd.git">https://github.com/smingjie/bbq-ddd.git</a></p>
-<h3 id="扩展定义注解和接口声明"><a class="markdownIt-Anchor" href="#扩展定义注解和接口声明">#</a> 扩展定义注解和接口声明</h3>
-<p>（1） <code>自定义注解</code> ：在使用 DDD 中自定义了标记的注解 (@DDDAnnotation) 和其衍生子注解，分别是</p>
-<ul>
-<li><code>@DomainAggregate</code></li>
-<li><code>@DomainAggregateRoot</code></li>
-<li><code>@DomainEntity</code></li>
-<li><code>@DomainValueObject</code></li>
-<li><code>@DomainService</code></li>
-<li><code>@DomainRepository</code></li>
-<li><code>@DomainEvent</code></li>
-<li><code>@ApplicationService</code></li>
-<li><code>@DomainAssembler</code></li>
-<li><code>@DomainConverter</code></li>
-</ul>
-<p>等注解，详见代码的 infrastructure.general.extension.ddd.annotation.**；其中有些注解继承了 spring 的  <code>@Component</code> , 将会自动注册为 spring bean，有些注解为了标记用于后续扩展；</p>
-<p>引入了 Assembler 装配器 / Converter 转换器，通过组合模式解耦继承关系，在 api 层和持久化层都有相应的实现。</p>
-<p>（2） <code>自定义接口</code> ：在 domain.common 定义了部分通用的 <code>契约</code> 接口，如领域对象元数据获取接口  <code>IDomainMetaData</code> ，通过接口解耦继承关系。其他还有：  <code>IDomainSaveOrUpdate</code>   <code>IDomainDelete</code>   <code>...</code>  等 Command</p>
-<h3 id="领域模型注入仓储类的问题"><a class="markdownIt-Anchor" href="#领域模型注入仓储类的问题">#</a> 领域模型注入仓储类的问题</h3>
-<p>区别于传统的分层后，在 domain 中更多关注业务逻辑，考虑到要与 spring 框架集成，需要注意一个领域模型中注入仓储类的问题</p>
-<blockquote>
-<p>在传统分层中，controller，service，repo 均注册为 spring 管理的 bean，<br>
-但是在 domain 层中，service 一部分的业务逻辑划分到了具体的领域对象中去实现了，显然这些对象却不能注册为单例 bean，<br>
-因此在此处不能沿用与原来分层结构中 service 层中通过 <code>@Autowired</code>  or  <code>@Resource</code>  等注入仓储接口，</p>
-</blockquote>
-<p><strong>关于这个问题，此处建议使用 <code>ApplicationContext</code>  实现</strong></p>
-<blockquote>
-<p>即通过一个工具类  <code>ApplicationContextUtils</code>  实现  <code>ApplicationContextAware</code>  获取 bean 的方法，即  <code>getBean()</code>  方法，<br>
-然后我们就可以在我们的领域模型中直接应用该工具类来获取 Spring 托管的 singleton 对象，即<br>
- xxxRepo=ApplicationContextUtils.getBean (“xxxRepository”)</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ApplicationContextUtils</span> <span class="keyword">implements</span> <span class="title class_">ApplicationContextAware</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> ApplicationContext appctx;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        ApplicationContextUtil.appctx=applicationContext;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ApplicationContext</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> ApplicationContext <span class="title function_">getApplicationContext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> appctx;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name spring配置文件中配置的bean名或注解的名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 一个以所给名字注册的bean的实例</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> BeansException 抛出spring异常</span></span><br><span class="line"><span class="comment">     */</span> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">getBean</span><span class="params">(String name)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        <span class="keyword">return</span> (T) appctx.getBean(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取类型为requiredType的对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 需要获取的bean的类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 该类型的一个在ioc容器中的bean</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> BeansException 抛出spring异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">getBean</span><span class="params">(Class&lt;T&gt; clazz)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        <span class="keyword">return</span> appctx.getBean(clazz);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果ioc容器中包含一个与所给名称匹配的bean定义，则返回true否则返回false</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name ioc容器中注册的bean名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 存在返回true否则返回false</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">containsBean</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> appctx.containsBean(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>考虑到代码结构简洁性，还可以封装一层仓储工厂，只用来获取相应的仓储 <code>Bean</code>  。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 简化版的仓储工厂--用来统一获取仓储的实现Bean</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> jockeys</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/9/12</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RepoFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 根据仓储接口类型获取对应实现且默认取值第一个</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> tClass 具体目标类型</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &lt;T&gt;    仓储接口类型</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> 如果不是指定实现，默认获得第一个实现Bean</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">get</span><span class="params">(Class&lt;? extends T&gt; tClass)</span> &#123;</span><br><span class="line"></span><br><span class="line">		Map&lt;String, ? <span class="keyword">extends</span> <span class="title class_">T</span>&gt; map = ApplicationUtils.getApplicationContext().getBeansOfType(tClass);</span><br><span class="line">		Collection&lt;? <span class="keyword">extends</span> <span class="title class_">T</span>&gt; collection = map.values();</span><br><span class="line">		<span class="keyword">if</span> (collection.isEmpty()) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">PersistException</span>(<span class="string">&quot;未找到仓储接口或其指定的实现:&quot;</span> + tClass.getSimpleName() );</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> collection.stream().findFirst().get();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后在领域模型中就可以直接调用该工厂方法来获取仓储接口的实现，<br>
-比如 <code>DictRepo</code>  为定义的仓储接口， <code>DictDao</code>  为该接口的准实现类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接指定实现</span></span><br><span class="line">DictRepo repo= RepoFactory.get(DictDao.class);</span><br><span class="line"><span class="comment">//不指定实现取Spring容器中默认注册第1位的Bean</span></span><br><span class="line">DictRepo repo= RepoFactory.get(DictRepo.class);</span><br></pre></td></tr></table></figure>
-<h2 id="一些个人思考"><a class="markdownIt-Anchor" href="#一些个人思考">#</a> 一些个人思考…</h2>
-<p>上述经典四层架构，笔者更愿意理解为 DDD 在编码实现阶段的一个体现或应用。</p>
-<blockquote>
-<p>补充一点：DDD 除了在编码实践阶段，还体现在需求分析、设计阶段等过程，DDD 推荐不割裂系统的需求和设计，我们这里可以合并称作系统建模过程，可参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/whos2016/article/details/103430565">DDD - 建模过程分析</a>一文，不再赘述。</p>
-</blockquote>
-<p>当然除了这个经典四层架构模型，DDD 还有五层架构、六边形架构等，所以这里抛出一个问题，</p>
-<h3 id="项目按上述经典四层架构进行搭建可以说是ddd架构实践么"><a class="markdownIt-Anchor" href="#项目按上述经典四层架构进行搭建可以说是ddd架构实践么">#</a> 项目按上述经典四层架构进行搭建，可以说是 DDD 架构实践么？</h3>
-<p>关于这个问题，笔者想引入一对哲学概念，哲学有言形式与内容，现象与本质等辩证关系（当然与本文可能也没啥太大关系啦）；从这两个角度来阐述本人的观点：</p>
-<ul>
-<li>
-<p>形式与内容：经典四层架构是一个 DDD 实现的形式，相当于给我们提供了一个框框来让我们自己去实现；在这个框框里面我们怎么实现是自由发挥的，但也是有约束的，这个约束体现在 DDD 对每一层的作用的约定，如每个层约定做了什么功能，充当什么角色等。<strong>尤其是对 Domain 层的约定，才是最重要的</strong>。那么我们按照哲学辩证的套话来说，<em><strong>形式上满足了 DDD 架构，但这应该是片面的，具体还要看内容，即具体实现是怎样的。</strong></em></p>
-</li>
-<li>
-<p>现象与本质：接着上述观点，如果要看实现，就要具体分析一下现象与本质嘞。上面笔者也有提到，DDD 除了四层经典架构，还有五层架构（包括其演化的多层架构）、六边形架构等也都是 DDD 提供的架构模型（形式），那这些都可以理解 DDD 架构模式的外显形式，那么又有哪些共性呢？可自行查询，本文直接给结论，即</p>
-<p>它们都有 Domain 层，Domain 层，Domain 层</p>
-<p>（重要的事情说三遍～～，该结论 DDD 作者译著有写到…），所以不管架构模式怎么演化，Domain 是核心不能变。</p>
-<p>那么如上分析，我们在回到这个问题，我们是不是可以给出一个这样的答案：</p>
-<blockquote>
-<p>形式上符合 DDD 架构，具体是不是 DDD 的架构实践，本质上还要看</p>
-<ul>
-<li>（1）项目是否包括有 Domain 层；</li>
-<li>（2）Domain 层是否满足 DDD 战术篇的要求（或者可暂时简单理解为充血模型吧）</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="题外话spring与ddd"><a class="markdownIt-Anchor" href="#题外话spring与ddd">#</a> 题外话：Spring 与 DDD</h3>
-<ul>
-<li>Spring 框架中，Spring 为我们提供了 <code>@Service</code>   <code>@Repository</code>  等注解，为我们分离行为和行为（注册为 Bean）和属性（数据模型），同时通过 <code>@Autowired</code>  在合适地方进行注入行为，因为行为被注册为 Spring 容器中的 Bean 后，减少了频繁创建行为的开销，只有属性的数据模型作为数据的载体来传递数据。提供很大的便捷性。但也阻碍了我们应用 DDD 编码实践， Spring 框架主张分离，DDD 思想主张合并，我们在 Spring 框架中使用 DDD 则需要在其基础上进行一些权衡取舍，即 <em><strong>如何将注册为 Bean 的行为穿插到原有的贫血模型中来构建充血模型是我们要解决的问题</strong></em></li>
-<li>关于这个问题，笔者使用了 Spring 框架提供的<strong>获取容器内已经注册的 Bean 接口</strong>，直接调用接口，在有属性的领域模型中来获取行为；主要还是体现融入领域模型中的部分 Service 获取仓储接口来实现持久化过程。</li>
-</ul>
-<p>当然，上述的说明都是从一个软件开发人员的角度来阐述说明 DDD 在编码实践阶段的应用 。<br>
-除此之外在业务领域的建模分析过程中也可引入该概念。<br>
-比如我们现在所倡导的微服务化，如何划分或拆分微服务；如何有效地区分限界上下文，划分子域；如何构建一个有效的聚合，识别聚合根等。。。</p>
-<ul>
-<li>附在最后的，关于笔者对于 DDD 在需求设计阶段应用的学习总结</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/whos2016/article/details/103430565">DDD - 建模分析过程</a></li>
-</ul>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt=""></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-24T21:40:25.000Z" title="2022/12/25 05:40:25">2022-12-25</time>发表</span><span class="level-item"><time dateTime="2023-01-10T22:49:34.000Z" title="2023/1/11 06:49:34">2023-01-11</time>更新</span><span class="level-item">13 分钟读完 (大约1945个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/25/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/">Volatile关键字</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="volatile关键字"><a class="markdownIt-Anchor" href="#volatile关键字">#</a> Volatile 关键字</h1>
-<p>Volatile 关键字的作用主要有如下两个：</p>
-<p>线程的可见性：当一个线程修改一个共享变量时，另外一个线程能读到这个修改的值。</p>
-<p>顺序一致性：禁止指令重排序。</p>
-<h1 id="一-线程可见性"><a class="markdownIt-Anchor" href="#一-线程可见性">#</a> 一、线程可见性</h1>
-<p>我们先通过一个例子来看看线程的可见性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">VolatileTest</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateFlag</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.flag = <span class="literal">false</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;修改flag值为：&quot;</span> + <span class="built_in">this</span>.flag);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">VolatileTest</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">VolatileTest</span>();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (test.flag) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;结束&quot;</span>);</span><br><span class="line">        &#125;, <span class="string">&quot;Thread1&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                test.updateFlag();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;Thread2&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>打印结果如下，我们可以看到虽然线程 Thread2 已经把 flag 修改为 false 了，但是线程 Thread1 没有读取到 flag 修改后的值，线程一直在运行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改flag值为：false</span><br></pre></td></tr></table></figure>
-<p>我们把 flag 变量加上 volatile：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatile  boolean flag = true;</span><br></pre></td></tr></table></figure>
-<p>重新运行程序，打印结果如下。Thread1 结束，说明 Thread1 读取到了 flage 修改后的值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改flag值为：false</span><br><span class="line">Thread1结束</span><br></pre></td></tr></table></figure>
-<p>说到可见性，我们需要先了解一下 Java 内存模型，Java 内存模型如下所示：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d90e39f9caa340b0bb589ef1dbb2f667.png" alt="在这里插入图片描述"></p>
-<p>线程之间的共享变量存储在主内存中（Main Memory）中，每个线程都一个都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读 / 写共享变量的副本。</p>
-<p>所以当一个线程把主内存中的共享变量读取到自己的本地内存中，然后做了更新。在还没有把共享变量刷新的主内存的时候，另外一个线程是看不到的。</p>
-<p>如何把修改后的值刷新到主内存中的？<br>
-现代的处理器使用写缓冲区临时保存向内存写入的数据。写缓冲区可以保证指令流水线持续运行，它可以避免由于处理器停顿下来等向内存写入数据而产生的延迟。同时，通过以批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，较少对内存总线的占用。但是什么时候写入到内存是不知道的。<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f96ceb17a5644f7db67d3a64f8b888fa.png" alt="在这里插入图片描述"></p>
-<p>所以就引入了 volatile，volatile 是如何保证可见性的呢？<br>
-在 X86 处理器下通过工具获取 JIT 编译器生成的汇编指令来查看对 volatile 进行写操作时，会多出 lock addl。Lock 前缀的指令在多核处理器下会引发两件事情：</p>
-<p>1. 将当前处理器缓存行的数据写回到系统内存。<br>
-2. 这个写回内存的操作会使其他 cpu 里缓存了该内存地址的数据无效。<br>
-如果声明了 volatile 的变量进行写操作，JVM 就会向处理器发送一条 Lock 前缀的指令，将这个变量所在缓存行的数据写回到系统内存。但是，就算写回到内存，如果其他处理器缓存的还是旧的，在执行操作就会有问题。所以，在多处理器下，为了保证各个处理器的缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置成无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存里。</p>
-<h1 id="二-顺序一致性"><a class="markdownIt-Anchor" href="#二-顺序一致性">#</a> 二、顺序一致性</h1>
-<p>在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。重排序分为如下三种：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/39a6b41a1a1a4d0191f418b0519aa532.png" alt="在这里插入图片描述"></p>
-<p>1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序可能会导致多线程程序出现内存可见性问题。<br>
-当变量声明为 volatile 时，Java 编译器在生成指令序列时，会插入内存屏障指令。通过内存屏障指令来禁止重排序。<br>
-JMM 内存屏障插入策略如下：<br>
-在每个 volatile 写操作的前面插入一个 StoreStore 屏障，后面插入一个 StoreLoad 屏障。<br>
-在每个 volatile 读操作后面插入一个 LoadLoad，LoadStore 屏障。</p>
-<p>Volatile 写插入内存屏障后生成指令序列示意图：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f44d26762f704a28905e2f65b2a75d53.png" alt="在这里插入图片描述"></p>
-<p>Volatile 读插入内存屏障后生成指令序列示意图：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/97e184ee75ed4e18b3066e1c8ab585e1.png" alt="在这里插入图片描述"></p>
-<p>通过上面这些我们可以得出如下结论：编译器不会对 volatile 读与 volatile 读后面的任意内存操作重排序；编译器不会对 volatile 写与 volatile 写前面的任意内存操作重排序。</p>
-<p>防止重排序使用案例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SafeDoubleCheckedLocking</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Instance instane;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">static</span> Instance <span class="title function_">getInstane</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instane==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SafeDoubleCheckedLocking.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instane==<span class="literal">null</span>)&#123;</span><br><span class="line">                    instane=<span class="keyword">new</span> <span class="title class_">Instance</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instane;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>创建一个对象主要分为如下三步：</p>
-<p>分配对象的内存空间。<br>
-初始化对象。<br>
-设置 instance 指向内存空间。<br>
-如果 instane 不加 volatile，上面的 2，3 可能会发生重排序。假设 A，B 两个线程同时获取，A 线程获取到了锁，发生了指令重排序，先设置了 instance 指向内存空间。这个时候 B 线程也来获取，instance 不为空，这样 B 拿到了没有初始化完成的单例对象（如下图）</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/70457cf0d7904aa5a8b3edb1bffd4561.png" alt="在这里插入图片描述"></p>
-<p>二、Volatile 与 Synchronized 比较<br>
- 1.Volatile 是轻量级的 synchronized，因为它不会引起上下文的切换和调度，所以 Volatile 性能更好。<br>
-2.Volatile 只能修饰变量，synchronized 可以修饰方法，静态方法，代码块。<br>
-3.Volatile 对任意单个变量的读 / 写具有原子性，但是类似于 i++ 这种复合操作不具有原子性。而锁的互斥执行的特性可以确保对整个临界区代码执行具有原子性。<br>
-4. 多线程访问 volatile 不会发生阻塞，而 synchronized 会发生阻塞。<br>
-5.volatile 是变量在多线程之间的可见性，synchronize 是多线程之间访问资源的同步性。</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/">上一页</a></div><div class="pagination-next"><a href="/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link is-current" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/13/">13</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-24T01:45:16.000Z">2023-04-24</time></p><p class="title"><a href="/2023/04/24/%E3%80%90Vue%E3%80%91%E4%BF%AE%E5%A4%8Delement%E5%8F%AF%E6%90%9C%E7%B4%A2%E4%B8%8B%E6%8B%89%E6%A1%86%E9%80%89%E4%B8%AD%E9%80%89%E9%A1%B9%EF%BC%8C%E5%88%87%E5%B1%8F%E5%90%8E%EF%BC%8C%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9%EF%BC%8C%E8%8F%9C%E5%8D%95%E8%87%AA%E5%8A%A8%E5%BC%B9%E5%87%BA/">【Vue】修复element可搜索下拉框选中选项，切屏后，会自动获取焦点，菜单自动弹出</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-24T01:32:38.000Z">2023-04-24</time></p><p class="title"><a href="/2023/04/24/%E3%80%90IDE%E3%80%91Jet%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E6%95%99%E7%A8%8B/">JetBrains全系列激活码</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-16T13:20:05.000Z">2023-04-16</time></p><p class="title"><a href="/2023/04/16/%E3%80%90Redis%E3%80%91Redis%E6%8C%81%E4%B9%85%E5%8C%96/">Redis持久化</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-07T22:19:38.000Z">2023-04-08</time></p><p class="title"><a href="/2023/04/08/%E3%80%90Maven%E3%80%91Maven%E5%8A%A0%E5%BC%BA%E7%89%88%20%E2%80%94%20mvnd%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/">Maven加强版 — mvnd的使用测试</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-03-29T04:21:33.000Z">2023-03-29</time></p><p class="title"><a href="/2023/03/29/%E3%80%90SqlServer%E3%80%91SqlServer%E6%9F%A5%E8%AF%A2%E4%BB%8A%E6%97%A5%E5%92%8C%E6%98%A8%E6%97%A5%E6%95%B0%E6%8D%AE/">【SqlServer】SqlServer查询今日和昨日数据</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">121</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">121</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/">上一页</a></div><div class="pagination-next"><a href="/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link is-current" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/13/">13</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-26T08:51:33.000Z">2023-04-26</time></p><p class="title"><a href="/2023/04/26/%E3%80%90Java%E3%80%91%E5%85%B3%E4%BA%8EPO%E3%80%81BO%E3%80%81VO%E3%80%81DTO%E3%80%81DAO%E3%80%81POJO%E7%AD%89%E6%A6%82%E5%BF%B5%E7%9A%84%E7%90%86%E8%A7%A3/">【Java】关于PO、BO、VO、DTO、DAO、POJO等概念的理解</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-26T04:58:33.000Z">2023-04-26</time></p><p class="title"><a href="/2023/04/26/%E3%80%90Dubbo%E3%80%91%E4%BD%BF%E7%94%A8Dubbo%E6%95%B4%E5%90%88SpringBoot%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1/">【Dubbo】使用Dubbo整合SpringBoot搭建一个服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-26T04:23:33.000Z">2023-04-26</time></p><p class="title"><a href="/2023/04/26/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E4%BD%BF%E7%94%A8Java%E5%AE%9E%E7%8E%B0%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%8C%E5%A4%AA%E9%85%B7%E5%95%A6/">【算法】使用Java实现斐波那契数列的三种方法，太酷啦</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-26T04:23:33.000Z">2023-04-26</time></p><p class="title"><a href="/2023/04/26/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5/">【算法】斐波那契数列的概念</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-24T01:45:16.000Z">2023-04-24</time></p><p class="title"><a href="/2023/04/24/%E3%80%90Vue%E3%80%91%E4%BF%AE%E5%A4%8Delement%E5%8F%AF%E6%90%9C%E7%B4%A2%E4%B8%8B%E6%8B%89%E6%A1%86%E9%80%89%E4%B8%AD%E9%80%89%E9%A1%B9%EF%BC%8C%E5%88%87%E5%B1%8F%E5%90%8E%EF%BC%8C%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9%EF%BC%8C%E8%8F%9C%E5%8D%95%E8%87%AA%E5%8A%A8%E5%BC%B9%E5%87%BA/">【Vue】修复element可搜索下拉框选中选项，切屏后，会自动获取焦点，菜单自动弹出</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">125</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">125</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
