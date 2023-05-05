@@ -29,7 +29,105 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-05-05T01:57:09.000Z" title="2023/5/5 09:57:09">2023-05-05</time>发表</span><span class="level-item"><time dateTime="2023-05-05T02:04:28.525Z" title="2023/5/5 10:04:28">2023-05-05</time>更新</span><span class="level-item">14 分钟读完 (大约2151个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-05-05T05:58:11.000Z" title="2023/5/5 13:58:11">2023-05-05</time>发表</span><span class="level-item"><time dateTime="2023-05-05T08:29:42.568Z" title="2023/5/5 16:29:42">2023-05-05</time>更新</span><span class="level-item">16 分钟读完 (大约2361个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/05/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">【算法】算法的时间与空间复杂度</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="算法算法的时间与空间复杂度"><a class="markdownIt-Anchor" href="#算法算法的时间与空间复杂度">#</a> 【算法】算法的时间与空间复杂度</h1>
+<h4 id="算法algorithm是指用来操作数据-解决程序问题的一组方法-对于同一个问题使用不同的算法也许最终得到的结果是一样的但在过程中消耗的资源和时间却会有很大的区别"><a class="markdownIt-Anchor" href="#算法algorithm是指用来操作数据-解决程序问题的一组方法-对于同一个问题使用不同的算法也许最终得到的结果是一样的但在过程中消耗的资源和时间却会有很大的区别">#</a> 算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别。</h4>
+<h4 id="那么我们应该如何去衡量不同算法之间的优劣呢"><a class="markdownIt-Anchor" href="#那么我们应该如何去衡量不同算法之间的优劣呢">#</a> 那么我们应该如何去衡量不同算法之间的优劣呢？</h4>
+<p>主要还是从算法所占用的「时间」和「空间」两个维度去考量。</p>
+<ul>
+<li>时间维度：是指执行当前算法所消耗的时间，我们通常用「时间复杂度」来描述。</li>
+<li>空间维度：是指执行当前算法需要占用多少内存空间，我们通常用「空间复杂度」来描述。</li>
+</ul>
+<p>因此，评价一个算法的效率主要是看它的时间复杂度和空间复杂度情况。然而，有的时候时间和空间却又是「鱼和熊掌」，不可兼得的，那么我们就需要从中去取一个平衡点。</p>
+<p>下面我来分别介绍一下「时间复杂度」和「空间复杂度」的计算方式。</p>
+<h2 id="一-时间复杂度"><a class="markdownIt-Anchor" href="#一-时间复杂度">#</a> <strong>一、时间复杂度</strong></h2>
+<p>我们想要知道一个算法的「时间复杂度」，很多人首先想到的的方法就是把这个算法程序运行一遍，那么它所消耗的时间就自然而然知道了。</p>
+<p>这种方式可以吗？当然可以，不过它也有很多弊端。<br>
+这种方式非常容易受运行环境的影响，在性能高的机器上跑出来的结果与在性能低的机器上跑的结果相差会很大。而且对测试时使用的数据规模也有很大关系。再者，并我们在写算法的时候，还没有办法完整的去运行呢。</p>
+<p>因此，另一种更为通用的方法就出来了：「 <strong>大 O 符号表示法</strong> 」，即 T (n) = O (f (n))</p>
+<p>我们先来看个例子：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(i=1; i&lt;=n; ++i)</span><br><span class="line">&#123;</span><br><span class="line">   j = i;</span><br><span class="line">   j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过「 大 O 符号表示法 」，这段代码的时间复杂度为：O (n) ，为什么呢？</p>
+<p>在 大 O 符号表示法中，时间复杂度的公式是： T (n) = O ( f (n) )，其中 f (n) 表示每行代码执行次数之和，而 O 表示正比例关系，这个公式的全称是：<strong>算法的渐进时间复杂度</strong>。</p>
+<p>我们继续看上面的例子，假设每行代码的执行时间都是一样的，我们用 1 颗粒时间 来表示，那么这个例子的第一行耗时是 1 个颗粒时间，第三行的执行时间是 n 个颗粒时间，第四行的执行时间也是 n 个颗粒时间（第二行和第五行是符号，暂时忽略），那么总时间就是 1 颗粒时间 + n 颗粒时间 + n 颗粒时间 ，即 (1+2n) 个颗粒时间，即： T (n) = (1+2n)* 颗粒时间，从这个结果可以看出，这个算法的耗时是随着 n 的变化而变化，因此，我们可以简化的将这个算法的时间复杂度表示为：T (n) = O (n)</p>
+<p>为什么可以这么去简化呢，因为大 O 符号表示法并不是用于来真实代表算法的执行时间的，它是用来表示代码执行时间的增长变化趋势的。</p>
+<p>所以上面的例子中，如果 n 无限大的时候，T (n) = time (1+2n) 中的常量 1 就没有意义了，倍数 2 也意义不大。因此直接简化为 T (n) = O (n) 就可以了。</p>
+<p>常见的时间复杂度量级有：</p>
+<ul>
+<li>常数阶 O (1)</li>
+<li>对数阶 O (logN)</li>
+<li>线性阶 O (n)</li>
+<li>线性对数阶 O (nlogN)</li>
+<li>平方阶 O (n²)</li>
+<li>立方阶 O (n³)</li>
+<li>K 次方阶 O (n^k)</li>
+<li>指数阶 (2^n)</li>
+</ul>
+<p>上面从上至下依次的时间复杂度越来越大，执行的效率越来越低。</p>
+<p>下面选取一些较为常用的来讲解一下（没有严格按照顺序）：</p>
+<ol>
+<li><strong>常数阶 O (1)</strong></li>
+</ol>
+<p>无论代码执行了多少行，只要是没有循环等复杂结构，那这个代码的时间复杂度就都是 O (1)，如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 1;</span><br><span class="line">int j = 2;</span><br><span class="line">++i;</span><br><span class="line">j++;</span><br><span class="line">int m = i + j;</span><br></pre></td></tr></table></figure>
+<p>上述代码在执行的时候，它消耗的时候并不随着某个变量的增长而增长，那么无论这类代码有多长，即使有几万几十万行，都可以用 O (1) 来表示它的时间复杂度。</p>
+<ol>
+<li><strong>线性阶 O (n)</strong></li>
+</ol>
+<p>这个在最开始的代码示例中就讲解过了，如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(i=1; i&lt;=n; ++i)</span><br><span class="line">&#123;</span><br><span class="line">   j = i;</span><br><span class="line">   j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码，for 循环里面的代码会执行 n 遍，因此它消耗的时间是随着 n 的变化而变化的，因此这类代码都可以用 O (n) 来表示它的时间复杂度。</p>
+<ol>
+<li><strong>对数阶 O (logN)</strong></li>
+</ol>
+<p>还是先来看代码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 1;</span><br><span class="line">while(i&lt;n)</span><br><span class="line">&#123;</span><br><span class="line">    i = i * 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面代码可以看到，在 while 循环里面，每次都将 i 乘以 2，乘完之后，i 距离 n 就越来越近了。我们试着求解一下，假设循环 x 次之后，i 就大于 n 了，此时这个循环就退出了，也就是说 2 的 x 次方等于 n，那么 x = log2^n<br>
+ 也就是说当循环 log2^n 次以后，这个代码就结束了。因此这个代码的时间复杂度为：<strong>O(logn)</strong></p>
+<ol>
+<li><strong>线性对数阶 O (nlogN)</strong></li>
+</ol>
+<p>线性对数阶 O (nlogN) 其实非常容易理解，将时间复杂度为 O (logn) 的代码循环 N 遍的话，那么它的时间复杂度就是 n * O (logN)，也就是了 O (nlogN)。</p>
+<p>就拿上面的代码加一点修改来举例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(m=1; m&lt;n; m++)</span><br><span class="line">&#123;</span><br><span class="line">    i = 1;</span><br><span class="line">    while(i&lt;n)</span><br><span class="line">    &#123;</span><br><span class="line">        i = i * 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>平方阶 O (n²)</strong></li>
+</ol>
+<p>平方阶 O (n²) 就更容易理解了，如果把 O (n) 的代码再嵌套循环一遍，它的时间复杂度就是 O (n²) 了。<br>
+举例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(x=1; i&lt;=n; x++)</span><br><span class="line">&#123;</span><br><span class="line">   for(i=1; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">       j = i;</span><br><span class="line">       j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码其实就是嵌套了 2 层 n 循环，它的时间复杂度就是 O (n*n)，即 O (n²)<br>
+ 如果将其中一层循环的 n 改成 m，即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(x=1; i&lt;=m; x++)</span><br><span class="line">&#123;</span><br><span class="line">   for(i=1; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">       j = i;</span><br><span class="line">       j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那它的时间复杂度就变成了 O (m*n)</p>
+<ol>
+<li><strong>立方阶 O (n³)</strong>、<strong>K 次方阶 O (n^k)</strong></li>
+</ol>
+<p>参考上面的 O (n²) 去理解就好了，O (n³) 相当于三层 n 循环，其它的类似。</p>
+<p>除此之外，其实还有 平均时间复杂度、均摊时间复杂度、最坏时间复杂度、最好时间复杂度 的分析方法，有点复杂，这里就不展开了。</p>
+<h2 id="二-空间复杂度"><a class="markdownIt-Anchor" href="#二-空间复杂度">#</a> <strong>二、空间复杂度</strong></h2>
+<p>既然时间复杂度不是用来计算程序具体耗时的，那么我也应该明白，空间复杂度也不是用来计算程序实际占用的空间的。</p>
+<p>空间复杂度是对一个算法在运行过程中临时占用存储空间大小的一个量度，同样反映的是一个趋势，我们用 S (n) 来定义。</p>
+<p>空间复杂度比较常用的有：O (1)、O (n)、O (n²)，我们下面来看看：</p>
+<ol>
+<li><strong>空间复杂度 O (1)</strong></li>
+</ol>
+<p>如果算法执行所需要的临时空间不随着某个变量 n 的大小而变化，即此算法空间复杂度为一个常量，可表示为 O (1)<br>
+ 举例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 1;</span><br><span class="line">int j = 2;</span><br><span class="line">++i;</span><br><span class="line">j++;</span><br><span class="line">int m = i + j;</span><br></pre></td></tr></table></figure>
+<p>代码中的 i、j、m 所分配的空间都不随着处理数据量变化，因此它的空间复杂度 S (n) = O (1)</p>
+<ol>
+<li><strong>空间复杂度 O (n)</strong></li>
+</ol>
+<p>我们先看一个代码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int[] m = new int[n]</span><br><span class="line">for(i=1; i&lt;=n; ++i)</span><br><span class="line">&#123;</span><br><span class="line">   j = i;</span><br><span class="line">   j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码中，第一行 new 了一个数组出来，这个数据占用的大小为 n，这段代码的 2-6 行，虽然有循环，但没有再分配新的空间，因此，这段代码的空间复杂度主要看第一行即可，即 S (n) = O (n)</p>
+<p>以上，就是对算法的时间复杂度与空间复杂度基础的分析，欢迎大家一起交流。</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-05-05T01:57:09.000Z" title="2023/5/5 09:57:09">2023-05-05</time>发表</span><span class="level-item"><time dateTime="2023-05-05T02:04:28.525Z" title="2023/5/5 10:04:28">2023-05-05</time>更新</span><span class="level-item">14 分钟读完 (大约2151个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
 <h1 id="ideaidea的debug调试技巧详解转自csdn"><a class="markdownIt-Anchor" href="#ideaidea的debug调试技巧详解转自csdn">#</a> 【IDEA】IDEA 的 debug 调试技巧详解（转自 CSDN）</h1>
 <p>目录</p>
 <p><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></p>
@@ -2889,142 +2987,7 @@ main:8, log4jRCE
 <p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
 <p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
 <p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-27T08:40:25.000Z" title="2023/4/27 16:40:25">2023-04-27</time>发表</span><span class="level-item"><time dateTime="2023-04-27T08:26:14.439Z" title="2023/4/27 16:26:14">2023-04-27</time>更新</span><span class="level-item">24 分钟读完 (大约3572个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/27/%E3%80%90Java%E5%85%AB%E8%82%A1%E6%96%87%E3%80%91JDK8%E4%B8%8EJDK11%E7%9A%84%E5%8C%BA%E5%88%AB/">【Java八股文】JDK8与JDK11的区别</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="java八股文jdk8与jdk11的区别"><a class="markdownIt-Anchor" href="#java八股文jdk8与jdk11的区别">#</a> 【Java 八股文】JDK8 与 JDK11 的区别</h1>
-<h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录">#</a> 文章目录</h3>
-<ul>
-<li><a href="#_5">前言</a></li>
-<li><a href="#Java8_11">一、Java8 的新特性</a></li>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#Lambda__12">Lambda 表达式</a></li>
-<li><a href="#_14">方法引用</a></li>
-<li><a href="#_16">函数式接口实例</a></li>
-<li><a href="#Java_8__18">Java 8 默认方法</a></li>
-<li><a href="#Stream_20">Stream</a></li>
-<li><a href="#Optional__22">Optional 类</a></li>
-<li><a href="#Nashorn_JavaScript_24">Nashorn JavaScript</a></li>
-<li><a href="#_API_26">日期时间 API</a></li>
-<li><a href="#Base64_36">Base64</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#Java11_46">二、Java11 的新特性</a></li>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#ZGC_48">ZGC</a></li>
-<li><a href="#Flight_RecorderJFR_50">Flight Recorder（JFR）</a></li>
-<li><a href="#LowOverhead_Heap_Profiling_53">Low-Overhead Heap Profiling</a></li>
-<li><a href="#HTTP2_Client_API_55">HTTP/2 Client API</a></li>
-<li><a href="#Transport_Layer_Security_TLS_13_57">Transport Layer Security (TLS) 1.3</a></li>
-<li><a href="#Improve_Aarch64_Intrinsics_61">Improve Aarch64 Intrinsics</a></li>
-<li><a href="#Epsilon_A_NoOp_Garbage_CollectorExperimental_63">Epsilon: A No-Op Garbage Collector(Experimental)</a></li>
-<li><a href="#Launch_SingleFile_SourceCode_Programs_65">Launch Single-File Source-Code Programs</a></li>
-<li><a href="#Unicode_10_67">Unicode 10</a></li>
-<li><a href="#NestBased_Access_Control_69">Nest-Based Access Control</a></li>
-<li><a href="#Dynamic_ClassFile_Constants_71">Dynamic Class-File Constants</a></li>
-<li><a href="#Remove_the_Java_EE_and_CORBA_Modules_73">Remove the Java EE and CORBA Modules</a></li>
-<li><a href="#Deprecate_the_Nashorn_JavaScript_Engine_75">Deprecate the Nashorn JavaScript Engine</a></li>
-<li><a href="#Deprecate_the_Pack200_Tools_and_API_77">Deprecate the Pack200 Tools and API</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_80">总结</a></li>
-</ul>
-<hr>
-<h1 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h1>
-<p>目前市场上主流的稳定版主要是 Java 8 和 Java 11。</p>
-<hr>
-<h1 id="一-java8的新特性"><a class="markdownIt-Anchor" href="#一-java8的新特性">#</a> 一、Java8 的新特性</h1>
-<h3 id="lambda"><a class="markdownIt-Anchor" href="#lambda">#</a> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Lambda&amp;spm=1001.2101.3001.7020">Lambda</a> 表达式</h3>
-<p>Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性，Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中），使用 Lambda 表达式可以使代码变的更加简洁紧凑。</p>
-<h3 id="方法引用"><a class="markdownIt-Anchor" href="#方法引用">#</a> 方法引用</h3>
-<p>方法引用通过方法的名字来指向一个方法，方法引用可以使语言的构造更紧凑简洁，减少冗余代码，方法引用使用一对冒号 :: 。</p>
-<h3 id="函数式接口"><a class="markdownIt-Anchor" href="#函数式接口">#</a> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3&amp;spm=1001.2101.3001.7020">函数式接口</a>实例</h3>
-<p>Predicate 接口是一个函数式接口，它接受一个输入参数 T，返回一个布尔值结果。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。该接口用于测试对象是 true 或 false。</p>
-<h3 id="java-8-默认方法"><a class="markdownIt-Anchor" href="#java-8-默认方法">#</a> Java 8 默认方法</h3>
-<p>Java 8 新增了接口的默认方法。简单说，默认方法就是接口可以有实现方法，而且不需要实现类去实现其方法。我们只需在方法名前面加个 default 关键字即可实现默认方法。</p>
-<h3 id="stream"><a class="markdownIt-Anchor" href="#stream">#</a> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Stream&amp;spm=1001.2101.3001.7020">Stream</a></h3>
-<p>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。Stream API 可以极大提高 Java 程序员的生产力，让程序员写出高效率、干净、简洁的代码。这种风格将要处理的元素集合看作一种流，流在管道中传输，并且可以在管道的节点上进行处理，比如筛选，排序，聚合等。元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作 (terminal operation) 得到前面处理的结果。</p>
-<h3 id="optional-类"><a class="markdownIt-Anchor" href="#optional-类">#</a> Optional 类</h3>
-<p>Optional 类是一个可以为 null 的容器对象。如果值存在则 isPresent () 方法会返回 true，调用 get () 方法会返回该对象。Optional 是个容器：它可以保存类型 T 的值，或者仅仅保存 null。Optional 提供很多有用的方法，这样我们就不用显式进行空值检测。Optional 类的引入很好的解决空指针异常。</p>
-<h3 id="nashorn-javascript"><a class="markdownIt-Anchor" href="#nashorn-javascript">#</a> Nashorn JavaScript</h3>
-<p>Nashorn 一个 javascript 引擎。从 JDK1.8 开始，Nashorn 取代 Rhino (JDK 1.6, JDK1.7) 成为 Java 的嵌入式 JavaScript 引擎。Nashorn 完全支持 ECMAScript 5.1 规范以及一些扩展。它使用基于 JSR292 的新语言特性，其中包含在 JDK 7 中引入的 invokedynamic，将 JavaScript 编译成 Java 字节码。与先前的 Rhino 实现相比，这带来了 2 到 10 倍的性能提升。</p>
-<h3 id="日期时间-api"><a class="markdownIt-Anchor" href="#日期时间-api">#</a> 日期时间 API</h3>
-<p>Java 8 通过发布新的 Date-Time API (JSR 310) 来进一步加强对日期与时间的处理。<br>
-在旧版的 Java 中，日期时间 API 存在诸多问题，其中有：</p>
-<ol>
-<li>非线程安全 − java.util.Date 是非线程安全的，所有的日期类都是可变的，这是 Java 日期类最大的问题之一。</li>
-<li>设计很差 − Java 的日期 / 时间类的定义并不一致，在 java.util 和 java.sql 的包中都有日期类，此外用于格式化和解析的类在 java.text 包中定义。java.util.Date 同时包含日期和时间，而 java.sql.Date 仅包含日期，将其纳入 java.sql 包并不合理。另外这两个类都有相同的名字，这本身就是一个非常糟糕的设计。</li>
-<li>时区处理麻烦 − 日期类并不提供国际化，没有时区支持，因此 Java 引入了 java.util.Calendar 和 java.util.TimeZone 类，但他们同样存在上述所有的问题。<br>
-Java 8 在 java.time 包下提供了很多新的 API。以下为两个比较重要的 API：</li>
-<li>Local (本地) − 简化了日期时间的处理，没有时区的问题。</li>
-<li>Zoned (时区) − 通过制定的时区处理日期时间。<br>
-新的 java.time 包涵盖了所有处理日期，时间，日期 / 时间，时区，时刻（instants），过程（during）与时钟（clock）的操作。</li>
-</ol>
-<h3 id="base64"><a class="markdownIt-Anchor" href="#base64">#</a> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Base64&amp;spm=1001.2101.3001.7020">Base64</a></h3>
-<p>在 Java8 中，Base64 编码已经成为 Java 类库的标准。<br>
-Java 8 内置了 Base64 编码的编码器和解码器。<br>
-Base64 工具类提供了一套静态方法获取下面三种 BASE64 编解码器：</p>
-<ol>
-<li>基本：输出被映射到一组字符 A-Za-z0-9+/，编码不添加任何行标，输出的解码仅支持 A-Za-z0-9+/。</li>
-<li>URL：输出映射到一组字符 A-Za-z0-9+_，输出是 URL 和文件。</li>
-<li>MIME：输出隐射到 MIME 友好格式。输出每行不超过 76 字符，并且使用’\r’并跟随’\n’作为分割。编码输出最后没有行分割。</li>
-</ol>
-<h1 id="二-java11的新特性"><a class="markdownIt-Anchor" href="#二-java11的新特性">#</a> 二、Java11 的新特性</h1>
-<h3 id="zgc"><a class="markdownIt-Anchor" href="#zgc">#</a> ZGC</h3>
-<p>JDK11 引入了两种新的 GC，其中包括也许是划时代意义的 ZGC，虽然其目前还是实验特性，但是从能力上来看，这是 JDK 的一个巨大突破，为特定生产环境的苛刻需求提供了一个可能的选择。例如，对部分企业核心存储等产品，如果能够保证不超过 10ms 的 GC 暂停，可靠性会上一个大的台阶，这是过去我们进行 GC 调优几乎做不到的，是能与不能的问题。对于 G1 GC，相比于 JDK 8，升级到 JDK 11 即可享受到：并行的 Full GC，快速的 CardTable 扫描，自适应的堆占用比例调整（IHOP），在并发标记阶段的类型卸载等等。这些都是针对 G1 的不断增强，其中串行 Full GC 等甚至是曾经被广泛诟病的短板，你会发现 GC 配置和调优在 JDK11 中越来越方便。</p>
-<h3 id="flight-recorderjfr"><a class="markdownIt-Anchor" href="#flight-recorderjfr">#</a> Flight Recorder（JFR）</h3>
-<p>Flight Recorder（JFR）是 Oracle 刚刚开源的强大特性。JFR 是一套集成进入 JDK、JVM 内部的事件机制框架，通过良好架构和设计的框架，硬件层面的极致优化，生产环境的广泛验证，它可以做到极致的可靠和低开销。在 SPECjbb2015 等基准测试中，JFR 的性能开销最大不超过 1%，所以，工程师可以基本没有心理负担地在大规模分布式的生产系统使用，这意味着，我们既可以随时主动开启 JFR 进行特定诊断，也可以让系统长期运行 JFR，用以在复杂环境中进行 “After-the-fact” 分析。<br>
-在保证低开销的基础上，JFR 提供的能力可以应用在对锁竞争、阻塞、延迟，JVM GC、SafePoint 等领域，进行非常细粒度分析。甚至深入 JIT Compiler 内部，全面把握热点方法、内联、逆优化等等。JFR 提供了标准的 Java、C++ 等扩展 API，可以与各种层面的应用进行定制、集成，为复杂的企业应用栈或者复杂的分布式应用，提供 All-in-One 解决方案。而这一切都是内建在 JDK 和 JVM 内部的，并不需要额外的依赖，开箱即用。</p>
-<h3 id="low-overhead-heap-profiling"><a class="markdownIt-Anchor" href="#low-overhead-heap-profiling">#</a> Low-Overhead Heap Profiling</h3>
-<p>它来源于 Google 等业界前沿厂商的一线实践，通过获取对象分配细节，为 JDK 补足了对象分配诊断方面的一些短板，工程师可以通过 JVMTI 使用这个能力增强自身的工具。</p>
-<h3 id="http2-client-api"><a class="markdownIt-Anchor" href="#http2-client-api">#</a> HTTP/2 Client API</h3>
-<p>新的 HTTP API 提供了对 HTTP/2 等业界前沿标准的支持，精简而又友好的 API 接口，与主流开源 API（如，Apache HttpClient， Jetty， OkHttp 等）对等甚至更高的性能。与此同时它是 JDK 在 Reactive-Stream 方面的第一个生产实践，广泛使用了 Java Flow API 等，终于让 Java 标准 HTTP 类库在扩展能力等方面，满足了现代互联网的需求。</p>
-<h3 id="transport-layer-security-tls-13"><a class="markdownIt-Anchor" href="#transport-layer-security-tls-13">#</a> Transport <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Layer&amp;spm=1001.2101.3001.7020">Layer</a> Security (TLS) 1.3</h3>
-<p>就是安全类库、标准等方面的大范围升级，它还是中国安全专家范学雷所领导的 JDK 项目，完全不同于以往的修修补补，是个非常大规模的工程。<br>
-Dynamic Class-File Constants<br>
- 动态 class 文件常量。扩展了 Java class 文件格式，支持一种新的常量池形式：CONSTANT_Dynamic。</p>
-<h3 id="improve-aarch64-intrinsics"><a class="markdownIt-Anchor" href="#improve-aarch64-intrinsics">#</a> Improve Aarch64 Intrinsics</h3>
-<p>主要是针对 ARM Aarch64 架构的优化，比如提供优化的 sin、cos 等函数。</p>
-<h3 id="epsilon-a-no-op-garbage-collectorexperimental"><a class="markdownIt-Anchor" href="#epsilon-a-no-op-garbage-collectorexperimental">#</a> Epsilon: A No-Op Garbage Collector(Experimental)</h3>
-<p>无操作的垃圾收集器。Epsilon 是一个特殊的垃圾收集器，只处理内存分配，不负责回收。一旦堆耗尽，就关闭 JVM。听上去这个收集器好像没什么意义。不过它还是有不少用处的。比如：性能测试。GC 会影响性能，有了这么一个几乎什么都不干的 GC，我们可以过滤掉 GC 带来的影响因素。还有些性能因素不是 GC 引入的，比如编译器变换，利用 Epsilon GC，我们可以对比。就像生物学里做实验，我们可以用它做一个对照组。另外还有内存压力测试、VM 接口测试等。</p>
-<h3 id="launch-single-file-source-code-programs"><a class="markdownIt-Anchor" href="#launch-single-file-source-code-programs">#</a> Launch Single-File Source-Code Programs</h3>
-<p>支持运行单个文件中的源代码。在刚学习 Java 或者编写小的工具程序时，我们一般要先用 javac 编译源文件，再用 java 命令运行。有了这个功能，我们可以直接用 java 命令运行源程序。</p>
-<h3 id="unicode-10"><a class="markdownIt-Anchor" href="#unicode-10">#</a> Unicode 10</h3>
-<p>升级现有 API 支持 Unicode 10。Java SE 10 实现的是 Unicode 8.0。与 Java 10 相比，Java 11 多支持 16 018 个新字符，10 种新的文字类型。</p>
-<h3 id="nest-based-access-control"><a class="markdownIt-Anchor" href="#nest-based-access-control">#</a> Nest-Based Access Control</h3>
-<p>基于嵌套的访问控制。Java 11 引入了 nest 的概念，这是一个新的访问控制上下文（context），逻辑上处于同一代码实体中的类，尽管会被编译为不同的 class 文件，但是可以访问彼此的 private 成员，不再需要编译器插入辅助访问的桥方法。</p>
-<h3 id="dynamic-class-file-constants"><a class="markdownIt-Anchor" href="#dynamic-class-file-constants">#</a> Dynamic Class-File Constants</h3>
-<p>动态 class 文件常量。扩展了 Java class 文件格式，支持一种新的常量池形式：CONSTANT_Dynamic。</p>
-<h3 id="remove-the-java-ee-and-corba-modules"><a class="markdownIt-Anchor" href="#remove-the-java-ee-and-corba-modules">#</a> Remove the Java EE and CORBA Modules</h3>
-<p>将 Java SE 9 中标记为废弃的 Java EE 和 CORBA 正式从 Java SE 平台中删除。</p>
-<h3 id="deprecate-the-nashorn-javascript-engine"><a class="markdownIt-Anchor" href="#deprecate-the-nashorn-javascript-engine">#</a> Deprecate the Nashorn JavaScript Engine</h3>
-<p>废弃 Nashorn JavaScript 脚本引擎、API 和 jjs 工具。Nashorn 是在 JDK 8 中引入的，当时完整实现了 ECMAScript-262 5.1。不过随着 ECMAScript 的演进加快，Nashorn 维护越来越困难。</p>
-<h3 id="deprecate-the-pack200-tools-and-api"><a class="markdownIt-Anchor" href="#deprecate-the-pack200-tools-and-api">#</a> Deprecate the Pack200 Tools and API</h3>
-<p>废弃了 pack200 和 unpack200 工具，以及 java.util.jar 包中的 Pack200 API。</p>
-<h1 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h1>
-<ol>
-<li>G1 GC 平均速度通过 Java 8 切换到 Java 11 就有 16％ 的改进，但是大部分项目都用不到，一些高实时性的游戏可以用；</li>
-<li>Java 11 支持源文件直接运行；</li>
-<li>已完成项目不建议升级 jdk11，或者新项目需要依赖现有代码，不建议升级 jdk11，因为升级版本涉及到大量的旧代码移植，代码重写，架构重构，全量测试；</li>
-<li>如果 jdk8 满足开发需求，并且需依赖现有以 JDK8 开发的代码，建议还是以 jdk8 进行开发，否则如果选用 jdk11 可能面临旧代码重写，架构重构，以及一些不知道的隐形依赖；</li>
-<li>系统追求的是稳定并非技术，jdk8 已被广泛验证非常稳定，而且目前主流开发版本确实也是 8，技术还是要服务于业务，稳定大于一切；</li>
-<li>从 jdk8 往上升级会出现一些 jar 依赖的改变，模块化带来的反射问题，classload 的变化导致某些问题；</li>
-<li>Spring，Spring Boot，Spring Cloud，Dubbo，Guava，Jackson，Tomcat，JUnit 等等项目都适配了 JDK11，并且经历了生产环境的检验，才可以考虑是否将 JDK8 换成 JDK11；</li>
-<li>8 之后，商用收费</li>
-</ol>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">上一页</a></div><div class="pagination-next"><a href="/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/14/">14</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80%E3%80%91%E7%99%BE%E5%BA%A6%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B/">【文心一言】百度文心一言大型语言模型接入教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-29T11:42:37.000Z">2023-04-29</time></p><p class="title"><a href="/2023/04/29/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%9123%20%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%A823%E7%A7%8D%EF%BC%89/">【设计模式】23 种设计模式详解（全23种）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90Dubbo%E3%80%91Dubbo%E8%AF%A6%E8%A7%A3%EF%BC%8C%E7%94%A8%E5%BF%83%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B0%B1%E5%A4%9F%E4%BA%86%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/">【Dubbo】Dubbo详解，用心看这一篇文章就够了【重点】</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90MySql%E3%80%9121%E4%B8%AAMySQL%E8%A1%A8%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%87%86%E5%88%99/">【MySql】21个MySQL表设计的经验准则</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">33</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">135</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">135</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">上一页</a></div><div class="pagination-next"><a href="/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/14/">14</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T05:58:11.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">【算法】算法的时间与空间复杂度</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80%E3%80%91%E7%99%BE%E5%BA%A6%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B/">【文心一言】百度文心一言大型语言模型接入教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-29T11:42:37.000Z">2023-04-29</time></p><p class="title"><a href="/2023/04/29/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%9123%20%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%A823%E7%A7%8D%EF%BC%89/">【设计模式】23 种设计模式详解（全23种）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90Dubbo%E3%80%91Dubbo%E8%AF%A6%E8%A7%A3%EF%BC%8C%E7%94%A8%E5%BF%83%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B0%B1%E5%A4%9F%E4%BA%86%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/">【Dubbo】Dubbo详解，用心看这一篇文章就够了【重点】</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">34</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">136</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">136</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
