@@ -29,7 +29,336 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-05-09T23:10:20.000Z" title="2022/5/10 07:10:20">2022-05-10</time>发表</span><span class="level-item"><time dateTime="2021-02-01T06:57:47.000Z" title="2021/2/1 14:57:47">2021-02-01</time>更新</span><span class="level-item">3 分钟读完 (大约498个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/05/10/%E3%80%90Flutter%E3%80%91flutter%20%E5%9C%A8%E7%9C%9F%E6%9C%BA%E4%B8%8A%E8%B0%83%E8%AF%95%E5%8D%B8%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85%E5%90%8E%E5%8D%A1%E4%BD%8F%E6%B2%A1%E5%8F%8D%E5%BA%94%E9%97%AE%E9%A2%98/">【Flutter】flutter 在真机上调试卸载安装包后卡住没反应问题</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-06-01T14:51:43.000Z" title="2022/6/1 22:51:43">2022-06-01</time>发表</span><span class="level-item"><time dateTime="2023-04-26T02:22:21.211Z" title="2023/4/26 10:22:21">2023-04-26</time>更新</span><span class="level-item">13 分钟读完 (大约1916个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/06/01/%E3%80%90chatGPT%E3%80%91%E5%85%85%E6%BB%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%96%B0%E4%B8%80%E4%BB%A3%E8%BE%85%E5%8A%A9%E7%BC%96%E7%A8%8B%E7%A5%9E%E5%99%A8%EF%BC%9ACursor/">充满可能的新一代辅助编程神器：Cursor</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="chatgpt充满可能的新一代辅助编程神器cursor"><a class="markdownIt-Anchor" href="#chatgpt充满可能的新一代辅助编程神器cursor">#</a> 【ChatGPT】充满可能的新一代辅助编程神器：Cursor</h1>
+<h3 id="随着技术的不断进步人工智能已经逐渐成为了编程领域中不可或缺的一部分-而今天我们要为大家介绍的就是一款基于-gpt4-智能引擎由-openai-开发出来的全新辅助编程神器-cursor"><a class="markdownIt-Anchor" href="#随着技术的不断进步人工智能已经逐渐成为了编程领域中不可或缺的一部分-而今天我们要为大家介绍的就是一款基于-gpt4-智能引擎由-openai-开发出来的全新辅助编程神器-cursor">#</a> 随着技术的不断进步，人工智能已经逐渐成为了编程领域中不可或缺的一部分。而今天我们要为大家介绍的，就是一款基于 GPT4 智能引擎，由 OpenAI 开发出来的全新辅助编程神器 — <strong>Cursor</strong>。</h3>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dca5b19a0af44e72aa859b914d729ec0~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<h3 id="1-cursor-编辑器"><a class="markdownIt-Anchor" href="#1-cursor-编辑器">#</a> <strong>1、Cursor 编辑器</strong></h3>
+<p>Cursor 作为一款智能代码编辑器，为程序员们提供了惊人的编程体验。它支持多种常见编程语言，可以轻松的处理各种程序代码，同时还支持多种文件类型和格式化文本，让编辑代码变得更加轻松和舒适。除此之外，Cursor 还拥有许多强大的辅助功能，例如多种主题、多语言语法高亮，在编辑代码时可以根据不同的语言给出不同的颜色提示，让代码阅读变得更加清晰明了。同时，Cursor 还支持快捷键设置、代码折叠、括号匹配、自动缩进等功能，这让程序员们不仅可以在编写代码时更快捷地完成任务，同时也让整个编写过程变得更加高效，透彻地展现出 “智能、便捷、高效” 等的特性。总之，如果你正在寻找一款能够让你的编程体验更加高效、便捷、舒适的工具，那么 Cursor 绝对是一个不错的选择。无论是初学者还是已经经验丰富的程序员们，都可以从中得到惊人的帮助，成为更加专业和出色的编程专家。</p>
+<h3 id="2-cursor-下载"><a class="markdownIt-Anchor" href="#2-cursor-下载">#</a> <strong>2、Cursor 下载</strong></h3>
+<p>可以直接官方网站下载：<a target="_blank" rel="noopener" href="http://www.cursor.so/">www.cursor.so/</a></p>
+<p>我这里也整理了最新 Mac 和 Windows 版本，提供网盘下载：</p>
+<p>公众号发送 “Cursor”</p>
+<h2 id="3-ide功能介绍"><a class="markdownIt-Anchor" href="#3-ide功能介绍">#</a> <strong>3、IDE 功能介绍</strong></h2>
+<p>首先，Cursor 目前是一款独立的应用，你可以理解为是一个更精简版的 sublime 或 vim, 仅仅是一个编辑器，IDE 的功能上也明显弱于 VS Code。不过能够它能够借助 chatgpt 的能力，极大的加速我们的编程效率。</p>
+<p><strong>核心功能其实只用到了两个快捷键，一个是 Ctrl+K（⌘+K），一个是 Ctrl+L（⌘+L）</strong></p>
+<p>界面上就三个菜单栏：File、Edit、View，然后就是右上角的 4 个图标了。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8b05dcf4354842f99cc9e8f6b082b2de~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"></p>
+<p>点击 setting 按钮，出现一个设置的配置，需要注意的就是 Cursor 编辑器支持 vim、emacs；支持绑定 Copilot；支持安装不同语言的 server。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1260ea24788942caa155604618eb11fb~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"></p>
+<h3 id="generatek"><a class="markdownIt-Anchor" href="#generatek">#</a> Generate(⌘+K)</h3>
+<p>在输入框里面输入你需要让它帮助你写什么代码，回车后它就开始自动帮助你写代码了。举个例子，接到个需求要写一个 H5 的登录页面，可以通以快捷键输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">请用hooks编写一个H5登录界面</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>一个简单的页面架构就大致生成了：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/334408cbdc6641e19e4e24596f3ab43c~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"></p>
+<h3 id="edit-selectionk"><a class="markdownIt-Anchor" href="#edit-selectionk">#</a> Edit Selection(⌘+K)</h3>
+<p>可以选择一段代码，然后针对这段代码提出一些修改要求，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">登录界面添加手机号校验和密码规则校验：</span><br></pre></td></tr></table></figure>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e88a1664fc454606a7822a5d5f039857~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"></p>
+<p><code>根据上下文，模拟接口调用：</code></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a9e5234d8f5474d8cc27949fd5c4ee6~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"></p>
+<h3 id="chatl"><a class="markdownIt-Anchor" href="#chatl">#</a> Chat(⌘+L)</h3>
+<p>类似于集成了 chatGPT，你可以在 Cursor 里面使用 chatGPT 去问任何问题，相当于不需要专门去 官网 了或者搜索引擎就可以找到答案。</p>
+<p>上面的例子里，在生成代码后，用户还可以按下 Ctrl+L 针对生成的代码进行提问：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a41908066ebb43ebb361b62aed815959~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<h3 id="chat-selectionl"><a class="markdownIt-Anchor" href="#chat-selectionl">#</a> Chat Selection(⌘+L)</h3>
+<p>可以选择一段代码，然后针对这段代码提出一些问题。例如你最近想了解下 react 中的 diff 算法是怎么实现的，你可以借助 Cursor 找到具体的位置并得到解释：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/898a00e82c174f479c1d1ae0afe1f751~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<h2 id="对比github-copilot"><a class="markdownIt-Anchor" href="#对比github-copilot">#</a> 对比 GitHub Copilot</h2>
+<ul>
+<li>用 Copilot 也可以实现上述功能，但是 Copilot 更侧重于代码的补全，想要实现以上登录页例子，需要一行一行的补全，体验上差了点。</li>
+<li>目前而言相比 Copilot，最大的优势当然是免费，目前任处于体验期间，后续正式版应该也会收费。</li>
+<li>一个字，快！能处理很长的代码，选中了让给你分析还能定位到关键代码行。</li>
+</ul>
+<h2 id="缺陷"><a class="markdownIt-Anchor" href="#缺陷">#</a> 缺陷</h2>
+<p>可以从 issues 很直观的看到，每天都会新增大量的反馈意见（当然从侧面也反映了 Cursor 当前的火热程度）</p>
+<ul>
+<li>体验了两天，感觉工作流比较割裂，在 vsCode 和 cursor 之间疯狂切换</li>
+<li>比较遗憾的是，Cursor 作者没有添加 vsCode 插件的计划</li>
+<li>chatgpt 通病，有字数限制，但可以通过提示继续（这个也能理解，毕竟免费）</li>
+<li>官网上说是和 openai 有官方合作，模型用的是 GPT4，但不少用户反馈还是基于 3.5，大家可以自己去测试一下</li>
+<li>没有找到修改快捷键的入口，导致一按⌘+Q（代码格式化）就退出系统，很难受</li>
+</ul>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h2>
+<p>客观评价，目前这个 IDE 是一个非常初级的产品，功能非常少，现阶段肯定无法取代 vscode，看它后续的发展了，大家更关注的可能还是 GPT4 的功能。过阵子等多模态开放了，比较期待图片视频识别等功能。不过我认为 Cursor 亦或是 ChatGPT，现在依然还是个大黑盒，你不去开箱永远不知道能带给你什么惊喜，就像是你以前只能读懂你认知以内的代码，但是 AIGC 的出现的确能加快影响你的认知。</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 <code>Java</code>  程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fa31569d28cd4d5baa3a7168d4021f37~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"> 非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-05-13T02:33:11.000Z" title="2022/5/13 10:33:11">2022-05-13</time>发表</span><span class="level-item"><time dateTime="2022-01-25T17:28:21.000Z" title="2022/1/26 01:28:21">2022-01-26</time>更新</span><span class="level-item">24 分钟读完 (大约3586个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/05/13/%E3%80%90MySQL%E3%80%91MySql%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%88%86%E4%BA%AB/">【MySQL】MySql相关优化分享</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="mysqlmysql相关优化分享"><a class="markdownIt-Anchor" href="#mysqlmysql相关优化分享">#</a> 【MySQL】MySql 相关优化分享</h1>
+<h3 id="文章目录"><a class="markdownIt-Anchor" href="#文章目录">#</a> 文章目录</h3>
+<ul>
+<li><a href="#_5">前言</a></li>
+<li><a href="#_12">一、数据库优化</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1_13">1. 选择合适存储引擎</a></li>
+<li><a href="#2_22">2. 选择合适的连接池</a></li>
+<li><a href="#3_31">3. 分库分表</a></li>
+<li><a href="#4_39">4. 主从同步</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_47">二、表优化</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1_49">1. 表中的字段选择合适的数据类型</a></li>
+<li><a href="#2_59">2. 适当添加索引</a></li>
+<li><a href="#3_66">3. 表中适当保留冗余数据</a></li>
+<li><a href="#4_75">4. 增加中间表</a></li>
+<li><a href="#5_78">5. 字段很多的表分解成多个表</a></li>
+<li><a href="#6_82">6. 添加适当存储过程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#SQL_95">三、SQL 语句优化</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1_96">1. 尽量使用表的别名，减少解析</a></li>
+<li><a href="#2select_100">2.select 子句中避免使用 * 号</a></li>
+<li><a href="#3where_109">3. 将 where 中用的比较频繁的字段建立索引，避免全表扫描</a></li>
+<li><a href="#4_123">4. 避免索引失效情况</a></li>
+<li><a href="#5limit_1_136">5. 当只需要一条数据的时候可以使用 limit 1</a></li>
+<li><a href="#6Where_140">6. 调整 Where 字句中的连接顺序</a></li>
+<li><a href="#7_144">7. 小表驱动大表</a></li>
+<li><a href="#8_EXPLAIN_SQL_160">8. 善用 EXPLAIN 查看 SQL 执行计划</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h1>
+<p><strong>现在在网上搜索，有很多类似文章，mysql 优化大全，mysql 最强总结等等，部分文章存在一些错误。在这里个人总结整理的一些点，希望对大家有所帮助。</strong></p>
+<p>本篇从数据库、表、sql 语句几个维度来说优化，如果文章有误之处欢迎指正～</p>
+<hr>
+<h1 id="一-数据库优化"><a class="markdownIt-Anchor" href="#一-数据库优化">#</a> 一、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96&amp;spm=1001.2101.3001.7020">数据库优化</a></h1>
+<h4 id="1选择合适存储引擎"><a class="markdownIt-Anchor" href="#1选择合适存储引擎">#</a> 1. 选择合适<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E&amp;spm=1001.2101.3001.7020">存储引擎</a></h4>
+<blockquote>
+<p>MySQL5.5 版本开始，InnoDB 已经成为 Mysql 的默认引擎 (之前是 MyISAM)，说明其优势是有目共睹的。如果你不知道用什么存储引擎，那就用 InnoDB，至少不会差。</p>
+</blockquote>
+<p>如何选择呢：</p>
+<ol>
+<li>是否要支持事务，如果要请选择 InnoDB，如果不需要可以考虑 MyISAM；</li>
+<li>如果表中绝大多数都只是读查询，可以考虑 MyISAM，如果既有读，写也挺频繁，请使用 InnoDB。</li>
+<li>系统奔溃后，MyISAM 恢复起来更困难，能否接受，不能接受就选 InnoDB；</li>
+</ol>
+<h4 id="2选择合适的连接池"><a class="markdownIt-Anchor" href="#2选择合适的连接池">#</a> 2. 选择合适的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%BF%9E%E6%8E%A5%E6%B1%A0&amp;spm=1001.2101.3001.7020">连接池</a></h4>
+<blockquote>
+<p>1：性能方面 hikariCP&gt;druid&gt;tomcat-jdbc&gt;dbcp&gt;c3p0 。hikariCP 的高性能得益于最大限度的避免锁竞争。<br>
+2：druid 功能最为全面，sql 拦截等功能，统计数据较为全面，具有良好的扩展性。<br>
+3：HikariCP 因为细节方面优化力度较大，性能方面强于 Druid<br>
+4：综合性能，扩展性等方面，可考虑使用 druid 或者 hikariCP 连接池。</p>
+</blockquote>
+<p>注：SpringBoot 2.0 以后默认连接池是 hikariCP。</p>
+<h4 id="3分库分表"><a class="markdownIt-Anchor" href="#3分库分表">#</a> 3. 分库分表</h4>
+<blockquote>
+<p>在数据量增长和增长速度越来越高的情况下，单库可能在容量、IO、并发性能上都无法支撑，这个时候就要对业务进行切分或数据库进行扩展，数据库的扩展也就是分库分表。</p>
+</blockquote>
+<p>分库分表的方式有垂直拆分和水平拆分。<br>
+垂直拆分是根据业务进行拆分，这种拆分不能解决单业务点数据量大的问题。<br>
+水平拆分是根据某一列进行拆分（如 id，userId），拆分后的每个库结构一致。</p>
+<h4 id="4主从同步"><a class="markdownIt-Anchor" href="#4主从同步">#</a> 4. 主从同步</h4>
+<blockquote>
+<p>一般部署架构为一台 Master 和 n 台 Slave，Master 的主责为写，并将数据同步至 Slave，Slave 主要提供查询功能。</p>
+</blockquote>
+<p>可以使用数据库中间件，例如 MyCat 来实现。MyCat 的读写分离是建立在 MySQL 主从复制基础之上实现的，Mycat 读写分离和自动切换机制，需要 mysql 的主从复制机制配合。</p>
+<hr>
+<h1 id="二-表优化"><a class="markdownIt-Anchor" href="#二-表优化">#</a> 二、表优化</h1>
+<h4 id="1表中的字段选择合适的数据类型"><a class="markdownIt-Anchor" href="#1表中的字段选择合适的数据类型">#</a> 1. 表中的字段选择合适的数据类型</h4>
+<blockquote>
+<ul>
+<li>能用数字类型，就不用字符串，因为字符的处理往往比数字要慢。</li>
+<li>尽可能使用小的类型，比如：用 bit 存布尔值，用 tinyint 存枚举值等。</li>
+<li>长度固定的字符串字段，用 char 类型，该类型的字段存储空间的固定的。</li>
+<li>长度可变的字符串字段，用 varchar 类型，该类型的字段存储空间会根据实际数据的长度调整，不会浪费存储空间。</li>
+<li>金额字段用 decimal，避免精度丢失问题。</li>
+</ul>
+</blockquote>
+<p>1、当一个列可以选择多种数据类型时，应该优先考虑数字类型，其次是日期和二进制类型，最后是字符类型。<br>
+2、对于相同级别的数据类型，应该优先选择占用空间小的数据类型。</p>
+<h4 id="2适当添加索引"><a class="markdownIt-Anchor" href="#2适当添加索引">#</a> 2. 适当添加索引</h4>
+<blockquote>
+<ul>
+<li>MySQL 里同一个数据表里的索引总数限制为 16 个。</li>
+<li>索引尽量的扩展索引，不要新建索引。</li>
+<li>在表中建立索引，优先考虑 where、order by 使用到的字段。</li>
+<li>阿里巴巴的开发者手册中规定，单表的索引数量应该尽量控制在 5 个以内，并且单个索引中的字段数不超过 5 个。</li>
+</ul>
+</blockquote>
+<h4 id="3表中适当保留冗余数据"><a class="markdownIt-Anchor" href="#3表中适当保留冗余数据">#</a> 3. 表中适当保留冗余数据</h4>
+<blockquote>
+<ul>
+<li>没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，提高读性能，就必须降低范式标准，适当保留冗余数据。</li>
+<li>虽然三大范式是为了解决数据库冗余的问题，但是阿里开发手册中提到可以适当的违反范式，允许少量的冗余，以便提高查询效率，也就是使用空间换时间。</li>
+</ul>
+</blockquote>
+<p>具体做法是： 在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加字段，减少了查询时的关联，提高查询效率。</p>
+<h4 id="4增加中间表"><a class="markdownIt-Anchor" href="#4增加中间表">#</a> 4. 增加中间表</h4>
+<blockquote>
+<p>对于需要经常联合查询的表，可以建立中间表以提高查询效率。通过建立中间表，把需要经常联合查询的数据插入到中间表中，然后将原来的联合查询改为对中间表的查询，以此来提高查询效率。</p>
+</blockquote>
+<h4 id="5字段很多的表分解成多个表"><a class="markdownIt-Anchor" href="#5字段很多的表分解成多个表">#</a> 5. 字段很多的表分解成多个表</h4>
+<blockquote>
+<p>对于字段比较多的表，如果有些字段的使用频率很低，可以将这些字段分离出来形成新表。因为当一个表的数据量很大时，会由于使用频率低的字段的存在而变慢。</p>
+</blockquote>
+<h4 id="6添加适当存储过程"><a class="markdownIt-Anchor" href="#6添加适当存储过程">#</a> 6. 添加适当存储过程</h4>
+<blockquote>
+<p>一个存储过程是一个可编程的函数，它在数据库中创建并保存，一般由 SQL 语句和一些特殊的控制结构组成。当希望在不同的应用程序或平台上执行相同的特定功能时，存储过程尤为合适。</p>
+</blockquote>
+<p><strong>存储过程与 SQL 语句如何抉择：</strong></p>
+<p>架构设计没有绝对，只有在当前的场景下最合适的。<br>
+普通的项目开发中，不建议大量使用存储过程，对比 SQL 语句，存储过程适用于业务逻辑复杂，比较耗时，同时请求量较少的操作，例如后台大批量查询、定期更新等。<br>
+（1）当一个事务涉及到多个 SQL 语句时或者涉及到对多个表的操作时可以考虑应用存储过程<br>
+（2）在一个事务的完成需要很复杂的商业逻辑时可以考虑应用存储过程<br>
+（3）比较复杂的统计和汇总可以考虑应用后台存储过程</p>
+<hr>
+<h1 id="三-sql语句优化"><a class="markdownIt-Anchor" href="#三-sql语句优化">#</a> 三、SQL 语句优化</h1>
+<h4 id="1尽量使用表的别名减少解析"><a class="markdownIt-Anchor" href="#1尽量使用表的别名减少解析">#</a> 1. 尽量使用表的别名，减少解析</h4>
+<blockquote>
+<p>当在 SQL 语句中连接多个表时，使用表的别名并把别名前缀于每个 Column 上，这样一来，就可以减少解析的时间并减少那些由 Column 歧义引起的语法错误。</p>
+</blockquote>
+<h4 id="2select子句中避免使用号"><a class="markdownIt-Anchor" href="#2select子句中避免使用号">#</a> 2.select 子句中避免使用 * 号</h4>
+<blockquote>
+<ul>
+<li>使用具体的列名，可以有效增加查询速度。</li>
+<li>避免回表查询。<br>
+比如你创建了 name， age 索引 name_age_index，查询数据时使用了：<br>
+select * from table where name =‘陈哈哈’ and age = 26;<br>
+ 由于附加索引中只有 name 和 age，因此命中索引后，数据库还必须回去聚集索引中查找其他数据，这就是回表。</li>
+<li>失去 MySQL 优化器 “覆盖索引” 策略优化的可能性。</li>
+</ul>
+</blockquote>
+<h4 id="3将where中用的比较频繁的字段建立索引避免全表扫描"><a class="markdownIt-Anchor" href="#3将where中用的比较频繁的字段建立索引避免全表扫描">#</a> 3. 将 where 中用的比较频繁的字段建立索引，避免全表扫描</h4>
+<blockquote>
+<p>1. 普通索引：这是最基本的索引类型，而且它没有唯一性之类的限制。<br>
+2. 唯一索引：和普通索引基本相同，只是索引列的所有值都只能出现一次，即必须唯一。<br>
+3. 主键索引：就是 唯一 且 不能为空。主键索引是一种特殊的唯一索引。必须指定为 “PRIMARY KEY”。<br>
+4. 联合索引：多列值组成一个索引，专门用于组合搜索。<br>
+5. 全文索引：用于在一篇文章中，检索文本信息的，适合在进行模糊查询的时候使用。</p>
+</blockquote>
+<p>提示点：</p>
+<ul>
+<li>唯一索引和普通索引使用的结构都是 B+Tree, 执行时间复杂度都是 O。</li>
+<li>如果在一个列上同时建唯一索引和普通索引的话，mysql 会自动选择唯一索引。</li>
+<li>MySQL 建立联合索引时会遵守最左前缀匹配原则，即最左优先，在检索数据时从联合索引的最左边开始匹配。同时遇到范围查询 (&gt;、&lt;、between、like) 就会停止匹配。</li>
+<li>索引区分度低的字段不要加索引，比如性别，如果添加了索引每次查询会先走索引树，再回表查询，增加了额外的 io 消耗。</li>
+</ul>
+<h4 id="4避免索引失效情况"><a class="markdownIt-Anchor" href="#4避免索引失效情况">#</a> 4. 避免索引失效情况</h4>
+<p>索引失效情况</p>
+<blockquote>
+<p>1、like 查询以 “%” 开头；(这个范围非常大，所以没有使用索引的必要了)<br>
+ 2、or 查询左右都没有使用索引；(or 可以使用 unint)<br>
+ 3、联合索引中没有使用第一列索引；(为遵循最左匹配原则)<br>
+ 4、在 where 中索引列上使用 “not”，“&lt;&gt;”，“!=”；(不等于操作符可能不会用到索引的，产生全表扫描)<br>
+ 5、在 where 中索引列上使用函数或进行计算操作，索引失效。(更改字段导致失效)<br>
+ 6、如果 mysql 觉得全表扫描更快时（数据少时）<br>
+7、在索引列上使用 “IS NULL” 或 “IS NOT NULL” 操作，索引可能失效（如果列上全部数据不为空，索引会失效，但是如果有空值，索引不会失效）<br>
+…</p>
+</blockquote>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/3e82ac92263241049d3cfdd7aedc9d24.png" alt="在这里插入图片描述"></p>
+<h4 id="5当只需要一条数据的时候可以使用limit-1"><a class="markdownIt-Anchor" href="#5当只需要一条数据的时候可以使用limit-1">#</a> 5. 当只需要一条数据的时候可以使用 limit 1</h4>
+<blockquote>
+<p>这是为了使 EXPLAIN 中 type 列达到 const 类型</p>
+</blockquote>
+<h4 id="6调整where字句中的连接顺序"><a class="markdownIt-Anchor" href="#6调整where字句中的连接顺序">#</a> 6. 调整 Where 字句中的连接顺序</h4>
+<blockquote>
+<p>采用自下而上的顺序解析 where 字句，根据这个原理表连接最好写在其他 where 条件之前，那些可以过滤掉最大数量记录。</p>
+</blockquote>
+<h4 id="7小表驱动大表"><a class="markdownIt-Anchor" href="#7小表驱动大表">#</a> 7. 小表驱动大表</h4>
+<blockquote>
+<p>SQL 中使用 in：<br>
+如果 sql 语句中包含了 in 关键字，则它会优先执行 in 里面的子查询语句，然后再执行 in 外面的语句。所以假如 in 里面的数据量很少，作为条件查询速度更快。</p>
+</blockquote>
+<blockquote>
+<p>SQL 中使用 exists：<br>
+如果 sql 语句中包含了 exists 关键字，它会优先执行 exists 左边的语句（即主查询语句）。然后把它作为条件，去跟右边的语句匹配。<br>
+如果匹配上，则可以查询出数据。如果匹配不上，数据就被过滤掉了。</p>
+</blockquote>
+<p>这个需求中，如果 order 表有 10000 条数据，而 user 表有 100 条数据。order 表是大表，user 表是小表。如果 order 表在左边，则用 in 关键字性能更好。</p>
+<p>总结一下：</p>
+<blockquote>
+<p>in 适用于左边大表，右边小表。<br>
+exists 适用于左边小表，右边大表。</p>
+</blockquote>
+<h4 id="8善用-explain-查看sql执行计划"><a class="markdownIt-Anchor" href="#8善用-explain-查看sql执行计划">#</a> 8. 善用 EXPLAIN 查看 SQL 执行计划</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">select</span>  column_name <span class="keyword">from</span> table_name;</span><br></pre></td></tr></table></figure>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/4ab2afe500d946c888ae0fd45882041a.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<ol>
+<li>type 列，访问类型。一个好的 sql 语句至少要达到 range (范围) 级别。杜绝出现 all 级别。<br>
+ALL、index、range、 ref、eq_ref、const、system、NULL（从左到右，性能从差到好）</li>
+<li>key 列，使用到的索引名。如果没有选择索引，值是 NULL。可以采取强制索引方式。</li>
+<li>key_len 列，索引长度。</li>
+<li>rows 列，扫描行数。该值是个预估值 。</li>
+<li>extra 列，详细说明。注意常见的不太友好的值有：Using filesort, Using temporary。</li>
+</ol>
+</blockquote>
+<p><strong>具体的优化步骤：</strong><br>
+1、首先要避免全表扫描，检查是否有索引。<br>
+2、查看索引是否生效。<br>
+3、sql 结构的优化。<br>
+4、数据库表设计的优化。</p>
+<hr>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-05-11T00:07:55.000Z" title="2022/5/11 08:07:55">2022-05-11</time>发表</span><span class="level-item"><time dateTime="2021-05-25T14:05:01.000Z" title="2021/5/25 22:05:01">2021-05-25</time>更新</span><span class="level-item">4 分钟读完 (大约544个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/05/11/%E3%80%90MySQL%E3%80%91%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2Docker%E2%80%94Mysql%E9%95%9C%E5%83%8F/">宝塔部署Docker—Mysql镜像</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<p>转自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/u011630259/article/details/124497343">https://blog.csdn.net/u011630259/article/details/124497343</a></p>
+<h2 id="宝塔部署dockermysql镜像"><a class="markdownIt-Anchor" href="#宝塔部署dockermysql镜像">#</a> 宝塔部署 Docker—Mysql 镜像</h2>
+<p>如何在面板上使用 Docker 项目管理器快速创建多个版本的 MySQL？手把手的教你如何创建多个版本的 MySQL 服务<br>
+环境介绍：<br>
+宿主机：CentOS7.9<br>
+ 配置：2 核 4G（测试机器，生产环境建议配置高点）<br>
+面板版本：7.9.26（测试版）<br>
+Docker 项目管理器：3.9</p>
+<p><img src="https://brath.cloud/blogImg/90825147a852493a8feea8efc0220deb.png" alt="img"></p>
+<p>Docker 版本：Docker version 20.10.14, build a224086<br>
+ 测试 MySQL 版本：<br>
+MySQL5.7.37<br>
+MySQL8.0.28<br>
+1、获取 MySQL 版本</p>
+<p><img src="https://brath.cloud/blogImg/0241ca9c68d545819f8f100b33b2d8b9.png" alt="img"></p>
+<p><img src="https://brath.cloud/blogImg/90825147a852493a8feea8efc0220deb.png" alt=""></p>
+<p>默认情况下，直接输入 mysql 名，会拉取 mysql:latest 镜像，就是最新版本的镜像，指定版本后拉取的是指定版本的 MySQL 镜像，如 mysql:5.7.37</p>
+<p><img src="https://brath.cloud/blogImg/2418dbfa7fac47bbac12fd3abe9e7229.png" alt="img"></p>
+<p>2、创建容器：</p>
+<p>指定容器中数据库的密码：</p>
+<p><img src="https://brath.cloud/blogImg/5d2c09a1667744fd9538381efd7b67b0.png" alt="img"></p>
+<p>MYSQL_ROOT_PASSWORD=dapaotest1</p>
+<p><img src="https://brath.cloud/blogImg/241882e051fd4940bd09e98f61369215.png" alt="img"></p>
+<p>3、容器创建成功后，进入终端命令行查看数据库</p>
+<p><img src="https://brath.cloud/blogImg/f6245e7abacc4d768dd616d4067c3a4a.png" alt="img"></p>
+<p>4、创建数据库表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">查看数据库的命令</span><br><span class="line">show databases;</span><br><span class="line">创建数据库的命令</span><br><span class="line">create database dapaodocker;</span><br><span class="line">创建用户的命令</span><br><span class="line">create user &#x27;dapaodocker&#x27;@&#x27;%&#x27; identified by &#x27;dapao666!&#x27;;</span><br><span class="line">授权</span><br><span class="line">grant all on dapaodocker.* to dapaodocker@&#x27;%&#x27;;</span><br><span class="line"></span><br><span class="line">查看用户权限</span><br><span class="line">select host,user from user;</span><br><span class="line">测试数据库是否可以连接</span><br></pre></td></tr></table></figure>
+<p><img src="https://brath.cloud/blogImg/ee582242679c4da1b2fc04db16bad384.png" alt="img"></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-05-09T23:10:20.000Z" title="2022/5/10 07:10:20">2022-05-10</time>发表</span><span class="level-item"><time dateTime="2021-02-01T06:57:47.000Z" title="2021/2/1 14:57:47">2021-02-01</time>更新</span><span class="level-item">3 分钟读完 (大约498个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/05/10/%E3%80%90Flutter%E3%80%91flutter%20%E5%9C%A8%E7%9C%9F%E6%9C%BA%E4%B8%8A%E8%B0%83%E8%AF%95%E5%8D%B8%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85%E5%90%8E%E5%8D%A1%E4%BD%8F%E6%B2%A1%E5%8F%8D%E5%BA%94%E9%97%AE%E9%A2%98/">【Flutter】flutter 在真机上调试卸载安装包后卡住没反应问题</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
 <h1 id="flutterflutter-在真机上调试卸载安装包后卡住没反应问题"><a class="markdownIt-Anchor" href="#flutterflutter-在真机上调试卸载安装包后卡住没反应问题">#</a> 【Flutter】flutter 在真机上调试卸载安装包后卡住没反应问题</h1>
 <h1 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述">#</a> 问题描述</h1>
 <p>把自己手机插上数据线后，用 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=flutter&amp;spm=1001.2101.3001.7020">flutter</a> 进行真机调试，本来配合 vscode 跑得好好的，不知道是写了 bug 还是咋地，目标效果出不来，以为是热更新失败了，最后只好把安装在手机上的 app 卸载了，想当然地以为运行  <code>flutter run</code>  后在手机上会贴心的提示我重装一遍，哪知给我突然卡住了：</p>
@@ -414,85 +743,7 @@ d. 查看 mysql 的进程 ps -ef | grep mysql</p>
 <p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
 <p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
 <p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-03-28T06:44:03.000Z" title="2022/3/28 14:44:03">2022-03-28</time>发表</span><span class="level-item"><time dateTime="2019-11-23T08:25:59.000Z" title="2019/11/23 16:25:59">2019-11-23</time>更新</span><span class="level-item">5 分钟读完 (大约704个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/03/28/%E3%80%90NodeJS%E3%80%91Windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%A6%82%E4%BD%95%E5%81%9ANode%E5%A4%9A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%EF%BC%9F/">【NodeJS】Windows环境下如何做Node多版本管理？</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="nodejswindows环境下如何做node多版本管理"><a class="markdownIt-Anchor" href="#nodejswindows环境下如何做node多版本管理">#</a> 【NodeJS】Windows 环境下如何做 Node 多版本管理？</h1>
-<h1 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h1>
-<p>​		在多个不同的前端项目中，总会遇到 nodeJs 需求版本不一致的情况，例如，项目 A 需要 node12 版本，项目 B 要求不能小于 node16 版本，此时就产生了冲突，因此我们需要使用一个 Node 版本控制来解决这一系列的问题。</p>
-<h1 id="nvm-windows"><a class="markdownIt-Anchor" href="#nvm-windows">#</a> nvm-windows</h1>
-<p>​		在 Windows 环境下，可以使用  <code>nvm-windows</code>  工具来管理多个 Node.js 版本。与  <code>nvm</code>  相似， <code>nvm-windows</code>  也是一个 Node.js 版本管理器，可以让你在同一台计算机上安装和管理多个 Node.js 版本。</p>
-<p>以下是使用  <code>nvm-windows</code>  工具的步骤：</p>
-<ol>
-<li>
-<p>下载安装包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/coreybutler/nvm-windows/releases/tag/1.1.11</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>首先需要下载并安装  <code>nvm-windows</code>  工具。可以从 GitHub 上下载最新版本的安装包。下载后，直接运行安装程序按照提示进行安装即可。</p>
-<ol>
-<li>安装 Node.js 版本</li>
-</ol>
-<p>安装完成后，在命令行中输入以下命令来安装 Node.js 的不同版本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 14.17.5</span><br></pre></td></tr></table></figure>
-<p>这将安装 Node.js v14.17.5 版本。如果要安装其他版本，只需将  <code>14.17.5</code>  替换为所需的版本即可。安装完成后，可以使用以下命令查看已安装的 Node.js 版本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm list</span><br></pre></td></tr></table></figure>
-<ol>
-<li>切换 Node.js 版本</li>
-</ol>
-<p>要切换到已安装的特定版本，可以使用以下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 14.17.5</span><br></pre></td></tr></table></figure>
-<p>这将使当前命令行窗口使用 Node.js v14.17.5 版本。如果要设置默认版本，请使用以下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm alias default 14.17.5</span><br></pre></td></tr></table></figure>
-<p>这将将 Node.js v14.17.5 设置为默认版本。每次打开一个新的命令行窗口时，都会自动将其设置为默认版本。</p>
-<ol>
-<li>其他命令</li>
-</ol>
-<p>除了上述命令外， <code>nvm-windows</code>  还提供了其他有用的命令，例如：</p>
-<ul>
-<li><code>nvm on</code> ：启用  <code>nvm</code>  环境变量。</li>
-<li><code>nvm off</code> ：禁用  <code>nvm</code>  环境变量。</li>
-<li><code>nvm uninstall 14.17.5</code> ：卸载 Node.js v14.17.5 版本。</li>
-</ul>
-<p>以上是在 Windows 环境下使用  <code>nvm-windows</code>  工具管理多个 Node.js 版本的基本步骤。</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-03-24T06:38:19.000Z" title="2022/3/24 14:38:19">2022-03-24</time>发表</span><span class="level-item"><time dateTime="2021-10-01T11:18:24.000Z" title="2021/10/1 19:18:24">2021-10-01</time>更新</span><span class="level-item">5 分钟读完 (大约684个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/03/24/%E3%80%90MySQL%E3%80%91MySQL%E5%AE%89%E8%A3%85%20starting%20the%20server%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">MySQL安装 starting the server失败的解决办法</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h3 id="mysql安装-starting-the-server失败的解决办法"><a class="markdownIt-Anchor" href="#mysql安装-starting-the-server失败的解决办法">#</a> MySQL 安装 starting the server 失败的解决办法</h3>
-<p>​		如果电脑是第一次安装 MySQL，一般不会出现这样的报错。如下图所示。starting the server 失败，通常是因为上次安装的该软件未清除干净。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190807043159195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWFuZ2c1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><strong>完全卸载该软件的办法</strong>：</p>
-<p>第一步，进入… 控制面板 \ 程序 \ 程序和功能，卸载下图中的 MySQL 两个软件。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190807043419726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWFuZ2c1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
-第二步，删除上次安装目录的 MySQL 残留文件，更不要忘了删除 ProgramData 下的 MySQL 文件夹，如下图所示。注意：这里的文件夹与上次安装目录里的残留文件不同，C:\ProgramData 一般默认是隐藏的。<br>
-<img src="https://img-blog.csdnimg.cn/20190807043522439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWFuZ2c1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
-第三步，Win+R 输入 regedit 运行，进入注册表编辑器，按下图路径，找到 MySQL，进而删除 MySQL 注册表信息。<br>
-<img src="https://img-blog.csdnimg.cn/20190807043623577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWFuZ2c1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
-第四步，做完前三步，打开服务，会发现 MySQL57 服务依然存在，如下图所示。这就是导致安装失败的重要原因，所以需要删除 MySQL57 服务。方法：以管理员的权限运行 dos 命令，然后输入 sc delete MySQL57 。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">C</span>:\<span class="title class_">Windows</span>\system32&gt;sc <span class="keyword">delete</span> <span class="title class_">MySQL57</span></span><br><span class="line">[<span class="variable constant_">SC</span>] <span class="title class_">DeleteService</span> 成功</span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20190807043734156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWFuZ2c1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>现在就可以轻松的安装上 MySQL 软件了！</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-03-15T01:39:26.000Z" title="2022/3/15 09:39:26">2022-03-15</time>发表</span><span class="level-item"><time dateTime="2021-08-02T11:44:00.000Z" title="2021/8/2 19:44:00">2021-08-02</time>更新</span><span class="level-item">4 分钟读完 (大约529个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/03/15/%E3%80%90Vue%E3%80%91el-upload%E9%99%90%E5%88%B6%E5%8F%AA%E4%B8%8A%E4%BC%A0%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E5%B9%B6%E9%9A%90%E8%97%8F%E5%8F%B3%E4%BE%A7%E7%9A%84%E4%B8%8A%E4%BC%A0%E5%8C%BA%E5%9F%9F/">【Vue】el-upload限制只上传一张图片并隐藏右侧的上传区域</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="vueel-upload限制只上传一张图片并隐藏右侧的上传区域"><a class="markdownIt-Anchor" href="#vueel-upload限制只上传一张图片并隐藏右侧的上传区域">#</a> 【Vue】el-upload 限制只上传一张图片并隐藏右侧的上传区域</h1>
-<p>使用 element UI 中的 el-upload 如何限制上传一张图片后隐藏右侧的上传区域</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/8c0456f090629e60b774748ac33ee22b.png" alt="img"></p>
-<p>主要代码块：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">监听事件</span><br><span class="line"><span class="attr">watch</span>: &#123;</span><br><span class="line">  <span class="attr">onChangeImgUrl</span>: &#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params">newName</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> aa = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.el-upload--picture-card&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (newName) &#123;</span><br><span class="line">        aa.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span> </span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          aa.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;inline-block&#x27;</span></span><br><span class="line">        &#125;, <span class="number">1100</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>原理：</p>
-<p>因为只上传一张图片，监听图片的 url 即可。听过监听图片的 url 存在与否，通过获取 dom 元素设置不同的样式。</p>
-<p>以下完整代码实现如下效果:</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/b3c00ea22f8c0efde7e61125a35a7083.png" alt="img"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">父组件setBank.vue</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;setBank&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;addInfo&quot;</span>&gt;</span>入驻<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">:visible.sync</span>=<span class="string">&quot;checkDialogVisible&quot;</span> <span class="attr">title</span>=<span class="string">&quot;入驻&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Upload</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">Upload</span> <span class="keyword">from</span> <span class="string">&#x27;./upload.vue&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">components</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">Upload</span></span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">checkDialogVisible</span>: <span class="literal">false</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript"> </span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//  入驻</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">addInfo</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">checkDialogVisible</span> = <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">子组件 upload.vue</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;con_form&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">ref</span>=<span class="string">&quot;addForm&quot;</span> <span class="attr">:model</span>=<span class="string">&quot;addForm&quot;</span> <span class="attr">class</span>=<span class="string">&quot;demo-comCreditForm&quot;</span> <span class="attr">label-width</span>=<span class="string">&quot;200px&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;企业名称：&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;name&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;addForm.name&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;转贷机构名称&quot;</span> /&gt;</span> <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;统一社会信用代码：&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;code&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;addForm.code&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入统一社会信用代码&quot;</span> /&gt;</span> <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;upload_icon&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;上传：&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;addForm&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-upload</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:auto-upload</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:limit</span>=<span class="string">&quot;limitCount&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:on-remove</span>=<span class="string">&quot;handleRemove&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:on-change</span>=<span class="string">&quot;onChange&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:on-success</span>=<span class="string">&quot;handleSuccess&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:file-list</span>=<span class="string">&quot;fileList&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:data</span>=<span class="string">&quot;uploadData&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:before-upload</span>=<span class="string">&quot;beforeAvatarUpload&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">action</span>=<span class="string">&quot;#&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">&quot;avatar-uploader&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">list-type</span>=<span class="string">&quot;picture-card&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">accept</span>=<span class="string">&quot;image/jpg,image/jpeg,image/png&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-if</span>=<span class="string">&quot;url&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;url&quot;</span> <span class="attr">class</span>=<span class="string">&quot;el-upload-list__item-thumbnail&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">i</span> <span class="attr">v-else</span> <span class="attr">slot</span>=<span class="string">&quot;default&quot;</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-plus&quot;</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-upload</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el-upload__tip&quot;</span>&gt;</span>jpg.jpeg、png格式，大小5M以内<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">limitCount</span>: <span class="number">1</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">onChangeImgUrl</span>: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">uploadData</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">name</span>: <span class="string">&#x27;testFile&#x27;</span></span></span><br><span class="line"><span class="language-javascript">      &#125;,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">fileList</span>: [],</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">//  申请入驻银行 表单</span></span></span><br><span class="line"><span class="language-javascript">      <span class="attr">addForm</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">code</span>: <span class="string">&#x27;&#x27;</span> <span class="comment">//  社会信用代码</span></span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">watch</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">onChangeImgUrl</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">handler</span>(<span class="params">newName</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> aa = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.el-upload--picture-card&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (newName) &#123;</span></span><br><span class="line"><span class="language-javascript">          aa.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            aa.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;inline-block&#x27;</span></span></span><br><span class="line"><span class="language-javascript">          &#125;, <span class="number">1100</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">onChange</span>(<span class="params">file, fileList</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">onChangeImgUrl</span> = file.<span class="property">url</span></span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">handleRemove</span>(<span class="params">file, fileList</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">onChangeImgUrl</span> = <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">handleSuccess</span>(<span class="params">file, fileList</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.$set(<span class="variable language_">this</span>.<span class="property">myForm</span>, <span class="string">&#x27;netTgThumbnail&#x27;</span>, fileList.<span class="property">response</span>.<span class="property">bean</span>.<span class="property">result</span>.<span class="property">fileUrlPath</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 限制图片大小</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">beforeAvatarUpload</span>(<span class="params">file</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> isLt5M = file.<span class="property">size</span> / <span class="number">1024</span> / <span class="number">1024</span> &lt; <span class="number">5</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (!isLt5M) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">error</span>(<span class="string">&#x27;上传头像图片大小不能超过 2MB!&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">return</span> isLt5M</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">/deep/<span class="selector-class">.upload_icon</span> <span class="selector-class">.el-form-item__content</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">height</span>: <span class="number">190px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.avatar-uploader</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">width</span>: <span class="number">145px</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">height</span>: <span class="number">145px</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.con_form</span> <span class="selector-class">.upload_icon</span> <span class="selector-class">.el-form-item__content</span> <span class="selector-class">.el-upload__tip</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/6/">上一页</a></div><div class="pagination-next"><a href="/page/8/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><a class="pagination-link is-current" href="/page/7/">7</a></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/14/">14</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T05:58:11.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">【算法】算法的时间与空间复杂度</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80%E3%80%91%E7%99%BE%E5%BA%A6%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B/">【文心一言】百度文心一言大型语言模型接入教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-29T11:42:37.000Z">2023-04-29</time></p><p class="title"><a href="/2023/04/29/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%9123%20%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%A823%E7%A7%8D%EF%BC%89/">【设计模式】23 种设计模式详解（全23种）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-27T09:20:49.000Z">2023-04-27</time></p><p class="title"><a href="/2023/04/27/%E3%80%90Dubbo%E3%80%91Dubbo%E8%AF%A6%E8%A7%A3%EF%BC%8C%E7%94%A8%E5%BF%83%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B0%B1%E5%A4%9F%E4%BA%86%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91/">【Dubbo】Dubbo详解，用心看这一篇文章就够了【重点】</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">34</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">136</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">136</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/6/">上一页</a></div><div class="pagination-next"><a href="/page/8/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><a class="pagination-link is-current" href="/page/7/">7</a></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/14/">14</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T09:23:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0Map/">【数据结构】手写实现Hash表，并解决哈希冲突</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T07:53:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0ArrayList/">【数据结构】手写实现ArrayList</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T05:53:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0LinkedList/">【数据结构】手写实现LinkedList</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T05:58:11.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">【算法】算法的时间与空间复杂度</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">139</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">139</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
