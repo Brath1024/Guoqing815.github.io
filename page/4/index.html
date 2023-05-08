@@ -29,7 +29,295 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-01-28T05:53:40.000Z" title="2023/1/28 13:53:40">2023-01-28</time>发表</span><span class="level-item"><time dateTime="2023-11-11T14:03:11.000Z" title="2023/11/11 22:03:11">2023-11-11</time>更新</span><span class="level-item">8 分钟读完 (大约1167个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/01/28/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章列表</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">更多</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-24T03:58:39.000Z" title="2023/2/24 11:58:39">2023-02-24</time>发表</span><span class="level-item"><time dateTime="2020-01-04T09:13:01.000Z" title="2020/1/4 17:13:01">2020-01-04</time>更新</span><span class="level-item">22 分钟读完 (大约3342个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/24/%E3%80%90Java%E3%80%91CAS%E6%9C%BA%E5%88%B6/">CAS机制</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="cas机制"><a class="markdownIt-Anchor" href="#cas机制">#</a> CAS 机制</h1>
+<h3 id="我们先看一段代码"><a class="markdownIt-Anchor" href="#我们先看一段代码">#</a> 我们先看一段代码：</h3>
+<p>启动两个线程，每个线程中让静态变量 count 循环累加 100 次。</p>
+<p><img src="https://img-blog.csdn.net/20180312170840546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>最终输出的 count 结果一定是 200 吗？因为这段代码是非<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8&amp;spm=1001.2101.3001.7020">线程安全</a>的，所以最终的自增结果很可能会小于 200。我们再加上 synchronized 同步锁，再来看一下。</p>
+<p><img src="https://img-blog.csdn.net/20180312170827236?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>加了同步锁之后，count 自增的操作变成了原子性操作，所以最终输出一定是 count=200，代码实现了线程安全。虽然 synchronized 确保了线程安全，但是在某些情况下，这并不是一个最有的选择。</p>
+<p>关键在于性能问题。</p>
+<p>synchronized 关键字会让没有得到锁资源的线程进入 BLOCKED 状态，而后在争夺到锁资源后恢复为 RUNNABLE 状态，这个过程中涉及到操作系统用户模式和内核模式的转换，代价比较高。</p>
+<p>尽管 JAVA 1.6 为 synchronized 做了优化，增加了从偏向锁到轻量级锁再到重量级锁的过过度，但是在最终转变为重量级锁之后，性能仍然比较低。所以面对这种情况，我们就可以使用 java 中的 “原子操作类”。</p>
+<p>所谓原子操作类，指的是 java.util.concurrent.atomic 包下，一系列以 Atomic 开头的包装类。如 AtomicBoolean，AtomicUInteger，AtomicLong。它们分别用于 Boolean，Integer，Long 类型的原子性操作。</p>
+<p>现在我们尝试使用 AtomicInteger 类：</p>
+<p><img src="https://img-blog.csdn.net/20180312172106130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>使用 AtomicInteger 之后，最终的输出结果同样可以保证是 200。并且在某些情况下，代码的性能会比 synchronized 更好。</p>
+<p>而 Atomic 操作类的底层正是用到了 “CAS 机制”。</p>
+<p>CAS 是英文单词 Compare and Swap 的缩写，翻译过来就是比较并替换。</p>
+<p>CAS 机制中使用了 3 个基本操作数：内存地址 V，旧的预期值 A，要修改的新值 B。</p>
+<p>更新一个变量的时候，只有当变量的预期值 A 和内存地址 V 当中的实际值相同时，才会将内存地址 V 对应的值修改为 B。</p>
+<p>我们看一个例子：</p>
+<p>\1. 在内存地址 V 当中，存储着值为 10 的变量。</p>
+<p><img src="https://img-blog.csdn.net/20180312172707148?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\2. 此时线程 1 想把变量的值增加 1. 对线程 1 来说，旧的预期值 A=10，要修改的新值 B=11.</p>
+<p><img src="https://img-blog.csdn.net/20180312172814864?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\3. 在线程 1 要提交更新之前，另一个线程 2 抢先一步，把内存地址 V 中的变量值率先更新成了 11。</p>
+<p><img src="https://img-blog.csdn.net/20180312172943800?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\4. 线程 1 开始提交更新，首先进行 A 和地址 V 的实际值比较，发现 A 不等于 V 的实际值，提交失败。</p>
+<p><img src="https://img-blog.csdn.net/20180312173045349?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\5. 线程 1 重新获取内存地址 V 的当前值，并重新计算想要修改的值。此时对线程 1 来说，A=11，B=12。这个重新尝试的过程被称为自旋。</p>
+<p><img src="https://img-blog.csdn.net/20180312173220371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\6. 这一次比较幸运，没有其他线程改变地址 V 的值。线程 1 进行比较，发现 A 和地址 V 的实际值是相等的。</p>
+<p><img src="https://img-blog.csdn.net/20180312173331761?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>\7. 线程 1 进行交换，把地址 V 的值替换为 B，也就是 12.</p>
+<p><img src="https://img-blog.csdn.net/20180312173421205?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>从思想上来说，synchronized 属于悲观锁，悲观的认为程序中的并发情况严重，所以严防死守，CAS 属于乐观锁，乐观地认为程序中的并发情况不那么严重，所以让线程不断去重试更新。</p>
+<p>在 java 中除了上面提到的 Atomic 系列类，以及 Lock 系列类夺得底层实现，甚至在 JAVA1.6 以上版本，synchronized 转变为重量级锁之前，也会采用 CAS 机制。</p>
+<p><strong>CAS 的缺点：</strong></p>
+<p>1） CPU 开销过大</p>
+<p>在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给 CPU 带来很到的压力。</p>
+<p>2） 不能保证代码块的原子性</p>
+<p>CAS 机制所保证的知识一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证 3 个变量共同进行原子性的更新，就不得不使用 synchronized 了。</p>
+<p>3） ABA 问题</p>
+<p>这是 CAS 机制最大的问题所在。（后面有介绍）</p>
+<p>我们下面来介绍一下两个问题：</p>
+<p><em><strong>*1. JAVA 中 CAS 的底层实现 *</strong></em></p>
+<p><em><strong>*2. CAS 的 ABA 问题和解决办法。*</strong></em></p>
+<p>我们看一下 AtomicInteger 当中常用的自增方法 incrementAndGet：</p>
+<p>public final int incrementAndGet() {</p>
+<p>for (;😉 {</p>
+<p>​    int current = get();</p>
+<p>​    int next = current + 1;</p>
+<p>​    if (compareAndSet(current, next))</p>
+<p>​      return next;</p>
+<p>}</p>
+<p>}</p>
+<p>private volatile int value;</p>
+<p>public final int get() {</p>
+<p>return value;</p>
+<p>}</p>
+<p>这段代码是一个无限循环，也就是 CAS 的自旋，循环体中做了三件事：</p>
+<p>\1. 获取当前值</p>
+<p>\2. 当前值 + 1，计算出目标值</p>
+<p>\3. 进行 CAS 操作，如果成功则跳出循环，如果失败则重复上述步骤</p>
+<p>这里需要注意的重点是 get 方法，这个方法的作用是获取变量的当前值。</p>
+<p>如何保证获取的当前值是内存中的最新值？很简单，用 volatile 关键字来保证（保证线程间的可见性）。我们接下来看一下 compareAndSet 方法的实现：</p>
+<p><img src="https://img-blog.csdn.net/2018031217514825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>compareAndSet 方法的实现很简单，只有一行代码。这里涉及到两个重要的对象，一个是 unsafe，一个是 valueOffset。</p>
+<p>什么是 unsafe 呢？Java 语言不像 C，C++ 那样可以直接访问底层操作系统，但是 JVM 为我们提供了一个后门，这个后门就是 unsafe。unsafe 为我们提供了硬件级别的原子操作。</p>
+<p>至于 valueOffset 对象，是通过 unsafe.objectFiledOffset 方法得到，所代表的是 AtomicInteger 对象 value 成员变量在内存中的偏移量。我们可以简单的把 valueOffset 理解为 value 变量的内存地址。</p>
+<p>我们上面说过，CAS 机制中使用了 3 个基本操作数：内存地址 V，旧的预期值 A，要修改的新值 B。</p>
+<p>而 unsafe 的 compareAndSwapInt 方法的参数包括了这三个基本元素：valueOffset 参数代表了 V，expect 参数代表了 A，update 参数代表了 B。</p>
+<p>正是 unsafe 的 compareAndSwapInt 方法保证了 Compare 和 Swap 操作之间的原子性操作。</p>
+<p>我们现在来说什么是 ABA 问题。假设内存中有一个值为 A 的变量，存储在地址 V 中。</p>
+<p><img src="https://img-blog.csdn.net/2018031218013467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>此时有三个线程想使用 CAS 的方式更新这个变量的值，每个线程的执行时间有略微偏差。线程 1 和线程 2 已经获取当前值，线程 3 还未获取当前值。</p>
+<p><img src="https://img-blog.csdn.net/20180312180247202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>接下来，线程 1 先一步执行成功，把当前值成功从 A 更新为 B；同时线程 2 因为某种原因被阻塞住，没有做更新操作；线程 3 在线程 1 更新之后，获取了当前值 B。</p>
+<p><img src="https://img-blog.csdn.net/20180312180432152?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在之后，线程 2 仍然处于阻塞状态，线程 3 继续执行，成功把当前值从 B 更新成了 A。</p>
+<p><img src="https://img-blog.csdn.net/20180312180546889?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>最后，线程 2 终于恢复了运行状态，由于阻塞之前已经获得了 “当前值 A”，并且经过 compare 检测，内存地址 V 中的实际值也是 A，所以成功把变量值 A 更新成了 B。</p>
+<p><img src="https://img-blog.csdn.net/20180312180729792?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>看起来这个例子没啥问题，但如果结合实际，就可以发现它的问题所在。</p>
+<p>我们假设一个提款机的例子。假设有一个遵循 CAS 原理的提款机，小灰有 100 元存款，要用这个提款机来提款 50 元。</p>
+<p><img src="https://img-blog.csdn.net/20180312181342879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>由于提款机硬件出了点问题，小灰的提款操作被同时提交了两次，开启了两个线程，两个线程都是获取当前值 100 元，要更新成 50 元。</p>
+<p>理想情况下，应该一个线程更新成功，一个线程更新失败，小灰的存款值被扣一次。</p>
+<p><img src="https://img-blog.csdn.net/20180312181404403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程 1 首先执行成功，把余额从 100 改成 50. 线程 2 因为某种原因阻塞。这时，小灰的妈妈刚好给小灰汇款 50 元。</p>
+<p><img src="https://img-blog.csdn.net/20180312181531202?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程 2 仍然是阻塞状态，线程 3 执行成功，把余额从 50 改成了 100。</p>
+<p><img src="https://img-blog.csdn.net/20180312181635868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>线程 2 恢复运行，由于阻塞之前获得了 “当前值” 100，并且经过 compare 检测，此时存款实际值也是 100，所以会成功把变量值 100 更新成 50。</p>
+<p><img src="https://img-blog.csdn.net/20180312181813320?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>原本线程 2 应当提交失败，小灰的正确余额应该保持 100 元，结果由于 ABA 问题提交成功了。</p>
+<p>怎么解决呢？加个版本号就可以了。</p>
+<p>真正要做到严谨的 CAS 机制，我们在 compare 阶段不仅要比较期望值 A 和地址 V 中的实际值，还要比较变量的版本号是否一致。</p>
+<p>我们仍然以刚才的例子来说明，假设地址 V 中存储着变量值 A，当前版本号是 01。线程 1 获取了当前值 A 和版本号 01，想要更新为 B，但是被阻塞了。</p>
+<p><img src="https://img-blog.csdn.net/20180312182255181?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>这时候，内存地址 V 中变量发生了多次改变，版本号提升为 03，但是变量值仍然是 A。</p>
+<p><img src="https://img-blog.csdn.net/20180312182346458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>随后线程 1 恢复运行，进行 compare 操作。经过比较，线程 1 所获得的值和地址的实际值都是 A，但是版本号不相等，所以这一次更新失败。</p>
+<p><img src="https://img-blog.csdn.net/20180312182506360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzI5OTgxNTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在 Java 中，AtomicStampedReference 类就实现了用版本号作比较额 CAS 机制。</p>
+<p><em><strong>*1. java 语言 CAS 底层如何实现？*</strong></em></p>
+<p><em><strong>* 利用 unsafe 提供的原子性操作方法。*</strong></em></p>
+<p><em><strong>*2. 什么事 ABA 问题？怎么解决？*</strong></em></p>
+<p><em><strong>* 当一个值从 A 变成 B，又更新回 A，普通 CAS 机制会误判通过检测。*</strong></em></p>
+<p><em><strong>* 利用版本号比较可以有效解决 ABA 问题。*</strong></em></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-23T15:57:03.000Z" title="2023/2/23 23:57:03">2023-02-23</time>发表</span><span class="level-item"><time dateTime="2022-01-16T11:58:13.000Z" title="2022/1/16 19:58:13">2022-01-16</time>更新</span><span class="level-item">4 分钟读完 (大约646个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/23/%E3%80%90Java%E3%80%91Java%E5%AD%97%E7%AC%A6%E4%B8%8EASCII%E7%A0%81%E4%BA%92%E8%BD%AC/">【Java】Java字符与ASCII码互转</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<h1 id="javajava字符与ascii码互转"><a class="markdownIt-Anchor" href="#javajava字符与ascii码互转">#</a> 【Java】Java 字符与 ASCII 码互转</h1>
+<p>字符转对应<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ASCII%E7%A0%81&amp;spm=1001.2101.3001.7020"> ASCII 码</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法一：将char强制转换为byte</span></span><br><span class="line"><span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="type">byte</span> <span class="variable">byteAscii</span> <span class="operator">=</span> (<span class="type">byte</span>) ch;</span><br><span class="line">System.out.println(byteAscii);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二：将char直接转化为int，其值就是字符的ascii</span></span><br><span class="line"><span class="type">int</span> <span class="variable">byteAscii1</span> <span class="operator">=</span> (<span class="type">int</span>) ch;</span><br><span class="line">System.out.println(byteAscii1);</span><br></pre></td></tr></table></figure>
+<p>ASCII 码转字符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接int强制转换为char</span></span><br><span class="line"><span class="type">int</span> <span class="variable">ascii</span> <span class="operator">=</span> <span class="number">65</span>;</span><br><span class="line"><span class="type">char</span> <span class="variable">ch1</span> <span class="operator">=</span> (<span class="type">char</span>)ascii;</span><br><span class="line">System.out.println(ch1);</span><br></pre></td></tr></table></figure>
+<p>应用实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * HJ21 简单密码</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 描述</span></span><br><span class="line"><span class="comment"> * 现在有一种密码变换算法。</span></span><br><span class="line"><span class="comment"> * 九键手机键盘上的数字与字母的对应： 1--1， abc--2, def--3, ghi--4, jkl--5, mno--6, pqrs--7, tuv--8 wxyz--9, 0--0，把密码中出现的小写字母都变成九键键盘对应的数字，如：a 变成 2，x 变成 9.</span></span><br><span class="line"><span class="comment"> * 而密码中出现的大写字母则变成小写之后往后移一位，如：X ，先变成小写，再往后移一位，变成了 y ，例外：Z 往后移是 a 。</span></span><br><span class="line"><span class="comment"> * 数字和其它的符号都不做变换。</span></span><br><span class="line"><span class="comment"> * 数据范围： 输入的字符串长度满足 1≤n≤100</span></span><br><span class="line"><span class="comment"> * 输入描述：</span></span><br><span class="line"><span class="comment"> * 输入一组密码，长度不超过100个字符。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 输出描述：</span></span><br><span class="line"><span class="comment"> * 输出密码变换后的字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 示例1</span></span><br><span class="line"><span class="comment"> * 输入：</span></span><br><span class="line"><span class="comment"> * YUANzhi1987</span></span><br><span class="line"><span class="comment"> * 输出：</span></span><br><span class="line"><span class="comment"> * zvbo9441987</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HJ21Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">String</span> <span class="variable">input</span> <span class="operator">=</span> scanner.next();</span><br><span class="line"></span><br><span class="line">        Map&lt;Integer, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        map.put(<span class="number">2</span>, <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        map.put(<span class="number">3</span>, <span class="string">&quot;def&quot;</span>);</span><br><span class="line">        map.put(<span class="number">4</span>, <span class="string">&quot;ghi&quot;</span>);</span><br><span class="line">        map.put(<span class="number">5</span>, <span class="string">&quot;jkl&quot;</span>);</span><br><span class="line">        map.put(<span class="number">6</span>, <span class="string">&quot;mno&quot;</span>);</span><br><span class="line">        map.put(<span class="number">7</span>, <span class="string">&quot;pqrs&quot;</span>);</span><br><span class="line">        map.put(<span class="number">8</span>, <span class="string">&quot;tuv&quot;</span>);</span><br><span class="line">        map.put(<span class="number">9</span>, <span class="string">&quot;wxyz&quot;</span>);</span><br><span class="line">        map.put(<span class="number">0</span>, <span class="string">&quot;0&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span>[] chars = input.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> chars.length;</span><br><span class="line"></span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">finalI</span> <span class="operator">=</span> i;</span><br><span class="line">            map.forEach((k, v) -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (v.contains(String.valueOf(chars[finalI]))) &#123;</span><br><span class="line">                    builder.append(k);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> <span class="variable">u</span> <span class="operator">=</span> chars[finalI];</span><br><span class="line">            <span class="keyword">if</span> (u &gt;= <span class="number">65</span> &amp;&amp; u &lt;= <span class="number">90</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> u + <span class="number">33</span>;</span><br><span class="line">                <span class="keyword">if</span> (i1 == <span class="number">123</span> ) &#123;</span><br><span class="line">                    builder.append(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> (<span class="type">char</span>) (u + <span class="number">33</span>);</span><br><span class="line">                    builder.append(ch);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">Pattern</span> <span class="variable">pattern</span> <span class="operator">=</span> Pattern.compile(<span class="string">&quot;[2-9]&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (pattern.matcher(String.valueOf(chars[finalI])).matches()) &#123;</span><br><span class="line">                builder.append(chars[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(builder);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果<br>
+<img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/7919845b2d094760963faf40cd23cbde.png" alt="在这里插入图片描述"></p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-01-31T22:25:21.000Z" title="2023/2/1 06:25:21">2023-02-01</time>发表</span><span class="level-item"><time dateTime="2020-02-12T17:46:41.000Z" title="2020/2/13 01:46:41">2020-02-13</time>更新</span><span class="level-item">28 分钟读完 (大约4168个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/02/01/%E3%80%90Git%E3%80%91SVN&amp;Git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">SVN&amp;Git使用手册</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
+<p>切记 代码是先更新再提交.<br>
+（一）SVN 和 GIt 区别<br>
+ 1．基本<br>
+ SVN 是集中式版本控制工具<br>
+ git 是分布式版本控制工具</p>
+<p>2．SVN 和 Git 优缺点<br>
+ svn 优点:<br>
+1. 方便管理者查看每个开发者开发进度<br>
+ 2. 方便对开发者进行权限控制<br>
+ svn 缺点:<br>
+1. 严重依赖网络环境进行版本控制<br>
+ 2. 中央服务器宕机，无法进行版本控制<br>
+ 3. 中央服务器磁盘损坏，丢失历史版本内容<br>
+ Git 优点:<br>
+1. 很完美的解决了 SVN 存在的缺点</p>
+<p>TortoiseGit 小乌龟<br>
+给当前项目提交到码云上<br>
+ 1. 用浏览器登录码云，在码云上创建一个仓库<br>
+ 2. 打开 TortoiseGit 软件<br>
+ 3. 新建一个文件夹改好名字 (注意是空文件夹)<br>
+ 4. 右键文件夹–&gt;Git 克隆…–&gt; 弹出如下图–&gt; 粘贴好 url<br>
+5. 点击确定就可以了</p>
+<p>6. 然后就给你自己的代码放入刚才的文件夹下，然后就点击推送等等.<br>
+2．设置用户名和邮箱</p>
+<p>直接设置即可。签名密钥不需要管</p>
+<p>Git 使用笔记<br>
+（一）概念<br>
+ 1．什么是版本控制</p>
+<p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
+<p>2．为什么要版本控制<br>
+有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。<br>
+许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。 这么做唯一的好处就是简单，但是特别容易犯错。 有时候会混淆所在的工作目录，一不小心会写错文件或者覆盖意想外的文件。<br>
+为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异。<br>
+3．集中化的版本控制系统<br>
+接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。<br>
+集中化的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。<br>
+这么做虽然解决了本地版本控制系统无法让在不同系统上的开发者协同工作的诟病，但也还是存在下面的问题：</p>
+<p>单点故障： 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏有没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。</p>
+<p>必须联网才能工作： 受网络状况、带宽影响。</p>
+<p>4．分布式版本控制系统<br>
+于是分布式版本控制系统（Distributed Version Control System，简称 DVCS）面世了。 Git 就是一个典型的分布式版本控制系统。<br>
+这类系统，客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。<br>
+分布式版本控制系统可以不用联网就可以工作，因为每个人的电脑上都是完整的版本库，当你修改了某个文件后，你只需要将自己的修改推送给别人就可以了。但是，在实际使用分布式版本控制系统的时候，很少会直接进行推送修改，而是使用一台充当 “中央服务器” 的东西。这个服务器的作用仅仅是用来方便 “交换” 大家的修改，没有它大家也一样干活，只是交换修改不方便而已。<br>
+分布式版本控制系统的优势不单是不必联网这么简单，后面我们还会看到 Git 极其强大的分支管理等功能。<br>
+5．Git 与其他版本管理系统的主要区别<br>
+ Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。<br>
+下面我们主要说一个关于 Git 其他版本管理系统的主要差别：对待数据的方式。<br>
+Git 采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。<br>
+大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。<br>
+具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统记录都会记录这个文件做了哪些更新，以增量符号 Δ(Delta) 表示。</p>
+<p>我们怎样才能得到一个文件的最终版本呢？<br>
+很简单，高中数学的基本知识，我们只需要将这些原文件和这些增加进行相加就行了。<br>
+这种方式有什么问题呢？<br>
+比如我们的增量特别特别多的话，如果我们要得到最终的文件是不是会耗费时间和性能。<br>
+Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 快照流。</p>
+<p>6．使用 git 原因<br>
+分布式版本控制工具<br>
+为什么使用 git 呢？<br>
+互联网项目，业务越来越复杂，项目越来越大，使用 SVN 版本控制不太好使了。<br>
+从 git 目标，看 git 的优势 速度快、分布式、有能力管理大型项目</p>
+<p>7．工作流程以及流程图</p>
+<p>在工作目录中修改文件。<br>
+暂存文件，将文件的快照放入暂存区域。<br>
+提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。<br>
+8．程序员工作流程<br>
+项目经理：1 创建项目 2 项目添加本地暂存态 3 项目提交到本地 4 建立远程连接 5 推送代码到远程服务器<br>
+程序员 A：1 克隆代码到本地 2 编写代码，将代码添加本地暂存态 3 代码提交本地 4 推送代码到服务器<br>
+程序员 B：1 克隆代码到本地 2 编写代码，将代码添加本地暂存态 3 代码提交本地 4 推送代码到服务器 5 更新其他程序员提交的代码<br>
+ 9．git 三种状态</p>
+<p>已提交（committed）：数据已经安全的保存在本地数据库中。</p>
+<p>已修改（modified）：已修改表示修改了文件，但还没保存到数据库中。</p>
+<p>已暂存（staged）：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。</p>
+<p>由此引入 Git 项目的三个工作区域的概念：Git 仓库 (.git directoty) 、工作目录 (Working Directory) 以及 暂存区域 (Staging Area) 。</p>
+<p>（二）Git 分支<br>
+ 1．分支概念</p>
+<p>几乎每一种版本控制系统都以某种形式支持分支。使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。在很多版本控制系统中，这是个昂贵的过程，常常需要创建一个源代码目录的完整副本，对大型项目来说会花费很长时间。</p>
+<p>有人把 Git 的分支模型称为 “必杀技特性”，而正是因为它，将 Git 从版本控制系统家族里区分出来。Git 有何特别之处呢？Git 的分支可谓是难以置信的轻量级，它的新建操作几乎可以在瞬间完成，并且在不同分支间切换起来也差不多一样快。和许多其他版本控制系统不同，Git 鼓励在工作流程中频繁使用分支与合并，哪怕一天之内进行许多次都没有关系。理解分支的概念并熟练运用后，你才会意识到为什么 Git 是一个如此强大而独特的工具，并从此真正改变你的开发方式。<br>
+2．分支需求<br>
+现在让我们来看一个简单的分支与合并的例子，实际工作中大体也会用到这样的工作流<br>
+程：</p>
+<p>开发某个网站。<br>
+为实现某个新的需求，创建一个分支。<br>
+在这个分支上开展工作。<br>
+假设此时，你突然接到一个电话说有个很严重的问题需要紧急修补，那么可以按照下面的方<br>
+式处理：<br>
+返回到原先已经发布到生产服务器上的分支。<br>
+为这次紧急修补建立一个新分支。<br>
+测试通过后，将此修补分支合并，再推送到生产服务器上。<br>
+切换到之前实现新需求的分支，继续工作。<br>
+（三）git 指令<br>
+ 1．创建 git 目录<br>
+ git init</p>
+<p>创建 git 目录:<br>
+ 该命令将创建一个名为 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。但是，在这个时候，我们仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪。(参见 Git 内部原理 来了解更多关于到底 .git 文件夹中包含了哪些文件的信息。)<br>
+ 2．克隆仓库<br>
+ git clone [url]<br>
+ 克隆仓库的命令格式是 git clone [url] 。比如，要克隆 Git 的可链接库 libgit2，可以用下面的命令<br>
+ $ git clone <a target="_blank" rel="noopener" href="https://github.com/libgit2/libgit2">https://github.com/libgit2/libgit2</a></p>
+<p>这会在当前目录下创建一个名为 “libgit2” 的目录，并在这个目录下初始化一个 .git 文件夹，从远程仓库拉取下所有数据放入 .git 文件夹，然后从中读取最新版本的文件的拷贝。如果你进入到这个新建的 libgit2 文件夹，你会发现所有的项目文件已经在里面了，准备就绪等待后续的开发和使用。如果你想在克隆远程仓库的时<br>
+候，自定义本地仓库的名字，你可以使用如下命令<br>
+ $ git clone <a target="_blank" rel="noopener" href="https://github.com/libgit2/libgit2">https://github.com/libgit2/libgit2</a> mylibgit<br>
+ 这将执行与上一个命令相同的操作，不过在本地创建的仓库名字变为 mylibgit<br>
+3．查看文件状态<br>
+ git status<br>
+ 要查看哪些文件处于什么状态，可以用 git status 命令。如果在克隆仓库后立即使用此命令，会看到类似这<br>
+样的输出.</p>
+<p>跟踪新文件</p>
+<p>（四）使用<br>
+ 1．安装 git</p>
+<p><a target="_blank" rel="noopener" href="http://note.youdao.com/noteshare?id=448878ab8bdba693717f8967e6aa6a4f">http://note.youdao.com/noteshare?id=448878ab8bdba693717f8967e6aa6a4f</a></p>
+<p>2．将项目上传到码云上</p>
+<p>如果账户已经配置好，git 客户端也安装好，在将要上传的文件中，右键打开 Git Bash Here, 按如下步骤即可：<br>
+1.git init<br>
+2.git remote add origin “你的码云项目地址（ssh 或 https）”<br>
+ 开始提交项目<br>
+ 3.git pull origin master 如果密码报错看下面<br>
+ 4.git touch init .txt  // 如果已经存在更改的文件，则操作这一步，否则跳过即可<br>
+ 5.git add .<br>
+6.git commit -m “第一次提交（提交信息）”<br>
+7.git push origin master<br>
+ 如出现错误 hint: Updates were rejected because the tip of your current branch is behind<br>
+hint: its remote counterpart. Integrate the remote changes (e.g.<br>
+hint: ‘git pull …’) before pushing again.<br>
+hint: See the ‘Note about fast-forwards’ in ‘git push --help’ for details.<br>
+ 可执行此操作继续，git push -u origin master -f  强制命令会覆盖别人分支，慎用</p>
+<p>密码报错在这里进行修改</p>
+<p>3．用 git 从 github 上下载代码</p>
+<p>新建一个文件夹，放你需要下载的东西。右键点击 “Git Bash Here”</p>
+<p>此时会弹出 git 的命令窗口</p>
+<p>3、输入  git clone + 下载地址，回车即可。如   git clone <a target="_blank" rel="noopener" href="https://github.comxxx.git">https://github.comxxx.git</a><br>
+ 等待下载</p>
+<p>下载好之后，文件夹里就会出现相应的项目啦～</p>
+<p>（五）GitGUI 操作<br>
+ 1．使用 gui 上传代码到码云上<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33867131/article/details/80831491"> https://blog.csdn.net/qq_33867131/article/details/80831491</a></p>
+<p>SVN 的基本使用<br>
+（一）基本简介<br>
+开源的版本控制系统，可以用来保存代码，同步代码，也可以保存图片文档电影什么的.<br>
+ 主要作用就是可以随时进行代码同步。但是会存在一些问题，会有一些解决方案<br>
+（二）服务端创建仓库<br>
+ 1．搭建仓库，添加用户</p>
+<p><a target="_blank" rel="noopener" href="http://note.youdao.com/noteshare?id=549663e56580a3643bbcc9104c357226">http://note.youdao.com/noteshare?id=549663e56580a3643bbcc9104c357226</a></p>
+<p>2．分配权限</p>
+<p>创建好用户后，用户还是不能访问我们的仓库，接下来我们要给用户分个组（如果想让用户不进组也能访问仓库，可以直接给单个用户权限</p>
+<p>3．给代码放到 svn 上面</p>
+<p>然后复制仓库地址</p>
+<p>在你要上传的项目右键</p>
+<p>然后点击确定</p>
+<p>（三）错误解决<br>
+ 1．代码错乱问题<br>
+去查看日志，下载正确的时间段的代码，然后再创建新的仓库，放那个代码，原来的仓库就删除掉就可以了.</p>
+<p>2．No appropriate protocol<br>
+ 公司的 SVN 协议从 svn 协议变更到 https 协议，结果 IDEA 的 SVN 报 No appropriate protocol，查询资料，最终解决方案是：<br>
+Go to Preferences &gt; Version Control &gt; SubVersion &gt; Enable Interactive Mode<br>
+3．versionControl 里面找不到 subversion 选项<br>
+去安装 svnToolBox 插件 即可解决</p>
+<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
+<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
+<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
+<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-01-28T05:53:40.000Z" title="2023/1/28 13:53:40">2023-01-28</time>发表</span><span class="level-item"><time dateTime="2023-11-11T14:03:11.000Z" title="2023/11/11 22:03:11">2023-11-11</time>更新</span><span class="level-item">8 分钟读完 (大约1167个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/01/28/%E3%80%90Java%E3%80%91%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%86%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BAList%E9%9B%86%E5%90%88/">【Java】如何优雅的将数组转换为List集合</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
 <h1 id="java如何优雅的将数组转换为list集合"><a class="markdownIt-Anchor" href="#java如何优雅的将数组转换为list集合">#</a> 【Java】如何优雅的将数组转换为 List 集合</h1>
 <h2 id="第一种方式未必最佳使用arraylistasliststrarray"><a class="markdownIt-Anchor" href="#第一种方式未必最佳使用arraylistasliststrarray">#</a> 第一种方式 (未必最佳): 使用 ArrayList.asList (strArray)</h2>
 <p>使用 Arrays 工具类 Arrays.asList (strArray) 方式，转换完成后，只能对 List 数组进行查改，不能增删，增删就会抛出<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=UnsupportedOperationException&amp;spm=1001.2101.3001.7020"> UnsupportedOperationException</a> 异常</p>
@@ -630,82 +918,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/whos2016/article/details/103430565">DDD - 建模分析过程</a></li>
 </ul>
 <p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt=""></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-24T21:40:25.000Z" title="2022/12/25 05:40:25">2022-12-25</time>发表</span><span class="level-item"><time dateTime="2023-01-10T22:49:34.000Z" title="2023/1/11 06:49:34">2023-01-11</time>更新</span><span class="level-item">13 分钟读完 (大约1945个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/25/%E3%80%90Java%E3%80%91Volatile%E5%85%B3%E9%94%AE%E5%AD%97/">Volatile关键字</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id="volatile关键字"><a class="markdownIt-Anchor" href="#volatile关键字">#</a> Volatile 关键字</h1>
-<p>Volatile 关键字的作用主要有如下两个：</p>
-<p>线程的可见性：当一个线程修改一个共享变量时，另外一个线程能读到这个修改的值。</p>
-<p>顺序一致性：禁止指令重排序。</p>
-<h1 id="一-线程可见性"><a class="markdownIt-Anchor" href="#一-线程可见性">#</a> 一、线程可见性</h1>
-<p>我们先通过一个例子来看看线程的可见性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">VolatileTest</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateFlag</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.flag = <span class="literal">false</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;修改flag值为：&quot;</span> + <span class="built_in">this</span>.flag);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">VolatileTest</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">VolatileTest</span>();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (test.flag) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;结束&quot;</span>);</span><br><span class="line">        &#125;, <span class="string">&quot;Thread1&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                test.updateFlag();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;Thread2&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>打印结果如下，我们可以看到虽然线程 Thread2 已经把 flag 修改为 false 了，但是线程 Thread1 没有读取到 flag 修改后的值，线程一直在运行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改flag值为：false</span><br></pre></td></tr></table></figure>
-<p>我们把 flag 变量加上 volatile：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatile  boolean flag = true;</span><br></pre></td></tr></table></figure>
-<p>重新运行程序，打印结果如下。Thread1 结束，说明 Thread1 读取到了 flage 修改后的值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改flag值为：false</span><br><span class="line">Thread1结束</span><br></pre></td></tr></table></figure>
-<p>说到可见性，我们需要先了解一下 Java 内存模型，Java 内存模型如下所示：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/d90e39f9caa340b0bb589ef1dbb2f667.png" alt="在这里插入图片描述"></p>
-<p>线程之间的共享变量存储在主内存中（Main Memory）中，每个线程都一个都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读 / 写共享变量的副本。</p>
-<p>所以当一个线程把主内存中的共享变量读取到自己的本地内存中，然后做了更新。在还没有把共享变量刷新的主内存的时候，另外一个线程是看不到的。</p>
-<p>如何把修改后的值刷新到主内存中的？<br>
-现代的处理器使用写缓冲区临时保存向内存写入的数据。写缓冲区可以保证指令流水线持续运行，它可以避免由于处理器停顿下来等向内存写入数据而产生的延迟。同时，通过以批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，较少对内存总线的占用。但是什么时候写入到内存是不知道的。<img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f96ceb17a5644f7db67d3a64f8b888fa.png" alt="在这里插入图片描述"></p>
-<p>所以就引入了 volatile，volatile 是如何保证可见性的呢？<br>
-在 X86 处理器下通过工具获取 JIT 编译器生成的汇编指令来查看对 volatile 进行写操作时，会多出 lock addl。Lock 前缀的指令在多核处理器下会引发两件事情：</p>
-<p>1. 将当前处理器缓存行的数据写回到系统内存。<br>
-2. 这个写回内存的操作会使其他 cpu 里缓存了该内存地址的数据无效。<br>
-如果声明了 volatile 的变量进行写操作，JVM 就会向处理器发送一条 Lock 前缀的指令，将这个变量所在缓存行的数据写回到系统内存。但是，就算写回到内存，如果其他处理器缓存的还是旧的，在执行操作就会有问题。所以，在多处理器下，为了保证各个处理器的缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置成无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存里。</p>
-<h1 id="二-顺序一致性"><a class="markdownIt-Anchor" href="#二-顺序一致性">#</a> 二、顺序一致性</h1>
-<p>在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。重排序分为如下三种：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/39a6b41a1a1a4d0191f418b0519aa532.png" alt="在这里插入图片描述"></p>
-<p>1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序可能会导致多线程程序出现内存可见性问题。<br>
-当变量声明为 volatile 时，Java 编译器在生成指令序列时，会插入内存屏障指令。通过内存屏障指令来禁止重排序。<br>
-JMM 内存屏障插入策略如下：<br>
-在每个 volatile 写操作的前面插入一个 StoreStore 屏障，后面插入一个 StoreLoad 屏障。<br>
-在每个 volatile 读操作后面插入一个 LoadLoad，LoadStore 屏障。</p>
-<p>Volatile 写插入内存屏障后生成指令序列示意图：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/f44d26762f704a28905e2f65b2a75d53.png" alt="在这里插入图片描述"></p>
-<p>Volatile 读插入内存屏障后生成指令序列示意图：</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/97e184ee75ed4e18b3066e1c8ab585e1.png" alt="在这里插入图片描述"></p>
-<p>通过上面这些我们可以得出如下结论：编译器不会对 volatile 读与 volatile 读后面的任意内存操作重排序；编译器不会对 volatile 写与 volatile 写前面的任意内存操作重排序。</p>
-<p>防止重排序使用案例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SafeDoubleCheckedLocking</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Instance instane;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">static</span> Instance <span class="title function_">getInstane</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instane==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SafeDoubleCheckedLocking.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instane==<span class="literal">null</span>)&#123;</span><br><span class="line">                    instane=<span class="keyword">new</span> <span class="title class_">Instance</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instane;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>创建一个对象主要分为如下三步：</p>
-<p>分配对象的内存空间。<br>
-初始化对象。<br>
-设置 instance 指向内存空间。<br>
-如果 instane 不加 volatile，上面的 2，3 可能会发生重排序。假设 A，B 两个线程同时获取，A 线程获取到了锁，发生了指令重排序，先设置了 instance 指向内存空间。这个时候 B 线程也来获取，instance 不为空，这样 B 拿到了没有初始化完成的单例对象（如下图）</p>
-<p><img src="https://brath.oss-cn-shanghai.aliyuncs.com/pigo/70457cf0d7904aa5a8b3edb1bffd4561.png" alt="在这里插入图片描述"></p>
-<p>二、Volatile 与 Synchronized 比较<br>
- 1.Volatile 是轻量级的 synchronized，因为它不会引起上下文的切换和调度，所以 Volatile 性能更好。<br>
-2.Volatile 只能修饰变量，synchronized 可以修饰方法，静态方法，代码块。<br>
-3.Volatile 对任意单个变量的读 / 写具有原子性，但是类似于 i++ 这种复合操作不具有原子性。而锁的互斥执行的特性可以确保对整个临界区代码执行具有原子性。<br>
-4. 多线程访问 volatile 不会发生阻塞，而 synchronized 会发生阻塞。<br>
-5.volatile 是变量在多线程之间的可见性，synchronize 是多线程之间访问资源的同步性。</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-12-12T18:36:28.000Z" title="2022/12/13 02:36:28">2022-12-13</time>发表</span><span class="level-item"><time dateTime="2023-04-04T23:53:27.000Z" title="2023/4/5 07:53:27">2023-04-05</time>更新</span><span class="level-item">2 分钟读完 (大约231个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/12/13/%E3%80%90Hbase%E3%80%91Hbase%E4%B8%8Eswagger%E4%B8%8Eguava%E4%BE%9D%E8%B5%96%E9%94%99%E8%AF%AF/">Hbase整合SpringBoot的问题</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<p>在一个 Demo 中，springboot 整合 Hbase 出了一个难解决的问题：</p>
-<p>tried to access method com.google.common.base.Stopwatch.<init>()V from class org.apache.hadoop.hbase.zookeeper.MetaTableLocator</p>
-<p>调用 hbase 就会报错，这是因为 swagger 和 guava 依赖冲突导致的，整合 habse 的 1.0 版本，依赖中不能有 swagger，guava 的版本要低于 17.</p>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-11-30T00:17:34.000Z" title="2022/11/30 08:17:34">2022-11-30</time>发表</span><span class="level-item"><time dateTime="2019-06-13T21:42:43.000Z" title="2019/6/14 05:42:43">2019-06-14</time>更新</span><span class="level-item">2 分钟读完 (大约271个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/11/30/%E3%80%90GOSN%E3%80%91Gosn%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%EF%BC%9F/">【GOSN】Gosn是什么？怎么使用？</a></p><div class="content"><p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="InterviewCoder"></p>
-<h1 id=""><a class="markdownIt-Anchor" href="#">#</a> </h1>
-<p>Gson 是 google 开发的一个开源 Json 解析库，使用十分的方便，在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=maven&amp;spm=1001.2101.3001.7020"> maven</a> 当中导入的方式为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.code.gson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>gson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
-<p>其中 2.8.2 为版本号，最新版本以及源码可以在官方的 github 上查看：<a target="_blank" rel="noopener" href="https://github.com/google/gson">https://github.com/google/gson</a></p>
-<p>这里给出最简单的 Gson 的使用方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"> </span><br><span class="line"><span class="comment">//Object转Json字符串</span></span><br><span class="line"> </span><br><span class="line"><span class="type">String</span> <span class="variable">obstr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>().toJson(object);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//Json字符串转Object</span></span><br><span class="line"> </span><br><span class="line"><span class="type">Object</span> <span class="variable">object</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>().fromJson(obstr);</span><br></pre></td></tr></table></figure>
-<h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我">#</a> 关于我</h2>
-<p>Brath 是一个热爱技术的 Java 程序猿，公众号「InterviewCoder」定期分享有趣有料的精品原创文章！</p>
-<p><img src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></p>
-<p>非常感谢各位人才能看到这里，原创不易，文章如果有帮助可以关注、点赞、分享或评论，这都是对我的莫大支持！</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/3/">上一页</a></div><div class="pagination-next"><a href="/page/5/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li><li><a class="pagination-link is-current" href="/page/4/">4</a></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/14/">14</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T09:23:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0Map/">【数据结构】手写实现Hash表，并解决哈希冲突</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T07:53:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0ArrayList/">【数据结构】手写实现ArrayList</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T05:53:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0LinkedList/">【数据结构】手写实现LinkedList</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T05:58:11.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">【算法】算法的时间与空间复杂度</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-05T01:57:09.000Z">2023-05-05</time></p><p class="title"><a href="/2023/05/05/%E3%80%90IDEA%E3%80%91IDEA%E7%9A%84debug%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3/">【IDEA】IDEA的debug调试技巧详解</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">51</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">139</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">139</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/3/">上一页</a></div><div class="pagination-next"><a href="/page/5/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li><li><a class="pagination-link is-current" href="/page/4/">4</a></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/15/">15</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-08T14:20:55.000Z">2023-05-08</time></p><p class="title"><a href="/2023/05/08/%E3%80%90Java%E3%80%91volatile%E5%85%B3%E9%94%AE%E5%AD%97/">【Java】volatile关键字</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-08T14:14:55.000Z">2023-05-08</time></p><p class="title"><a href="/2023/05/08/%E3%80%90Java%E3%80%91%E5%A4%9A%E7%A7%8D%E4%BB%A3%E7%90%86%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">【Java】多种代理的实现方式</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-08T14:04:55.000Z">2023-05-08</time></p><p class="title"><a href="/2023/05/08/%E3%80%90Java%E3%80%91HashMap%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E8%A7%A3%E8%AF%BB/">【Java】HashMap核心原理解读</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T09:23:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0Map/">【数据结构】手写实现Hash表，并解决哈希冲突</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T07:53:40.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0ArrayList/">【数据结构】手写实现ArrayList</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">40</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">50</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://brath4.oss-cn-shenzhen.aliyuncs.com/picgo/%E4%BA%8C%E7%BB%B4%E7%A0%81plus.png" alt="InterviewCoder"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">InterviewCoder</p><p class="is-size-6 is-block">面试记官方公众号</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">141</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/s/jWs6lLHl5L-atXJhHc4YvA" target="_blank" rel="noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://brath.cloud/me.png" alt="Brath"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Brath</p><p class="is-size-6 is-block">技能改变人生，知识改变命运。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国·江苏·无锡</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">141</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Guoqing815" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Guoqing815"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/Guoqing-Li"><i class="fab fa-gitee"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://schokolade.cn/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">泠灵(特别呜谢)</span></span><span class="level-right"><span class="level-item tag">schokolade.cn</span></span></a></li><li><a class="level is-mobile" href="https://gitee.com/Guoqing-Li" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Gitee(码云)</span></span><span class="level-right"><span class="level-item tag">gitee.com</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/Brath?type=blog" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">CSDN</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/settings/profile" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li><li><a class="level is-mobile" href="https://oss.console.aliyun.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">AliCloud(阿里云)</span></span><span class="level-right"><span class="level-item tag">oss.console.aliyun.com</span></span></a></li><li><a class="level is-mobile" href="https://cloud.tencent.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TencentCloud(腾讯云)</span></span><span class="level-right"><span class="level-item tag">cloud.tencent.com</span></span></a></li><li><a class="level is-mobile" href="https://www.zhipin.com/web/user/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">BOSS</span></span><span class="level-right"><span class="level-item tag">www.zhipin.com</span></span></a></li><li><a class="level is-mobile" href="https://www.bilibili.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bilibili(B站)</span></span><span class="level-right"><span class="level-item tag">www.bilibili.com</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://brath.cloud/me.png" alt="Brath-Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 Brath</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2029</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
